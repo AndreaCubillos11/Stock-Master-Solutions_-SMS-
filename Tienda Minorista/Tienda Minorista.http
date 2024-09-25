@@ -1,0 +1,6 @@
+@Tienda_Minorista_HostAddress = http://localhost:5083
+
+GET {{Tienda_Minorista_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
