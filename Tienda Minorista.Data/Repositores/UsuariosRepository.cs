@@ -1,116 +1,129 @@
-﻿using Dapper;
-using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using TiendaMinorista.Model;
-using BCrypt.Net;
 
 namespace Tienda_Minorista.Data.Repositores
 {
     public class UsuariosRepository : IUsuariosRepository
     {
-        private readonly AzureConfiguration _connectionString;
+        private readonly TiendaMinoristaContext _context;
 
-       public UsuariosRepository(AzureConfiguration connectionString) { 
-        _connectionString = connectionString;
-        }
-
-        protected SqlConnection dbconnection()
+        public UsuariosRepository(TiendaMinoristaContext context)
         {
-            return new SqlConnection(_connectionString.conectionString);
+
+            _context = context;
         }
+
+
 
         public async Task<bool> deleteUsuario(Usuarios usuario)
         {
-            var db = dbconnection();
-            var sql = "Delete from Usuarios where id=@Id";
-            var result = await db.ExecuteAsync(sql , new {Id=usuario.Id});
-            return result > 0;
+            // Verificamos si el usuario existe en el contexto antes de eliminarlo
+            var usuarioExistente = await _context.Usuarios.FindAsync(usuario.Id);
+
+            if (usuarioExistente == null)
+            {
+                // Si no existe, retornamos false
+                return false;
+            }
+
+            // Eliminamos el producto del contexto
+            _context.Usuarios.Remove(usuarioExistente);
+
+            // Guardamos los cambios en la base de datos
+            await _context.SaveChangesAsync();
+
+            // Si se elimina correctamente, retornamos true
+            return true;
         }
 
 
-        Task<IEnumerable<Usuarios>> IUsuariosRepository.GetAllUsuarios()
+        async Task<IEnumerable<Usuarios>> IUsuariosRepository.GetAllUsuarios()
         {
-            var db=dbconnection();
-            var sql = "Select Id,Usuario,Clave,NombreCompleto,rol,correo,fechaCreacion from Usuarios" ;
-
-            return db.QueryAsync<Usuarios>(sql, new { });
+            return await _context.Usuarios.ToListAsync();
         }
 
-        Task<Usuarios> IUsuariosRepository.GetDetails(int id)
+        async Task<Usuarios> IUsuariosRepository.GetDetails(int id)
         {
-            var db = dbconnection();
-            var sql = "Select Id,Usuario,Clave,NombreCompleto,rol,correo,fechaCreacion from Usuarios where=@Id";
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(p => p.Id == id);
 
-            return db.QueryFirstOrDefaultAsync<Usuarios>(sql, new {Id =id });
+            // Retorna el producto si lo encuentra, o null si no existe
+            return usuario;
         }
 
         async Task<bool> IUsuariosRepository.insertUsuario(Usuarios usuario)
         {
-            var db = dbconnection();
 
-            // Encriptar la clave usando bcrypt
+
+            // Encriptar la clave usando bcrypt antes de guardarla
             usuario.clave = BCrypt.Net.BCrypt.EnhancedHashPassword(usuario.clave);
 
-            var sql = "Insert into Usuarios( Id,Usuario,Clave,NombreCompleto,rol,correo,fechaCreacion)" +
-                      " Values (@Id,@Usuario,@Clave,@NombreCompleto,@rol,@correo,@fechaCreacion)";
+            // Agregar el nuevo usuario al contexto
+            await _context.Usuarios.AddAsync(usuario);
 
-            var result = await db.ExecuteAsync(sql, new
-            {
-                usuario.Id,
-                usuario.Usuario,
-                usuario.clave, 
-                usuario.NombreCompleto,
-                usuario.rol,
-                usuario.correo,
-                usuario.fechaCreacion
-            });
+            // Guardar los cambios en la base de datos
+            var resultado = await _context.SaveChangesAsync();
 
-            return result > 0;
+            // Si el resultado es mayor que 0, significa que la inserción fue exitosa
+            return resultado > 0;
+
+
         }
 
         async Task<bool> IUsuariosRepository.updateUsuario(Usuarios usuario)
         {
-            var db = dbconnection();
-            var sql = "update Usuarios set Id=@Id," +
-                "Usuario= @Usuario ," +
-                "Clave=@Clave," +
-                "NombreCompleto=@NombreCompleto," +
-                "rol=@rol," +
-                "correo=@correo," +
-                "fechaCreacion=@fechaCreacion where id=@Id" ;
+            // Verificamos si el producto existe en la base de datos
+            var usuarioExistente = await _context.Usuarios.FindAsync(usuario.Id);
 
-            var result = await db.ExecuteAsync(sql, new
-            { usuario.Id, usuario.Usuario, usuario.clave, usuario.NombreCompleto, usuario.rol, usuario.correo, usuario.fechaCreacion });
-            return result > 0;
+            if (usuarioExistente == null)
+            {
+                // Si el producto no existe, retornamos false
+                return false;
+            }
+
+            // Actualizamos las propiedades del producto existente con los nuevos valores
+            _context.Entry(usuarioExistente).CurrentValues.SetValues(usuario);
+
+            // Guardamos los cambios en la base de datos
+            var resultado = await _context.SaveChangesAsync();
+
+            // Retornamos true si se actualizó correctamente
+            return resultado > 0;
         }
 
-      
 
-public async Task<Usuarios> Login(string usuarioInput, string claveInput)
-    {
-        var db = dbconnection();
 
-        var sql = "SELECT * FROM Usuarios WHERE Usuario = @Usuario";
-
-        var usuario = await db.QueryFirstOrDefaultAsync<Usuarios>(sql, new { Usuario = usuarioInput });
-
-        if (usuario == null || !BCrypt.Net.BCrypt.Verify(claveInput, usuario.clave))
+        public async Task<object> Login(string usuarioInput, string claveInput)
         {
-            // Usuario no encontrado o contraseña incorrecta
-            return null;
+            // Buscar al usuario en la base de datos por nombre de usuario
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(u => u.Usuario == usuarioInput);
+
+            // Si no se encuentra el usuario o la clave es incorrecta, retornar null
+            if (usuario == null || !BCrypt.Net.BCrypt.EnhancedVerify(claveInput, usuario.clave))
+            {
+                throw new Exception("Usuario no logueado");
+            }
+
+            // Generar el token JWT usando el TokenService
+
+         TokenService tokenService = new TokenService();
+            var token = tokenService.GenerateJwtToken(usuario.Id);
+
+            // Devolver el usuario y el token en un objeto anónimo
+            return new
+            {
+                user = usuario,
+                accessToken = token
+            };
         }
 
-        // Login exitoso, devolver el usuario
-        return usuario;
     }
 
 
 }
 
-
-}
-  

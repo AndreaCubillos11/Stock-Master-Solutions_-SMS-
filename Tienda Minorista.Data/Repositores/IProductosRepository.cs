@@ -11,10 +11,12 @@ namespace Tienda_Minorista.Data.Repositores
     {
 
         Task<IEnumerable<Productos>> GetAllProductos();
-        Task<Productos> GetDetails(long id);
+        Task<Productos> GetDetailsForCogigo(long id);
         Task<bool> insertProducto(Productos producto);
         Task<bool> updateproducto(Productos producto);
         Task<bool> deleteProducto(Productos producto);
+        Task<Productos>GetDetailsForName(string name);
+        Task<Productos> GetDetailsForId(int id);
         
     }
 }

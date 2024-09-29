@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Tienda_Minorista.Data.Repositores;
 using TiendaMinorista.Model;
@@ -17,19 +18,36 @@ namespace Tienda_Minorista.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllProductos()
         {
             return Ok(await _productoRepository.GetAllProductos());
         }
 
-        [HttpGet("{CodigoBarras}")]
-        public async Task<IActionResult> GetProductoDetails(long codigoBarras)
+        [HttpGet("producto/id/{id}")]
+        [Authorize]
+        public async Task<IActionResult> GetProductoDetailsForId(int id)
         {
-            return Ok(await _productoRepository.GetDetails(codigoBarras));
+            return Ok(await _productoRepository.GetDetailsForId(id));
+        }
+
+        [HttpGet("producto/codigo/{codigo}")]
+        [Authorize]
+        public async Task<IActionResult> GetProductoDetailsForCodigo(long codigoBarras)
+        {
+            return Ok(await _productoRepository.GetDetailsForCogigo(codigoBarras));
+        }
+
+        [HttpGet("producto/nombre/{nombre}")]
+        [Authorize]
+        public async Task<IActionResult> GetProductoDetailsForName(string nombre)
+        {
+            return Ok(await _productoRepository.GetDetailsForName(nombre));
         }
 
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreatedUsuario([FromBody] Productos producto)
         {
             if (producto == null)
@@ -43,14 +61,16 @@ namespace Tienda_Minorista.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteUsuario(int id)
+        [Authorize]
+        public async Task<IActionResult> DeleteProducto(long codigoBarras)
         {
-            await _productoRepository.deleteProducto(new Productos { codigoBarras = id });
+            await _productoRepository.deleteProducto(new Productos { codigoBarras = codigoBarras });
 
             return NoContent();
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> UpdateProducto([FromBody] Productos producto)
         {
             if (producto == null)

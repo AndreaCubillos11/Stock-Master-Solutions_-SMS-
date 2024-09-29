@@ -27,15 +27,15 @@
   },
   {
     "ContainingType": "Tienda_Minorista.Controllers.ProductosController",
-    "Method": "DeleteUsuario",
+    "Method": "DeleteProducto",
     "RelativePath": "api/Productos",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "codigoBarras",
+        "Type": "System.Int64",
         "IsRequired": false
       }
     ],
@@ -59,8 +59,8 @@
   },
   {
     "ContainingType": "Tienda_Minorista.Controllers.ProductosController",
-    "Method": "GetProductoDetails",
-    "RelativePath": "api/Productos/{CodigoBarras}",
+    "Method": "GetProductoDetailsForCodigo",
+    "RelativePath": "api/Productos/producto/codigo/{codigo}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -68,6 +68,43 @@
       {
         "Name": "codigoBarras",
         "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "codigo",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.ProductosController",
+    "Method": "GetProductoDetailsForId",
+    "RelativePath": "api/Productos/producto/id/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.ProductosController",
+    "Method": "GetProductoDetailsForName",
+    "RelativePath": "api/Productos/producto/nombre/{nombre}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nombre",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -133,15 +170,15 @@
   },
   {
     "ContainingType": "Tienda_Minorista.Controllers.UsuariosController",
-    "Method": "GetUsuariosDetails",
-    "RelativePath": "api/Usuarios/{id}",
-    "HttpMethod": "GET",
+    "Method": "Login",
+    "RelativePath": "api/Usuarios/login",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "request",
+        "Type": "TiendaMinorista.Model.LoginRequest",
         "IsRequired": true
       }
     ],
@@ -149,25 +186,15 @@
   },
   {
     "ContainingType": "Tienda_Minorista.Controllers.UsuariosController",
-    "Method": "Login",
-    "RelativePath": "api/Usuarios/{usuario,clave}",
+    "Method": "GetUsuariosDetails",
+    "RelativePath": "api/Usuarios/usuario/id/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "usuario",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "clave",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "usuario,clave",
-        "Type": "",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

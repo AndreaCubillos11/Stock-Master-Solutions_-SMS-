@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Tienda_Minorista.Data.Repositores;
 using TiendaMinorista.Model;
+
 
 namespace Tienda_Minorista.Controllers
 {
@@ -18,18 +20,22 @@ namespace Tienda_Minorista.Controllers
 
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllUsuarios()
         {
             return Ok(await _usuariosRepository.GetAllUsuarios());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("usuario/id/{id}")]
+        [Authorize]
         public async Task<IActionResult> GetUsuariosDetails(int id)
         {
             return Ok(await _usuariosRepository.GetDetails(id));
         }
 
         [HttpPost]
+        [Authorize]
+
         public async Task<IActionResult> CreatedUsuario([FromBody] Usuarios usuarios)
         {
             if (usuarios == null)
@@ -43,6 +49,7 @@ namespace Tienda_Minorista.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> UpdateUsuario([FromBody] Usuarios usuarios)
         {
             if (usuarios == null)
@@ -56,6 +63,8 @@ namespace Tienda_Minorista.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
+
         public async Task<IActionResult> DeleteUsuario(int id)
         {
             await _usuariosRepository.deleteUsuario(new Usuarios { Id = id });
@@ -63,12 +72,19 @@ namespace Tienda_Minorista.Controllers
             return NoContent();
         }
 
-        [HttpGet("{usuario,clave}")]
-        public async Task<IActionResult> Login( string usuario,string clave)
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] TiendaMinorista.Model.LoginRequest request)
         {
-            await _usuariosRepository.Login(usuario, clave);
-
-            return Ok(await _usuariosRepository.Login(usuario,clave));
+            try
+            {
+                var result = await _usuariosRepository.Login(request.Usuario, request.clave);
+                return Ok(result); // Devuelve el resultado, que debería incluir el usuario y el token
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized(new { message = ex.Message }); // Manejo de errores
+            }
         }
+
     }
 }

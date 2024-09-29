@@ -14,6 +14,6 @@ namespace Tienda_Minorista.Data.Repositores
         Task<bool> insertUsuario(Usuarios usuario);
         Task<bool> updateUsuario(Usuarios usuario);
         Task<bool> deleteUsuario(Usuarios usuario);
-        Task<Usuarios> Login(string usuario, string clave);
+        Task<object> Login(string usuario, string clave);
     }
 }

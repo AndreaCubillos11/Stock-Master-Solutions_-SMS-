@@ -87,3 +87,11 @@ C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista\bin\Debug\net8.0\T
 C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista\bin\Debug\net8.0\Tienda Minorista.Data.pdb
 C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista\bin\Debug\net8.0\TiendaMinorista.Model.pdb
 C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista\bin\Debug\net8.0\DotNetEnv.dll
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista\bin\Debug\net8.0\Microsoft.Bcl.TimeProvider.dll
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista\bin\Debug\net8.0\Sprache.dll

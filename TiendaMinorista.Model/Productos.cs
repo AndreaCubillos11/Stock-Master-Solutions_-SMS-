@@ -16,6 +16,6 @@ namespace TiendaMinorista.Model
         public string categoria { get; set; }
         public DateTime fechaIngreso { get; set; }
 
-        public string estado { get; set; }
+        
     }
 }

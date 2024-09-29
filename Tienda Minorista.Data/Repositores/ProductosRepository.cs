@@ -1,5 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Mysqlx;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,85 +13,104 @@ namespace Tienda_Minorista.Data.Repositores
 {
     public class ProductosRepository : IProductosRepository
     {
-        private readonly AzureConfiguration _connectionString;
 
-        public ProductosRepository(AzureConfiguration connectionString)
+        private readonly TiendaMinoristaContext _context;
+
+        public ProductosRepository(TiendaMinoristaContext context)
         {
-            _connectionString = connectionString;
+            _context = context;
         }
 
-        protected SqlConnection dbconnection()
+
+
+        async Task<bool> IProductosRepository.deleteProducto(Productos producto)
         {
-            return new SqlConnection(_connectionString.conectionString);
-        }
+            // Verificamos si el producto existe en el contexto antes de eliminarlo
+            var productoExistente = await _context.Productos.FindAsync(producto.codigoBarras);
 
-          async Task<bool> IProductosRepository.deleteProducto(Productos producto)
-        {
-            var db = dbconnection();
-            var sql = "Delete from productos where codigoBarras=@codigoBarras";
-            var result = await db.ExecuteAsync(sql, new { CodigoBarras = producto.codigoBarras});
-            return result > 0;
-        }
-
-        Task<IEnumerable<Productos>> IProductosRepository.GetAllProductos()
-        {
-            var db = dbconnection();
-            var sql = "Select * from productos";
-
-            return db.QueryAsync<Productos>(sql, new { });
-        }
-
-       Task<Productos> IProductosRepository.GetDetails(long codigoBarras)
-        {
-            var db = dbconnection();
-            var sql = "Select * from productos where=@codigoBarras";
-
-            return db.QueryFirstOrDefaultAsync<Productos>(sql, new { CodigoBarras = codigoBarras });
-        }
-
-       async Task<bool> IProductosRepository.insertProducto(Productos producto)
-        {
-            var db = dbconnection();
-
-
-
-            var sql = "Insert into Productos( Id,codigoBarras,Nombre,descripcion,precio,categoria,fechaIngreso)" +
-                      " Values ( @Id,@codigoBarras,@Nombre,@descripcion,@precio,@categoria,@fechaIngreso)";
-
-            var result = await db.ExecuteAsync(sql, new
+            if (productoExistente == null)
             {
-                producto.Id,
-                producto.codigoBarras,
-                producto.nombre,
-                producto.descripcion,
-                producto.precio,
-                producto.categoria,
-                producto.fechaIngreso,
-                producto.estado
+                // Si no existe, retornamos false
+                return false;
+            }
 
-            });
+            // Eliminamos el producto del contexto
+            _context.Productos.Remove(productoExistente);
 
-            return result > 0;
+            // Guardamos los cambios en la base de datos
+            await _context.SaveChangesAsync();
+
+            // Si se elimina correctamente, retornamos true
+            return true;
         }
 
-      async
-            Task<bool> IProductosRepository.updateproducto(Productos producto)
+        // Método para obtener todos los productos
+        public async Task<IEnumerable<Productos>> GetAllProductos()
         {
-            var db = dbconnection();
-            var sql = "update productos set Id=@Id," +
-                "CodigoBarras= @CodigoBarras ," +
-                "nombre=@nombre," +
-                "descripcion=@descripcion," +
-                "precio=@precio," +
-                "categoria=@categoria," +
-                "fechaIngreso=@fechaIngreso," +
-                "estado=@estado  where codigoBarras=@CodigoBarras";
+            return await _context.Productos.ToListAsync();
+        }
 
+        async Task<Productos> IProductosRepository.GetDetailsForCogigo(long codigoBarras)
+        {
+            // Busca el producto en la base de datos utilizando el código de barras
+            var producto = await _context.Productos
+                .FirstOrDefaultAsync(p => p.codigoBarras == codigoBarras);
 
+            // Retorna el producto si lo encuentra, o null si no existe
+            return producto;
+        }
 
-            var result = await db.ExecuteAsync(sql, new
-            { producto.Id, producto.codigoBarras, producto.nombre, producto.descripcion, producto.precio, producto.categoria, producto.fechaIngreso,producto.estado });
-            return result > 0;
+        async Task<bool> IProductosRepository.insertProducto(Productos producto)
+        {
+            // Agregar el nuevo producto al contexto
+            await _context.Productos.AddAsync(producto);
+
+            // Guardar los cambios en la base de datos
+            var resultado = await _context.SaveChangesAsync();
+
+            // Si el resultado es mayor que 0, significa que se insertó con éxito
+            return resultado > 0;
+        }
+
+        
+             async Task<bool> IProductosRepository.updateproducto(Productos producto)
+        {
+            // Verificamos si el producto existe en la base de datos
+            var productoExistente = await _context.Productos.FindAsync(producto.Id);
+
+            if (productoExistente == null)
+            {
+                // Si el producto no existe, retornamos false
+                return false;
+            }
+
+            // Actualizamos las propiedades del producto existente con los nuevos valores
+            _context.Entry(productoExistente).CurrentValues.SetValues(producto);
+
+            // Guardamos los cambios en la base de datos
+            var resultado = await _context.SaveChangesAsync();
+
+            // Retornamos true si se actualizó correctamente
+            return resultado > 0;
+
+        }
+
+      async  Task<Productos> IProductosRepository.GetDetailsForName(string name)
+        {
+            var producto = await _context.Productos
+                .FirstOrDefaultAsync(p => p.nombre == name);
+
+            // Retorna el producto si lo encuentra, o null si no existe
+            return producto;
+        }
+
+        async Task<Productos> IProductosRepository.GetDetailsForId(int id)
+        {
+            var producto = await _context.Productos
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            // Retorna el producto si lo encuentra, o null si no existe
+            return producto;
         }
     }
 }
