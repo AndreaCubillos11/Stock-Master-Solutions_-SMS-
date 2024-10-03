@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -8,7 +9,7 @@ using TiendaMinorista.Model;
 public class TokenService
 {
     // Método para generar el token
-    public string GenerateJwtToken(int userId)
+    public string GenerateJwtToken(int userId, int rol)
     {
 
         var tokenH = new JwtSecurityTokenHandler();
@@ -17,7 +18,8 @@ public class TokenService
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
-                    new Claim(ClaimTypes.Name ,userId.ToString())
+                    new Claim(ClaimTypes.Name ,userId.ToString()),
+                    new Claim(ClaimTypes.Role, rol.ToString())
             }),
             Expires = DateTime.Now.AddMinutes(480), // Tiempo de expiración
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

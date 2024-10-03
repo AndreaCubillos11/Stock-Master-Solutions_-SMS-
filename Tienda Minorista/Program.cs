@@ -40,6 +40,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddScoped<IProductosRepository,ProductosRepository>();
 builder.Services.AddScoped<IUsuariosRepository,UsuariosRepository>();
+builder.Services.AddScoped<ITiendasRepository, TiendasRepository>();
 
 var app = builder.Build();
 

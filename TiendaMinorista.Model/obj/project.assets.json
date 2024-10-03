@@ -8,19 +8,24 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\migue\\.nuget\\packages\\": {}
+    "C:\\Users\\mrjoa\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\migue\\source\\repos\\Tienda Minorista\\TiendaMinorista.Model\\TiendaMinorista.Model.csproj",
+      "projectUniqueName": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\TiendaMinorista.Model\\TiendaMinorista.Model.csproj",
       "projectName": "TiendaMinorista.Model",
-      "projectPath": "C:\\Users\\migue\\source\\repos\\Tienda Minorista\\TiendaMinorista.Model\\TiendaMinorista.Model.csproj",
-      "packagesPath": "C:\\Users\\migue\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\migue\\source\\repos\\Tienda Minorista\\TiendaMinorista.Model\\obj\\",
+      "projectPath": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\TiendaMinorista.Model\\TiendaMinorista.Model.csproj",
+      "packagesPath": "C:\\Users\\mrjoa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\TiendaMinorista.Model\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\migue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mrjoa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -67,7 +72,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

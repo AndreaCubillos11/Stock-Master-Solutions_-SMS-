@@ -112,7 +112,7 @@ namespace Tienda_Minorista.Data.Repositores
             // Generar el token JWT usando el TokenService
 
          TokenService tokenService = new TokenService();
-            var token = tokenService.GenerateJwtToken(usuario.Id);
+            var token = tokenService.GenerateJwtToken(usuario.Id, usuario.rol);
 
             // Devolver el usuario y el token en un objeto anónimo
             return new

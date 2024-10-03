@@ -12,8 +12,8 @@ public class TiendaMinoristaContext : DbContext
     // Aquí defines las tablas que representarán tus entidades en la base de datos
     public DbSet<Productos> Productos { get; set; }  // Esto representa la tabla 'Productos'
     public DbSet<Usuarios> Usuarios { get; set; }    // Esto representa la tabla 'Usuarios'
-
+    public DbSet<Tiendas> Tiendas { get; set; }
     // Puedes configurar más cosas, como reglas especiales, llaves foráneas, etc., en este método.
-   
+
 }
 

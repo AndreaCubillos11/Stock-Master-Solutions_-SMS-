@@ -111,6 +111,80 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Tienda_Minorista.Controllers.TiendasController",
+    "Method": "GetAllTiendas",
+    "RelativePath": "api/Tiendas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.TiendasController",
+    "Method": "CreatedTienda",
+    "RelativePath": "api/Tiendas",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tienda",
+        "Type": "TiendaMinorista.Model.Tiendas",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.TiendasController",
+    "Method": "UpdateTienda",
+    "RelativePath": "api/Tiendas",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tienda",
+        "Type": "TiendaMinorista.Model.Tiendas",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.TiendasController",
+    "Method": "DeleteTienda",
+    "RelativePath": "api/Tiendas",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.TiendasController",
+    "Method": "GetTiendaDetails",
+    "RelativePath": "api/Tiendas/tienda/id/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Tienda_Minorista.Controllers.UsuariosController",
     "Method": "GetAllUsuarios",
     "RelativePath": "api/Usuarios",
