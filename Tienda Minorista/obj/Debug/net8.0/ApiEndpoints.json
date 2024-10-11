@@ -1,5 +1,15 @@
 [
   {
+    "ContainingType": "Tienda_Minorista.Controllers.DevolucionesController",
+    "Method": "GetAllDevoluciones",
+    "RelativePath": "api/Devoluciones",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Tienda_Minorista.Controllers.ProductosController",
     "Method": "GetAllProductos",
     "RelativePath": "api/Productos",
@@ -105,6 +115,80 @@
       {
         "Name": "nombre",
         "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.ReportesController",
+    "Method": "GetAllReportes",
+    "RelativePath": "api/Reportes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.ReportesController",
+    "Method": "CreateReporte",
+    "RelativePath": "api/Reportes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reporte",
+        "Type": "TiendaMinorista.Model.Reportes",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.ReportesController",
+    "Method": "UpdateReporte",
+    "RelativePath": "api/Reportes",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reporte",
+        "Type": "TiendaMinorista.Model.Reportes",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.ReportesController",
+    "Method": "DeleteReporte",
+    "RelativePath": "api/Reportes",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.ReportesController",
+    "Method": "GetDetailsReporte",
+    "RelativePath": "api/Reportes/reporte/id/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

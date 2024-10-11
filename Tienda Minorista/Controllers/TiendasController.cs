@@ -17,21 +17,21 @@ namespace Tienda_Minorista.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "2")]
+        [Authorize]
         public async Task<IActionResult> GetAllTiendas()
         {
             return Ok(await _tiendasRepository.GetAllTiendas());
         }
 
         [HttpGet("tienda/id/{id}")]
-        [Authorize(Roles = "2")]
+        [Authorize]
         public async Task<IActionResult> GetTiendaDetails(int id)
         {
             return Ok(await _tiendasRepository.GetDetails(id));
         }
 
         [HttpPost]
-        [Authorize(Roles = "2")]
+        [Authorize]
         public async Task<IActionResult> CreatedTienda([FromBody] Tiendas tienda)
         {
             if (tienda == null)
@@ -45,7 +45,7 @@ namespace Tienda_Minorista.Controllers
         }
 
         [HttpPut]
-        [Authorize(Roles = "2")]
+        [Authorize]
         public async Task<IActionResult> UpdateTienda([FromBody] Tiendas tienda)
         {
             if (tienda == null)
@@ -59,7 +59,7 @@ namespace Tienda_Minorista.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Roles = "2")]
+        [Authorize]
         public async Task<IActionResult> DeleteTienda(int id)
         {
             await _tiendasRepository.deleteTienda(new Tiendas { Id = id });

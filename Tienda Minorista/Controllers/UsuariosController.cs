@@ -34,7 +34,7 @@ namespace Tienda_Minorista.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
 
         public async Task<IActionResult> CreatedUsuario([FromBody] Usuarios usuarios)
         {

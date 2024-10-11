@@ -41,7 +41,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddScoped<IProductosRepository,ProductosRepository>();
 builder.Services.AddScoped<IUsuariosRepository,UsuariosRepository>();
 builder.Services.AddScoped<ITiendasRepository, TiendasRepository>();
-
+builder.Services.AddScoped<IReportesRepository, ReportesRepository>();
+builder.Services.AddScoped<IDevolucionesRepository, DevolucionesRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
