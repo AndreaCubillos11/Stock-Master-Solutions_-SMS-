@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
+using TiendaMinorista.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,9 +42,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddScoped<IProductosRepository,ProductosRepository>();
 builder.Services.AddScoped<IUsuariosRepository,UsuariosRepository>();
+builder.Services.AddScoped<IinventariosRepository,InventarioRepository>();
 builder.Services.AddScoped<ITiendasRepository, TiendasRepository>();
+builder.Services.AddScoped<IAlertasInventario, AlertasInventarioRepository>();
+builder.Services.AddScoped<IMovimientosInventarios, MovimientosInventario>();
 builder.Services.AddScoped<IReportesRepository, ReportesRepository>();
 builder.Services.AddScoped<IDevolucionesRepository, DevolucionesRepository>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
