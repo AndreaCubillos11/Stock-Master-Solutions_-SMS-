@@ -62,6 +62,15 @@ namespace Tienda_Minorista.Data.Repositores
             // Encriptar la clave usando bcrypt antes de guardarla
             usuario.clave = BCrypt.Net.BCrypt.EnhancedHashPassword(usuario.clave);
 
+            // Verificamos si el producto existe en el contexto antes de eliminarlo
+            var TiendaExistente = await _context.Tiendas.FindAsync(usuario.idTiendas);
+
+            if (TiendaExistente == null)
+            {
+                // Si no existe, retornamos false
+               throw new Exception("Tienda inexistente");
+            }
+
             // Agregar el nuevo usuario al contexto
             await _context.Usuarios.AddAsync(usuario);
 
@@ -101,7 +110,7 @@ namespace Tienda_Minorista.Data.Repositores
         {
             // Buscar al usuario en la base de datos por nombre de usuario
             var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(u => u.Usuario == usuarioInput);
+       .FirstOrDefaultAsync(u => u.Usuario == usuarioInput || u.correo == usuarioInput);
 
             // Si no se encuentra el usuario o la clave es incorrecta, retornar null
             if (usuario == null || !BCrypt.Net.BCrypt.EnhancedVerify(claveInput, usuario.clave))
@@ -112,7 +121,7 @@ namespace Tienda_Minorista.Data.Repositores
             // Generar el token JWT usando el TokenService
 
          TokenService tokenService = new TokenService();
-            var token = tokenService.GenerateJwtToken(usuario.Id, usuario.rol);
+            var token = tokenService.GenerateJwtToken(usuario.Id);
 
             // Devolver el usuario y el token en un objeto anónimo
             return new

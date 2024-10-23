@@ -32,6 +32,7 @@ namespace Tienda_Minorista.Controllers
 
         [HttpPost]
         [Authorize]
+
         public async Task<IActionResult> CreatedTienda([FromBody] Tiendas tienda)
         {
             if (tienda == null)

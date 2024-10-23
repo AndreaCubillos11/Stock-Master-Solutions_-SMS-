@@ -15,6 +15,8 @@ namespace TiendaMinorista.Model
         public int rol {  get; set; }
         public string correo {  get; set; }
         public DateTime fechaCreacion { get; set; }
+
+        public int idTiendas { get; set; }
     
     }
 }

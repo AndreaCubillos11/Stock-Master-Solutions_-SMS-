@@ -48,7 +48,7 @@ namespace Tienda_Minorista.Data.Repositores
 
         async Task<Tiendas> ITiendasRepository.GetDetails(int id)
         {
-            // Busca el producto en la base de datos utilizando el c�digo de barras
+            // Busca la tienda en la base de datos utilizando el id 
             var tienda = await _context.Tiendas
                 .FirstOrDefaultAsync(p => p.Id == id);
 

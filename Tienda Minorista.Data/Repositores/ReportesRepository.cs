@@ -37,25 +37,22 @@ namespace Tienda_Minorista.Data.Repositores
             // Guardamos los cambios en la base de datos
             await _context.SaveChangesAsync();
 
-            // Retornamos true si la reporte fue eliminada correctamente
+            // Retornamos true si el reporte fue eliminado correctamente
             return true;
         }
 
         public async Task<IEnumerable<Reportes>> GetAllReportes()
         {
-            return await _context.Reportes
-                             .Include(r => r.Usuario)
-                             .ToListAsync();
+            return await _context.Reportes.ToListAsync();
         }
 
         async Task<Reportes> IReportesRepository.GetDetails(int id)
         {
-            // Busca el producto en la base de datos utilizando el código de barras
+            // Busca el reporte en la base de datos utilizando el id del reporte
             var reporte = await _context.Reportes
-                .Include(p => p.Usuario)
                 .FirstOrDefaultAsync(p => p.ReporteID == id);
                 
-            // Retorna el producto si lo encuentra, o null si no existe
+            // Retorna el reporte si lo encuentra, o null si no existe
             return reporte;
         }
 
@@ -67,12 +64,13 @@ namespace Tienda_Minorista.Data.Repositores
                 throw new Exception("Usuario no encontrado");
             }
 
-            // Asociar el usuario al reporte
-            reporte.Usuario = usuarioExistente;
-
+            // Agregar el nuevo reporte al contexto
             await _context.Reportes.AddAsync(reporte);
+
+            // Guardar los cambios en la base de datos
             var resultado = await _context.SaveChangesAsync();
 
+            // Si el resultado es mayor que 0, significa que la inserción fue exitosa
             return resultado > 0;
         }
 

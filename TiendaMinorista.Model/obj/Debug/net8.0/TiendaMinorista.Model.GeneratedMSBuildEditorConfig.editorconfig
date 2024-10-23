@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TiendaMinorista.Model
-build_property.ProjectDir = C:\Users\mrjoa\Stock-Master-Solutions_-SMS-\TiendaMinorista.Model\
+build_property.ProjectDir = C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
