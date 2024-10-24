@@ -1,3 +1,30 @@
+.table-container {
+    display: block;
+    overflow-x: auto; /* Habilitar desplazamiento horizontal */
+}
+
+/* Asegurar que las columnas ocupen todo el ancho cuando haya menos de 5 columnas */
+.full-width-table {
+    width: 100%;
+}
+
+.dynamic-column {
+    flex-grow: 1;
+    text-align: left;
+}
+
+/* Si hay más de 5 columnas, la tabla es desplazable horizontalmente */
+.scrollable-table {
+    width: auto;
+    min-width: 100%;
+}
+
+/* Asegurar que el ancho de las columnas se distribuya proporcionalmente */
+.mat-header-cell, .mat-cell {
+    flex: 1 1 auto; /* Flex-grow para distribuir el ancho */
+}
+
+
 .mat-elevation-z8 {
     min-height: 270px;
     display: flex;

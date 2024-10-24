@@ -11,6 +11,7 @@ import { CompLoginComponent } from './comp-login/comp-login.component';
 import { ModuloAdminModule } from './modulo-admin/modulo-admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModulosCompartidosModule } from "./modulosCompartidos/modulos-compartidos.module";
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { ModulosCompartidosModule } from "./modulosCompartidos/modulos-compartid
     BrowserAnimationsModule,
     ModulosCompartidosModule
 ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

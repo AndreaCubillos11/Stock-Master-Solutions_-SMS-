@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'comp-btn-crud',
@@ -6,8 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./comp-btn-crud.component.css']
 })
 export class CompBtnCRUDComponent {
-  btnAgregar: string = 'Agregar producto nuevo';
-  btnModificar: string = 'Modificar datos de producto';
-  btnModificarStock: string = 'Modificar stock de producto';
-  btnEliminar: string = 'Eliminar producto';
+  @Input() datosBotones: { texto: string, img: string, nombreClase: string }[] = [];
 }

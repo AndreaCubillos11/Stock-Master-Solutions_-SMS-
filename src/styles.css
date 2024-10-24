@@ -7,6 +7,14 @@ header {
     background-color: #4A1F43 !important;
 }
 
+.ng-valid:not(form).ng-touched {
+    border-left: 5px solid green;
+}
+
+.ng-valid:not(form).ng-touched {
+    border-left: 5px solid red;
+}
+
 /*Para poner los iconos redondeados*/
 .icon {
     background-color: #65558f;

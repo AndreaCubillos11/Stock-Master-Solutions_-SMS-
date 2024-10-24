@@ -1,19 +1,42 @@
-.alertaAlta{
+.alertaAlta {
     background-color: #c00f0c;
 }
 
-.alertaMediaAlta{
+.alertaMediaAlta {
     background-color: #ec221f;
 }
 
-.alertaMedia{
+.alertaMedia {
     background-color: #e5a000;
 }
 
-.alertaMediaBaja{
+.alertaMediaBaja {
     background-color: #e8b931;
 }
 
-.alertaBaja{
+.alertaBaja {
     background-color: #14ae5c;
+}
+
+.badge {
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.alert-tag {
+    color: black;
+    font-weight: bold;
+    display: inline-block;
+    margin: 2px 5px;
+    padding: 4px 8px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+.alert-tag:hover {
+    border-color: black;
 }

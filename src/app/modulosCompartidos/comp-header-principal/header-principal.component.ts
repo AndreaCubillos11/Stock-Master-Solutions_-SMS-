@@ -6,9 +6,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./header-principal.component.css']
 })
 export class HeaderPrincipalComponent  {
-  @Input() titulo: string ='Stock Master System';
-  @Input() imagen: string = 'infoIcon.svg';
-  @Input() nombreImagen: string = 'Informacion';
+  @Input() titulo: string ='Stock Master Solutions';
+  @Input() tieneBoton: boolean = false;
+  @Input() imagen: string = '';
+  @Input() nombreImagen: string = '';
   @Input() textoBoton: string = '';
 
 }

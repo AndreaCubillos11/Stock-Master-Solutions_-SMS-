@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'comp-header-gestion',
@@ -7,11 +6,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./comp-header-gestion.component.css']
 })
 export class CompHeaderGestionComponent {
-  constructor(private router: Router){
+  constructor(){}
 
-  }
-
-  cambioAlerta() {
-    this.router.navigate(['/alertaInventario']);
-  }
 }

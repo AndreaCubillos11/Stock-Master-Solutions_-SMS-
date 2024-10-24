@@ -19,6 +19,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PaginaAlertasComponent } from './pagina-alertas/pagina-alertas.component';
 import { HeaderPrincipalComponent } from './comp-header-principal/header-principal.component';
 import { MatExpansionModule} from '@angular/material/expansion';
+import { RouterModule } from '@angular/router';
+import { CompVentanaEmergenteComponent } from './comp-ventana-emergente/comp-ventana-emergente.component';
+
 
 
 @NgModule({
@@ -31,7 +34,8 @@ import { MatExpansionModule} from '@angular/material/expansion';
     CompSelectoresComponent,
     CompTablaComponent,
     PaginaAlertasComponent,
-    HeaderPrincipalComponent
+    HeaderPrincipalComponent,
+    CompVentanaEmergenteComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +49,8 @@ import { MatExpansionModule} from '@angular/material/expansion';
     MatSortModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    RouterModule, 
   ],
   exports: [
     CompHeaderGestionComponent,
@@ -55,7 +60,8 @@ import { MatExpansionModule} from '@angular/material/expansion';
     CompCardStockComponent,
     CompSelectoresComponent,
     CompTablaComponent,
-    HeaderPrincipalComponent
+    HeaderPrincipalComponent,
+    CompVentanaEmergenteComponent
   ]
 })
 export class ModulosCompartidosModule { }

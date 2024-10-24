@@ -23,8 +23,36 @@ export class CompSelectoresComponent {
   ];
 
   inventarios: Inventario[] = [
-    {id: 1, name: 'Inventario ROPA', alertas: 4},
-    {id: 2, name: 'Inventario ALIMENTOS', alertas: 8},
+    {
+        id: 1,
+        productoId: 101,
+        tiendaId: 1,
+        cantidad: 50,
+        cantidadMinima: 10,
+        cantidadBodega: 100,
+        ubicacionTienda: 'Pasillo A - Estante 5',
+        fechaUltimaActualizacion: new Date('2023-10-10')
+    },
+    {
+        id: 2,
+        productoId: 102,
+        tiendaId: 1,
+        cantidad: 30,
+        cantidadMinima: 5,
+        cantidadBodega: 80,
+        ubicacionTienda: 'Pasillo B - Estante 2',
+        fechaUltimaActualizacion: new Date('2023-10-12')
+    },
+    {
+        id: 3,
+        productoId: 103,
+        tiendaId: 2,
+        cantidad: 20,
+        cantidadMinima: 8,
+        cantidadBodega: 60,
+        ubicacionTienda: 'Pasillo C - Estante 1',
+        fechaUltimaActualizacion: new Date('2023-10-15')
+    }
   ];
 
   seleccionado = false;

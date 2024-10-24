@@ -1,18 +1,11 @@
 <div class="d-flex flex-column mt-5 ms-auto">
-        <button class="btnCRUD d-flex align-items-center mt-3">
-                <img class="icon icon-adjusted me-5" src="/assets/Añadir.svg" alt=""
-                        style="background-color: #16e550" />{{ btnAgregar }}
+        <button *ngFor="let button of datosBotones"
+                class="btnCRUD d-flex align-items-center justify-content-start text-center mt-3 w-auto">
+                <img class="icon icon-adjusted me-3" [src]="'/assets/' + button.img" alt=""
+                        [ngClass]="button.nombreClase" />
+                <div class="flex-grow-1 text-center">
+                        <span>{{button.texto}}</span>
+                </div>
         </button>
-        <button class="btnCRUD d-flex align-items-center mt-3">
-                <img class="icon icon-adjusted me-5" src="/assets/ModificarProducto.svg" alt=""
-                        style="background-color: #e59f16" />{{ btnModificar }}
-        </button>
-        <button class="btnCRUD d-flex align-items-center mt-3">
-                <img class="icon icon-adjusted me-5" src="/assets/ModificarInventario.svg" alt=""
-                        style="background-color: #e59f16" />{{ btnModificarStock }}
-        </button>
-        <button class="btnCRUD d-flex align-items-center mt-3">
-                <img class="icon icon-adjusted me-5" src="/assets/Eliminar.svg" alt=""
-                        style="background-color: #e51616" />{{ btnEliminar }}
-        </button>
+
 </div>

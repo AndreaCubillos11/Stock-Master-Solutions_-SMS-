@@ -1,13 +1,22 @@
- .btnCRUD{
- /*   border-top-left-radius: 32px;
-    border-bottom-left-radius: 32px; */
+.btnCRUD {
     border-radius: 42px 0 0 42px;
     height: 7vh;
     font-size: larger;
-    
 }
 
 .icon-adjusted {
     transform: translateX(-4px);
     width: 5.9vh;
+}
+
+.agregar {
+    background-color: #16e550;
+}
+
+.modificar {
+    background-color: #e59f16;
+}
+
+.eliminar{
+    background-color: #e51616;
 }

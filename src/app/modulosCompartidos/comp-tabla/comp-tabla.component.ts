@@ -11,8 +11,8 @@ import { MatSort } from '@angular/material/sort';
 
 export class CompTablaComponent<T extends {}> implements OnInit {
   @Input() datos: T[] = [];//Array generico donde se guardan los datos
-  nombresColumnas: string[] = [];//Array con los nombres e las columnas
-  dataSource = new MatTableDataSource<T>();//Cambiar el any por la interfaz de la entidad a usar
+  nombresColumnas: string[] = [];//Array con los nombres de las columnas
+  dataSource = new MatTableDataSource<T>();
   tieneDatos = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

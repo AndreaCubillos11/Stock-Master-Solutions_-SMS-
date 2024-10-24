@@ -1,22 +1,66 @@
-import { Component } from '@angular/core';
-import { Inventario } from 'src/models/inventario.model';
+import { Component, OnInit} from '@angular/core';
+import { Alerta } from 'src/models/alerta.model';
 
 @Component({
   selector: 'app-pagina-alertas',
   templateUrl: './pagina-alertas.component.html',
   styleUrls: ['./pagina-alertas.component.css']
 })
-export class PaginaAlertasComponent {
+export class PaginaAlertasComponent implements OnInit{
   titulo: string = 'Alertas Inventarios';
   imagen: string = 'volver.svg';
   nombreImagen: string = 'volver';
   textoBoton: string = 'Volver';
 
-  inventarios: Inventario[] = [
-    {id: 1, name: 'Inventario ROPA', alertas: 4},
-    {id: 2, name: 'Inventario ALIMENTOS', alertas: 2}
+  alertas: Alerta[] = [
+    {
+      id: 1,
+      inventarioId: 1,
+      fechaAlerta: new Date('2023-10-20'),
+      descripcion: 'Cantidad de inventario por debajo del nivel mínimo.',
+      estado: 'Pendiente'
+    },
+    {
+      id: 2,
+      inventarioId: 1,
+      fechaAlerta: new Date('2023-10-22'),
+      descripcion: 'Revisión de stock necesaria en la bodega.',
+      estado: 'Urgente'
+    },
+    {
+      id: 3,
+      inventarioId: 2,
+      fechaAlerta: new Date('2023-10-23'),
+      descripcion: 'Actualización pendiente de inventario.',
+      estado: 'Pendiente'
+    }
   ];
-  
+
+  groupedAlerts: Array<{ inventarioId: number; alertas: Alerta[] }> = [];
+
+  ngOnInit(): void {
+      this.groupAlertsByInventory();
+  }
+
+  // Método para agrupar alertas por inventarioId
+  groupAlertsByInventory(): void {
+      const groupedAlerts: { inventarioId: number; alertas: Alerta[] }[] = [];
+      const alertMap = new Map<number, Alerta[]>();
+
+      for (const alerta of this.alertas) {
+          if (!alertMap.has(alerta.inventarioId)) {
+              alertMap.set(alerta.inventarioId, []);
+          }
+          alertMap.get(alerta.inventarioId)?.push(alerta);
+      }
+
+      alertMap.forEach((alertas, inventarioId) => {
+          groupedAlerts.push({ inventarioId, alertas });
+      });
+
+      this.groupedAlerts = groupedAlerts; // Guardar el resultado en la propiedad
+  }
+
   getAlertClass(alertas: number): string {
     switch (true) {
       case (alertas > 5):
@@ -31,6 +75,5 @@ export class PaginaAlertasComponent {
         return 'alertaBaja';
     }
   }
-  
-  
+
 }
