@@ -1,0 +1,9 @@
+.button-text {
+    margin-right: 10px;
+    color: white;
+}
+
+.noBG{
+    background-color: #4A1F43;
+    border: none;
+}

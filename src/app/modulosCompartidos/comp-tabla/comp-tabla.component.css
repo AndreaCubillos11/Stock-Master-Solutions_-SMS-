@@ -1,0 +1,21 @@
+.mat-elevation-z8 {
+    min-height: 270px;
+    display: flex;
+    flex-direction: column;
+}
+
+.spinner-container {
+    padding-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.mat-table {
+    flex: 1;
+}
+
+.mat-row .mat-header-row {
+    height: 40px;
+}

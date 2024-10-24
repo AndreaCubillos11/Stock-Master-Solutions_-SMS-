@@ -1,0 +1,21 @@
+<header-principal [titulo]="titulo" [imagen]="imagen" [nombreImagen]="nombreImagen" [textoBoton]="textoBoton"/>
+<section class="mx-5 mt-5">
+    <div class="align-items-center">
+        <mat-accordion class="example-headers-align" multi>
+            <!-- Cambiar inventarios por la tabla de alertas -->
+            <mat-expansion-panel *ngFor="let inventario of inventarios" [ngClass]="getAlertClass(inventario.alertas)">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{ inventario.name }} <!-- El nombre se puede obtener por el id en la tabla de alertas-->
+                </mat-panel-title>
+                <mat-panel-description>
+                  Descripcion de la alerta <!-- ¿dejar vacio? -->
+                </mat-panel-description>
+                <img class="me-3" src="/assets/buscar.svg" alt=""> <!-- Buscar forma de mostrar el num de alertas acumuladas -->
+              </mat-expansion-panel-header>
+              Contenido del inventario {{ inventario.id }} <!-- descripcion de alertas seran etiquetas a que abren un moadal -->
+            </mat-expansion-panel>
+          </mat-accordion>
+          
+    </div>
+</section>

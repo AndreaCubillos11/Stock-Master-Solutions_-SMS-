@@ -1,0 +1,23 @@
+<div class="row">
+    <mat-form-field appearance="fill">
+        <mat-label>Tiendas</mat-label>
+        <mat-select (selectionChange)="seleccionTienda($event)">
+            <mat-option *ngFor="let tienda of tiendas" [value]="tienda.name">
+                {{tienda.name}}
+            </mat-option>
+        </mat-select>
+        <img  matSuffix src="/assets/tienda.svg" alt="tienda"> 
+    </mat-form-field>
+
+    <div class="separador"></div>
+    
+    <mat-form-field>
+        <mat-label>Inventario</mat-label>
+        <mat-select [disabled]="!seleccionado" [(value)]="inventarioSeleccionado">
+            <mat-option *ngFor="let inv of inventarios" [value]="inv.name">
+                {{inv.name}}
+            </mat-option>
+        </mat-select>  
+        <img  matSuffix src="/assets/inventario.svg" alt="inventario">  
+    </mat-form-field>
+</div>

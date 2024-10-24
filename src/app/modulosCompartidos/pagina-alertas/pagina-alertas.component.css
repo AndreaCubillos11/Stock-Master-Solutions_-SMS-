@@ -1,0 +1,19 @@
+.alertaAlta{
+    background-color: #c00f0c;
+}
+
+.alertaMediaAlta{
+    background-color: #ec221f;
+}
+
+.alertaMedia{
+    background-color: #e5a000;
+}
+
+.alertaMediaBaja{
+    background-color: #e8b931;
+}
+
+.alertaBaja{
+    background-color: #14ae5c;
+}

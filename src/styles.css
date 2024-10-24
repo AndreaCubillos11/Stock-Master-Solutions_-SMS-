@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #EAEAEA !important;
+}
+
+header {
+    background-color: #4A1F43 !important;
+}
+
+/*Para poner los iconos redondeados*/
+.icon {
+    background-color: #65558f;
+    border-radius: 50%;          
+    padding: 5px;               
+    display: inline-block;
+    border: none;
+}
+
+/*Fuente para titulos*/
+.roboto-bold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 250%;
+    color: white;
+}
+
+/*Para sitios digitables o que sean importantes*/
+.formulario{
+    border: 2px solid black !important; 
+    background-color: white;
+    border-radius: 8px;
+    height: fit-content;
+}
+
+/*Botones de accion*/
+.boton{
+    border: 2px solid black;
+    background-color: #4A1F43;
+    border-radius: 8px;
+    color: white;
+}
+
+.separador{
+    padding-top: 85px;
+}

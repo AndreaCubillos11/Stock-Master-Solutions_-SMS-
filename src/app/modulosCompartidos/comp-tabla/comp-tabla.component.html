@@ -1,0 +1,21 @@
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="filtroBusqueda($event)" placeholder="Camisa" #input>
+</mat-form-field>
+<div class="mat-elevation-z8">
+    <div *ngIf="!tieneDatos" class="spinner-container">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="tieneDatos">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container *ngFor="let column of nombresColumnas" [matColumnDef]="column">
+                <th mat-header-cell *matHeaderCellDef> {{ column | titlecase }} </th>
+                <td mat-cell *matCellDef="let element"> {{ element[column] || ' ' }} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="nombresColumnas"></tr>
+            <tr mat-row *matRowDef="let row; columns: nombresColumnas;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>
