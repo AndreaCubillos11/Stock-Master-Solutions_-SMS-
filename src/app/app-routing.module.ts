@@ -4,12 +4,16 @@ import { PaginaEmpleadoComponent } from './modulo-empleado/pagina-empleado/pagin
 import { CompLoginComponent } from './comp-login/comp-login.component';
 import { PaginaAdminComponent } from './modulo-admin/pagina-admin/pagina-admin.component';
 import { PaginaAlertasComponent } from './modulosCompartidos/pagina-alertas/pagina-alertas.component';
+import { CrearUsuarioComponent } from './modulo-admin/crear-usuario/crear-usuario.component';
+import { CrearProductoComponent } from './crear-producto/crear-producto.component';
 
 const routes: Routes = [
   {path: '', component: CompLoginComponent},
   {path: 'gestionProductos', component: PaginaEmpleadoComponent},
   {path: 'alertaInventario', component: PaginaAlertasComponent},
   {path: 'gestionADMIN', component: PaginaAdminComponent},
+  {path: 'signup', component:CrearUsuarioComponent},
+  {path: 'crearProducto', component:CrearProductoComponent}
 ];
 
 @NgModule({
