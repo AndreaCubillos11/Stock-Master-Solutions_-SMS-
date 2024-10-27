@@ -2,13 +2,13 @@
   <!-- Barra de navegación -->
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <h1 class="roboto-bold">{{titulo}}</h1>
+      <h1 class="roboto-bold">{{headerData.titulo}}</h1>
       <div class="col-auto" id="navbarNav">
         <!-- Boton -->
-        <ng-template [ngIf]="tieneBoton">
+        <ng-template [ngIf]="headerData.tieneBoton">
           <button class="noBG">
-            <span class="button-text">{{textoBoton}}</span>
-            <img class="icon" [src]="'/assets/' + imagen" alt="{{nombreImagen}}">
+            <span class="button-text">{{headerData.textoBoton}}</span>
+            <img class="icon" [src]="'/assets/' + headerData.imagen" alt="{{headerData.nombreImagen}}">
           </button>
         </ng-template>
       </div>

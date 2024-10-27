@@ -16,7 +16,6 @@ import { CrearUsuarioComponent } from './modulo-admin/crear-usuario/crear-usuari
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { CrearProductoComponent } from './crear-producto/crear-producto.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { CrearProductoComponent } from './crear-producto/crear-producto.componen
     SectionLogoComponent,
     CompLoginComponent,
     CrearUsuarioComponent,
-    CrearProductoComponent
   ],
   imports: [
     BrowserModule,

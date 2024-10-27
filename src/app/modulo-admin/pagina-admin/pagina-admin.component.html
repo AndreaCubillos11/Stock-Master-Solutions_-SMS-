@@ -4,21 +4,47 @@
     <div class="row">
         <div class="col-7">
             <!-- card muestra stock -->
-            <comp-card-stock />
+            <ng-template [ngIf]="selectedOption === 'optionTienda'">
+                <comp-card-stock />
+            </ng-template>
+
+            <ng-template [ngIf]="selectedOption === 'optionProducto'">
+                <comp-tabla />
+            </ng-template>
 
             <!-- barra de busqueda -->
             <comp-barra-busqueda />
         </div>
 
         <div class="col">
+            <div class="form-check form-check-inline mx-5">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioTienda"
+                    [(ngModel)]="selectedOption" value="optionTienda">
+                <label class="form-check-label" for="radioTienda">Tiendas</label>
+            </div>
+
+            <div class="form-check form-check-inline mx-5">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioProducto"
+                    [(ngModel)]="selectedOption" value="optionProducto">
+                <label class="form-check-label" for="radioProducto">Productos</label>
+            </div>
+
             <!-- botones crud -->
             <div class="mt-5">
-                <comp-selectores />
+                <ng-template [ngIf]="selectedOption === 'optionTienda'">
+                    <comp-selectores />
+                </ng-template>
+
+                <ng-template [ngIf]="selectedOption === 'optionProducto'">
+                    <comp-btn-crud [datosBotones]="datosBtn" />
+                    <div style="padding-top: 49px;"></div>
+                </ng-template>
+
             </div>
             <div class="separador"></div>
 
             <!-- boton codigo de barras -->
-            <div class="mt-5">
+            <div class="mt-5 ms-5">
                 <comp-btn-codigo-barras />
             </div>
         </div>

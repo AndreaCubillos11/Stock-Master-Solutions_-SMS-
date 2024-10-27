@@ -1,8 +1,5 @@
-<mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="filtroBusqueda($event)" placeholder="Camisa" #input>
-</mat-form-field>
-<div class="mat-elevation-z8">
+<comp-barra-busqueda matInput (keyup)="filtroBusqueda($event)" placeholder="Camisa" #input/>
+<div class="mat-elevation-z8 mt-5">
     <div *ngIf="!tieneDatos" class="spinner-container">
         <mat-spinner></mat-spinner>
     </div>

@@ -41,7 +41,18 @@ export class PaginaEmpleadoComponent {
   ];
 
   datosBtn = [
-    { texto: 'Agregar devolucion', img: 'Añadir.svg', nombreClase: 'agregar'},
-    { texto: 'Modificar cantidad de inventario', img: 'ModificarInventario.svg', nombreClase: 'modificar'},
+    { texto: 'Agregar devolucion', img: 'Añadir.svg', nombreClase: 'agregar', accion: this.agregarDevolucion.bind(this)},
+    { texto: 'Modificar cantidad de inventario', img: 'ModificarInventario.svg', nombreClase: 'modificar', accion: this.modificarInventario.bind(this)},
   ];
+
+  agregarDevolucion() {
+    console.log('Agregar devolucion');
+    //this.router.navigate(['/crearProducto']);
+  }
+
+  modificarInventario() {
+    console.log('Modificar inventario');
+    //this.router.navigate(['/modificarProducto']);
+  }
+
 }

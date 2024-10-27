@@ -1,9 +1,10 @@
 export interface Usuario{
     id: number;
     usuario: string;
-    clave: number;
+    clave: string;
     nombreCompleto: string;
     rol: number;
     correo: string;
-    //tiendaId: number;
+    fechaCreacion: Date;
+    tiendaId: number;
 }

@@ -7,10 +7,9 @@ import { Alerta } from 'src/models/alerta.model';
   styleUrls: ['./pagina-alertas.component.css']
 })
 export class PaginaAlertasComponent implements OnInit{
-  titulo: string = 'Alertas Inventarios';
-  imagen: string = 'volver.svg';
-  nombreImagen: string = 'volver';
-  textoBoton: string = 'Volver';
+  datosHeader = [
+    { titulo: 'Alertas Inventarios', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver'},
+  ];
 
   alertas: Alerta[] = [
     {

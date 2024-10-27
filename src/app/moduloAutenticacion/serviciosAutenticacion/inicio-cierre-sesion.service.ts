@@ -4,21 +4,22 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from "@angular/router";
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Usuario } from "src/models/usuarios.model";
 
 @Injectable()
 
 export class InicioCierreSesionService {
-  private urlApi ='';
+  private urlApi ='/api';
 
   constructor(private router: Router, private http: HttpClient, private cookie: CookieService) {}
 
-  login(credentials: { user: string, contraseña: string }): Observable<{ token: string, rol: number }> {
-    return this.http.post<{ token: string, rol: number }>(`${this.urlApi}/login`, credentials).pipe(
-        tap(response => {
-          this.cookie.set('Token', response.token, 1);
-          localStorage.setItem('Rol', response.rol.toString());
-        })
-      );
+  login(credentials: { user: string, contraseña: string }): Observable<{ user: Usuario, accessToken: string }> {
+    return this.http.post<{ user: Usuario, accessToken: string }>(`${this.urlApi}/login`, credentials).pipe(
+      tap(response => {
+        this.cookie.set('Token', response.accessToken, 1);
+        localStorage.setItem('Rol',  JSON.stringify(response.user.rol));
+      })
+    );
   }
 
   logout() {
@@ -28,8 +29,12 @@ export class InicioCierreSesionService {
   }
 
   getRol(): number | null {
-    const rol = localStorage.getItem('Rol');
-    return rol ? parseInt(rol, 10) : null;
+    const rolJSON = localStorage.getItem('Rol');
+    if (rolJSON) {
+      const rol = JSON.parse(rolJSON);
+      return parseInt(rol, 10);
+    }
+    return null;
   }
 
 }

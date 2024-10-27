@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsuariosService } from '../usuarios.service';
-import { TiendasService } from 'src/app/tiendas.service';
+import { UsuariosService } from '../serviciosAdministradores/usuarios.service';
+import { TiendasService } from '../serviciosAdministradores/tiendas.service';
 import { ToastrService } from 'ngx-toastr';
+import { Tienda } from 'src/models/tienda.model';
 
 @Component({
-  selector: 'app-crear-usuario',
+  selector: 'crear-usuario',
   templateUrl: './crear-usuario.component.html',
   styleUrls: ['./crear-usuario.component.css']
 })
@@ -30,6 +31,7 @@ export class CrearUsuarioComponent {
     private toastr:ToastrService,
     private tiendasService:TiendasService
   ){}
+  
   ngOnInit(){
       this.listaTienda(); // Llama al método para cargar las tiendas
   }

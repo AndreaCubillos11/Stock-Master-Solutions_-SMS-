@@ -6,7 +6,7 @@
         </button>
     </header>
 
-    <form class="product-form" (ngSubmit)="nuevoProducto()" [formGroup]="productoForm">
+    <form [formGroup]="productoForm" class="product-form" (ngSubmit)="nuevoProducto()" >
         <!-- Campo ID del Producto -->
         <div class="form-group">
             <label for="productoId">ID del Producto</label>

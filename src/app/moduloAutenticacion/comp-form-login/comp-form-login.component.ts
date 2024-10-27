@@ -27,7 +27,7 @@ export class CompFormLoginComponent {
   //Hacer el manejo de inicio de sesion y recuperación de la contraseña
   formularioLogin: FormGroup;
 
-  constructor(private router: Router, private form: FormBuilder, private servicio: InicioCierreSesionService) {
+  constructor(private router: Router, private form: FormBuilder, private _servicio: InicioCierreSesionService) {
     this.formularioLogin = this.form.group({
       user: ['', [Validators.required, Validators.email]],
       contraseña: ['', Validators.required]
@@ -36,12 +36,12 @@ export class CompFormLoginComponent {
 
   iniciarSesion() {
     if (this.formularioLogin.valid) {
-      this.servicio.login(this.formularioLogin.value).subscribe({
-        next: (user) => {
-          const role = this.servicio.getRol();
-          if (role === 1) {
-            this.router.navigate(['/gestionADMIN']);
-          } else if (role === 2) {
+      this._servicio.login(this.formularioLogin.value).subscribe({
+        next: () => {
+          const rol = this._servicio.getRol();
+          if (rol === 1) {
+            this.router.navigate(['/gestionAdminG']);
+          } else if (rol === 2) {
             this.router.navigate(['/user']);
           } else {
             this.router.navigate(['/gestionProductos']);
@@ -56,7 +56,7 @@ export class CompFormLoginComponent {
     }
   }
 
-  /* ainiciarSesion() {
+  /* iniciarSesion() {
     if (this.formularioLogin.valid) {
       alert('Inicio de sesion exitoso');
       this.router.navigate(['/gestionProductos']);

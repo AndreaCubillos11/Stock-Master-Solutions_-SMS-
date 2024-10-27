@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Usuario } from 'src/models/usuarios.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class UsuariosService {
 
   ) { }
 
-  nuevoUsuario(token: any, data: any): Observable<any> {
+  nuevoUsuario(token: string, data: Usuario): Observable<any> {
     return this.http.post<any>(
       this.apiUri,
       data,

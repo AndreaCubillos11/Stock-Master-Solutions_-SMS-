@@ -56,7 +56,7 @@ export class CompSelectoresComponent {
   ];
 
   seleccionado = false;
-  inventarioSeleccionado: string | null = null;
+  inventarioSeleccionado: number | null = null;
 
   seleccionTienda(event: any) {
     this.seleccionado = true;
