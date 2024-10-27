@@ -1,0 +1,83 @@
+body {
+    height: 100vh;
+    background-color: #f8f9fa;
+    margin: 0;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Asegura que el contenido esté por encima del fondo */
+}
+
+.card {
+    background: url('/src/assets/StockMasterAdminLogo2.png') center center no-repeat; /* Centrar imagen de fondo */
+    background-size: contain; /* Ajustar imagen para que no se corte y se vea completa */
+    position: relative;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    z-index: 1; /* Asegura que el contenido esté por encima del fondo */
+    overflow: hidden;
+}
+
+/* Capa de transparencia aplicada solo a la imagen de fondo */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7); /* Transparencia sobre la imagen de fondo */
+    z-index: 0; /* La capa de transparencia está detrás del contenido */
+    border-radius: 8px; /* Mantiene el border-radius del card */
+}
+
+.title-bar {
+    background-color: #5b3256;
+    padding: 15px;
+    border-radius: 4px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2; /* Asegura que el título esté por encima de la capa de transparencia */
+}
+
+.title-bar h2 {
+    color: white;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+label {
+    font-weight: bold;
+    color: #5b3256;
+    position: relative;
+    z-index: 2;
+}
+
+.form-control, .form-select {
+    border-radius: 4px;
+    position: relative;
+    z-index: 2;
+}
+
+.btn-primary {
+    background-color: #5b3256;
+    border-color: #5b3256;
+    padding: 10px 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.btn-primary:hover {
+    background-color: #482043;
+    border-color: #482043;
+}

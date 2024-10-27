@@ -8,21 +8,53 @@ import { Usuario } from 'src/models/usuarios.model';
 })
 export class UsuariosService {
 
-  apiUri='/api/Usuarios'
+  apiUri = '/api/Usuarios'
 
   constructor(private http: HttpClient,
 
   ) { }
 
-  nuevoUsuario(token: string, data: Usuario): Observable<any> {
+  nuevoUsuario(token: any, data: Usuario): Observable<any> {
     return this.http.post<any>(
       this.apiUri,
       data,
       {
         headers: {
           'Content-Type': 'application/json',
-         'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`
+        }
+      });
+  }
+  consultarUsuario(token: any, id: any): Observable<any> {
+    return this.http.get<any>(
+      this.apiUri + '/' + id,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+  }
+  modificarUsuario(token: any, data: any): Observable<any> {
+    return this.http.put<any>(
+      this.apiUri,
+      data,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+  }
+  eliminarUsuario(token: any, id:any): Observable<any> {
+    return this.http.delete<any>(
+      this.apiUri+'/' +id,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         }
       });
   }
 }
+

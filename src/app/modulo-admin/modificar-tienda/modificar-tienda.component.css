@@ -1,0 +1,56 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+   
+}
+
+.container-fluid {
+   background-color:transparent;
+}
+
+.title-bar {
+    background-color: #4c2a54;
+    color: white;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    text-align: center;
+}
+
+.card {
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 100%; /* Cambia el ancho máximo al 100% */
+    width: 100%; /* Asegura que el ancho sea el 100% */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    background-color:transparent
+}
+
+.logo {
+    max-width: 100%;
+    width: 150px;
+}
+
+.back-button {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.form-box {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    height: 100%;
+}
+
+.btn-primary {
+    background-color: #4c2a54;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #3a2040;
+}

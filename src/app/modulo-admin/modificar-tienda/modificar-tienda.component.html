@@ -1,0 +1,41 @@
+<div class="title-bar d-flex justify-content-between align-items-center mb-4">
+    <h2>Modificar Tienda</h2>
+    <a href="#" class="back-button">Volver</a>
+</div>
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
+    <div class="card shadow-lg p-4">
+        
+        <div class="row">
+            <div class="col-md-4 d-flex justify-content-center align-items-center">
+                <figure class="col-6 figure">
+                    <img class="figure-img img-fluid rounded" src="/assets/StockMasterAdminLogo2.png" alt="Logo SMS Admin">
+                </figure>
+      
+            </div>
+            <div class="col-md-8">
+                <div class="form-box p-4">
+                    <form (ngSubmit)="modificarTienda()" [formGroup]="tiendaForm">
+                        <div class="mb-3">
+                            <label for="nombreTienda" class="form-label">Nombre de la tienda</label>
+                            <input type="text" class="form-control" id="nombreTienda" formControlName="Tienda" placeholder="Nombre de la tienda" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="direccion" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="direccion" formControlName="direccion" placeholder="Dirección" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="text" class="form-control" id="telefono" formControlName="telefono" placeholder="Teléfono" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Guardar Tienda</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" 
+[content]="modalContent" (close)="closeModal()"></comp-ventana-emergente>
