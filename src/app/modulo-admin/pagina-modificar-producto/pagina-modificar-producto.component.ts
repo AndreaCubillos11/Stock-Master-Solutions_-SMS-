@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Producto } from 'src/models/producto.model';
 
 @Component({
   selector: 'app-pagina-modificar-producto',
@@ -8,19 +8,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PaginaModificarProductoComponent {
   datosHeader = [
-    { titulo: 'Modificar productos', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver'},
+    { titulo: 'Modificar productos', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
   ];
 
+  datos:Producto[] = [];
 
-  cambiosForm: FormGroup;
+  seleccionable = true;
+  selectedRow: Producto | null = null;
+  mostrarTemplate1 = true;
 
-  constructor(private form: FormBuilder) {
-    this.cambiosForm = this.form.group({
-      nombreProducto: ['', Validators.required],
-      descripcion: ['', Validators.required],
-      precio: ['', Validators.required],
-      
-    })
+  onSelectionChange(selected: Producto | null) {
+    this.selectedRow = selected;
   }
 
+  onModificarClick() {
+    this.mostrarTemplate1 = false;
+  }
 }

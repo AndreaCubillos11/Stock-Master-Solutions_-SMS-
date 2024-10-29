@@ -1,0 +1,18 @@
+<section class="container mt-5">
+    <div class="row">
+        <form [formGroup]="cambiosForm">
+            <div class="col">
+                <div class="row">
+                    <label for="nombreProducto">Nombre del producto</label>
+                </div>
+                <input class="formulario" id="nombreProducto" formControlName="nombreProducto" type="text">
+            </div>
+            <div class="col-sm">
+                <div class="row">
+                    <label for="idProducto">ID Producto</label>
+                </div>
+                <input id="idProducto" formControlName="idProducto" type="number">
+            </div>
+        </form>
+    </div>
+</section>

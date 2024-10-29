@@ -3,11 +3,17 @@
         <div class="container">
 
             <div class="row justify-content-md-center">
-                <a style="border: none;" class="btn navGestionTxt" role="button" routerLink='/alertaInventario'>
+                <a *ngIf="rol !== 1" style="border: none;" class="btn navGestionTxt" role="button"
+                    routerLink='/alertaInventario'>
                     <div matBadge="15" matBadgeColor="warn">
                         Alertas
                         <img class="icon" src="/assets/notification.svg" alt="Alerta">
                     </div>
+                </a>
+                <a *ngIf="rol === 1" style="border: none;" class="btn navGestionTxt" role="button"
+                    routerLink='/alertaInventario'>
+                    Gestion Usuarios
+                    <img class="icon" src="/assets/edit.svg" alt="Editar">
                 </a>
             </div>
 

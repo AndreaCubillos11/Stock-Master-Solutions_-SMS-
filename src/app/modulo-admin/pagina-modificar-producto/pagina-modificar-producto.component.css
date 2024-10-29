@@ -1,0 +1,15 @@
+.btnModificar{
+    border: 2px solid black;
+    text-align: center;
+    background-color: #e59f16;
+    border-radius: 8px;
+    color: black;
+    height: 45px;
+    width: 70%;
+}
+
+button:disabled {
+    color: #666666; /* Color de texto gris oscuro */
+    cursor: not-allowed; /* Cursor no permitido */
+    opacity: 0.6; /* Opacidad reducida */
+  }

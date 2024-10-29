@@ -7,6 +7,23 @@ header {
     background-color: #4A1F43 !important;
 }
 
+.fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo oscuro con opacidad */
+    display: none;
+    /* Oculto por defecto */
+    z-index: 999;
+}
+
+.fade.show {
+    display: block;
+}
+
 /* .ng-valid:not(form).ng-touched {
     border-left: 5px solid green;
 }
@@ -18,8 +35,8 @@ header {
 /*Para poner los iconos redondeados*/
 .icon {
     background-color: #65558f;
-    border-radius: 50%;          
-    padding: 5px;               
+    border-radius: 50%;
+    padding: 5px;
     display: inline-block;
     border: none;
 }
@@ -34,21 +51,21 @@ header {
 }
 
 /*Para sitios digitables o que sean importantes*/
-.formulario{
-    border: 2px solid black !important; 
+.formulario {
+    border: 2px solid black !important;
     background-color: white;
     border-radius: 8px;
     height: fit-content;
 }
 
 /*Botones de accion*/
-.boton{
+.boton {
     border: 2px solid black;
     background-color: #4A1F43;
     border-radius: 8px;
     color: white;
 }
 
-.separador{
+.separador {
     padding-top: 85px;
 }

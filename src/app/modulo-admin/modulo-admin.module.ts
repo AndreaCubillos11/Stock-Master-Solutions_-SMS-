@@ -6,6 +6,7 @@ import { ProductosService } from './serviciosAdministradores/productos.service';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { CrearProductoComponent } from './crear-producto/crear-producto.component';
 import { PaginaModificarProductoComponent } from './pagina-modificar-producto/pagina-modificar-producto.component';
+import { FormModfiicarComponent } from './pagina-modificar-producto/form-modfiicar/form-modfiicar.component';
 
 
 
@@ -13,7 +14,8 @@ import { PaginaModificarProductoComponent } from './pagina-modificar-producto/pa
   declarations: [
     PaginaAdminComponent,
     CrearProductoComponent,
-    PaginaModificarProductoComponent
+    PaginaModificarProductoComponent,
+    FormModfiicarComponent
   ],
   imports: [
     CommonModule,

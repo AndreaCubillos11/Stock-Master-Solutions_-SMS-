@@ -6,14 +6,13 @@
             <!-- card muestra stock -->
             <ng-template [ngIf]="selectedOption === 'optionTienda'">
                 <comp-card-stock />
+                <comp-barra-busqueda />
             </ng-template>
 
             <ng-template [ngIf]="selectedOption === 'optionProducto'">
                 <comp-tabla />
             </ng-template>
 
-            <!-- barra de busqueda -->
-            <comp-barra-busqueda />
         </div>
 
         <div class="col">
@@ -41,13 +40,18 @@
                 </ng-template>
 
             </div>
-            <div class="separador"></div>
 
             <!-- boton codigo de barras -->
-            <div class="mt-5 ms-5">
+            <div class="col">
+                <ng-template [ngIf]="selectedOption === 'optionTienda'">
+                    <button type="button" class="mt-5 ms-5 boton">
+                        Gestionar Tiendas <img src="/assets/tienda.svg" alt="">
+                    </button>
+                </ng-template>
+            </div>
+            <div class="col">
                 <comp-btn-codigo-barras />
             </div>
         </div>
     </div>
 </section>
-

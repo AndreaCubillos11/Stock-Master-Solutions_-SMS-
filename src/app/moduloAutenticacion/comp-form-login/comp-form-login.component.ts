@@ -49,7 +49,7 @@ export class CompFormLoginComponent {
           this.formularioLogin.reset();
         },
         error: err => {
-          this.openModal('Error de Inicio de Sesión', 'Por favor, verifica tus credenciales e intenta nuevamente.');
+          this.openModal('Error de Inicio de Sesión', `${err.message}`);
           console.error('Error de autenticación', err);
         }
       });

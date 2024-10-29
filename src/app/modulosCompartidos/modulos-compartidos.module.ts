@@ -21,6 +21,7 @@ import { HeaderPrincipalComponent } from './comp-header-principal/header-princip
 import { MatExpansionModule} from '@angular/material/expansion';
 import { RouterModule } from '@angular/router';
 import { CompVentanaEmergenteComponent } from './comp-ventana-emergente/comp-ventana-emergente.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 
@@ -50,7 +51,8 @@ import { CompVentanaEmergenteComponent } from './comp-ventana-emergente/comp-ven
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
-    RouterModule, 
+    RouterModule,
+    MatCheckboxModule
   ],
   exports: [
     CompHeaderGestionComponent,

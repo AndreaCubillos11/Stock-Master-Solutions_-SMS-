@@ -1,8 +1,35 @@
-<header-principal [datosHeader]="datosHeader"/>
-<section class="container">
-    <div class="row">
-        <label for="textProducto">Nombre del producto
-            <input type="text">
-        </label>
-    </div>
-</section>
+<header-principal [datosHeader]="datosHeader" />
+<ng-container *ngIf="mostrarTemplate1; else template2">
+    <section class="container-fluid mt-5">
+      <div class="row">
+        <div class="col-7">
+          <!-- tabla productos -->
+          <div class="container">
+            <comp-tabla [datos]="datos" [seleccionable]="seleccionable" (selectionChange)="onSelectionChange($event)"></comp-tabla>
+          </div>
+          <comp-btn-codigo-barras></comp-btn-codigo-barras>
+        </div>
+  
+        <div class="col">
+          <!-- imagen producto -->
+          <div class="container-fluid">
+            <!-- manejo de la imagen -->
+          </div>
+  
+          <div style="padding-top: 405px;"></div>
+  
+          <!-- boton modificar -->
+          <div class="ms-5">
+            <button type="button" class="mt-5 ms-5 btnModificar disabled"  [disabled]="!selectedRow" (click)="onModificarClick()">
+              <b>Modificar producto</b>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+  
+  <ng-template #template2>
+    <form-modfiicar/>
+  </ng-template>
+  
