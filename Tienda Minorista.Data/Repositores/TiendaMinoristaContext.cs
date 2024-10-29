@@ -24,5 +24,9 @@ public class TiendaMinoristaContext : DbContext
 
     // Puedes configurar más cosas, como reglas especiales, llaves foráneas, etc., en este método.
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
 }
 

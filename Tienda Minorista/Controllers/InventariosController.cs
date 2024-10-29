@@ -39,7 +39,11 @@ namespace Tienda_Minorista.Controllers
         }
 
 
+<<<<<<< HEAD
         [HttpDelete]
+=======
+        [HttpDelete("inventario/{id}")]
+>>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
         [Authorize]
         public async Task<IActionResult> DeleteInventario(int id)
         {
@@ -51,9 +55,15 @@ namespace Tienda_Minorista.Controllers
 
         [HttpGet("{codigo}")]
         [Authorize]
+<<<<<<< HEAD
         public async Task<IActionResult> GetDetailsInventario(int id)
         {
             return Ok(await _inventarioRepository.GetDetails(id));
+=======
+        public async Task<IActionResult> GetDetailsInventario(int codigo)
+        {
+            return Ok(await _inventarioRepository.GetDetails(codigo));
+>>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
         }
 
 

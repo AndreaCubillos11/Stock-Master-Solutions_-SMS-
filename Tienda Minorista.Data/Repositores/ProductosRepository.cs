@@ -25,6 +25,7 @@ namespace Tienda_Minorista.Data.Repositores
 
         async Task<bool> IProductosRepository.deleteProducto(Productos producto)
         {
+<<<<<<< HEAD
             // Verificamos si el producto existe en el contexto antes de eliminarlo
             var productoExistente = await _context.Productos.FindAsync(producto.codigoBarras);
 
@@ -41,6 +42,18 @@ namespace Tienda_Minorista.Data.Repositores
             await _context.SaveChangesAsync();
 
             // Si se elimina correctamente, retornamos true
+=======
+            var productoExistente = await _context.Productos
+      .FirstOrDefaultAsync(p => p.codigoBarras == producto.codigoBarras);
+
+            if (productoExistente == null)
+            {
+                return false;
+            }
+
+            _context.Productos.Remove(productoExistente);
+            await _context.SaveChangesAsync();
+>>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
             return true;
         }
 
@@ -76,7 +89,11 @@ namespace Tienda_Minorista.Data.Repositores
              async Task<bool> IProductosRepository.updateproducto(Productos producto)
         {
             // Verificamos si el producto existe en la base de datos
+<<<<<<< HEAD
             var productoExistente = await _context.Productos.FindAsync(producto.Id);
+=======
+            var productoExistente = await _context.Productos.FindAsync(producto.productoId);
+>>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
 
             if (productoExistente == null)
             {
@@ -98,7 +115,11 @@ namespace Tienda_Minorista.Data.Repositores
       async  Task<Productos> IProductosRepository.GetDetailsForName(string name)
         {
             var producto = await _context.Productos
+<<<<<<< HEAD
                 .FirstOrDefaultAsync(p => p.nombre == name);
+=======
+                .FirstOrDefaultAsync(p => p.nombreProducto == name);
+>>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
 
             // Retorna el producto si lo encuentra, o null si no existe
             return producto;
@@ -107,7 +128,11 @@ namespace Tienda_Minorista.Data.Repositores
         async Task<Productos> IProductosRepository.GetDetailsForId(int id)
         {
             var producto = await _context.Productos
+<<<<<<< HEAD
                 .FirstOrDefaultAsync(p => p.Id == id);
+=======
+                .FirstOrDefaultAsync(p => p.productoId == id);
+>>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
 
             // Retorna el producto si lo encuentra, o null si no existe
             return producto;

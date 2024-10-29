@@ -16,14 +16,22 @@ namespace Tienda_Minorista.Controllers
             _Movimientos = movimientos;
         }
 
+<<<<<<< HEAD
         [HttpGet("Inventario/{id}")]
+=======
+        [HttpGet("Inventario/{idInventario}")]
+>>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
         [Authorize]
         public async Task<IActionResult> GetAllMovimientosPorIdInventario(int idInventario)
         {
             return Ok(await _Movimientos.GetAllMoviientosPorIdInvetario(idInventario));
         }
 
+<<<<<<< HEAD
         [HttpGet("Usuario/{id}")]
+=======
+        [HttpGet("Usuario/{idUsuario}")]
+>>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
         [Authorize]
         public async Task<IActionResult> GetAllMovimientosPorIdUsuario(int idUsuario)
         {

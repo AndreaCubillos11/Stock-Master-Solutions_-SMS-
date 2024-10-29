@@ -80,7 +80,17 @@ namespace Tienda_Minorista.Data.Repositores
 
             if (reporteExistente == null)
             {
+<<<<<<< HEAD
                 return false;
+=======
+                throw new Exception("Reporte no encontrado");
+            }
+
+            var usuarioExistente = await _context.Usuarios.FindAsync(reporte.UsuarioID);
+            if (usuarioExistente == null)
+            {
+                throw new Exception("Usuario no encontrado");
+>>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
             }
 
             _context.Entry(reporteExistente).CurrentValues.SetValues(reporte);

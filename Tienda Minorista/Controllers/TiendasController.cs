@@ -23,7 +23,11 @@ namespace Tienda_Minorista.Controllers
             return Ok(await _tiendasRepository.GetAllTiendas());
         }
 
+<<<<<<< HEAD
         [HttpGet("tienda/id/{id}")]
+=======
+        [HttpGet("tienda/{id}")]
+>>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
         [Authorize]
         public async Task<IActionResult> GetTiendaDetails(int id)
         {
@@ -59,7 +63,12 @@ namespace Tienda_Minorista.Controllers
             return NoContent();
         }
 
+<<<<<<< HEAD
         [HttpDelete]
+=======
+        [HttpDelete("tienda/{id}")]
+
+>>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
         [Authorize]
         public async Task<IActionResult> DeleteTienda(int id)
         {
