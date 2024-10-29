@@ -1,0 +1,411 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2E103348-6E1E-49BB-85E5-36F3E9BDBE5E}|Tienda Minorista\\Tienda Minorista.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E103348-6E1E-49BB-85E5-36F3E9BDBE5E}|Tienda Minorista\\Tienda Minorista.csproj|solutionrelative:tienda minorista\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E103348-6E1E-49BB-85E5-36F3E9BDBE5E}|Tienda Minorista\\Tienda Minorista.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista\\controllers\\devolucionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E103348-6E1E-49BB-85E5-36F3E9BDBE5E}|Tienda Minorista\\Tienda Minorista.csproj|solutionrelative:tienda minorista\\controllers\\devolucionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista.data\\repositores\\devolucionesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|solutionrelative:tienda minorista.data\\repositores\\devolucionesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F9D0E4A-38CA-4941-8BEC-AABB7013A279}|TiendaMinorista.Model\\TiendaMinorista.Model.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tiendaminorista.model\\devoluciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F9D0E4A-38CA-4941-8BEC-AABB7013A279}|TiendaMinorista.Model\\TiendaMinorista.Model.csproj|solutionrelative:tiendaminorista.model\\devoluciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E103348-6E1E-49BB-85E5-36F3E9BDBE5E}|Tienda Minorista\\Tienda Minorista.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E103348-6E1E-49BB-85E5-36F3E9BDBE5E}|Tienda Minorista\\Tienda Minorista.csproj|solutionrelative:tienda minorista\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E103348-6E1E-49BB-85E5-36F3E9BDBE5E}|Tienda Minorista\\Tienda Minorista.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E103348-6E1E-49BB-85E5-36F3E9BDBE5E}|Tienda Minorista\\Tienda Minorista.csproj|solutionrelative:tienda minorista\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F9D0E4A-38CA-4941-8BEC-AABB7013A279}|TiendaMinorista.Model\\TiendaMinorista.Model.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tiendaminorista.model\\productos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F9D0E4A-38CA-4941-8BEC-AABB7013A279}|TiendaMinorista.Model\\TiendaMinorista.Model.csproj|solutionrelative:tiendaminorista.model\\productos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F9D0E4A-38CA-4941-8BEC-AABB7013A279}|TiendaMinorista.Model\\TiendaMinorista.Model.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tiendaminorista.model\\tiendas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F9D0E4A-38CA-4941-8BEC-AABB7013A279}|TiendaMinorista.Model\\TiendaMinorista.Model.csproj|solutionrelative:tiendaminorista.model\\tiendas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E103348-6E1E-49BB-85E5-36F3E9BDBE5E}|Tienda Minorista\\Tienda Minorista.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista\\controllers\\tiendascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E103348-6E1E-49BB-85E5-36F3E9BDBE5E}|Tienda Minorista\\Tienda Minorista.csproj|solutionrelative:tienda minorista\\controllers\\tiendascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista.data\\repositores\\reportesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|solutionrelative:tienda minorista.data\\repositores\\reportesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E103348-6E1E-49BB-85E5-36F3E9BDBE5E}|Tienda Minorista\\Tienda Minorista.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E103348-6E1E-49BB-85E5-36F3E9BDBE5E}|Tienda Minorista\\Tienda Minorista.csproj|solutionrelative:tienda minorista\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F9D0E4A-38CA-4941-8BEC-AABB7013A279}|TiendaMinorista.Model\\TiendaMinorista.Model.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tiendaminorista.model\\usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F9D0E4A-38CA-4941-8BEC-AABB7013A279}|TiendaMinorista.Model\\TiendaMinorista.Model.csproj|solutionrelative:tiendaminorista.model\\usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F9D0E4A-38CA-4941-8BEC-AABB7013A279}|TiendaMinorista.Model\\TiendaMinorista.Model.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tiendaminorista.model\\reportes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F9D0E4A-38CA-4941-8BEC-AABB7013A279}|TiendaMinorista.Model\\TiendaMinorista.Model.csproj|solutionrelative:tiendaminorista.model\\reportes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista.data\\repositores\\idevolucionesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|solutionrelative:tienda minorista.data\\repositores\\idevolucionesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista.data\\repositores\\tiendasrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|solutionrelative:tienda minorista.data\\repositores\\tiendasrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista.data\\repositores\\itiendasrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|solutionrelative:tienda minorista.data\\repositores\\itiendasrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista.data\\repositores\\ireportesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|solutionrelative:tienda minorista.data\\repositores\\ireportesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E103348-6E1E-49BB-85E5-36F3E9BDBE5E}|Tienda Minorista\\Tienda Minorista.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2E103348-6E1E-49BB-85E5-36F3E9BDBE5E}|Tienda Minorista\\Tienda Minorista.csproj|solutionrelative:tienda minorista\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista.data\\tienda minorista.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|solutionrelative:tienda minorista.data\\tienda minorista.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista.data\\repositores\\productosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|solutionrelative:tienda minorista.data\\repositores\\productosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista.data\\repositores\\iusuariosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|solutionrelative:tienda minorista.data\\repositores\\iusuariosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista.data\\repositores\\iproductosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|solutionrelative:tienda minorista.data\\repositores\\iproductosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista.data\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|solutionrelative:tienda minorista.data\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|c:\\users\\mrjoa\\stock-master-solutions_-sms-\\tienda minorista.data\\repositores\\usuariosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EF6257C-725E-46B9-B8AD-0E376897105B}|Tienda Minorista.Data\\Tienda Minorista.Data.csproj|solutionrelative:tienda minorista.data\\repositores\\usuariosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista\\Program.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista\\Program.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista\\Program.cs",
+              "RelativeToolTip": "Tienda Minorista\\Program.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAB8AAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T16:14:15.164Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UsuariosController.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista\\Controllers\\UsuariosController.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista\\Controllers\\UsuariosController.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista\\Controllers\\UsuariosController.cs",
+              "RelativeToolTip": "Tienda Minorista\\Controllers\\UsuariosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T06:25:35.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProductosController.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista\\Controllers\\ProductosController.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista\\Controllers\\ProductosController.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista\\Controllers\\ProductosController.cs",
+              "RelativeToolTip": "Tienda Minorista\\Controllers\\ProductosController.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAiwB0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T16:13:51.877Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DevolucionesController.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista\\Controllers\\DevolucionesController.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista\\Controllers\\DevolucionesController.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista\\Controllers\\DevolucionesController.cs",
+              "RelativeToolTip": "Tienda Minorista\\Controllers\\DevolucionesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T17:16:35.068Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DevolucionesRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\DevolucionesRepository.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista.Data\\Repositores\\DevolucionesRepository.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\DevolucionesRepository.cs",
+              "RelativeToolTip": "Tienda Minorista.Data\\Repositores\\DevolucionesRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T17:10:13.798Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Devoluciones.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\TiendaMinorista.Model\\Devoluciones.cs",
+              "RelativeDocumentMoniker": "TiendaMinorista.Model\\Devoluciones.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\TiendaMinorista.Model\\Devoluciones.cs",
+              "RelativeToolTip": "TiendaMinorista.Model\\Devoluciones.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T16:21:16.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ReportesController.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista\\Controllers\\ReportesController.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista\\Controllers\\ReportesController.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista\\Controllers\\ReportesController.cs",
+              "RelativeToolTip": "Tienda Minorista\\Controllers\\ReportesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T05:33:32.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Productos.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\TiendaMinorista.Model\\Productos.cs",
+              "RelativeDocumentMoniker": "TiendaMinorista.Model\\Productos.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\TiendaMinorista.Model\\Productos.cs",
+              "RelativeToolTip": "TiendaMinorista.Model\\Productos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwBMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T03:58:39.558Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Tiendas.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\TiendaMinorista.Model\\Tiendas.cs",
+              "RelativeDocumentMoniker": "TiendaMinorista.Model\\Tiendas.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\TiendaMinorista.Model\\Tiendas.cs",
+              "RelativeToolTip": "TiendaMinorista.Model\\Tiendas.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T03:58:12.075Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TiendasController.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista\\Controllers\\TiendasController.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista\\Controllers\\TiendasController.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista\\Controllers\\TiendasController.cs",
+              "RelativeToolTip": "Tienda Minorista\\Controllers\\TiendasController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T05:33:37.399Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ReportesRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\ReportesRepository.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista.Data\\Repositores\\ReportesRepository.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\ReportesRepository.cs",
+              "RelativeToolTip": "Tienda Minorista.Data\\Repositores\\ReportesRepository.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAwE4AAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T04:21:34.544Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Usuarios.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\TiendaMinorista.Model\\Usuarios.cs",
+              "RelativeDocumentMoniker": "TiendaMinorista.Model\\Usuarios.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\TiendaMinorista.Model\\Usuarios.cs",
+              "RelativeToolTip": "TiendaMinorista.Model\\Usuarios.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T03:59:50.897Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Reportes.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\TiendaMinorista.Model\\Reportes.cs",
+              "RelativeDocumentMoniker": "TiendaMinorista.Model\\Reportes.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\TiendaMinorista.Model\\Reportes.cs",
+              "RelativeToolTip": "TiendaMinorista.Model\\Reportes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T03:58:05.333Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IDevolucionesRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\IDevolucionesRepository.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista.Data\\Repositores\\IDevolucionesRepository.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\IDevolucionesRepository.cs",
+              "RelativeToolTip": "Tienda Minorista.Data\\Repositores\\IDevolucionesRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T17:07:46.611Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "TiendasRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\TiendasRepository.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista.Data\\Repositores\\TiendasRepository.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\TiendasRepository.cs",
+              "RelativeToolTip": "Tienda Minorista.Data\\Repositores\\TiendasRepository.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAYwCsAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T04:21:39.398Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ITiendasRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\ITiendasRepository.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista.Data\\Repositores\\ITiendasRepository.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\ITiendasRepository.cs",
+              "RelativeToolTip": "Tienda Minorista.Data\\Repositores\\ITiendasRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T03:58:51.916Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IReportesRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\IReportesRepository.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista.Data\\Repositores\\IReportesRepository.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\IReportesRepository.cs",
+              "RelativeToolTip": "Tienda Minorista.Data\\Repositores\\IReportesRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T03:58:14.697Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Tienda Minorista.Data.csproj",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Tienda Minorista.Data.csproj",
+              "RelativeDocumentMoniker": "Tienda Minorista.Data\\Tienda Minorista.Data.csproj",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Tienda Minorista.Data.csproj",
+              "RelativeToolTip": "Tienda Minorista.Data\\Tienda Minorista.Data.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-10-11T05:31:40.912Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista\\appsettings.json",
+              "RelativeDocumentMoniker": "Tienda Minorista\\appsettings.json",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista\\appsettings.json",
+              "RelativeToolTip": "Tienda Minorista\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-11T05:41:40.777Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ProductosRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\ProductosRepository.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista.Data\\Repositores\\ProductosRepository.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\ProductosRepository.cs",
+              "RelativeToolTip": "Tienda Minorista.Data\\Repositores\\ProductosRepository.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAA3wDQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T05:12:49.773Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "IUsuariosRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\IUsuariosRepository.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista.Data\\Repositores\\IUsuariosRepository.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\IUsuariosRepository.cs",
+              "RelativeToolTip": "Tienda Minorista.Data\\Repositores\\IUsuariosRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T04:12:47.353Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "IProductosRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\IProductosRepository.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista.Data\\Repositores\\IProductosRepository.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\IProductosRepository.cs",
+              "RelativeToolTip": "Tienda Minorista.Data\\Repositores\\IProductosRepository.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T03:58:40.777Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\TokenService.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista.Data\\TokenService.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\TokenService.cs",
+              "RelativeToolTip": "Tienda Minorista.Data\\TokenService.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T03:57:20.993Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "UsuariosRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\UsuariosRepository.cs",
+              "RelativeDocumentMoniker": "Tienda Minorista.Data\\Repositores\\UsuariosRepository.cs",
+              "ToolTip": "C:\\Users\\mrjoa\\Stock-Master-Solutions_-SMS-\\Tienda Minorista.Data\\Repositores\\UsuariosRepository.cs",
+              "RelativeToolTip": "Tienda Minorista.Data\\Repositores\\UsuariosRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T02:50:54.565Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista.Data\bin\Debug\net8.0\Tienda Minorista.Data.deps.json
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista.Data\bin\Debug\net8.0\Tienda Minorista.Data.dll
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista.Data\bin\Debug\net8.0\Tienda Minorista.Data.pdb
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista.Data\bin\Debug\net8.0\TiendaMinorista.Model.dll
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista.Data\bin\Debug\net8.0\TiendaMinorista.Model.pdb
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista.Data\obj\Debug\net8.0\Tienda Minorista.Data.csproj.AssemblyReference.cache
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista.Data\obj\Debug\net8.0\Tienda Minorista.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista.Data\obj\Debug\net8.0\Tienda Minorista.Data.AssemblyInfoInputs.cache
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista.Data\obj\Debug\net8.0\Tienda Minorista.Data.AssemblyInfo.cs
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista.Data\obj\Debug\net8.0\Tienda Minorista.Data.csproj.CoreCompileInputs.cache
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista.Data\obj\Debug\net8.0\Tienda M.A111DB14.Up2Date
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista.Data\obj\Debug\net8.0\Tienda Minorista.Data.dll
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista.Data\obj\Debug\net8.0\refint\Tienda Minorista.Data.dll
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista.Data\obj\Debug\net8.0\Tienda Minorista.Data.pdb
+C:\Users\migue\source\repos\Tienda Minorista\Tienda Minorista.Data\obj\Debug\net8.0\ref\Tienda Minorista.Data.dll

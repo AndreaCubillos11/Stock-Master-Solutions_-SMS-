@@ -1,0 +1,11 @@
+C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\bin\Debug\net8.0\TiendaMinorista.Model.deps.json
+C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\bin\Debug\net8.0\TiendaMinorista.Model.dll
+C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\bin\Debug\net8.0\TiendaMinorista.Model.pdb
+C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\obj\Debug\net8.0\TiendaMinorista.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\obj\Debug\net8.0\TiendaMinorista.Model.AssemblyInfoInputs.cache
+C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\obj\Debug\net8.0\TiendaMinorista.Model.AssemblyInfo.cs
+C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\obj\Debug\net8.0\TiendaMinorista.Model.csproj.CoreCompileInputs.cache
+C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\obj\Debug\net8.0\TiendaMinorista.Model.dll
+C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\obj\Debug\net8.0\refint\TiendaMinorista.Model.dll
+C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\obj\Debug\net8.0\TiendaMinorista.Model.pdb
+C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\obj\Debug\net8.0\ref\TiendaMinorista.Model.dll
