@@ -35,7 +35,7 @@
           <label for="tienda" class="form-label">Tienda</label>
           <select class="form-select" id="tiendaId" aria-describedby="emailHelp" formControlName="tiendaId" required>
             <option value="" selected disabled>Selecciona una tienda</option>
-            <option *ngFor="let tienda of lisTienda" [value]="tienda.id">{{ tienda.nombre }}</option>
+            <option *ngFor="let tienda of lisTienda" [value]="tienda.id">{{ tienda.tienda }}</option>
           </select>
         </div>
       </div>

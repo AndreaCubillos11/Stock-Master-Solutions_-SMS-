@@ -1,18 +1,50 @@
-<section class="container mt-5">
-    <div class="row">
+<section class="container">
+    <mat-grid-list cols="2" rowHeight="100px">
         <form [formGroup]="cambiosForm">
-            <div class="col">
-                <div class="row">
-                    <label for="nombreProducto">Nombre del producto</label>
-                </div>
+
+            <mat-grid-tile>
+                <label for="nombreProducto">Nombre del producto</label>
                 <input class="formulario" id="nombreProducto" formControlName="nombreProducto" type="text">
-            </div>
-            <div class="col-sm">
-                <div class="row">
-                    <label for="idProducto">ID Producto</label>
-                </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+
+                <label for="idProducto">ID Producto</label>
                 <input id="idProducto" formControlName="idProducto" type="number">
-            </div>
+                
+            </mat-grid-tile>
+
+            <mat-grid-tile [rowspan]="4">
+                <!-- manejo de la imagen -->
+                <mat-card>
+                    <mat-card-content style="height: 800px; width: 400px;">
+                        Imagen producto
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                        style="height: 100px; width: 500px;"></textarea>
+                    <label for="floatingTextarea2">Descripcion del producto</label>
+                </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                selector y label precio
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                field codigo de barras
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <button type="button" class="mt-5 ms-5 btnModificar">
+                    <b>Confirmar modificación</b>
+                </button>
+            </mat-grid-tile>
+
         </form>
-    </div>
+    </mat-grid-list>
 </section>

@@ -7,6 +7,8 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { CrearProductoComponent } from './crear-producto/crear-producto.component';
 import { PaginaModificarProductoComponent } from './pagina-modificar-producto/pagina-modificar-producto.component';
 import { FormModfiicarComponent } from './pagina-modificar-producto/form-modfiicar/form-modfiicar.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -21,7 +23,9 @@ import { FormModfiicarComponent } from './pagina-modificar-producto/form-modfiic
     CommonModule,
     ModulosCompartidosModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatGridListModule,
+    MatCardModule
   ],
   exports:[
     PaginaAdminComponent,

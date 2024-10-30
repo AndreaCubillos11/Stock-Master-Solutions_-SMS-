@@ -1,16 +1,16 @@
 {
     "/api/*": {
-        "target": "http://localhost:7232",
+        "target": "https://localhost:7232",
         "secure": false,
         "changeOrigin": false
     },
     "/api/Tiendas": {
-        "target": "http://localhost:7232",
+        "target": "https://localhost:7232",
         "secure": false,
         "changeOrigin": false
     },
     "/api/Usuarios":{
-        "target": "http://localhost:7232",
+        "target": "https://localhost:7232",
         "secure": false,
         "changeOrigin": false
     }
