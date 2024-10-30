@@ -29,8 +29,8 @@ export class CompFormLoginComponent {
 
   constructor(private router: Router, private form: FormBuilder, private _servicio: InicioCierreSesionService) {
     this.formularioLogin = this.form.group({
-      user: ['', [Validators.required, Validators.email]],
-      contraseña: ['', Validators.required]
+      usuario: ['', [Validators.required, Validators.email]],
+      clave: ['', Validators.required]
     })
   }
 

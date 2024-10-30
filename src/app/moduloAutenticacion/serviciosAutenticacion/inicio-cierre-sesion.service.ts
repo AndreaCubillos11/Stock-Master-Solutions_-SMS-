@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders} from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from "@angular/router";
 import { Observable, catchError, throwError } from 'rxjs';
@@ -14,10 +14,13 @@ export class InicioCierreSesionService {
   constructor(private router: Router, private http: HttpClient, private cookie: CookieService) {}
 
   login(credentials: { user: string, contraseña: string }): Observable<void> {
-    return this.http.post<any[]>(`${this.urlApi}/login`, credentials).pipe(
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(`${this.urlApi}/login`, JSON.stringify(credentials), {headers}).pipe(
       tap(response => {
-        const user = response[0] as Usuario;
-        const Token = response[1] as string;
+        const user = response.user as Usuario;
+        const Token = response.accessToken;
         this.cookie.set('Token', Token, 1);
         localStorage.setItem('Rol',  JSON.stringify(user.rol));
       }),
@@ -44,12 +47,8 @@ export class InicioCierreSesionService {
   }
 
   getRol(): number | null {
-    const rolJSON = localStorage.getItem('Rol');
-    if (rolJSON) {
-      const rol = JSON.parse(rolJSON);
-      return parseInt(rol, 10);
-    }
-    return null;
+    const rol = localStorage.getItem('Rol');
+    return rol ? parseInt(rol,10) : null;
   }
 
 }

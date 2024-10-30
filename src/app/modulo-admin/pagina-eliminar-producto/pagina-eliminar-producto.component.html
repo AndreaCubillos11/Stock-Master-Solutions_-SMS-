@@ -1,5 +1,5 @@
 <header-principal [datosHeader]="datosHeader" />
-<ng-container *ngIf="mostrarTemplate1; else template2">
+<ng-container>
     <section class="container-fluid mt-5">
       <div class="row">
         <div class="col-7">
@@ -13,23 +13,24 @@
         <div class="col">
           <!-- imagen producto -->
           <div class="container-fluid">
-            <!-- manejo de la imagen -->
+           <!--  <mat-card>
+                <mat-card-content style="height: 500px; width: 400px;">
+
+                </mat-card-content>
+            </mat-card> -->
           </div>
   
           <div style="padding-top: 405px;"></div>
   
           <!-- boton modificar -->
           <div class="ms-5">
-            <button type="button" class="mt-5 ms-5 btnModificar disabled"  [disabled]="!selectedRow" (click)="onModificarClick()">
-              <b>Modificar producto</b>
+            <button type="button" class="mt-5 ms-5 btnEliminar disabled"  [disabled]="!selectedRow">
+              <b>Eliminar producto</b>
             </button>
           </div>
         </div>
       </div>
     </section>
-  </ng-container>
-  
-  <ng-template #template2>
-    <form-modfiicar/>
-  </ng-template>
+</ng-container>
+
   

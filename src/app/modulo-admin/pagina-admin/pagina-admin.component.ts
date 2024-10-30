@@ -38,6 +38,6 @@ export class PaginaAdminComponent {
 
   eliminarProducto() {
     console.log('Eliminar tienda');
-    //this.router.navigate(['/eliminarProducto']);
+    this.router.navigate(['/eliminarProducto']);
   }
 }

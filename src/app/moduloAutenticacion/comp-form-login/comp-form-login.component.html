@@ -1,11 +1,11 @@
 <form [formGroup]="formularioLogin" (ngSubmit)="iniciarSesion()">
     <div class="my-5 text-start">
         <label for="userField" class="form-label">Usuario:</label> 
-        <input type="text" class="form-control formulario w-75" id="userField" name="User" formControlName="user">
+        <input type="text" class="form-control formulario w-75" id="userField" name="User" formControlName="usuario">
     </div>
     <div class="my-5 text-start">
         <label for="passwordField" class="form-label">Contraseña:</label>
-        <input type="password" class="form-control formulario w-75" id="passwordField" name="password" formControlName="contraseña">
+        <input type="password" class="form-control formulario w-75" id="passwordField" name="password" formControlName="clave">
     </div>
     <div class="text-center mb-3">
         <button type="submit" class="boton w-50" style="height: 40px;">Iniciar sesión</button>

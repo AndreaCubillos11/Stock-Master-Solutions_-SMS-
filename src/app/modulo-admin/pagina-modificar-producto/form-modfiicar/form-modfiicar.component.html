@@ -1,18 +1,59 @@
-<section class="container mt-5">
-    <div class="row">
+<section class="container">
+    <mat-grid-list cols="2" rowHeight="100px">
         <form [formGroup]="cambiosForm">
-            <div class="col">
-                <div class="row">
-                    <label for="nombreProducto">Nombre del producto</label>
-                </div>
+            <mat-grid-tile>
+                <label for="nombreProducto">Nombre del producto</label>
                 <input class="formulario" id="nombreProducto" formControlName="nombreProducto" type="text">
-            </div>
-            <div class="col-sm">
-                <div class="row">
-                    <label for="idProducto">ID Producto</label>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <label for="productoId">ID Producto</label>
+                <input id="productoId" formControlName="productoId" type="number">
+            </mat-grid-tile>
+
+            <mat-grid-tile [rowspan]="5">
+                <mat-card>
+                    <mat-card-content style="height: 500px; width: 400px;">
+                        <figure class="container">
+                            <img *ngIf="imagenSrc" [src]="imagenSrc" alt="Imagen seleccionada"
+                                style="max-width: 400px; margin-top: 10px; max-height: 400px;">
+                        </figure>
+                        <input type="file" class="form-control info" id="file" (change)="cargarImagen($event)"
+                            accept=".png, .jpg, .jpeg" />
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+
+            <mat-grid-tile [rowspan]="3">
+                <div class="form-floating">
+                    <textarea class="formulario" formControlName="descripcion" placeholder="Descripción del producto"
+                        id="floatingTextarea2" style="height: 280px; width: 500px;"></textarea>
                 </div>
-                <input id="idProducto" formControlName="idProducto" type="number">
-            </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="fill">
+                    <mat-label>Categoría</mat-label>
+                    <mat-select formControlName="categoria" id="categoria">
+                        <mat-option value="">Seleccionar categoría</mat-option>
+                        <mat-option *ngFor="let categoria of categorias" [value]="categoria.value">{{ categoria.label
+                            }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                ---
+                <label for="precio">Precio</label>
+                <input id="precio" formControlName="precio" type="number">
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <label for="codigoBarras">Código de barras</label>
+                <input id="codigoBarras" formControlName="codigoBarras" type="text">
+            </mat-grid-tile>
         </form>
+    </mat-grid-list>
+    <div style="text-align: center;">
+        <button type="submit" class="mt-5 ms-5 btnModificar">
+            <b>Confirmar modificación</b>
+        </button>
     </div>
 </section>

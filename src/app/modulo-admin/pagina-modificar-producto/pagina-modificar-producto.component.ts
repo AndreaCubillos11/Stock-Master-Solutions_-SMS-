@@ -8,7 +8,7 @@ import { Producto } from 'src/models/producto.model';
 })
 export class PaginaModificarProductoComponent {
   datosHeader = [
-    { titulo: 'Modificar productos', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
+    { titulo: 'Modificar Producto', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
   ];
 
   datos:Producto[] = [];

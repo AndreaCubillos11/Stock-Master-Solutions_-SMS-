@@ -7,6 +7,7 @@ import { PaginaAlertasComponent } from './modulosCompartidos/pagina-alertas/pagi
 import { CrearUsuarioComponent } from './modulo-admin/crear-usuario/crear-usuario.component';
 import { CrearProductoComponent } from './modulo-admin/crear-producto/crear-producto.component';
 import { PaginaModificarProductoComponent } from './modulo-admin/pagina-modificar-producto/pagina-modificar-producto.component';
+import { PaginaEliminarProductoComponent } from './modulo-admin/pagina-eliminar-producto/pagina-eliminar-producto.component';
 import { PaginaModificarUsuarioComponent } from './modulo-admin/pagina-modificar-usuario/pagina-modificar-usuario.component';
 import { CrearTiendaComponent } from './modulo-admin/crear-tienda/crear-tienda.component';
 import { ModificarTiendaComponent } from './modulo-admin/modificar-tienda/modificar-tienda.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'signup', component:CrearUsuarioComponent},
   {path: 'crearProducto', component:CrearProductoComponent},
   {path: 'modificarProducto', component: PaginaModificarProductoComponent},
+  {path: 'eliminarProducto', component: PaginaEliminarProductoComponent},
   {path: 'modificarUsuario', component:PaginaModificarUsuarioComponent},
   {path: 'crearTienda', component:CrearTiendaComponent},
   {path: 'modificarTienda', component:ModificarTiendaComponent}
