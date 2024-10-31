@@ -1,0 +1,19 @@
+.btnDevolucion {
+    border: 2px solid black;
+    text-align: center;
+    background-color: #e02929;
+    border-radius: 8px;
+    color: black;
+    height: 45px;
+    width: 70%;
+}
+
+.btnDevolucionActiva {
+    border: 2px solid black;
+    text-align: center;
+    background-color: #29e066;
+    border-radius: 8px;
+    color: black;
+    height: 45px;
+    width: 70%;
+}

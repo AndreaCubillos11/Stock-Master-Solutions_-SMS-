@@ -11,13 +11,17 @@ import { PaginaEliminarProductoComponent } from './modulo-admin/pagina-eliminar-
 import { PaginaModificarUsuarioComponent } from './modulo-admin/pagina-modificar-usuario/pagina-modificar-usuario.component';
 import { CrearTiendaComponent } from './modulo-admin/crear-tienda/crear-tienda.component';
 import { ModificarTiendaComponent } from './modulo-admin/modificar-tienda/modificar-tienda.component';
+import { PaginaGestionUsuariosComponent } from './modulo-admin/pagina-gestion-usuarios/pagina-gestion-usuarios.component';
+import { PaginaHistorialComponent } from './modulosCompartidos/pagina-historial/pagina-historial.component';
 
 const routes: Routes = [
   {path: '', component: CompLoginComponent},
   {path: 'gestionProductos', component: PaginaEmpleadoComponent},
   {path: 'alertaInventario', component: PaginaAlertasComponent},
+  {path: 'historialProductos', component: PaginaHistorialComponent},
   {path: 'gestionAdminG', component: PaginaAdminComponent},
   {path: 'signup', component:CrearUsuarioComponent},
+  {path: 'gestionUsuarios', component:PaginaGestionUsuariosComponent},
   {path: 'crearProducto', component:CrearProductoComponent},
   {path: 'modificarProducto', component: PaginaModificarProductoComponent},
   {path: 'eliminarProducto', component: PaginaEliminarProductoComponent},

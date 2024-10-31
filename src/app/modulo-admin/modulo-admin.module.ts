@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { PaginaEliminarProductoComponent } from './pagina-eliminar-producto/pagina-eliminar-producto.component';
+import { PaginaGestionUsuariosComponent } from './pagina-gestion-usuarios/pagina-gestion-usuarios.component';
 
 
 
@@ -22,7 +23,8 @@ import { PaginaEliminarProductoComponent } from './pagina-eliminar-producto/pagi
     CrearProductoComponent,
     PaginaModificarProductoComponent,
     FormModfiicarComponent,
-    PaginaEliminarProductoComponent
+    PaginaEliminarProductoComponent,
+    PaginaGestionUsuariosComponent
   ],
   imports: [
     CommonModule,

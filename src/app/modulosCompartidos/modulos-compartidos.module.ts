@@ -22,6 +22,7 @@ import { MatExpansionModule} from '@angular/material/expansion';
 import { RouterModule } from '@angular/router';
 import { CompVentanaEmergenteComponent } from './comp-ventana-emergente/comp-ventana-emergente.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { PaginaHistorialComponent } from './pagina-historial/pagina-historial.component';
 
 
 
@@ -36,7 +37,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     CompTablaComponent,
     PaginaAlertasComponent,
     HeaderPrincipalComponent,
-    CompVentanaEmergenteComponent
+    CompVentanaEmergenteComponent,
+    PaginaHistorialComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,35 @@
+<header-principal [datosHeader]="datosHeader" />
+<section class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-7">
+            <!-- card muestra stock -->
+            <comp-tabla [datos]="historial" />
+
+        </div>
+
+        <div class="col">
+            <div class="separador"></div>
+            <div class="row">
+                <mat-form-field appearance="fill" class="medium-select">
+                    <mat-label>Filtros</mat-label>
+                    <mat-select>
+                        <mat-option>
+                            filtro
+                        </mat-option>
+                    </mat-select>
+                    <img matSuffix src="/assets/filtro.svg" alt="filtro">
+                </mat-form-field>
+            </div>
+
+            <div style="padding-top: 205px;"></div>
+
+            <!-- boton codigo de barras -->
+            <div class="ms-5">
+                <button type="button" class="mt-5 ms-5" [ngClass]="{'btnDevolucion': !mostrandoDevoluciones, 'btnDevolucionActiva': mostrandoDevoluciones}" (click)="toggleDevoluciones()">
+                    <b>{{ mostrandoDevoluciones ? 'Ver productos' : 'Ver devoluciones' }}</b>
+                    <img src="/assets/barcodeScan.svg" alt="scan">
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

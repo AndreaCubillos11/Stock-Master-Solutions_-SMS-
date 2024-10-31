@@ -40,11 +40,11 @@ export class InicioCierreSesionService {
     );
   }
 
-  logout() {
+  /* logout() {
     this.cookie.delete('Token', '/');
     localStorage.removeItem('Rol');
     this.router.navigate(['']);
-  }
+  } */
 
   getRol(): number | null {
     const rol = localStorage.getItem('Rol');

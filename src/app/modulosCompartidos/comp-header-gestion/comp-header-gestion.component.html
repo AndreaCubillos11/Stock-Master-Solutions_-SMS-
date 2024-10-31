@@ -3,36 +3,39 @@
         <div class="container">
 
             <div class="row justify-content-md-center">
-                <a *ngIf="rol !== 1" style="border: none;" class="btn navGestionTxt" role="button"
-                    routerLink='/alertaInventario'>
-                    <div matBadge="15" matBadgeColor="warn">
-                        Alertas
-                        <img class="icon" src="/assets/notification.svg" alt="Alerta">
-                    </div>
-                </a>
-                <a *ngIf="rol === 1" style="border: none;" class="btn navGestionTxt" role="button"
-                    routerLink='/alertaInventario'>
-                    Gestion Usuarios
-                    <img class="icon" src="/assets/edit.svg" alt="Editar">
-                </a>
+                <ng-template *ngIf="rol !== 1">
+                    <a style="border: none;" class="btn navGestionTxt" role="button" routerLink='/alertaInventario'>
+                        <div matBadge="15" matBadgeColor="warn">
+                            Alertas
+                            <img class="icon" src="/assets/notification.svg" alt="Alerta">
+                        </div>
+                    </a>
+                </ng-template>
+                <ng-template *ngIf="rol === 1">
+                    <a style="border: none;" class="btn navGestionTxt" role="button"
+                        routerLink='/gestionUsuarios'>
+                        Gestion Usuarios
+                        <img class="icon" src="/assets/edit.svg" alt="Editar">
+                    </a>
+                </ng-template>
             </div>
 
             <div class="row justify-content-md-center">
-                <a style="border: none;" class="btn navGestionTxt" href="/index.html" role="button">
+                <a style="border: none;" class="btn navGestionTxt" role="button" routerLink ='/historialProductos'>
                     Historial de productos
                     <img class="icon" src="/assets/historial.svg" alt="Historial">
                 </a>
             </div>
 
             <div class="row justify-content-md-center">
-                <a style="border: none;" class="btn navGestionTxt" href="/index.html" role="button">
+                <a style="border: none;" class="btn navGestionTxt" role="button">
                     Generar reporte
                     <img class="icon" src="/assets/descargar.svg" alt="Descargar">
                 </a>
             </div>
 
             <div class="row justify-content-md-center">
-                <a style="border: none;" class="btn navGestionTxt" href="/index.html" role="button">
+                <a style="border: none;" class="btn navGestionTxt" role="button" (click)="logout()">
                     Cerrar sesión
                     <img class="icon" src="/assets/logout.svg" alt="Salir">
                 </a>
@@ -41,3 +44,8 @@
         </div>
     </nav>
 </header>
+
+<comp-ventana-emergente [isOpen]="isModalOpen"
+[title]="modalTitle"
+[content]="modalContent"
+(close)="closeModal()"/>
