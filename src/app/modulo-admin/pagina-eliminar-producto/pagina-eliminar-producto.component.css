@@ -1,7 +1,7 @@
-.btnModificar{
+.btnEliminar{
     border: 2px solid black;
     text-align: center;
-    background-color: #e59f16;
+    background-color: #e51616;
     border-radius: 8px;
     color: black;
     height: 45px;

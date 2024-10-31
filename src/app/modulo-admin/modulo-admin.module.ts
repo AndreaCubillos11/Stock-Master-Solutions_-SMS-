@@ -9,6 +9,10 @@ import { PaginaModificarProductoComponent } from './pagina-modificar-producto/pa
 import { FormModfiicarComponent } from './pagina-modificar-producto/form-modfiicar/form-modfiicar.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { PaginaEliminarProductoComponent } from './pagina-eliminar-producto/pagina-eliminar-producto.component';
 
 
 
@@ -17,7 +21,8 @@ import {MatCardModule} from '@angular/material/card';
     PaginaAdminComponent,
     CrearProductoComponent,
     PaginaModificarProductoComponent,
-    FormModfiicarComponent
+    FormModfiicarComponent,
+    PaginaEliminarProductoComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +30,10 @@ import {MatCardModule} from '@angular/material/card';
     FormsModule,
     ReactiveFormsModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   exports:[
     PaginaAdminComponent,
