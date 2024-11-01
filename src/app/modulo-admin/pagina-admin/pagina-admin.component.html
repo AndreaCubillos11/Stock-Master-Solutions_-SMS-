@@ -16,6 +16,8 @@
         </div>
 
         <div class="col">
+            
+            
             <div class="form-check form-check-inline mx-5">
                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioTienda"
                     [(ngModel)]="selectedOption" value="optionTienda">
@@ -31,7 +33,13 @@
             <!-- botones crud -->
             <div class="mt-5">
                 <ng-template [ngIf]="selectedOption === 'optionTienda'">
-                    <comp-selectores />
+                    <ng-container *ngIf="mostrarCRUD; else CRUD">
+                        <comp-selectores/>
+                    </ng-container>
+                    
+                    <ng-template #CRUD>
+                        <comp-btn-crud [datosBotones]="datosBtnTiendas"/>
+                    </ng-template>
                 </ng-template>
 
                 <ng-template [ngIf]="selectedOption === 'optionProducto'">
@@ -44,12 +52,13 @@
             <!-- boton codigo de barras -->
             <div class="col ms-5">
                 <ng-template [ngIf]="selectedOption === 'optionTienda'">
-                    <button type="button" class="mt-5 ms-5 boton">
-                        Gestionar Tiendas <img src="/assets/tienda.svg" alt="">
+                    <button type="button" class="mt-5 ms-5 btnTienda" (click)="toggleCRUD()">
+                        <b> {{mostrarCRUD ? 'Gestionar Tiendas' : 'Ver tiendas'}} </b> <img src="/assets/tienda.svg"
+                            alt="">
                     </button>
                 </ng-template>
             </div>
-            <div class="col ms-2">
+            <div class="col ms-4">
                 <comp-btn-codigo-barras />
             </div>
         </div>
