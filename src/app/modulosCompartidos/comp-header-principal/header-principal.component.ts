@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./header-principal.component.css']
 })
 export class HeaderPrincipalComponent {
-  @Input() datosHeader: { titulo: string, tieneBoton: boolean, imagen: string, nombreImagen: string, textoBoton: string }[] = [
+  @Input() datosHeader: { titulo: string, tieneBoton: boolean, imagen: string, nombreImagen: string, textoBoton: string, accion?: () => void}[] = [
     {
       titulo: 'Stock Master Solutions',
       tieneBoton: false,
@@ -18,6 +18,12 @@ export class HeaderPrincipalComponent {
 
   get headerData() {
     return this.datosHeader[0] || {};
+  }
+
+  redirigirBtn() {
+    if (this.headerData.accion) {
+      this.headerData.accion();
+  }
   }
 
 }

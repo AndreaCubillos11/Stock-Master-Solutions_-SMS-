@@ -5,7 +5,7 @@
         <div class="col-7">
           <!-- tabla productos -->
           <div class="container">
-            <comp-tabla [datos]="datos" [seleccionable]="seleccionable" (selectionChange)="onSelectionChange($event)"></comp-tabla>
+            <comp-tabla [datos]="datos" [seleccionable]="seleccionable" (selectionChange)="onSelectionChange($event)"/>
           </div>
           <comp-btn-codigo-barras/>
         </div>
@@ -24,9 +24,9 @@
   
           <!-- boton modificar -->
           <div class="ms-5">
-            <button type="button" class="mt-5 ms-5 btnEliminar disabled"  [disabled]="!selectedRow">
-              <b>Eliminar producto</b>
-            </button>
+                  <button type="button" class="mt-5 ms-5 btnEliminar disabled"  [disabled]="!filaSeleccionada" (click)="eliminar()">
+                    <b>Eliminar producto</b>
+                  </button>
           </div>
         </div>
       </div>

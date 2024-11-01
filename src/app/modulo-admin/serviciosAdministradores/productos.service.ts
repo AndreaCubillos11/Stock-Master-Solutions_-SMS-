@@ -26,6 +26,7 @@ export class ProductosService {
   }
 
   modificarProducto(producto: Producto): Observable<void> {
+    console.log(producto.id);
     const url = `${this.apiUrl}/${producto.id}`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -34,6 +35,11 @@ export class ProductosService {
       headers: headers,
       withCredentials: true
     });
+  }
+
+  deleteProducto(codigoBarras: number): Observable<boolean> {
+    const url = `${this.apiUrl}/codigoBarras/${codigoBarras}`;
+    return this.http.delete<boolean>(url);
   }
 
 }

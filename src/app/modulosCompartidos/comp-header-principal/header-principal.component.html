@@ -5,8 +5,8 @@
       <h1 class="roboto-bold">{{headerData.titulo}}</h1>
       <div class="col-auto" id="navbarNav">
         <!-- Boton -->
-        <ng-template [ngIf]="headerData.tieneBoton">
-          <button class="noBG">
+        <ng-template [ngIf]="headerData.tieneBoton" >
+          <button class="noBG" (click)="redirigirBtn()">
             <span class="button-text">{{headerData.textoBoton}}</span>
             <img class="icon" [src]="'/assets/' + headerData.imagen" alt="{{headerData.nombreImagen}}">
           </button>

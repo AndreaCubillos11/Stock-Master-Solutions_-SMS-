@@ -11,13 +11,16 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 
 export class CompTablaComponent<T extends {}> implements OnInit {
-  @Input() datos: T[] = []; // Array genérico donde se guardan los datos
-  @Input() seleccionable: boolean = false; // Controla si las filas son seleccionables
+  @Input() datos: T[] = [];
+  @Input() seleccionable: boolean = false;
   @Output() selectionChange = new EventEmitter<T | null>();
-  nombresColumnas: string[] = []; // Array con los nombres de las columnas
+
+
+  columnasBase: string[] = [];
+  nombresColumnas: string[] = [];
   dataSource = new MatTableDataSource<T>();
   tieneDatos = false;
-  selection = new SelectionModel<T>(false, []); // Modelo de selección
+  selection = new SelectionModel<T>(false, []);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -28,7 +31,9 @@ export class CompTablaComponent<T extends {}> implements OnInit {
 
   updateTable(data: T[]) {
     if (data.length > 0) {
-      this.nombresColumnas = this.seleccionable ? ['select', ...Object.keys(data[0])] : Object.keys(data[0]);
+      this.columnasBase = Object.keys(data[0]);
+      // Definir nombresColumnas dependiendo de si seleccionable es true
+      this.nombresColumnas = this.seleccionable ? ['select', ...this.columnasBase] : this.columnasBase;
       this.dataSource.data = data;
       this.tieneDatos = true;
     }
@@ -45,15 +50,14 @@ export class CompTablaComponent<T extends {}> implements OnInit {
     }
   }
 
-
-  onRowClicked(row: T) {
+  onRowSelection(row: T) {
+    const isSelected = this.selection.isSelected(row);
     this.selection.clear();
-    this.selection.toggle(row);
-    this.emitSelectionChange();
-  }
-
-  emitSelectionChange() {
-    this.selectionChange.emit(this.selection.hasValue() ? this.selection.selected[0] : null);
+    if (!isSelected) {
+        this.selection.toggle(row);
+    }
+    const selectedRow = this.selection.selected.length > 0 ? this.selection.selected[0] : null;
+    this.selectionChange.emit(selectedRow);
   }
 
 }

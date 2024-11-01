@@ -63,7 +63,7 @@ export class CompFormLoginComponent {
     private cookieService: CookieService 
   ) {
     this.formularioLogin = this.form.group({
-      usuario: ['', [Validators.required, Validators.email]],
+      usuario: ['', [Validators.required, Validators.pattern(/^(?:[a-zA-Z0-9.%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}|[a-zA-Z0-9.%+-]+)$/)]],
       clave: ['', Validators.required]
     })
   }
