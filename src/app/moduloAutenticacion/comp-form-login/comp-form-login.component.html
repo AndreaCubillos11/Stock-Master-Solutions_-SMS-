@@ -1,20 +1,84 @@
 <form [formGroup]="formularioLogin" (ngSubmit)="iniciarSesion()">
     <div class="my-5 text-start">
-        <label for="userField" class="form-label">Usuario:</label> 
+        <label for="userField" class="form-label">Usuario:</label>
         <input type="text" class="form-control formulario w-75" id="userField" name="User" formControlName="usuario">
     </div>
     <div class="my-5 text-start">
         <label for="passwordField" class="form-label">Contraseña:</label>
-        <input type="password" class="form-control formulario w-75" id="passwordField" name="password" formControlName="clave">
+        <input type="password" class="form-control formulario w-75" id="passwordField" name="password"
+            formControlName="clave">
     </div>
     <div class="text-center mb-3">
         <button type="submit" class="boton w-50" style="height: 40px;">Iniciar sesión</button>
     </div>
-    <span><button type="button" class="btn btn-link">¿Olvidaste tu constraseña?</button></span>
+    <span><button type="button" class="btn btn-link" (click)="restaurarCon()">¿Olvidaste tu constraseña?</button></span>
 </form>
 
-<comp-ventana-emergente [isOpen]="isModalOpen"
-[title]="modalTitle"
-[content]="modalContent"
-(close)="closeModal()"/>
+<div *ngIf="isRestauracionContraseVisible" class="modal-overlay" id="restauracionContrase">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="close-button" (click)="closeModalRestaurar()">✖</button>
+        </div>
+        <div class="modal-body">
+            <h3>Ingrese su correo electrónico:</h3>
+            <input type="text" placeholder="Correo electronico" />
+        </div>
+        <div class="modal-footer">
+            <button class="send-button" (click)="validarCodigo()">Enviar código de recuperación</button>
+        </div>
+    </div>
+</div>
 
+<div *ngIf="isCodigoVisible" class="modal-overlay" id="Codigo">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="close-button" (click)="closeModalx()">✖</button>
+        </div>
+        <div class="modal-body">
+            <h3>Código de recuperación:</h3>
+            <div *ngIf="selectedValue">
+                <p>Su codigo es: {{ selectedValue }}</p>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button class="send-button" (click)="isValidarCodigoVisible=true">Aceptar</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isValidarCodigoVisible" class="modal-overlay" id="validarCodigo">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="close-button" (click)="closeModalX()">✖</button>
+        </div>
+        <div class="modal-body">
+            <h3>Ingrese código de recuperación:</h3>
+            <input [(ngModel)]="inputValue" placeholder="Ingresa un valor" />
+
+        </div>
+        <div class="modal-footer">
+            <button class="send-button" (click)="checkValueExists()">Enviar código</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isNuevaContraseVisible" class="modal-overlay" id="nuevaContrase">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="close-button" (click)="closeModalA()">✖</button>
+        </div>
+        <div class="modal-body">
+            <h3>Ingrese su nueva Contraseña</h3>
+            <input type="text" placeholder="" />
+            <h3>Escribala nuevamente</h3>
+            <input type="text" placeholder="" />
+        </div>
+        <div class="modal-footer">
+            <button class="send-button" >Guardar</button>
+        </div>
+    </div>
+</div>
+
+
+<comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" [content]="modalContent" (close)="closeModal()" />

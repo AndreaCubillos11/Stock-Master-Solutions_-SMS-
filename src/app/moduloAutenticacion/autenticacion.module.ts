@@ -5,6 +5,7 @@ import { ModulosCompartidosModule } from '../modulosCompartidos/modulos-comparti
 import { ReactiveFormsModule } from '@angular/forms';
 import { InicioCierreSesionService } from './serviciosAutenticacion/inicio-cierre-sesion.service';
 import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -16,7 +17,9 @@ import { HttpClientModule } from '@angular/common/http'
     CommonModule,
     ModulosCompartidosModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
+
   ],
   exports:[
     CompFormLoginComponent

@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { PaginaModificarUsuarioComponent } from './modulo-admin/pagina-modificar-usuario/pagina-modificar-usuario.component';
 import { CrearTiendaComponent } from './modulo-admin/crear-tienda/crear-tienda.component';
 import { ModificarTiendaComponent } from './modulo-admin/modificar-tienda/modificar-tienda.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ModificarTiendaComponent } from './modulo-admin/modificar-tienda/modifi
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    NgxDropzoneModule
 ],
   providers: [CookieService],
   bootstrap: [AppComponent]

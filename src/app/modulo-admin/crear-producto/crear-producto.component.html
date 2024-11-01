@@ -9,13 +9,13 @@
     <form [formGroup]="productoForm" class="product-form" (ngSubmit)="nuevoProducto()" >
         <!-- Campo ID del Producto -->
         <div class="form-group">
-            <label for="productoId">ID del Producto</label>
+            <label for="productoId">Identificador del Producto</label>
             <input type="text" id="productoId" placeholder="ID del producto" formControlName="productoId" required>
         </div>
 
         <!-- Campo Nombre del Producto -->
         <div class="form-group">
-            <label for="nombreProducto">Ingresar nombre del producto</label>
+            <label for="nombreProducto">Nombre del producto</label>
             <input type="text" id="nombreProducto" placeholder="Nombre del producto" formControlName="nombreProducto" required>
         </div>
 
@@ -27,8 +27,12 @@
 
         <!-- Campo Imagen del Producto -->
         <div class="form-group half-width">
-            <label for="product-image">Imagen del producto</label>
-            <input type="file" id="product-image" (change)="onFileSelected($event)" accept="image/*" required>
+            <ngx-dropzone (change)="onSelect($event)">
+                <ngx-dropzone-label>Agregue una imágen</ngx-dropzone-label>
+                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+            </ngx-dropzone>
         </div>
 
         <!-- Campo Código de Barras -->
@@ -61,3 +65,13 @@
         </div>
     </form>
 </div>
+
+
+<ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+  </ngx-dropzone-image-preview>
+
+  <comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" 
+[content]="modalContent" (close)="closeModal()"></comp-ventana-emergente>
+ 
+

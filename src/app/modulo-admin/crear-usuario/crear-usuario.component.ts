@@ -48,6 +48,7 @@ export class CrearUsuarioComponent {
         this.modalTitle = '';
         this.modalContent = 'El usuario ha sido guardado exitosamente';
         this.isModalOpen = true;
+        this.router.navigateByUrl('/gestionUsuarios')
       },
       (error) => {
         this.modalTitle = '';

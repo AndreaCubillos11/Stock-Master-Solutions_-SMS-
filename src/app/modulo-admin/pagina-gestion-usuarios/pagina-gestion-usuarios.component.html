@@ -1,22 +1,94 @@
 <header-principal [datosHeader]="datosHeader" />
 <section class="container-fluid mt-5">
-    <div class="row">
-      <div class="col-7">
-        <!-- card muestra stock -->
-        <comp-tabla [datos]="usuarios"/>
-  
-        <!-- barra de busqueda -->
-        <!-- <comp-barra-busqueda /> -->
+  <div class="row">
+    <div class="col-7">
+      <!-- card muestra stock -->
+      <comp-tabla [datos]="usuarios" />
+
+      <!-- barra de busqueda -->
+      <!-- <comp-barra-busqueda /> -->
+    </div>
+
+    <div class="col">
+      <!-- botones crud -->
+      <comp-btn-crud [datosBotones]="datosBtn" />
+
+      <div class="separador"></div>
+
+      <!-- boton codigo de barras -->
+      <!-- <comp-btn-codigo-barras /> -->
+    </div>
+  </div>
+
+  <div *ngIf="isConsultarUsuarioVisible" class="modal-overlay" id="consultarUsuario">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Digite el id de usuario</h2>
       </div>
-  
-      <div class="col">
-        <!-- botones crud -->
-        <comp-btn-crud [datosBotones]="datosBtn" />
-  
-        <div class="separador"></div>
-  
-        <!-- boton codigo de barras -->
-        <!-- <comp-btn-codigo-barras /> -->
+      <div class="modal-body">
+        <div class="search-container">
+          <input type="text" placeholder="usuarioId" [(ngModel)]="id" />
+          <button class="search-button" (click)="consultarUsuario()">
+            <img src="/assets/buscar.svg" alt="Buscar" class="search-icon">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <p *ngIf="usuario">
+          El usuario {{ usuario.Id }} llamado {{ usuario.nombre }} tiene como rol {{ usuario.rol }}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="modif-button" (click)="actualizarUsuario()">Modificar</button>
+        <button class="cancel-button" (click)="closeModalConsultar()">Cancelar</button>
       </div>
     </div>
+  </div>
+
+
+  <div *ngIf="isEliminarUsuarioVisible" class="modal-overlay" id="eliminarUsuario">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Digite el id de usuario</h2>
+      </div>
+      <div class="modal-body">
+        <div class="search-container">
+          <input type="text" placeholder="usuarioId" [(ngModel)]="id" />
+          <button class="search-button" (click)="consultarUsuario()">
+            <img src="/assets/buscar.svg" alt="Buscar" class="search-icon">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <p *ngIf="usuario">
+          El usuario {{ usuario.usuarioId }} llamado {{ usuario.NombreCompleto }} tiene como rol {{ usuario.rol }}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="delete-button" (click)="confirmacion()">Eliminar</button>
+        <button class="cancel-button" (click)="closeModalEliminar()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isConfirmacionUsuarioVisible" class="modal-overlay" id="confirmacionEliminar">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p></p>
+      </div>
+      <div class="modal-body">
+        <h2>¿Desea eliminar este usuario?</h2>
+      </div>
+      <div *ngIf="usuario" class="modal-footer">
+        <button class="delete-button"  (click)="usuarioEliminar(usuario._usuarioId)">Aceptar</button>
+        <button class="cancel-button" (click)="closeModalConfirmar()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+
 </section>
+
+
+
+
+<comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" [content]="modalContent"
+  (close)="closeModal()"></comp-ventana-emergente>

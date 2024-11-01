@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Usuario } from 'src/models/usuarios.model';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { UsuariosService } from '../serviciosAdministradores/usuarios.service';
 
 @Component({
   selector: 'app-pagina-gestion-usuarios',
@@ -12,9 +14,21 @@ export class PaginaGestionUsuariosComponent {
     { titulo: 'Gestionar usuarios', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
   ];
 
-  usuarios:Usuario[] =[];
+  usuarios: Usuario[] = [];
+  id = 0;
+  usuario: any;
+  isModalOpen: boolean = false;
+  modalTitle: string = '';
+  modalContent: string = '';
+  isEliminarUsuarioVisible: boolean = false;
+  isConsultarUsuarioVisible: boolean = false;
+  isConfirmacionUsuarioVisible: boolean = false;
 
-  constructor(private router: Router){
+  constructor(private router: Router,
+    private UsuariosService: UsuariosService,
+    private cookieService: CookieService
+
+  ) {
 
   }
 
@@ -25,17 +39,60 @@ export class PaginaGestionUsuariosComponent {
   ];
 
   agregarUsuario() {
-    console.log('Agregar usuario');
-    this.router.navigate(['/crearUsuario']);
+    this.router.navigate(['/signup']);
   }
 
   modificarUsuario() {
-    console.log('Modificar usuario');
+    this.isConsultarUsuarioVisible=true
+  }
+  
+
+  consultarUsuario() {
+    this.UsuariosService.consultarUsuario(this.cookieService.get('Token'), this.id).subscribe(
+      data => {
+        this.usuario = data
+      }
+    )
+  }
+  closeModalConsultar() {
+    this.isConsultarUsuarioVisible = false;
+  }
+  closeModalConfirmar() {
+    this.isConfirmacionUsuarioVisible = false;
+  }
+  actualizarUsuario() {
     this.router.navigate(['/modificarUsuario']);
+  }
+  usuarioEliminar(idEliminar?: any){
+    this.UsuariosService.eliminarUsuario(this.cookieService.get('Token'), idEliminar).subscribe(
+      () => {
+        this.modalTitle = '';
+        this.modalContent = '¡El usuario ha sido eliminado exitosamente';
+        this.isModalOpen = true;
+      },
+      (error) => {
+        this.modalTitle = '';
+        this.modalContent = 'Hubo un problema al eliminar el usuario. Intente de nuevo.';
+        this.isModalOpen = true;
+      }
+    );
   }
 
   eliminarUsuario() {
-    console.log('Eliminar usuario');
-    //this.router.navigate(['/eliminarUsuario']);
+    this.isEliminarUsuarioVisible = true;
+  }
+  closeModal() {
+    this.isModalOpen = false;
+  }
+  closeModalEliminar() {
+    this.isEliminarUsuarioVisible = false;
+  }
+
+  confirmacion() {
+    this.isConfirmacionUsuarioVisible=true 
+    this.isEliminarUsuarioVisible=false
   }
 }
+
+
+
