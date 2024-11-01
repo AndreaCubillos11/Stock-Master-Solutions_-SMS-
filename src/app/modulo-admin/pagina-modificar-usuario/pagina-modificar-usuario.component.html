@@ -8,20 +8,20 @@
 
     <form class="card p-2" (ngSubmit)="modificarUsuario()" [formGroup]="usuarioForm" id="createUserForm">
       <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="username" class="form-label">Nombre del Usuario</label>
+        <div class="col-md-6" *ngIf="usuario">
+          <label for="username" class="form-label">Nombre de Usuario</label>
           <input type="text" class="form-control" id="nombreUsuario" aria-describedby="emailHelp"
-            placeholder="Nombre del usuario" formControlName="nombreUsuario" required>
+            placeholder= "{{ usuario.nombreUsuario }}" formControlName="nombreUsuario" required>
         </div>
         <div class="col-md-6">
           <label for="cedula" class="form-label">Cédula de Ciudadanía</label>
           <input type="text" class="form-control" id="usuarioId" aria-describedby="emailHelp"
-            placeholder="Número de cédula de Ciudadanía" formControlName="usuarioId" required pattern="[0-9]*" inputmode="numeric">
+            placeholder="{{ usuario.usuarioId }}" formControlName="usuarioId" required pattern="[0-9]*" inputmode="numeric">
         </div>
         <div class="col-md-6">
           <label for="email" class="form-label">Correo Electrónico</label>
           <input type="email" class="form-control" id="correoElectronico" aria-describedby="emailHelp"
-            placeholder="Correo Electrónico del usuario" formControlName="correoElectronico" required>
+            placeholder="{{ usuario.correoElectronico }}" formControlName="correoElectronico" required>
         </div>
       </div>
 
@@ -35,7 +35,7 @@
           <label for="tienda" class="form-label">Tienda</label>
           <select class="form-select" id="tiendaId" aria-describedby="emailHelp" formControlName="tiendaId" required>
             <option value="" selected disabled>Selecciona una tienda</option>
-            <option *ngFor="let tienda of lisTienda" [value]="tienda.id">{{ tienda.nombre }}</option>
+            <option *ngFor="let tienda of lisTienda" [value]="tienda.id">{{ tienda.tienda }}</option>
           </select>
         </div>
       </div>
@@ -43,7 +43,7 @@
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="fullname" class="form-label">Nombre Completo</label>
-          <input type="text" class="form-control" id="fullname" placeholder="Nombre Completo" required>
+          <input type="text" class="form-control" id="fullname" placeholder="{{ usuario.nombreCompleto }}" formControlName="nombreCompleto"required>
         </div>
         <div class="col-md-6">
           <label for="rol" class="form-label">Rol</label>

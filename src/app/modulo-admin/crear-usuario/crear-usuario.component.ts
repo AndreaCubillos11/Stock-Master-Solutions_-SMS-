@@ -21,7 +21,7 @@ export class CrearUsuarioComponent {
     rol: 0,
     correoElectronico: '',
     fechaCreacion: [new Date()],
-    tiendaId: 0
+    idTiendas: 0
   })
 
   isModalOpen: boolean = false;
@@ -40,15 +40,22 @@ export class CrearUsuarioComponent {
 
   ngOnInit() {
     this.listaTienda(); // Llama al método para cargar las tiendas
+    
   }
 
   nuevoUsuario() {
+    
+    
     this.gestionarUsuariosService.nuevoUsuario(this.cookieService.get('Token'), this.usuarioForm.value).subscribe(
       () => {
         this.modalTitle = '';
         this.modalContent = 'El usuario ha sido guardado exitosamente';
         this.isModalOpen = true;
-        this.router.navigateByUrl('/gestionUsuarios')
+        
+        // Espera de 3 segundos antes de redirigir
+        setTimeout(() => {
+          this.router.navigateByUrl('/gestionUsuarios');
+        }, 2000); // 3000 milisegundos = 3 segundos
       },
       (error) => {
         this.modalTitle = '';
@@ -64,7 +71,9 @@ export class CrearUsuarioComponent {
 
   listaTienda() {
     this.tiendasService.getTienda(this.cookieService.get('Token')).subscribe(
-      (data: {}) => { this.lisTienda = data }
+      (data: {}) => { this.lisTienda = data 
+        
+      }
     );
   }
 }

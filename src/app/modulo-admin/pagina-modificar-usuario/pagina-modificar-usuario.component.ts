@@ -28,8 +28,10 @@ export class PaginaModificarUsuarioComponent {
   modalContent: string = '';
   lisTienda: any = [];
   
+  usuario: any;
   ngOnInit() {
     this.listaTienda(); // Llama al método para cargar las tiendas
+    this.consultarUsuario();
   }
 
   constructor(private formBuilder: FormBuilder,
@@ -41,12 +43,14 @@ export class PaginaModificarUsuarioComponent {
   ) { }
 
   modificarUsuario(){
-    this.UsuariosService.modificarUsuario(this.cookieService.get('Token'),this.usuarioForm.value()).subscribe(
+    this.UsuariosService.modificarUsuario(this.cookieService.get('Token'),this.usuarioForm.value).subscribe(
       () => {
         this.modalTitle = '';
         this.modalContent = 'El usuario ha sido guardado exitosamente';
         this.isModalOpen = true;
-        this.router.navigateByUrl('/gestionUsuarios')
+        setTimeout(() => {
+          this.router.navigateByUrl('/gestionUsuarios');
+        }, 2000); // 3000 milisegundos = 3 segundos
       },
       (error) => {
         this.modalTitle = '';
@@ -62,5 +66,13 @@ export class PaginaModificarUsuarioComponent {
     this.tiendasService.getTienda(this.cookieService.get('Token')).subscribe(
       (data: {}) => { this.lisTienda = data }
     );
+  }
+  consultarUsuario() {
+    this.UsuariosService.consultarUsuario(this.cookieService.get('Token'), localStorage.getItem('IdUsuario')).subscribe(
+      data => {
+        this.usuario = data
+       
+      }
+    )
   }
 }

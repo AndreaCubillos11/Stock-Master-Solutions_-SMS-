@@ -30,11 +30,14 @@ export class ModificarTiendaComponent {
   ) { }
 
   modificarTienda(){
-    this.tiendasService.modificarTienda(this.cookieService.get('Token'),this.tiendaForm.value()).subscribe(
+    this.tiendasService.modificarTienda(this.cookieService.get('Token'),this.tiendaForm.value).subscribe(
       () => {
         this.modalTitle = '';
         this.modalContent = 'La tienda ha sido guardada exitosamente';
         this.isModalOpen = true;
+        setTimeout(() => {
+          this.router.navigateByUrl('/gestionAdminG');
+        }, 2000); // 3000 milisegundos = 3 segundos
       },
       (error) => {
         this.modalTitle = '';

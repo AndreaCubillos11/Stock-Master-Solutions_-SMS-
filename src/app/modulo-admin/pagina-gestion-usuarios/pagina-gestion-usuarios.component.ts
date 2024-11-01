@@ -15,7 +15,7 @@ export class PaginaGestionUsuariosComponent {
   ];
 
   usuarios: Usuario[] = [];
-  id = 0;
+  id= 0;
   usuario: any;
   isModalOpen: boolean = false;
   modalTitle: string = '';
@@ -43,14 +43,15 @@ export class PaginaGestionUsuariosComponent {
   }
 
   modificarUsuario() {
-    this.isConsultarUsuarioVisible=true
+    this.isConsultarUsuarioVisible = true
   }
-  
+
 
   consultarUsuario() {
     this.UsuariosService.consultarUsuario(this.cookieService.get('Token'), this.id).subscribe(
       data => {
         this.usuario = data
+        localStorage.setItem('IdUsuario', JSON.parse(JSON.stringify(data)).usuarioId);
       }
     )
   }
@@ -61,14 +62,19 @@ export class PaginaGestionUsuariosComponent {
     this.isConfirmacionUsuarioVisible = false;
   }
   actualizarUsuario() {
+
     this.router.navigate(['/modificarUsuario']);
   }
-  usuarioEliminar(idEliminar?: any){
+  usuarioEliminar(idEliminar?: any) {
     this.UsuariosService.eliminarUsuario(this.cookieService.get('Token'), idEliminar).subscribe(
       () => {
         this.modalTitle = '';
         this.modalContent = '¡El usuario ha sido eliminado exitosamente';
         this.isModalOpen = true;
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000); // 2000 milisegundos = 2 segundos // 3000 milisegundos = 3 segundos
       },
       (error) => {
         this.modalTitle = '';
@@ -89,8 +95,8 @@ export class PaginaGestionUsuariosComponent {
   }
 
   confirmacion() {
-    this.isConfirmacionUsuarioVisible=true 
-    this.isEliminarUsuarioVisible=false
+    this.isConfirmacionUsuarioVisible = true
+    this.isEliminarUsuarioVisible = false
   }
 }
 

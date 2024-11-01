@@ -21,7 +21,7 @@
         </div>
         <div class="modal-body">
             <h3>Ingrese su correo electrónico:</h3>
-            <input type="text" placeholder="Correo electronico" />
+            <input type="text" [(ngModel)]=" inputCorreo" placeholder="Correo electronico" />
         </div>
         <div class="modal-footer">
             <button class="send-button" (click)="validarCodigo()">Enviar código de recuperación</button>
@@ -70,12 +70,12 @@
         </div>
         <div class="modal-body">
             <h3>Ingrese su nueva Contraseña</h3>
-            <input type="text" placeholder="" />
+            <input type="text" [(ngModel)]="inputContrase1" placeholder="" />
             <h3>Escribala nuevamente</h3>
-            <input type="text" placeholder="" />
+            <input type="text" placeholder="" [(ngModel)]="inputContrase2"/>
         </div>
         <div class="modal-footer">
-            <button class="send-button" >Guardar</button>
+            <button class="send-button" (click)="actualizarContrasena()">Guardar</button>
         </div>
     </div>
 </div>

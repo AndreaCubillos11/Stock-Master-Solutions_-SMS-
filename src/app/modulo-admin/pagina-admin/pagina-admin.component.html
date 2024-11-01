@@ -63,4 +63,75 @@
             </div>
         </div>
     </div>
+
+    
+<div *ngIf="isConsultarTiendaVisible" class="modal-overlay" id="consultarTienda">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Digite el id de la tienda</h2>
+        </div>
+        <div class="modal-body">
+            <div class="search-container">
+                <input type="text" placeholder="idTienda" [(ngModel)]="idTienda" />
+                <button class="search-button" (click)="consultarTienda()">
+                    <img src="/assets/buscar.svg" alt="Buscar" class="search-icon">
+                    <i class="fas fa-search"></i>
+                  </button>
+            </div>
+            <p *ngIf="tienda">
+                La tienda {{ tienda.tienda }} ubicada en {{ tienda.direccion }}
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="modif-button" (click)="actualizarTienda()">Modificar</button>
+            <button class="cancel-button" (click)="closeModalModificar()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" [content]="modalContent"
+    (close)="closeModal()"></comp-ventana-emergente>
+
+
+    <div *ngIf="isEliminarVisible" class="modal-overlay" id="eliminarTienda">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Digite el id de la tienda</h2>
+          </div>
+          <div class="modal-body">
+            <div class="search-container">
+              <input type="text" placeholder="idTienda" [(ngModel)]="idTienda" />
+              <button class="search-button" (click)="consultarTienda()">
+                <img src="/assets/buscar.svg" alt="Buscar" class="search-icon">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+            <p *ngIf="tienda">
+                La tienda {{ tienda.tienda }} ubicada en {{ tienda.direccion }}
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button class="delete-button" (click)="confirmacion()">Eliminar</button>
+            <button class="cancel-button" (click)="closeModalEliminarT()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    
+      <div *ngIf="isConfirmarVisible" class="modal-overlay" id="confirmar">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p></p>
+          </div>
+          <div class="modal-body">
+            <h2>¿Desea eliminar esta tienda?</h2>
+          </div>
+          <div *ngIf="tienda" class="modal-footer">
+            <button class="delete-button"  (click)="tiendaEliminar(tienda.Id)">Aceptar</button>
+            <button class="cancel-button" (click)="closeModalConfirmar()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    
+    
+
 </section>

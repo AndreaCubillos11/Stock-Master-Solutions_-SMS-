@@ -33,7 +33,7 @@
         </div>
         <div class="col-md-6">
           <label for="tienda" class="form-label">Tienda</label>
-          <select class="form-select" id="tiendaId" aria-describedby="emailHelp" formControlName="tiendaId" required>
+          <select class="form-select" id="tiendaId" aria-describedby="emailHelp" formControlName="idTiendas" required>
             <option value="" selected disabled>Selecciona una tienda</option>
             <option *ngFor="let tienda of lisTienda" [value]="tienda.id">{{ tienda.tienda }}</option>
           </select>
@@ -43,7 +43,7 @@
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="fullname" class="form-label">Nombre Completo</label>
-          <input type="text" class="form-control" id="fullname" placeholder="Nombre Completo" required>
+          <input type="text" class="form-control" id="fullname" placeholder="Nombre Completo" formControlName="nombreCompleto" required>
         </div>
         <div class="col-md-6">
           <label for="rol" class="form-label">Rol</label>

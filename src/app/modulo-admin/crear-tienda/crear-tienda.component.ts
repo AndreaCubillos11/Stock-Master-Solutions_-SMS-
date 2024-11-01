@@ -35,6 +35,9 @@ export class CrearTiendaComponent {
         this.modalTitle = '';
         this.modalContent = 'La tienda ha sido guardada exitosamente';
         this.isModalOpen = true;
+        setTimeout(() => {
+          this.router.navigateByUrl('/gestionAdminG');
+        }, 2000); // 2000 milisegundos = 2 segundos
       },
       (error) => {
         this.modalTitle = '';

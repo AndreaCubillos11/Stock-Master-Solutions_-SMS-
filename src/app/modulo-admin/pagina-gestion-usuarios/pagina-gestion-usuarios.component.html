@@ -34,7 +34,7 @@
           </button>
         </div>
         <p *ngIf="usuario">
-          El usuario {{ usuario.Id }} llamado {{ usuario.nombre }} tiene como rol {{ usuario.rol }}
+          El usuario {{ usuario.usuarioId}} llamado {{ usuario.nombreCompleto}} tiene como rol {{ usuario.rol }}
         </p>
       </div>
       <div class="modal-footer">
@@ -59,7 +59,7 @@
           </button>
         </div>
         <p *ngIf="usuario">
-          El usuario {{ usuario.usuarioId }} llamado {{ usuario.NombreCompleto }} tiene como rol {{ usuario.rol }}
+          El usuario {{ usuario.usuarioId }} llamado {{ usuario.nombreCompleto }} tiene como rol {{ usuario.rol }}
         </p>
       </div>
       <div class="modal-footer">
@@ -78,7 +78,7 @@
         <h2>¿Desea eliminar este usuario?</h2>
       </div>
       <div *ngIf="usuario" class="modal-footer">
-        <button class="delete-button"  (click)="usuarioEliminar(usuario._usuarioId)">Aceptar</button>
+        <button class="delete-button"  (click)="usuarioEliminar(usuario.usuarioId)">Aceptar</button>
         <button class="cancel-button" (click)="closeModalConfirmar()">Cancelar</button>
       </div>
     </div>

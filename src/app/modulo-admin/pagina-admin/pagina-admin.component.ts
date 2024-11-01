@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UsuariosService } from '../serviciosAdministradores/usuarios.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TiendasService } from '../serviciosAdministradores/tiendas.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-pagina-admin',
@@ -15,9 +16,18 @@ export class PaginaAdminComponent {
     private cookieService: CookieService,
     private tiendasService: TiendasService
   ) { }
+  idTienda = 0;
+  usuario: any;
+  tienda: any;
+  isModalOpen: boolean = false;
+  modalTitle: string = '';
+  modalContent: string = '';
+  isConsultarTiendaVisible: boolean = false;
+  isEliminarVisible: boolean = false;
+  isConfirmarVisible: boolean = false;
 
-  mostrarCRUD: boolean = false;
   selectedOption: string = 'optionTienda'; // Valor inicial
+  mostrarCRUD: boolean = false;
 
   datosBtn = [
     { texto: 'Agregar entidad producto', img: 'Añadir.svg', nombreClase: 'agregar', accion: this.agregarProducto.bind(this) },
@@ -46,18 +56,68 @@ export class PaginaAdminComponent {
     this.router.navigate(['/eliminarProducto']);
   }
 
+  consultarTienda() {
+    this.tiendasService.consultarTienda(this.cookieService.get('Token'), this.idTienda).subscribe(
+      data => { this.tienda = data }
+    )
+  }
+
+  actualizarTienda(){
+    this.router.navigate(['/modificarTienda']).then(()=>{   
+    })
+  }
+  tiendaEliminar(idEliminar: any) {
+    this.tiendasService.eliminarTienda(this.cookieService.get('Token'), idEliminar).subscribe(
+      () => {
+        this.modalTitle = '';
+        this.modalContent = '¡La tienda ha sido eliminada exitosamente';
+        this.isModalOpen = true;
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000); // 2000 milisegundos = 2 segundos 
+      },
+      (error) => {
+        this.modalTitle = '';
+        this.modalContent = 'Hubo un problema al eliminar la tienda. Intente de nuevo.';
+        this.isModalOpen = true;
+      }
+    );
+    }
+    closeModal() {
+      this.isModalOpen = false;
+    }
+    closeModalEliminar(){
+      this.isConsultarTiendaVisible = false;
+    }
+
+
   agregarTienda() {
-    //Hacer la logica
+    this.router.navigate(['/crearTienda']);
   }
 
   modificarTienda() {
-    //Hacer la logica
+   this.isConsultarTiendaVisible=true;
+  }
+  closeModalModificar(){
+    this.isConsultarTiendaVisible = false;
   }
 
   eliminarTienda() {
-    //Hacer la logica
+    this.isEliminarVisible=true
+  }
+  closeModalEliminarT(){
+    this.isEliminarVisible = false;
+  }
+  closeModalConfirmar(){
+    this.isConfirmarVisible = false;
   }
 
+  
+  confirmacion() {
+    console.log('Confirmacion')
+    this.isConfirmarVisible = true;
+     
+  }
   toggleCRUD() {
     console.log('presionado');
     this.mostrarCRUD = !this.mostrarCRUD;

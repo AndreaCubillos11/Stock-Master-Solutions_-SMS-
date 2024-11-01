@@ -14,7 +14,7 @@ export class UsuariosService {
 
   ) { }
 
-  nuevoUsuario(token: any, data: Usuario): Observable<any> {
+  nuevoUsuario(token: any, data: any): Observable<any> {
     return this.http.post<any>(
       this.apiUri,
       data,
@@ -27,7 +27,7 @@ export class UsuariosService {
   }
   consultarUsuario(token: any, id: any): Observable<any> {
     return this.http.get<any>(
-      this.apiUri + '/' + id,
+      this.apiUri + '/usuario/id/'+id,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +48,18 @@ export class UsuariosService {
   }
   eliminarUsuario(token: any, id:any): Observable<any> {
     return this.http.delete<any>(
-      this.apiUri+'/' +id,
+      this.apiUri+'/usuario/id/'+id,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+  }
+
+  consultarUsuarioPorCorreo(token: any, correo: any): Observable<any> {
+    return this.http.get<any>(
+      this.apiUri + '/usuario/correo/'+correo,
       {
         headers: {
           'Content-Type': 'application/json',

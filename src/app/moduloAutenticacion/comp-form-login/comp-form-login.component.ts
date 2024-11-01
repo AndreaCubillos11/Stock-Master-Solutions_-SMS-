@@ -29,9 +29,21 @@ export class CompFormLoginComponent {
   inputValue: string = ''; // Variable para el valor ingresado
   inputContrase1: string = '';
   inputContrase2: string = '';
+  inputCorreo:string='';
 
   // Variable para almacenar el valor seleccionado
   selectedValue: string | null = null;
+
+  usuarioForm: any = this.form.group({
+    usuarioId: 0,
+    nombreUsuario: '',
+    contraseña: '',
+    nombreCompleto: '',
+    rol: 0,
+    correoElectronico: '',
+    fechaCreacion: [new Date()],
+    idTiendas: 0
+  })
 
   openModal(title: string, content: string) {
     this.modalTitle = title;
@@ -112,8 +124,46 @@ export class CompFormLoginComponent {
     }
   }
 
-  actualizarContraseña() {
+  actualizarContrasena() {
     if (this.inputContrase1==this.inputContrase2) {
+      this.UsuariosService.consultarUsuarioPorCorreo(this.cookieService.get('Token'), this.inputCorreo).subscribe(
+        (data: {}) => {
+          this.usuario = data;
+          if (this.usuario) {
+            this.usuarioForm.setValue({
+              usuarioId: this.usuario.usuarioId,
+              nombreUsuario: this.usuario.nombreUsuario,
+              contraseña: this.inputContrase2,
+              nombreCompleto: this.usuario.nombreCompleto,
+              rol: this.usuario.rol,
+              correoElectronico: this.usuario.correoElectronico,
+              fechaCreacion: this.usuario.fechaCreacion,
+              idTiendas: this.usuario.idTiendas
+            });
+            console.log(this.usuarioForm.value);
+            this.UsuariosService.modificarUsuario(this.cookieService.get('Token'), this.usuarioForm.value).subscribe(
+              () => {
+                this.openModal('La contraseña se ha actualizado exitosamente', '');
+                setTimeout(() => {
+                  window.location.reload();
+                }, 2000); // 2000 milisegundos = 2 segundos // 3000 milisegundos = 3 segundos
+              },
+              (error) => {
+                console.error('Error al modificar usuario:', error);
+                if (error.error && error.error.errors) {
+                  console.error('Errores de validación:', error.error.errors);
+                }
+              }
+            );
+          } else {
+            console.error('No se encontró el usuario');
+            // Manejar el caso cuando no se encuentra el usuario
+          }
+        },
+        (error) => {
+          console.error('Error en la consulta del usuario:', error);
+        }
+      );
       
     }
   }
