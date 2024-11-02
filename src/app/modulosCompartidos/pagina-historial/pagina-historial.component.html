@@ -3,10 +3,10 @@
     <div class="row">
         <div class="col-7">
             <!-- card muestra stock -->
-            <comp-tabla [datos]="historial" />
-
+            <comp-tabla [datos]="datosTabla" />
+ 
         </div>
-
+ 
         <div class="col">
             <div class="separador"></div>
             <div class="row">
@@ -20,9 +20,9 @@
                     <img matSuffix src="/assets/filtro.svg" alt="filtro">
                 </mat-form-field>
             </div>
-
+ 
             <div style="padding-top: 205px;"></div>
-
+ 
             <!-- boton codigo de barras -->
             <div class="ms-5">
                 <button type="button" class="mt-5 ms-5" [ngClass]="{'btnDevolucion': !mostrandoDevoluciones, 'btnDevolucionActiva': mostrandoDevoluciones}" (click)="toggleDevoluciones()">

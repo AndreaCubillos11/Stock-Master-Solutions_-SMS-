@@ -5,12 +5,12 @@
                 <label for="nombreProducto">Nombre del producto</label>
                 <input class="formulario" id="nombreProducto" formControlName="nombreProducto" type="text">
             </mat-grid-tile>
-
+ 
             <mat-grid-tile>
                 <label for="productoId">ID Producto</label>
                 <input id="productoId" formControlName="productoId" type="number">
             </mat-grid-tile>
-
+ 
             <mat-grid-tile [rowspan]="5">
                 <mat-card>
                     <mat-card-content style="height: 500px; width: 400px;">
@@ -23,14 +23,14 @@
                     </mat-card-content>
                 </mat-card>
             </mat-grid-tile>
-
+ 
             <mat-grid-tile [rowspan]="3">
                 <div class="form-floating">
                     <textarea class="formulario" formControlName="descripcion" placeholder="Descripción del producto"
                         id="floatingTextarea2" style="height: 280px; width: 500px;"></textarea>
                 </div>
             </mat-grid-tile>
-
+ 
             <mat-grid-tile>
                 <mat-form-field appearance="fill">
                     <mat-label>Categoría</mat-label>
@@ -44,10 +44,10 @@
                 <label for="precio">Precio</label>
                 <input id="precio" formControlName="precio" type="number">
             </mat-grid-tile>
-
+ 
             <mat-grid-tile>
                 <label for="codigoBarras">Código de barras</label>
-                <input id="codigoBarras" formControlName="codigoBarras" type="text">
+                <input id="codigoBarras" formControlName="codigoBarras" type="number">
             </mat-grid-tile>
         </form>
     </mat-grid-list>

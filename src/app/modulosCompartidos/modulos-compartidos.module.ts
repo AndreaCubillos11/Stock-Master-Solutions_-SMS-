@@ -65,7 +65,8 @@ import { PaginaHistorialComponent } from './pagina-historial/pagina-historial.co
     CompSelectoresComponent,
     CompTablaComponent,
     HeaderPrincipalComponent,
-    CompVentanaEmergenteComponent
+    CompVentanaEmergenteComponent,
+    PaginaHistorialComponent
   ]
 })
 export class ModulosCompartidosModule { }

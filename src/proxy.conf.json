@@ -13,5 +13,11 @@
         "target": "https://localhost:7232",
         "secure": false,
         "changeOrigin": false
+    },
+    "/api/Productos":{
+        "target": "https://localhost:7232",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
     }
 }

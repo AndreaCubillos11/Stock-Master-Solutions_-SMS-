@@ -7,7 +7,7 @@
 
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width-table" matSort>
         <!-- Columna de selección (solo si seleccionable es true) -->
-        <ng-container *ngIf="seleccionable">
+        <ng-container *ngIf="datos[0].seleccionable">
           <ng-container matColumnDef="select">
             <th mat-header-cell *matHeaderCellDef>
               <mat-checkbox (change)="selection.clear()" disabled="true"></mat-checkbox>

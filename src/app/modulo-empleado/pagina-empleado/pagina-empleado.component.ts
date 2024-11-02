@@ -7,6 +7,14 @@ import { Inventario } from 'src/models/inventario.model';
   styleUrls: ['./pagina-empleado.component.css']
 })
 export class PaginaEmpleadoComponent {
+
+    datosTabla = [
+      {
+        datos: [] as Inventario[],
+        seleccionable: false,
+      }
+    ];
+
   inventarios: Inventario[] = [
     {
         id: 1,

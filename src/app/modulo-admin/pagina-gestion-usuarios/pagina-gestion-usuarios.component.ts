@@ -14,6 +14,13 @@ export class PaginaGestionUsuariosComponent {
     { titulo: 'Gestionar usuarios', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
   ];
 
+  datosTabla = [
+    {
+      datos: [] as Usuario[],
+      seleccionable: false,
+    }
+  ];
+
   usuarios: Usuario[] = [];
   id= 0;
   usuario: any;

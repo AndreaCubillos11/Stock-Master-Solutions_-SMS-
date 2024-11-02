@@ -1,36 +1,38 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductosService } from '../../serviciosAdministradores/productos.service';
 import { CompartirFilaService } from 'src/app/serviciosGenerales/compartir-fila.service';
 import { Producto } from 'src/models/producto.model';
-import { catchError } from 'rxjs';
+import { catchError, of } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'form-modfiicar',
   templateUrl: './form-modfiicar.component.html',
   styleUrls: ['./form-modfiicar.component.css']
 })
-export class FormModfiicarComponent implements OnInit{
-  
+export class FormModfiicarComponent implements OnInit {
+
   imagenSrc: string | ArrayBuffer | null = null;
   cambiosForm: FormGroup;
   productoId: number | null = null;
 
   categorias = [
-    { value: 'categoria1', label: 'Categoría 1' },
-    { value: 'categoria2', label: 'Categoría 2' },
-    { value: 'categoria3', label: 'Categoría 3' },
+    { value: 'aseo', label: 'Aseo' },
+    { value: 'tecnologia', label: 'Tecnologia' },
+    { value: 'comida', label: 'Comida' },
+    { value: 'ropa', label: 'Ropa' },
   ]
 
-  constructor(private form: FormBuilder, private servicio: ProductosService, private compartirServicio: CompartirFilaService) {
+  constructor(private form: FormBuilder, private servicio: ProductosService, private compartirServicio: CompartirFilaService, private cookies: CookieService) {
     this.cambiosForm = this.form.group({
       productoId: [null, Validators.required],
-      codigoBarras: ['',[ Validators.required, Validators.min(1), Validators.max(10)]],
+      codigoBarras: [null, [Validators.required, Validators.pattern('^[0-9]{1,19}$')]],
       nombreProducto: ['', Validators.required],
       descripcion: ['', Validators.required],
       precio: [null, Validators.required],
-      categoria: ['', Validators.required],
-      fechaIngreso: [new Date]
+      categoria: [''],
+      fechaIngreso: [new Date()]
     })
   }
 
@@ -72,21 +74,44 @@ export class FormModfiicarComponent implements OnInit{
     }
   }
 
+  /*  modificar() {
+     console.log(this.productoId);
+     if (this.cambiosForm.valid) {
+       const producto: Producto = { ...this.cambiosForm.value, id: this.productoId }; // Asegúrate de incluir el ID
+       console.log('Producto a modificar:', producto);
+       this.servicio.modificarProducto(producto, this.cookies.get('Token')).pipe(
+         catchError(error => {
+           console.error('Error al modificar el producto:', error);
+           return of(); // Retorna un observable vacío
+         })
+       ).subscribe(() => {
+         console.log('Producto modificado exitosamente.');
+       });
+     } else {
+       console.warn('El formulario no es válido');
+     }
+   } */
   modificar() {
     console.log(this.productoId);
     if (this.cambiosForm.valid) {
       const producto: Producto = { ...this.cambiosForm.value, id: this.productoId }; // Asegúrate de incluir el ID
       console.log('Producto a modificar:', producto);
-      this.servicio.modificarProducto(producto).pipe(
-        catchError(error => {
-          console.error('Error al modificar el producto:', error);
-          return ([]); // Retorna un observable vacío
-        })
-      ).subscribe(() => {
-        console.log('Producto modificado exitosamente.');
+
+      this.servicio.modificarProducto(producto, this.cookies.get('Token')).subscribe({
+        next: (resultado) => {
+          if (resultado) {
+            console.log('Producto modificado exitosamente.');
+          } else {
+            console.log('La modificación del producto falló.');
+          }
+        },
+        error: (err) => {
+          console.error('Ocurrió un error en la modificación:', err);
+        }
       });
     } else {
       console.warn('El formulario no es válido');
     }
   }
+
 }

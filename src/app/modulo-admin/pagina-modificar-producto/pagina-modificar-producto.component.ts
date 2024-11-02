@@ -1,18 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Producto } from 'src/models/producto.model';
 import { CompartirFilaService } from 'src/app/serviciosGenerales/compartir-fila.service';
-
+import { ProductosService } from '../serviciosAdministradores/productos.service';
+import { CookieService } from 'ngx-cookie-service';
+ 
 @Component({
   selector: 'app-pagina-modificar-producto',
   templateUrl: './pagina-modificar-producto.component.html',
   styleUrls: ['./pagina-modificar-producto.component.css']
 })
-export class PaginaModificarProductoComponent {
+export class PaginaModificarProductoComponent implements OnInit {
   datosHeader = [
     { titulo: 'Modificar Producto', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
   ];
 
-  datos:Producto[] = [{
+  datosTabla = [
+    {
+      datos: [] as Producto[],
+      seleccionable: true,
+      selectionChange: new EventEmitter<Producto | null>()
+    }
+  ];
+ 
+  /* datos: Producto[] = [{
     id: 1,
     codigoBarras: 1234567890123,
     nombreProducto: "Laptop",
@@ -38,23 +48,41 @@ export class PaginaModificarProductoComponent {
     precio: 50.00,
     categoria: "Hogar",
     fechaIngreso: new Date('2024-03-05')
-  }];
+  }]; */
+ 
+  constructor(private servicio: CompartirFilaService, private productosService: ProductosService, private cookies: CookieService) { }
+ 
+  ngOnInit(): void {
+    this.cargarProductos()
+    this.datosTabla[0].selectionChange.subscribe((fila: Producto | null) => this.onSelectionChange(fila))   
+  }
 
-  constructor(private servicio: CompartirFilaService){}
+  cargarProductos(): void {
+    this.productosService.getAllProductos(this.cookies.get('Token')).subscribe({
+      next: (data: Producto[]) => {
+        console.log(data);
+        this.datosTabla[0].datos = data;
+        console.log(this.datosTabla[0].datos)
+      },
+      error: (error) => {
+        console.error('Error al obtener los productos', error);
+      }
+    });
+  }
 
   seleccionable = true;
   filaSeleccionada: Producto | null = null;
   mostrarTemplate1 = true;
   productoIdSeleccionado: number | null = null;
-
+ 
   onSelectionChange(fila: Producto | null) {
     this.filaSeleccionada = fila;
     if (fila) {
-      this.productoIdSeleccionado = fila.id; 
+      this.productoIdSeleccionado = fila.id;
       this.servicio.selectProducto(fila);
     }
   }
-
+ 
   onModificarClick() {
     this.mostrarTemplate1 = false;
   }
