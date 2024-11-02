@@ -12,7 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class ModificarTiendaComponent {
   tiendaForm: any = this.formBuilder.group({
-    idTienda:0,
+    id:(localStorage.getItem('IdTienda') ?? '0', 10),
     tienda:'',
     direccion:'',
     telefono:0

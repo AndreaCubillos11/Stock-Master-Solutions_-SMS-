@@ -25,16 +25,19 @@
             <textarea id="descripcion" placeholder="Descripción" formControlName="descripcion" required></textarea>
         </div>
 
-        <!-- Campo Imagen del Producto -->
-        <div class="form-group half-width">
-            <ngx-dropzone (change)="onSelect($event)">
-                <ngx-dropzone-label>Agregue una imágen</ngx-dropzone-label>
-                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                </ngx-dropzone-preview>
-            </ngx-dropzone>
-        </div>
-
+       <!-- Campo Imagen del Producto -->
+       <div class="form-group half-width">
+        <ngx-dropzone (change)="onSelect($event)">
+            <ngx-dropzone-label>Agregue una imágen</ngx-dropzone-label>
+            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-preview>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+               
+              </ngx-dropzone-image-preview>
+        </ngx-dropzone>
+    </div>
+    
         <!-- Campo Código de Barras -->
         <div class="form-group">
             <label for="codigoBarras">Código de Barras</label>
@@ -65,11 +68,6 @@
         </div>
     </form>
 </div>
-
-
-<ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
-    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-  </ngx-dropzone-image-preview>
 
   <comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" 
 [content]="modalContent" (close)="closeModal()"></comp-ventana-emergente>

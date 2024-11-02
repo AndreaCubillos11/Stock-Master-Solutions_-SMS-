@@ -25,7 +25,7 @@ export class TiendasService {
   }
   consultarTienda(token: any, id: any): Observable<any> {
     return this.http.get<any>(
-      this.apiUri +'/' + id,
+      this.apiUri +'/tienda/' + id,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ export class TiendasService {
   }
   eliminarTienda(token: any, id: any): Observable<any> {
     return this.http.delete<any>(
-      this.apiUri + '/' + id,
+      this.apiUri + '/tienda/' + id,
       {
         headers: {
           'Content-Type': 'application/json',

@@ -58,7 +58,9 @@ export class PaginaAdminComponent {
 
   consultarTienda() {
     this.tiendasService.consultarTienda(this.cookieService.get('Token'), this.idTienda).subscribe(
-      data => { this.tienda = data }
+      data => { this.tienda = data 
+        localStorage.setItem('IdTienda', JSON.parse(JSON.stringify(data)).id);
+      }
     )
   }
 

@@ -15,7 +15,7 @@ import { CargarImagenServiceService } from '../serviciosAdministradores/cargar-i
 @Component({
   selector: 'app-crear-producto',
   templateUrl: './crear-producto.component.html',
-  styleUrls: ['./crear-producto.component.css'],
+  styleUrls: ['./crear-producto.component.css']
 })
 
 
@@ -100,6 +100,9 @@ export class CrearProductoComponent {
             this.modalTitle = '';
             this.modalContent = 'El producto se ha agregado exitosamente';
             this.isModalOpen = true;
+            setTimeout(() => {
+              this.router.navigateByUrl('/gestionAdminG');
+            }, 2000); // 3000 milisegundos = 3 segundos
           },
           (error) => {
             this.modalTitle = '';
