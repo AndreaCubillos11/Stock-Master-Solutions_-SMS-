@@ -41,7 +41,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
   ],
   exports:[
     PaginaAdminComponent,
-    PaginaModificarProductoComponent
+    PaginaModificarProductoComponent,
+    FormModfiicarComponent
   ],
   providers:[
     ProductosService

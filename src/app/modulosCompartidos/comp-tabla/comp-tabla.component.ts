@@ -11,9 +11,20 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 
 export class CompTablaComponent<T extends {}> implements OnInit {
-  @Input() datos: T[] = [];
-  @Input() seleccionable: boolean = false;
-  @Output() selectionChange = new EventEmitter<T | null>();
+    @Input() datos: {
+      datos: T[],
+      seleccionable: boolean,
+      selectionChange?: EventEmitter<T | null>
+    }[] = [
+        {
+          datos: [],
+          seleccionable: false,
+          selectionChange: new EventEmitter<T | null>()
+        }
+      ]
+  /*  @Input() datos: T[] = [];
+   @Input() seleccionable: boolean = false;
+   @Output() selectionChange = new EventEmitter<T | null>(); */
 
 
   columnasBase: string[] = [];
@@ -26,19 +37,29 @@ export class CompTablaComponent<T extends {}> implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit() {
-    this.updateTable(this.datos);
+    this.updateTable(this.datos[0].datos);
   }
 
   updateTable(data: T[]) {
     if (data.length > 0) {
       this.columnasBase = Object.keys(data[0]);
       // Definir nombresColumnas dependiendo de si seleccionable es true
-      this.nombresColumnas = this.seleccionable ? ['select', ...this.columnasBase] : this.columnasBase;
+      this.nombresColumnas = this.datos[0].seleccionable ? ['select', ...this.columnasBase] : this.columnasBase;
       this.dataSource.data = data;
       this.tieneDatos = true;
     }
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  onRowSelection(row: T) {
+    const isSelected = this.selection.isSelected(row);
+    this.selection.clear();
+    if (!isSelected) {
+      this.selection.toggle(row);
+    }
+    const selectedRow = this.selection.selected.length > 0 ? this.selection.selected[0] : null;
+    this.datos[0].selectionChange?.emit(selectedRow);
   }
 
   filtroBusqueda(event: Event) {
@@ -48,16 +69,6 @@ export class CompTablaComponent<T extends {}> implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  onRowSelection(row: T) {
-    const isSelected = this.selection.isSelected(row);
-    this.selection.clear();
-    if (!isSelected) {
-        this.selection.toggle(row);
-    }
-    const selectedRow = this.selection.selected.length > 0 ? this.selection.selected[0] : null;
-    this.selectionChange.emit(selectedRow);
   }
 
 }
