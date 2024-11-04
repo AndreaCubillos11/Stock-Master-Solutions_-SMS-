@@ -10,6 +10,11 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./pagina-eliminar-producto.component.css']
 })
 export class PaginaEliminarProductoComponent implements OnInit{
+
+  isModalOpen: boolean = false;
+  modalTitle: string = '';
+  modalContent: string = '';
+
   datosHeader = [
     { titulo: 'Eliminar Producto', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver', accion: this.volver.bind(this) },
   ];
@@ -88,16 +93,29 @@ export class PaginaEliminarProductoComponent implements OnInit{
         next:(res) => {
           if (res) {
             console.log('Producto eliminado');
+            this.openModal('Eliminacion completada', `Se elimino el producto ${this.filaSeleccionada?.nombreProducto} de la base de datos`)
           } else {
             console.log(res)
-            console.log('No se elimino');
+            this.openModal('Eliminacion incompleta', `No se logro eliminar el producto "${this.filaSeleccionada?.nombreProducto}" n\
+              Intentalo de nuevo mas tarde`)
           }
         },
         error:(err) => {
+          this.openModal('Error de eliminacion',err)
           console.log('ocurrio un error', err);
         },
       });
     }
+  }
+
+  openModal(title: string, content: string) {
+    this.modalTitle = title;
+    this.modalContent = content;
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
   }
  
 }

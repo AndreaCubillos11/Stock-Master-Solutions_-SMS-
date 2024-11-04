@@ -13,6 +13,7 @@ import { Producto } from 'src/models/producto.model';
   styleUrls: ['./pagina-admin.component.css']
 })
 export class PaginaAdminComponent implements OnInit{
+  
   datosTabla = [
     {
       datos: [] as Producto[],
@@ -57,17 +58,17 @@ export class PaginaAdminComponent implements OnInit{
   ];
 
   agregarProducto() {
-    console.log('Agregar nueva tienda');
+    //console.log('Agregar nueva tienda');
     this.router.navigate(['/crearProducto']);
   }
 
   modificarProducto() {
-    console.log('Modificar datos de tienda');
+    //console.log('Modificar datos de tienda');
     this.router.navigate(['/modificarProducto']);
   }
 
   eliminarProducto() {
-    console.log('Eliminar tienda');
+    //console.log('Eliminar tienda');
     this.router.navigate(['/eliminarProducto']);
   }
 

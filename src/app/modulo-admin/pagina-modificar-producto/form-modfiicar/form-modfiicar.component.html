@@ -1,59 +1,69 @@
-<section class="container">
-    <mat-grid-list cols="2" rowHeight="100px">
-        <form [formGroup]="cambiosForm">
-            <mat-grid-tile>
-                <label for="nombreProducto">Nombre del producto</label>
-                <input class="formulario" id="nombreProducto" formControlName="nombreProducto" type="text">
-            </mat-grid-tile>
- 
-            <mat-grid-tile>
-                <label for="productoId">ID Producto</label>
-                <input id="productoId" formControlName="productoId" type="number">
-            </mat-grid-tile>
- 
-            <mat-grid-tile [rowspan]="5">
-                <mat-card>
-                    <mat-card-content style="height: 500px; width: 400px;">
-                        <figure class="container">
-                            <img *ngIf="imagenSrc" [src]="imagenSrc" alt="Imagen seleccionada"
-                                style="max-width: 400px; margin-top: 10px; max-height: 400px;">
-                        </figure>
-                        <input type="file" class="form-control info" id="file" (change)="cargarImagen($event)"
-                            accept=".png, .jpg, .jpeg" />
-                    </mat-card-content>
-                </mat-card>
-            </mat-grid-tile>
- 
-            <mat-grid-tile [rowspan]="3">
-                <div class="form-floating">
-                    <textarea class="formulario" formControlName="descripcion" placeholder="Descripción del producto"
-                        id="floatingTextarea2" style="height: 280px; width: 500px;"></textarea>
-                </div>
-            </mat-grid-tile>
- 
-            <mat-grid-tile>
-                <mat-form-field appearance="fill">
-                    <mat-label>Categoría</mat-label>
-                    <mat-select formControlName="categoria" id="categoria">
-                        <mat-option value="">Seleccionar categoría</mat-option>
-                        <mat-option *ngFor="let categoria of categorias" [value]="categoria.value">{{ categoria.label
-                            }}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                ---
-                <label for="precio">Precio</label>
-                <input id="precio" formControlName="precio" type="number">
-            </mat-grid-tile>
- 
-            <mat-grid-tile>
-                <label for="codigoBarras">Código de barras</label>
-                <input id="codigoBarras" formControlName="codigoBarras" type="number">
-            </mat-grid-tile>
-        </form>
-    </mat-grid-list>
-    <div style="text-align: center;">
-        <button type="submit" class="mt-5 ms-5 btnModificar" (click)="modificar()">
-            <b>Confirmar modificación</b>
-        </button>
-    </div>
+<section class="container mt-5">
+    <form [formGroup]="cambiosForm" class="grid">
+
+        <div class="grid-item salmon">
+            <label for="productoId">ID Producto</label>
+            <input id="productoId" formControlName="productoId" type="number">
+            <div class="text-danger" *ngIf="hasError('productoId', 'required')">Id del producto requerido</div>
+        </div>
+
+        <div class="grid-item broccoli">
+            <label for="nombreProducto">Nombre del producto</label>
+            <input class="formulario" id="nombreProducto" formControlName="nombreProducto" type="text">
+            <div class="text-danger" *ngIf="hasError('nombreProducto', 'required')">Nombre del producto requerido</div>
+        </div>
+
+        <div class="grid-item tamago">
+            <mat-card>
+                <mat-card-content>
+                    <figure class="container">
+                        <img *ngIf="imagenSrc" [src]="imagenSrc" alt="Imagen seleccionada">
+                    </figure>
+                    <input type="file" class="form-control info" id="file" (change)="cargarImagen($event)"
+                        accept=".png, .jpg, .jpeg" />
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+
+        <div class="grid-item edamame">
+            <div class="form-floating">
+                <label for="floatingTextarea2"><div class="text-danger" *ngIf="hasError('descripcion', 'required')">Descripcion del producto requerido</div></label>
+                <textarea class="descripcion" formControlName="descripcion" placeholder="Descripción del producto"
+                    id="floatingTextarea2">
+                </textarea>
+            </div>
+           
+        </div>
+
+        <div class="grid-item pork">
+            <mat-form-field appearance="fill">
+                <mat-label>Categoría</mat-label>
+                <mat-select formControlName="categoria" id="categoria">
+                    <mat-option value="">Seleccionar categoría</mat-option>
+                    <mat-option *ngFor="let categoria of categorias" [value]="categoria.value">{{ categoria.label
+                        }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="grid-item tomato">
+            <label for="precio">Precio</label>
+            <input id="precio" formControlName="precio" type="number">
+            <div class="text-danger" *ngIf="hasError('precio', 'required')">Precio del producto requerido</div>
+        </div>
+
+        <div class="grid-item tofu">
+            <label for="codigoBarras">Código de barras</label>
+            <input id="codigoBarras" formControlName="codigoBarras" type="number">
+            <div class="text-danger" *ngIf="hasError('codigoBarras', 'required')">Codigo de barras del producto requerido</div>
+        </div>
+
+        <div class="grid-item tempura">
+            <button type="submit" class="mt-5 ms-5 btnModificar" [disabled]="cambiosForm.invalid" (click)="modificar()">
+                <b>Confirmar modificación</b>
+            </button>
+        </div>
+
+    </form>
 </section>

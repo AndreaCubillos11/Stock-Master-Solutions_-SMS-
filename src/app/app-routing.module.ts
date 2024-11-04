@@ -13,6 +13,9 @@ import { CrearTiendaComponent } from './modulo-admin/crear-tienda/crear-tienda.c
 import { ModificarTiendaComponent } from './modulo-admin/modificar-tienda/modificar-tienda.component';
 import { PaginaGestionUsuariosComponent } from './modulo-admin/pagina-gestion-usuarios/pagina-gestion-usuarios.component';
 import { PaginaHistorialComponent } from './modulosCompartidos/pagina-historial/pagina-historial.component';
+import { PaginaAdminTiendaComponent } from './modulo-admin/pagina-admin-tienda/pagina-admin-tienda.component';
+import { PaginaCrearInventarioComponent } from './modulo-admin/pagina-admin-tienda/pagina-crear-inventario/pagina-crear-inventario.component';
+import { PaginaDevolucionesComponent } from './modulo-empleado/pagina-devoluciones/pagina-devoluciones.component';
 
 const routes: Routes = [
   {path: '', component: CompLoginComponent},
@@ -20,14 +23,17 @@ const routes: Routes = [
   {path: 'alertaInventario', component: PaginaAlertasComponent},
   {path: 'historialProductos', component: PaginaHistorialComponent},
   {path: 'gestionAdminG', component: PaginaAdminComponent},
+  {path: 'gestionAdminT', component: PaginaAdminTiendaComponent},
   {path: 'signup', component:CrearUsuarioComponent},
+  {path: 'devoluciones', component: PaginaDevolucionesComponent},
   {path: 'gestionUsuarios', component:PaginaGestionUsuariosComponent},
   {path: 'crearProducto', component:CrearProductoComponent},
   {path: 'modificarProducto', component: PaginaModificarProductoComponent},
   {path: 'eliminarProducto', component: PaginaEliminarProductoComponent},
   {path: 'modificarUsuario', component:PaginaModificarUsuarioComponent},
   {path: 'crearTienda', component:CrearTiendaComponent},
-  {path: 'modificarTienda', component:ModificarTiendaComponent}
+  {path: 'modificarTienda', component:ModificarTiendaComponent},
+  {path: 'crearInventario', component: PaginaCrearInventarioComponent},
 ];
 
 @NgModule({

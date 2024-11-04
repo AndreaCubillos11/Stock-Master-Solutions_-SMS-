@@ -1,0 +1,77 @@
+<header-principal [datosHeader]="datosHeader" />
+<form [formGroup]="formInventario" (submit)="agregar()" class="container mt-5">
+    <div class="grid">
+        <!-- Grid Salmon -->
+        <div class="salmon">
+            <label for="idInventario">Inventario:</label>
+            <select formControlName="IdInventario" id="idInventario">
+                <option *ngFor="let inv of inventarios" [value]="inv.value">{{ inv.label }}</option>
+            </select>
+            <div *ngIf="formInventario.get('IdInventario')?.invalid && formInventario.get('IdInventario')?.touched">
+                <small class="error">El campo Inventario es requerido.</small>
+            </div>
+        </div>
+
+        <!-- Grid Broccoli -->
+        <div class="broccoli">
+            <label for="productoId">Producto ID:</label>
+            <input type="number" id="productoId" formControlName="productoId">
+            <div *ngIf="formInventario.get('productoId')?.invalid && formInventario.get('productoId')?.touched">
+                <small class="error">El campo Producto ID es requerido y debe ser mayor a 0.</small>
+            </div>
+        </div>
+
+        <!-- Grid Tamago (Imagen) -->
+        <div class="tamago">
+            <mat-card>
+                <mat-card-content>
+                    <figure class="container">
+                        <img *ngIf="imagenSrc" [src]="imagenSrc" alt="Imagen seleccionada">
+                    </figure>
+                    <input type="file" class="form-control info" id="file" (change)="cargarImagen($event)"
+                        accept=".png, .jpg, .jpeg" />
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <!-- Grid Pork (Cantidad y Cantidad Mínima) -->
+        <div class="pork">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" formControlName="cantidad">
+            <div *ngIf="formInventario.get('cantidad')?.invalid && formInventario.get('cantidad')?.touched">
+                <small class="error">El campo Cantidad es requerido y debe ser mayor a 0.</small>
+            </div>
+
+            <label for="cantidadMinima">Cantidad Mínima:</label>
+            <input type="number" id="cantidadMinima" formControlName="cantidadMinima">
+            <div
+                *ngIf="formInventario.get('cantidadMinima')?.invalid && formInventario.get('cantidadMinima')?.touched">
+                <small class="error">El campo Cantidad Mínima es requerido y debe ser mayor a 0.</small>
+            </div>
+
+            <label for="cantidadBodega">Cantidad en Bodega:</label>
+            <input type="number" id="cantidadBodega" formControlName="cantidadBodega">
+            <div
+                *ngIf="formInventario.get('cantidadBodega')?.invalid && formInventario.get('cantidadBodega')?.touched">
+                <small class="error">El campo Cantidad en Bodega es requerido y debe ser mayor a 0.</small>
+            </div>
+        </div>
+
+        <!-- Grid Edamame -->
+        <div class="edamame">
+            <label for="ubicacionTienda">Ubicación en Tienda:</label>
+            <input type="text" id="ubicacionTienda" formControlName="ubicacionTienda">
+            <div
+                *ngIf="formInventario.get('ubicacionTienda')?.invalid && formInventario.get('ubicacionTienda')?.touched">
+                <small class="error">El campo Ubicación en Tienda es requerido.</small>
+            </div>
+        </div>
+
+        <!-- Grid Tomato (Botón) -->
+        <div class="tomato" style="text-align: center;">
+            <button type="submit" [disabled]="formInventario.invalid">Guardar</button>
+        </div>
+    </div>
+</form>
+
+<comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" [content]="modalContent" (close)="closeModal()" />

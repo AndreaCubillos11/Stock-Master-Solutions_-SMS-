@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductosService } from '../../serviciosAdministradores/productos.service';
 import { CompartirFilaService } from 'src/app/serviciosGenerales/compartir-fila.service';
@@ -26,12 +26,12 @@ export class FormModfiicarComponent implements OnInit {
 
   constructor(private form: FormBuilder, private servicio: ProductosService, private compartirServicio: CompartirFilaService, private cookies: CookieService) {
     this.cambiosForm = this.form.group({
-      productoId: [null, Validators.required],
-      codigoBarras: [null, [Validators.required, Validators.pattern('^[0-9]{1,19}$')]],
-      nombreProducto: ['', Validators.required],
+      productoId: [null, [Validators.required, Validators.min(1)]],
+      codigoBarras: [null, [Validators.required, Validators.pattern('^[0-9]{1,19}$'), Validators.maxLength(8)]],
+      nombreProducto: ['', [Validators.required, Validators.minLength(1)]],
       descripcion: ['', Validators.required],
-      precio: [null, Validators.required],
-      categoria: [''],
+      precio: [null, [Validators.required, Validators.min(1)]],
+      categoria: ['', Validators.required],
       fechaIngreso: [new Date()]
     })
   }
@@ -41,7 +41,7 @@ export class FormModfiicarComponent implements OnInit {
       console.log('Producto recibido:', producto);
       if (producto) {
         this.cambiosForm.patchValue({
-          productoId: producto.id, // Asegúrate de agregar el ID aquí
+          productoId: producto.id,
           codigoBarras: producto.codigoBarras,
           nombreProducto: producto.nombreProducto,
           descripcion: producto.descripcion,
@@ -94,7 +94,7 @@ export class FormModfiicarComponent implements OnInit {
   modificar() {
     console.log(this.productoId);
     if (this.cambiosForm.valid) {
-      const producto: Producto = { ...this.cambiosForm.value, id: this.productoId }; // Asegúrate de incluir el ID
+      const producto: Producto = { ...this.cambiosForm.value, id: this.productoId };
       console.log('Producto a modificar:', producto);
 
       this.servicio.modificarProducto(producto, this.cookies.get('Token')).subscribe({
@@ -112,6 +112,10 @@ export class FormModfiicarComponent implements OnInit {
     } else {
       console.warn('El formulario no es válido');
     }
+  }
+
+  hasError(controlName: string, errorType: string){
+    return this.cambiosForm.get(controlName)?.hasError(errorType) && this.cambiosForm.get(controlName)?.touched;
   }
 
 }

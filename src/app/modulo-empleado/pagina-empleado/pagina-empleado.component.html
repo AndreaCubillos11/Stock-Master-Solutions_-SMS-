@@ -4,10 +4,8 @@
   <div class="row">
     <div class="col-7">
       <!-- card muestra stock -->
-      <comp-tabla [datos]="datosTabla"/>
+      <comp-tabla [datos]="datosTabla" />
 
-      <!-- barra de busqueda -->
-      <!-- <comp-barra-busqueda /> -->
     </div>
 
     <div class="col">
@@ -17,7 +15,16 @@
       <div class="separador"></div>
 
       <!-- boton codigo de barras -->
-      <comp-btn-codigo-barras />
+       
+      <div class="col ms-5">
+          <button type="button" class="mt-5 ms-5 btnTienda" >
+            <b>Simular Venta</b> <img src="/assets/tienda.svg" alt="">
+          </button>
+      </div>
+
+      <div class="col ms-4">
+        <comp-btn-codigo-barras />
+      </div>
     </div>
   </div>
 </section>

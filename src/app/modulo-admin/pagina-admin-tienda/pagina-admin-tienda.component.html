@@ -1,0 +1,67 @@
+<comp-header-gestion />
+
+<section class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-7">
+            <!-- card muestra stock -->
+            <ng-template [ngIf]="selectedOption === 'optionInventario'">
+                <comp-tabla [datos]="datosInventario"/>
+            </ng-template>
+
+            <ng-template [ngIf]="selectedOption === 'optionProducto'">
+                <comp-tabla [datos]="datosProducto"/>
+            </ng-template>
+
+        </div>
+
+        <div class="col">
+            
+            <!-- radios de opcion -->
+            <div class="form-check form-check-inline mx-5">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioInventario"
+                    [(ngModel)]="selectedOption" value="optionInventario">
+                <label class="form-check-label" for="radioTienda">Inventarios</label>
+            </div>
+
+            <div class="form-check form-check-inline mx-5">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioProducto"
+                    [(ngModel)]="selectedOption" value="optionProducto">
+                <label class="form-check-label" for="radioProducto">Productos</label>
+            </div>
+
+            <!-- botones crud -->
+            <div class="mt-5">
+                <ng-template [ngIf]="selectedOption === 'optionInventario'">
+                    <ng-container *ngIf="mostrarInv; else CRUD">
+                        <comp-selectores/>
+                    </ng-container>
+                    
+                    <ng-template #CRUD>
+                        <comp-btn-crud [datosBotones]="datosBtnInventario"/>
+                    </ng-template>
+                </ng-template>
+
+                <ng-template [ngIf]="selectedOption === 'optionProducto'">
+                    <comp-btn-crud [datosBotones]="datosBtnProducto"/>
+                    <div style="padding-top: 49px;"></div>
+                </ng-template>
+
+            </div>
+
+            <!-- boton codigo de barras y mostrar -->
+            <div class="col ms-5">
+                <ng-template [ngIf]="selectedOption === 'optionInventario'">
+                    <button type="button" class="mt-5 ms-5 btnTienda" (click)="toggleCRUD()">
+                        <b> {{mostrarInv ? 'Gestionar Inventarios' : 'Ver inventarios'}} </b> <img src="/assets/tienda.svg"
+                            alt="">
+                    </button>
+                </ng-template>
+            </div>
+            <div class="col ms-4">
+                <comp-btn-codigo-barras />
+            </div>
+        </div>
+    </div>
+
+
+</section>

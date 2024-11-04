@@ -1,0 +1,9 @@
+.btnDevolucion {
+    border: 2px solid black;
+    text-align: center;
+    background-color: #16e550;
+    border-radius: 8px;
+    color: black;
+    height: 45px;
+    width: 230px;
+  }

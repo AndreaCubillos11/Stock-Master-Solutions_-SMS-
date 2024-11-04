@@ -37,6 +37,7 @@ export class CompTablaComponent<T extends {}> implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit() {
+    console.log(this.datos[0]);
     this.updateTable(this.datos[0].datos);
   }
 

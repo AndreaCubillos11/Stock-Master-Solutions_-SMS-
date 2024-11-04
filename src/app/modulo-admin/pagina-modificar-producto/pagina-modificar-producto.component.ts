@@ -10,19 +10,18 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./pagina-modificar-producto.component.css']
 })
 export class PaginaModificarProductoComponent implements OnInit {
+
+  seleccionable = true;
+  filaSeleccionada: Producto | null = null;
+  mostrarTemplate1 = true;
+  productoIdSeleccionado: number | null = null;
+
   datosHeader = [
     { titulo: 'Modificar Producto', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
   ];
 
-  datosTabla = [
-    {
-      datos: [] as Producto[],
-      seleccionable: true,
-      selectionChange: new EventEmitter<Producto | null>()
-    }
-  ];
  
-  /* datos: Producto[] = [{
+  datosProductos: Producto[] = [/* {
     id: 1,
     codigoBarras: 1234567890123,
     nombreProducto: "Laptop",
@@ -48,12 +47,21 @@ export class PaginaModificarProductoComponent implements OnInit {
     precio: 50.00,
     categoria: "Hogar",
     fechaIngreso: new Date('2024-03-05')
-  }]; */
+  } */];
+
+  datosTabla = [
+    {
+      datos: this.datosProductos,
+      seleccionable: true,
+      selectionChange: new EventEmitter<Producto | null>()
+    }
+  ];
  
   constructor(private servicio: CompartirFilaService, private productosService: ProductosService, private cookies: CookieService) { }
  
   ngOnInit(): void {
     this.cargarProductos()
+    //this.datosTabla[0].datos = this.datos;
     this.datosTabla[0].selectionChange.subscribe((fila: Producto | null) => this.onSelectionChange(fila))   
   }
 
@@ -61,7 +69,7 @@ export class PaginaModificarProductoComponent implements OnInit {
     this.productosService.getAllProductos(this.cookies.get('Token')).subscribe({
       next: (data: Producto[]) => {
         console.log(data);
-        this.datosTabla[0].datos = data;
+        this.datosProductos = data;
         console.log(this.datosTabla[0].datos)
       },
       error: (error) => {
@@ -69,11 +77,6 @@ export class PaginaModificarProductoComponent implements OnInit {
       }
     });
   }
-
-  seleccionable = true;
-  filaSeleccionada: Producto | null = null;
-  mostrarTemplate1 = true;
-  productoIdSeleccionado: number | null = null;
  
   onSelectionChange(fila: Producto | null) {
     this.filaSeleccionada = fila;

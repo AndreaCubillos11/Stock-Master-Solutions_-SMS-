@@ -38,6 +38,7 @@ export class ProductosService {
     });
   } */
     modificarProducto(producto: Producto, token: any): Observable<boolean> {
+      console.log(producto);
       console.log('Modificando producto con ID:', producto.id);
       const url = `${this.apiUrl}/${producto.id}`;
       const headers = new HttpHeaders({

@@ -15,6 +15,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { PaginaEliminarProductoComponent } from './pagina-eliminar-producto/pagina-eliminar-producto.component';
 import { PaginaGestionUsuariosComponent } from './pagina-gestion-usuarios/pagina-gestion-usuarios.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { PaginaAdminTiendaComponent } from './pagina-admin-tienda/pagina-admin-tienda.component';
+import { PaginaCrearInventarioComponent } from './pagina-admin-tienda/pagina-crear-inventario/pagina-crear-inventario.component';
 
 
 
@@ -25,7 +27,9 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     PaginaModificarProductoComponent,
     FormModfiicarComponent,
     PaginaEliminarProductoComponent,
-    PaginaGestionUsuariosComponent
+    PaginaGestionUsuariosComponent,
+    PaginaAdminTiendaComponent,
+    PaginaCrearInventarioComponent
   ],
   imports: [
     CommonModule,
