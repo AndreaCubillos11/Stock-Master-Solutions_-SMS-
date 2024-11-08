@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 16px;
+}
+
+.grid-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.salmon {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.broccoli {
+    grid-column: span 2;
+    grid-row: span 1;
+
+}
+
+.tamago {
+    grid-column: span 1;
+    grid-row: span 1;
+
+}

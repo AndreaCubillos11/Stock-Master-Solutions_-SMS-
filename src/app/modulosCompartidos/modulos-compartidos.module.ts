@@ -23,6 +23,7 @@ import { RouterModule } from '@angular/router';
 import { CompVentanaEmergenteComponent } from './comp-ventana-emergente/comp-ventana-emergente.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PaginaHistorialComponent } from './pagina-historial/pagina-historial.component';
+import { PaginaReportesComponent } from './pagina-reportes/pagina-reportes.component';
 
 
 
@@ -38,7 +39,8 @@ import { PaginaHistorialComponent } from './pagina-historial/pagina-historial.co
     PaginaAlertasComponent,
     HeaderPrincipalComponent,
     CompVentanaEmergenteComponent,
-    PaginaHistorialComponent
+    PaginaHistorialComponent,
+    PaginaReportesComponent
   ],
   imports: [
     CommonModule,
