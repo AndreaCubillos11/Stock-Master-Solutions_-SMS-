@@ -19,6 +19,7 @@ import { CrearTiendaComponent } from './modulo-admin/crear-tienda/crear-tienda.c
 import { ModificarTiendaComponent } from './modulo-admin/modificar-tienda/modificar-tienda.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { SimularVentaComponent } from './modulo-empleado/simular-venta/simular-venta.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { SimularVentaComponent } from './modulo-empleado/simular-venta/simular-v
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    NgChartsModule
 ],
   providers: [CookieService],
   bootstrap: [AppComponent]

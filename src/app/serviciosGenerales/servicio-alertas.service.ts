@@ -6,10 +6,11 @@ import { Alerta } from 'src/models/alerta.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ServicioAlertasService {
   private apiUrl = '/api/Alertas';
 
-  constructor(private http: HttpClient, private headers: HttpHeaders) { }
+  constructor(private http: HttpClient) { }
 
   getAlertas(token: string): Observable<Alerta[]> {
     const headers = new HttpHeaders({

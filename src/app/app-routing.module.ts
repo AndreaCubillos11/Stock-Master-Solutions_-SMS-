@@ -17,12 +17,14 @@ import { PaginaAdminTiendaComponent } from './modulo-admin/pagina-admin-tienda/p
 import { PaginaCrearInventarioComponent } from './modulo-admin/pagina-admin-tienda/pagina-crear-inventario/pagina-crear-inventario.component';
 import { PaginaDevolucionesComponent } from './modulo-empleado/pagina-devoluciones/pagina-devoluciones.component';
 import { SimularVentaComponent } from './modulo-empleado/simular-venta/simular-venta.component';
+import { PaginaReportesComponent } from './modulosCompartidos/pagina-reportes/pagina-reportes.component';
 
 const routes: Routes = [
   {path: '', component: CompLoginComponent},
   {path: 'gestionProductos', component: PaginaEmpleadoComponent},
   {path: 'alertaInventario', component: PaginaAlertasComponent},
   {path: 'historialProductos', component: PaginaHistorialComponent},
+  {path: 'reportes', component: PaginaReportesComponent},
   {path: 'gestionAdminG', component: PaginaAdminComponent},
   {path: 'gestionAdminT', component: PaginaAdminTiendaComponent},
   {path: 'signup', component:CrearUsuarioComponent},
