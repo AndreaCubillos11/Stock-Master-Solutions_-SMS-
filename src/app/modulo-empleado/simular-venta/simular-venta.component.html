@@ -1,0 +1,80 @@
+<div class="container">
+    <header>
+        <h1>Simular Venta</h1>
+        <a href="#" class="back-button">Volver</a>
+    </header>
+
+    <form class="form">
+        <label for="productName">Código de Barras</label>
+        <input type="text" id="productName" [(ngModel)]="codigoBarras" placeholder="" required>
+
+        <div class="quantity">
+            <label for="quantity">Cantidad</label>
+            <div class="quantity-input">
+                <span>{{ quantity }}</span>
+                <div class="arrows">
+                    <button type="button" class="arrow-up" (click)="increaseQuantity()">▲</button>
+                    <button type="button" class="arrow-down" (click)="decreaseQuantity()">▼</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="barcode">
+            <label for="barcode">Nombre del producto</label>
+            <h2 *ngIf="producto"> El nombre del producto es{{producto.nombreProducto}}</h2>
+        </div>
+
+        <div class="payment-method">
+            <label for="payment">Método de pago</label>
+            <select [(ngModel)]="metodoPago" id="payment" required>
+                <option value="" disabled selected>Seleccione</option>
+                <option value="bancolombia">Bancolombia</option>
+                <option value="nequi">Nequi</option>
+            </select>
+        </div>
+
+        <button type="submit" class="next-button" (click)="llamarTienda()">Siguiente</button>
+    </form>
+</div>
+
+<div *ngIf="isFacturaVisible" class="modal-overlay" id="factura">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1>Stock Master Solutions</h1>
+        </div>
+        <div class="modal-body">
+            <div *ngIf="usuario && tienda" class="receipt">
+                <p><strong>{{tienda.tienda}}</strong></p>
+                <p>Dirección: {{tienda.direccion}}</p>
+                <p>Nombre del empleado: {{usuario.nombreCompleto}}</p>
+                <p>UsuarioID: {{usuario.usuarioId}}</p>
+
+                <table *ngIf="producto && quantity">
+                    <tr>
+                        <td>1<br>{{quantity}}</td>
+                        <td>{{producto.nombreProducto}}<br> {{producto.productoId}}</td>
+                        <td>{{producto.precio}}</td>
+                    </tr>
+                    <tr>
+                        <td>2 <br>{{quantity}}</td>
+                        <td>{{producto.nombreProducto}} <br> {{producto.productoId}}</td>
+                        <td>{{producto.precio}}</td>
+                    </tr>
+                </table>
+
+                <p><strong>Total:</strong> COP $$$$</p>
+                <p>Fecha: YYYY/MM/DD 0:00</p>
+                <p *ngIf="metodoPago">Método de pago: {{metodoPago}}</p>
+
+                <p class="warranty">
+                    La garantía de productos es de 24 horas contadas a partir de la fecha de facturación, para
+                    devolución traer su factura.
+                </p>
+                <p class="thanks">¡GRACIAS POR SU COMPRA!</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="accept-button" (click)="closeModal()">Aceptar</button>
+        </div>
+    </div>
+</div>

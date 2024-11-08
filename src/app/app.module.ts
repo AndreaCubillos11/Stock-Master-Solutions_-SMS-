@@ -18,6 +18,8 @@ import { PaginaModificarUsuarioComponent } from './modulo-admin/pagina-modificar
 import { CrearTiendaComponent } from './modulo-admin/crear-tienda/crear-tienda.component';
 import { ModificarTiendaComponent } from './modulo-admin/modificar-tienda/modificar-tienda.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { SimularVentaComponent } from './modulo-empleado/simular-venta/simular-venta.component';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     PaginaModificarUsuarioComponent,
     CrearTiendaComponent,
     ModificarTiendaComponent,
+    SimularVentaComponent,
   ],
   imports: [
     BrowserModule,

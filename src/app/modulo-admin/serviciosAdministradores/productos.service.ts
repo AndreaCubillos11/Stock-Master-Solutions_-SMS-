@@ -8,8 +8,6 @@ import { Producto } from 'src/models/producto.model';
 export class ProductosService {
   apiUrl = '/api/Productos'
  
- 
- 
   constructor(private http: HttpClient) { }
  
  
@@ -83,5 +81,15 @@ export class ProductosService {
       'Authorization': `Bearer ${token}`
     });
     return this.http.get<Producto[]>(this.apiUrl, { headers: headers, withCredentials: true });
+  }
+  consultarProducto(token: any, codigoBarra: any): Observable<any> {
+    return this.http.get<any>(
+      this.apiUrl +'/producto/codigo/'+codigoBarra,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
   }
 }

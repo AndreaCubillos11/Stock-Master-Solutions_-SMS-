@@ -16,6 +16,7 @@ import { PaginaHistorialComponent } from './modulosCompartidos/pagina-historial/
 import { PaginaAdminTiendaComponent } from './modulo-admin/pagina-admin-tienda/pagina-admin-tienda.component';
 import { PaginaCrearInventarioComponent } from './modulo-admin/pagina-admin-tienda/pagina-crear-inventario/pagina-crear-inventario.component';
 import { PaginaDevolucionesComponent } from './modulo-empleado/pagina-devoluciones/pagina-devoluciones.component';
+import { SimularVentaComponent } from './modulo-empleado/simular-venta/simular-venta.component';
 
 const routes: Routes = [
   {path: '', component: CompLoginComponent},
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'crearTienda', component:CrearTiendaComponent},
   {path: 'modificarTienda', component:ModificarTiendaComponent},
   {path: 'crearInventario', component: PaginaCrearInventarioComponent},
+  {path: 'simularVenta', component:SimularVentaComponent},
 ];
 
 @NgModule({

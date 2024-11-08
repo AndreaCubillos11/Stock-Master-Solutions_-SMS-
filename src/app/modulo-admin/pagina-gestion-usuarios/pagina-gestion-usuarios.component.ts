@@ -58,7 +58,6 @@ export class PaginaGestionUsuariosComponent {
     this.UsuariosService.consultarUsuario(this.cookieService.get('Token'), this.id).subscribe(
       data => {
         this.usuario = data
-        localStorage.setItem('IdUsuario', JSON.parse(JSON.stringify(data)).usuarioId);
       }
     )
   }

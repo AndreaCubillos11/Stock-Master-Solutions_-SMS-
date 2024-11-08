@@ -1,0 +1,176 @@
+/* General reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Main container styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffffff;
+    height: 100vh; /* Ocupa el 100% de la altura de la pantalla */
+    width: 100%; /* Ocupa el 100% del ancho de la pantalla */
+    max-width: 100%; /* Asegura que no tenga un límite de ancho */
+    margin: 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #5c005c;
+    padding: 15px;
+    color: white;
+    border-radius: 8px 8px 0 0;
+   
+}
+
+header h1 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.back-button {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+/* Form styles */
+.form {
+    display: grid;
+    gap: 20px;
+    /* Ajusta o elimina el margen superior */
+    margin-top: 0; /* Cambia el valor si deseas mantener algo de espacio */
+    flex-grow: 1;
+}
+
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.quantity-input {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.arrows {
+    display: flex;
+    flex-direction: column;
+}
+
+.arrow-up, .arrow-down, .next-button {
+    background-color: #5c005c;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.arrow-up:hover, .arrow-down:hover, .next-button:hover {
+    background-color: #4b004b;
+}
+
+/* Modal overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.modal-header {
+    background-color: #4e2a4a;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.accept-button {
+    width: 100%;
+    padding: 8px;
+    background-color: #5c2b5b;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.accept-button:hover {
+    background-color: #4b2249;
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 1.2em;
+    }
+
+    .next-button, .arrow-up, .arrow-down {
+        font-size: 0.9em;
+    }
+}

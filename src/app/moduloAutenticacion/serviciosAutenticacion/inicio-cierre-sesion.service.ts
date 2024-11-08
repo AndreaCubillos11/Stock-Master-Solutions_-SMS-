@@ -23,6 +23,7 @@ export class InicioCierreSesionService {
         const Token = response.accessToken;
         this.cookie.set('Token', Token, 1);
         localStorage.setItem('Rol',  JSON.stringify(user.rol));
+        localStorage.setItem('IdUsuario', JSON.parse(JSON.stringify(response)).usuarioId);
       }),
       map(()=> {}),
       catchError(err => {
