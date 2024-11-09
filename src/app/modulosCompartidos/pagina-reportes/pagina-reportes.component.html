@@ -4,10 +4,10 @@
     <div class="grid">
         <div class="grid-item salmon">
             <mat-form-field appearance="fill">
-                <mat-label>Tiendas</mat-label>
+                <mat-label>Tipo de reporte</mat-label>
                 <mat-select (selectionChange)="mostrarCampo($event)">
-                    <mat-option *ngFor="let tiempo of rangoDeTiempo" [value]="tiempo.id">
-                        {{tiempo.opcion}}
+                    <mat-option *ngFor="let reporte of reportes" [value]="reporte.id">
+                        {{reporte.opcion}}
                     </mat-option>
                 </mat-select>
                 <img matSuffix src="/assets/tienda.svg" alt="tienda">
@@ -15,9 +15,9 @@
             <ng-template [ngIf]="seleccionPatronVentas">
                 <mat-form-field appearance="fill">
                     <mat-label>Rango de Tiempo</mat-label>
-                    <mat-select (selectionChange)="mostrarCampo($event)">
-                        <mat-option *ngFor="let reporte of reportes" [value]="reporte.id">
-                            {{reporte.opcion}}
+                    <mat-select>
+                        <mat-option *ngFor="let tiempo of rangoDeTiempo" [value]="tiempo.id">
+                            {{tiempo.opcion}}
                         </mat-option>
                     </mat-select>
                     <img matSuffix src="/assets/tienda.svg" alt="tienda">
@@ -30,7 +30,8 @@
         </div>
 
         <div class="grid-item broccoli">
-            <img src="/assets/StockMasterAdminLogo2.png" alt="" style="opacity: 50%;">
+            <!-- <img src="/assets/StockMasterAdminLogo2.png" alt="" style="opacity: 50%;"> -->
+            <canvas #lineChartCanvas></canvas>
             <button class="btn btn-primary">Gooool</button>
         </div>
 
