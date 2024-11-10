@@ -1,0 +1,77 @@
+<div class="container">
+    <header>
+        <h1>Modificar Cantidades</h1>
+        <button class="volver">Volver</button>
+    </header>
+    
+    <div class="content">
+        <div class="product-info">
+            <div *ngIf="producto" class="product-image"> 
+                <a href="{{producto.urlImage}}">{{producto.nombreProducto}}</a>
+                Imagen del producto
+                <h2>{{producto.nombreProducto}}</h2>
+            </div>
+            
+            <div class="barcode-section">
+                <label for="barcode">Código de barra o ID del producto</label>
+                <div class="barcode-input">
+                    <input [(ngModel)]="codigoBarras" type="text" id="barcode" placeholder="Ingrese código o ID">
+                    <button class="search-button" (click)="consultarProduct()">
+                        <img src="/assets/buscar.svg" alt="Buscar">
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modify-section">
+            <div class="options">
+                <!-- Grupo de radio para eliminar o agregar -->
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="accion" value="eliminar" (change)="onEliminarChange($event)">
+                        Eliminar
+                    </label>
+                    <label>
+                        <input type="radio" name="accion" value="agregar" (change)="onAgregarChange($event)">
+                        Agregar
+                    </label>
+                </div>
+                
+                <div class="units">
+                    <label>Unidades</label>
+                    <input type="number" min="1" value="1">
+                </div>
+                
+                <!-- Grupo de radio para Tienda o Bodega -->
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="ubicacion" value="tienda" (change)="onTiendaChange($event)">
+                        Tienda
+                    </label>
+                    <label>
+                        <input type="radio" name="ubicacion" value="bodega" (change)="onBodegaChange($event)">
+                        Bodega
+                    </label>
+                </div>
+
+                <div class="stock-info">
+                    <div *ngIf="tiendaSeleccionada && inventario && cantidad ">
+                        <h3>Tienda</h3>
+                        <p>Stock: {{inventario.cantidad}} {{cantidad}}</p>
+                    </div>
+                    <div *ngIf="bodegaSeleccionada && inventario && cantidad ">
+                        <h3>Bodega</h3>
+                        <p>Stock: {{inventario.cantidadBodega}} {{cantidad}}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div *ngIf="agregarCantidad">
+                <button class="final-button" (click)="modificarInventario()">Agregar cantidades</button>
+            </div>
+            <div *ngIf="eliminarCantidad">
+                <button class="delete-quantities-button" (click)="eliminarCantidadInventario()">Eliminar cantidad</button>
+            </div>
+        </div>
+    </div>
+</div>

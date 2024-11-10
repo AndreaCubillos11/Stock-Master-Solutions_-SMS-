@@ -18,6 +18,7 @@ import { PaginaCrearInventarioComponent } from './modulo-admin/pagina-admin-tien
 import { PaginaDevolucionesComponent } from './modulo-empleado/pagina-devoluciones/pagina-devoluciones.component';
 import { SimularVentaComponent } from './modulo-empleado/simular-venta/simular-venta.component';
 import { PaginaReportesComponent } from './modulosCompartidos/pagina-reportes/pagina-reportes.component';
+import { ModificarCantidadComponent } from './modulo-admin/pagina-admin-tienda/modificar-cantidad/modificar-cantidad.component';
 
 const routes: Routes = [
   {path: '', component: CompLoginComponent},
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path: 'modificarTienda', component:ModificarTiendaComponent},
   {path: 'crearInventario', component: PaginaCrearInventarioComponent},
   {path: 'simularVenta', component:SimularVentaComponent},
+  {path: 'modificarCantidad', component:ModificarCantidadComponent},
 ];
 
 @NgModule({

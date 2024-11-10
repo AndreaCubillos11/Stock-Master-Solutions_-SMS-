@@ -20,6 +20,7 @@ import { ModificarTiendaComponent } from './modulo-admin/modificar-tienda/modifi
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { SimularVentaComponent } from './modulo-empleado/simular-venta/simular-venta.component';
 import { NgChartsModule } from 'ng2-charts';
+import { ModificarCantidadComponent } from './modulo-admin/pagina-admin-tienda/modificar-cantidad/modificar-cantidad.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { NgChartsModule } from 'ng2-charts';
     CrearTiendaComponent,
     ModificarTiendaComponent,
     SimularVentaComponent,
+    ModificarCantidadComponent,
   ],
   imports: [
     BrowserModule,

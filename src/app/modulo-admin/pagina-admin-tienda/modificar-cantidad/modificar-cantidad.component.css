@@ -1,0 +1,204 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4b164c;
+    color: #fff;
+    padding: 10px;
+}
+
+header h1 {
+    font-size: 1.5em;
+}
+
+header .volver {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.product-info, .modify-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product-info h2 {
+    text-align: center;
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    color: #555;
+    text-align: center;
+}
+
+.barcode-section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.barcode-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #5e4a7b;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #eae5f2;
+}
+
+.barcode-input input[type="text"] {
+    border: none;
+    padding: 8px;
+    flex-grow: 1;
+    font-size: 16px;
+    outline: none;
+    background-color: #eae5f2;
+}
+
+.search-button {
+    background-color: #5e4a7b;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.search-button img {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+.modify-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+.options label {
+    font-size: 1em;
+}
+
+.units {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.units input {
+    width: 50px;
+    padding: 5px;
+    font-size: 1em;
+}
+
+.final-button {
+    padding: 10px;
+    background-color: #11cf31;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+}
+
+.delete-quantities-button {
+    padding: 10px;
+    background-color: #eb1313;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+}
+
+.stock-info {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.stock-info h3 {
+    margin-bottom: 10px;
+    text-align: center;
+    color: #4b164c;
+}
+
+.stock-info p {
+    text-align: center;
+}
+
+/* Estilos para los radio buttons */
+.radio-group {
+    display: flex;
+    gap: 1rem; /* Espacio entre las opciones */
+    align-items: center;
+}
+
+.radio-group label {
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 0.5rem; /* Espacio entre el botón y el texto */
+}

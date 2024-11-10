@@ -26,4 +26,25 @@ export class InventariosService {
     });
     return this.http.get<Inventario[]>(`${this.apiUrl}/${idTienda}`, { headers: headers, withCredentials: true });
   }
+  actualizarInventario(token: any, data: any):Observable<any> {
+    return this.http.put<any>(
+      this.apiUrl,
+      data,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+  }
+  consultarInventario(token: any, idProducto:any){
+    return this.http.get<any>(
+      this.apiUrl+'/producto/'+idProducto,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+  }
 }
