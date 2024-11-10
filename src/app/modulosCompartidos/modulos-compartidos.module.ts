@@ -24,6 +24,7 @@ import { CompVentanaEmergenteComponent } from './comp-ventana-emergente/comp-ven
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PaginaHistorialComponent } from './pagina-historial/pagina-historial.component';
 import { PaginaReportesComponent } from './pagina-reportes/pagina-reportes.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -56,7 +57,8 @@ import { PaginaReportesComponent } from './pagina-reportes/pagina-reportes.compo
     MatProgressSpinnerModule,
     MatExpansionModule,
     RouterModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FormsModule
   ],
   exports: [
     CompHeaderGestionComponent,

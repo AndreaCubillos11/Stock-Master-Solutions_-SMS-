@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy,ElementRef, ViewChild } from '@angular/core';
-import { Chart, ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
+import { Chart, ChartData, ChartOptions } from 'chart.js';
 import { CookieService } from 'ngx-cookie-service';
 import { ServicioDevolucionesService } from 'src/app/serviciosGenerales/servicio-devoluciones.service';
 import { ReporteDevolucion } from 'src/models/reporteDevoluciones.model';
+import { ReportePatron } from 'src/models/reportePatrones.model';
 
 @Component({
   selector: 'app-pagina-reportes',
@@ -10,9 +11,12 @@ import { ReporteDevolucion } from 'src/models/reporteDevoluciones.model';
   styleUrls: ['./pagina-reportes.component.css']
 })
 export class PaginaReportesComponent implements OnInit, OnDestroy{
-  @ViewChild('lineChartCanvas') private lineChartCanvas: ElementRef | undefined;
-
+  @ViewChild('lineChartCanvas') lineChartCanvas!: ElementRef;
+  
   chart: any;
+  reporteSeleccionado: string = '';
+  rangoSeleccionado: string = '';
+  idProducto: number | null = null;
 
   datosHeader = [
     { titulo: 'Reportes generales', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
@@ -29,10 +33,10 @@ export class PaginaReportesComponent implements OnInit, OnDestroy{
     { id: '2', opcion: 'Anual' },
   ]
 
-  seleccionPatronVentas: boolean = false;
   devoluciones: ReporteDevolucion[] = [];
   productos: string[] = [];
   devolucionesPorProducto: number[] = [];
+  ventas: ReportePatron[] = [];
 
   constructor(private servicioDevoluciones: ServicioDevolucionesService, private cookie: CookieService) {
 
@@ -43,138 +47,163 @@ export class PaginaReportesComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.devoluciones = []
+      this.chart.destroy();
+  }
+
+  seleccionarReporte(id: string) {
+    this.reporteSeleccionado = id;
+    this.rangoSeleccionado = ''; // Resetea el rango cuando cambia el reporte
+    this.idProducto = null; // Resetea el ID del producto cuando cambia el reporte
+  }
+
+  // Función para seleccionar el rango de tiempo
+  seleccionarRango(id: string) {
+    this.rangoSeleccionado = id;
+  }
+
+  generarGrafica() {
+    // Eliminar el gráfico anterior si existe
+    if (this.chart) {
+      this.chart.destroy();
+    }
+    // Crear un nuevo gráfico según el reporte seleccionado
+    switch (this.reporteSeleccionado) {
+      case '1':
+        if (this.rangoSeleccionado && !(this.idProducto == null)) {
+          this.generarGraficaVentas();
+        }
+        break;
+      case '2':
+        this.generarGraficaProductosMasVendidos();
+        break;
+      case '3':
+        this.generarGraficaDevoluciones();
+        break;
+      default:
+        console.log('Selecciona un reporte válido');
+        break;
+    }
   }
 
   //Creacion grafica Patrones
-  createLineChart(): void {
-    // Datos para la gráfica
-   /*  const sumaEnero = 0;
-    const sumaFebrero = 0;
-    const sumaMarzo = 0;
-    const sumaAbril = 0;
-    const sumaMayo = 0;
-    const sumaJunio = 0;
-    const sumaJulio = 0;
-    const sumaAgosto = 0;
-    const sumaSeptiembre = 0;
-    const sumaOcutubre = 0;
-    const sumaNoviembre = 0;
-    const sumaDiciembre = 0; */
-    const lineChartData: ChartData<'line'> = {
-      labels: [], // Eje X
-      datasets: [
-        {
-          data: [], // Datos de la gráfica
+  generarGraficaVentas() {
+    const datos = this.obtenerDatosAgrupados(); // Datos de ventas agrupados
+    this.chart = new Chart(this.lineChartCanvas.nativeElement, {
+      type: 'line', // Tipo de gráfico (puedes cambiar a 'line' si prefieres gráfico de línea)
+      data: {
+        labels: datos.labels, // Etiquetas de los datos
+        datasets: [{
           label: 'Ventas',
-          borderColor: '#42A5F5',
-          fill: false,
-          tension: 0.1
-        }
-      ]
-    };
-
-    // Configuración de la gráfica
-    const chartConfig: ChartConfiguration<'line'> = {
-      type: 'line', // Tipo de gráfica
-      data: lineChartData,
+          data: datos.values, // Datos de las ventas
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      },
       options: {
-        responsive: true, // Hacer que la gráfica sea responsive
+        responsive: true,
         scales: {
-          x: {
-            title: {
-              display: true,
-              text: 'Meses'
-            }
-          },
-          y: {
-            title: {
-              display: true,
-              text: 'Ventas'
-            },
-            min: 0
-          }
+          y: { beginAtZero: true }
         }
       }
-    };
-
-    // Crear el gráfico en el canvas usando Chart.js
-    this.chart = new Chart(this.lineChartCanvas?.nativeElement, chartConfig);
+    });
   }
   //Fin grafica Patrones
 
-  //Inicio Grafica devolucion
-  obtenerProductosConMasDevoluciones(): void {
-    // Contar el número de devoluciones por producto
-    const conteoDevoluciones: { [key: number]: number } = {};
-
-    this.devoluciones.forEach(devolucion => {
-      if (conteoDevoluciones[devolucion.productoId]) {
-        conteoDevoluciones[devolucion.productoId]++;
-      } else {
-        conteoDevoluciones[devolucion.productoId] = 1;
+  //grafica Productos mas vendidos
+  generarGraficaProductosMasVendidos() {
+    // Lógica para crear la gráfica de productos más vendidos
+    this.chart = new Chart(this.lineChartCanvas.nativeElement, {
+      type: 'bar', // Tipo de gráfico
+      data: {
+        labels: ['Producto 1', 'Producto 2', 'Producto 3'], // Ejemplo de etiquetas
+        datasets: [{
+          label: 'Productos más vendidos',
+          data: [30, 50, 70], // Ejemplo de datos
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        }
       }
     });
-
-    // Convertir el objeto en un arreglo de [productoId, devoluciones]
-    const productosOrdenados = Object.entries(conteoDevoluciones)
-      .map(([productoId, devoluciones]) => ({
-        productoId: parseInt(productoId),
-        devoluciones
-      }))
-      .sort((a, b) => b.devoluciones - a.devoluciones); // Ordenar de mayor a menor devoluciones
-
-    // Tomar los 5 productos con más devoluciones
-    const top5Productos = productosOrdenados.slice(0, 5);
-
-    // Preparar los datos para la gráfica
-    this.productos = top5Productos.map(producto => `Producto ${producto.productoId}`);
-    this.devolucionesPorProducto = top5Productos.map(producto => producto.devoluciones);
-
-    // Crear la gráfica
-    this.crearGrafica();
   }
+  //finGrafica
 
-  crearGrafica(): void {
+  //Inicio Grafica devolucion
+  generarGraficaDevoluciones() {
     const chartData: ChartData = {
-      labels: this.productos, // Etiquetas con los productos
-      datasets: [
-        {
-          label: 'Número de Devoluciones',
-          data: this.devolucionesPorProducto, // Datos con las devoluciones
-          backgroundColor: '#42A5F5', // Color de las barras
-          borderColor: '#1E88E5', // Color del borde de las barras
-          borderWidth: 1
-        }
-      ]
+      labels: this.productos, // Etiquetas de los productos con más devoluciones
+      datasets: [{
+        label: 'Número de Devoluciones',
+        data: this.devolucionesPorProducto, // Datos de devoluciones por producto
+        backgroundColor: '#42A5F5',
+        borderColor: '#1E88E5',
+        borderWidth: 1
+      }]
     };
 
     const chartOptions: ChartOptions = {
       responsive: true,
       scales: {
-        x: {
-          title: {
-            display: true,
-            text: 'Productos'
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: 'Número de Devoluciones'
-          },
-          min: 0
-        }
+        x: { title: { display: true, text: 'Productos' } },
+        y: { title: { display: true, text: 'Número de Devoluciones' }, min: 0 }
       }
     };
 
-    this.chart = new Chart('barChartCanvas', {
-      type: 'bar',
+    this.chart = new Chart(this.lineChartCanvas.nativeElement, {
+      type: 'bar', // Tipo de gráfico
       data: chartData,
       options: chartOptions
     });
   }
   //Fin Grafica Devolucion
+
+  obtenerDatosAgrupados() {
+    const labels: string[] = [];
+    const values: number[] = [];
+
+    switch (this.rangoSeleccionado) {
+      case '1':
+        // Agrupación mensual: suma ventas por día
+        const ventasPorDia = this.ventas.reduce((acc, ventas) => {
+          const fecha = ventas.fechaMovimiento.toLocaleDateString();
+          acc[fecha] = (acc[fecha] || 0) + ventas.cantidad;
+          return acc;
+        }, {} as Record<string, number>);
+    
+        Object.entries(ventasPorDia).forEach(([fecha, cantidad]) => {
+          labels.push(fecha);
+          values.push(cantidad);
+        });
+        break;
+    
+      case '2':
+        // Agrupación anual: suma ventas por mes
+        const ventasPorMes = this.ventas.reduce((acc, ventas) => {
+          const mes = ventas.fechaMovimiento.getMonth() + 1;
+          acc[mes] = (acc[mes] || 0) + ventas.cantidad;
+          return acc;
+        }, {} as Record<number, number>);
+    
+        Object.entries(ventasPorMes).forEach(([mes, cantidad]) => {
+          labels.push(`Mes ${mes}`);
+          values.push(cantidad);
+        });
+        break;
+    
+      default:
+        console.warn('Rango de tiempo no válido');
+        break;
+    }
+
+    return { labels, values };
+  }
 
   cargarDevoluciones(): void {
     this.servicioDevoluciones.getReporteDevoluciones(this.cookie.get('Token')).subscribe({
@@ -186,56 +215,5 @@ export class PaginaReportesComponent implements OnInit, OnDestroy{
       }
     });
   }
-
-  /* obtenerMeses(): void {
-    for (let i = 0; i < this.devoluciones.length; i++) {
-      const mes = this.devoluciones[i].fechaDevolucion.getMonth();
-      switch (mes) {
-        case 0:
-
-          break;
-        case 1:
-
-          break;
-        case 2:
-
-          break;
-        case 3:
-
-          break;
-        case 4:
-
-          break;
-        case 5:
-
-          break;
-        case 6:
-
-          break;
-        case 7:
-
-          break;
-        case 8:
-
-          break;
-        case 10:
-
-          break;
-        case 11:
-
-          break;
-
-        default:
-          break;
-      }
-    }
-  } */
-
-  mostrarCampo(event: any) {
-    const idReporte = event.value;
-    /* if (idReporte == 1) {
-      this.cargarDevoluciones
-    } */
-    this.seleccionPatronVentas = idReporte == 1 ? true : false;
-  }
+  
 }

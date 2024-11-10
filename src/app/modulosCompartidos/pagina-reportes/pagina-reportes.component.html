@@ -1,38 +1,54 @@
-<header-principal [datosHeader]="datosHeader"/>
+<header-principal [datosHeader]="datosHeader" />
 <h1 class="text-center"><b>Descargar reportes</b></h1>
 <section class="container mt-3">
     <div class="grid">
         <div class="grid-item salmon">
             <mat-form-field appearance="fill">
                 <mat-label>Tipo de reporte</mat-label>
-                <mat-select (selectionChange)="mostrarCampo($event)">
+                <mat-select (selectionChange)="seleccionarReporte($event.value)">
                     <mat-option *ngFor="let reporte of reportes" [value]="reporte.id">
-                        {{reporte.opcion}}
+                        {{ reporte.opcion }}
                     </mat-option>
                 </mat-select>
                 <img matSuffix src="/assets/tienda.svg" alt="tienda">
             </mat-form-field>
-            <ng-template [ngIf]="seleccionPatronVentas">
+
+            <ng-template [ngIf]="reporteSeleccionado == '1'">
                 <mat-form-field appearance="fill">
                     <mat-label>Rango de Tiempo</mat-label>
-                    <mat-select>
+                    <mat-select (selectionChange)="seleccionarRango($event.value)">
                         <mat-option *ngFor="let tiempo of rangoDeTiempo" [value]="tiempo.id">
-                            {{tiempo.opcion}}
+                            {{ tiempo.opcion }}
                         </mat-option>
                     </mat-select>
                     <img matSuffix src="/assets/tienda.svg" alt="tienda">
                 </mat-form-field>
             </ng-template>
-            <ng-template [ngIf]="seleccionPatronVentas">
-                <label for="producto">Digita el id del producto</label>
-                <input type="number" name="producto" id="producto">
+
+            <ng-template [ngIf]="rangoSeleccionado">
+                <mat-form-field appearance="fill">
+                    <mat-label>ID del producto</mat-label>
+                    <input matInput type="number" [(ngModel)]="idProducto">
+                </mat-form-field>
             </ng-template>
+
         </div>
 
         <div class="grid-item broccoli">
             <!-- <img src="/assets/StockMasterAdminLogo2.png" alt="" style="opacity: 50%;"> -->
             <canvas #lineChartCanvas></canvas>
-            <button class="btn btn-primary">Gooool</button>
+            <div class="row">
+                <div class="col">
+                    <button class="boton" (click)="generarGrafica()">
+                        Generar Gráfica
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary">Gooool</button>
+                </div>
+            </div>
+
+
         </div>
 
         <div class="grid-item tamago">
