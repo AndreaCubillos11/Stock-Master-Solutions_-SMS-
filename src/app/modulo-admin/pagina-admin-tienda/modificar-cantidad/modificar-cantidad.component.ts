@@ -86,8 +86,6 @@ export class ModificarCantidadComponent {
       });
     }
  
-    console.log("Formulario antes de enviar:", this.inventarioForm.value);
- 
     this.inventariosService.actualizarInventario(this.cookieService.get('Token'), this.inventarioForm.value).subscribe(
       () => {
         this.modalTitle = '';

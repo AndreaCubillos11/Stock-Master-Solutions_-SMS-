@@ -47,4 +47,24 @@ export class InventariosService {
         }
       });
   }
+  consultarInventarioTienda(token: any, idTienda:any){
+    return this.http.get<any>(
+      this.apiUrl+'/tienda/'+idTienda,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+  }
+  eliminarInventario(token: any, id: any): Observable<any> {
+    return this.http.delete<any>(
+      this.apiUrl + '/inventario/' + id,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+  }
 }

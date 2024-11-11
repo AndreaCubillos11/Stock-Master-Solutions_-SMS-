@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PaginaEmpleadoComponent } from './modulo-empleado/pagina-empleado/pagina-empleado.component';
 import { CompLoginComponent } from './comp-login/comp-login.component';
@@ -19,6 +19,8 @@ import { PaginaDevolucionesComponent } from './modulo-empleado/pagina-devolucion
 import { SimularVentaComponent } from './modulo-empleado/simular-venta/simular-venta.component';
 import { PaginaReportesComponent } from './modulosCompartidos/pagina-reportes/pagina-reportes.component';
 import { ModificarCantidadComponent } from './modulo-admin/pagina-admin-tienda/modificar-cantidad/modificar-cantidad.component';
+import { ModificarDatosComponent } from './modulo-admin/pagina-admin-tienda/modificar-datos/modificar-datos.component';
+import { EliminarInventarioComponent } from './modulo-admin/pagina-admin-tienda/eliminar-inventario/eliminar-inventario.component';
 
 const routes: Routes = [
   {path: '', component: CompLoginComponent},
@@ -40,6 +42,8 @@ const routes: Routes = [
   {path: 'crearInventario', component: PaginaCrearInventarioComponent},
   {path: 'simularVenta', component:SimularVentaComponent},
   {path: 'modificarCantidad', component:ModificarCantidadComponent},
+  {path: 'modificarDatos', component:ModificarDatosComponent},
+  {path: 'eliminarInventario', component:EliminarInventarioComponent}
 ];
 
 @NgModule({

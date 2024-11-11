@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="header">
+        <h1>Modificar datos</h1>
+        <button class="back-button">Volver</button>
+    </div>
+
+    <div class="content">
+        <div *ngIf="usuario" class="section tienda">
+            <label for="tienda">Tienda{{usuario.idTiendas}}</label>
+        </div>
+
+        <div *ngIf="inventario" class="section ubicacion-actual">
+            <label>Ubicación actual</label>
+            <label>{{inventario.ubicacionTienda}}</label>
+        </div>
+
+        <div class="section ubicacion-tienda">
+            <label for="ubicacion-tienda"> Nueva Ubicación en la tienda</label>
+            <input [(ngModel)]="ubicaciontienda" type="text" id="ubicacion-tienda" placeholder="Ubicación en la tienda">
+        </div>
+
+        <div *ngIf="inventario" class="section cantidad">
+            <label for="cantidad">Cantidad mínima</label>
+            <input [(ngModel)]="cantidad" type="number" id="cantidad" min="1" placeholder="{{inventario.cantidad}}">
+        </div>
+
+        <div  class="section nombre-producto">
+            
+            <div class="barcode-section">
+                <label for="barcode">Código de barra o ID del producto</label>
+                <div  class="barcode-input">
+                    <input [(ngModel)]="codigoBarras" type="text" id="barcode" placeholder="Ingrese código o ID">
+                    <button class="search-button" (click)="consultarProduct()">
+                        <img src="/assets/buscar.svg" alt="Buscar">
+                    </button>
+                </div>
+            </div>
+            <label  *ngIf="producto" for="nombre-producto">{{producto.nombreProducto}}</label>
+        </div>
+
+        <div class="section imagen-producto">
+            <label>Imagen del producto encontrado</label>
+            <div *ngIf="producto" >
+                <img src="{{producto.urlImage}}" alt="{{producto.nombreProducto}}" height="200px" width="200px"/>
+               
+            </div>
+        </div>
+        
+        <button class="modify-button">Modificar inventario</button>
+    </div>
+</div>

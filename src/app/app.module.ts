@@ -21,6 +21,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { SimularVentaComponent } from './modulo-empleado/simular-venta/simular-venta.component';
 import { NgChartsModule } from 'ng2-charts';
 import { ModificarCantidadComponent } from './modulo-admin/pagina-admin-tienda/modificar-cantidad/modificar-cantidad.component';
+import { ModificarDatosComponent } from './modulo-admin/pagina-admin-tienda/modificar-datos/modificar-datos.component';
+import { EliminarInventarioComponent } from './modulo-admin/pagina-admin-tienda/eliminar-inventario/eliminar-inventario.component';
 
 
 @NgModule({
@@ -34,6 +36,8 @@ import { ModificarCantidadComponent } from './modulo-admin/pagina-admin-tienda/m
     ModificarTiendaComponent,
     SimularVentaComponent,
     ModificarCantidadComponent,
+    ModificarDatosComponent,
+    EliminarInventarioComponent,
   ],
   imports: [
     BrowserModule,
