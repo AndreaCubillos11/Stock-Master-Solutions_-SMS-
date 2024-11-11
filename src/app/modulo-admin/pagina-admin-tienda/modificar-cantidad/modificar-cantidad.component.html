@@ -3,15 +3,14 @@
         <h1>Modificar Cantidades</h1>
         <button class="volver">Volver</button>
     </header>
-    
+   
     <div class="content">
         <div class="product-info">
-            <div *ngIf="producto" class="product-image"> 
-                <a href="{{producto.urlImage}}">{{producto.nombreProducto}}</a>
-                Imagen del producto
-                <h2>{{producto.nombreProducto}}</h2>
+            <div *ngIf="producto" class="product-image">
+                <img src="{{producto.urlImage}}" alt="{{producto.nombreProducto}}" height="200px" width="200px"/>
+               
             </div>
-            
+           
             <div class="barcode-section">
                 <label for="barcode">Código de barra o ID del producto</label>
                 <div class="barcode-input">
@@ -22,7 +21,7 @@
                 </div>
             </div>
         </div>
-        
+       
         <div class="modify-section">
             <div class="options">
                 <!-- Grupo de radio para eliminar o agregar -->
@@ -36,12 +35,12 @@
                         Agregar
                     </label>
                 </div>
-                
+               
                 <div class="units">
                     <label>Unidades</label>
-                    <input type="number" min="1" value="1">
+                    <input [(ngModel)]="cantidad" type="number" min="1" value="1">
                 </div>
-                
+               
                 <!-- Grupo de radio para Tienda o Bodega -->
                 <div class="radio-group">
                     <label>
@@ -53,7 +52,7 @@
                         Bodega
                     </label>
                 </div>
-
+ 
                 <div class="stock-info">
                     <div *ngIf="tiendaSeleccionada && inventario && cantidad ">
                         <h3>Tienda</h3>
@@ -65,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            
+           
             <div *ngIf="agregarCantidad">
                 <button class="final-button" (click)="modificarInventario()">Agregar cantidades</button>
             </div>
@@ -75,3 +74,6 @@
         </div>
     </div>
 </div>
+ 
+<comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" [content]="modalContent"
+  (close)="closeModal()"></comp-ventana-emergente>
