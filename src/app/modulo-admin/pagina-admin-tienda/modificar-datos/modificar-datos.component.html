@@ -1,12 +1,18 @@
-<div class="container">
-    <div class="header">
-        <h1>Modificar datos</h1>
-        <button class="back-button">Volver</button>
+<header class="header">
+    <h2>Modificar Datos</h2>
+    <div class="back-container">
+        <a href="gestionAdminG" class="back-button">Volver</a>
+        <img src="/assets/volver.svg" alt="Volver">
     </div>
+</header>
 
+
+<div class="card shadow-lg p-4">
+    <div class="row">
+   
     <div class="content">
-        <div *ngIf="usuario" class="section tienda">
-            <label for="tienda">Tienda{{usuario.idTiendas}}</label>
+        <div *ngIf="tienda" class="section tienda">
+            <label for="tienda">Tienda: {{tienda.tienda}}</label>
         </div>
 
         <div *ngIf="inventario" class="section ubicacion-actual">
@@ -21,7 +27,7 @@
 
         <div *ngIf="inventario" class="section cantidad">
             <label for="cantidad">Cantidad mínima</label>
-            <input [(ngModel)]="cantidad" type="number" id="cantidad" min="1" placeholder="{{inventario.cantidad}}">
+            <input [(ngModel)]="cantidad" type="number" id="cantidad" min="1" placeholder="{{inventario.cantidadMinima}}">
         </div>
 
         <div  class="section nombre-producto">
@@ -46,6 +52,8 @@
             </div>
         </div>
         
-        <button class="modify-button">Modificar inventario</button>
+        <button class="modify-button" (click)="modificarInventario()">Modificar inventario</button>
     </div>
 </div>
+<comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" [content]="modalContent"
+  (close)="closeModal()"></comp-ventana-emergente>

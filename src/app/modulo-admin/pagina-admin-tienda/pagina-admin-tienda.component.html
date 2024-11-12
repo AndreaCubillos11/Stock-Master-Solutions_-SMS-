@@ -63,5 +63,47 @@
         </div>
     </div>
 
+   
+    <div *ngIf="isEliminarVisible" class="modal-overlay" id="eliminarTienda">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Digite el codigo de barras</h2>
+          </div>
+          <div class="modal-body">
+            <div class="search-container">
+              <input type="text" placeholder="codigoBarras" [(ngModel)]="codigoBarras" />
+              <button class="search-button" (click)="consultarProduct()">
+                <img src="/assets/buscar.svg" alt="Buscar" class="search-icon">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+            <p *ngIf="inventario && producto">
+                El producto {{ producto.nombreProducto }} ubicado en {{ inventario.ubicacionTienda }}
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button class="delete-button" (click)="confirmacion()">Eliminar</button>
+            <button class="cancel-button" (click)="closeModalEliminarT()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    
+      <div *ngIf="isConfirmarVisible" class="modal-overlay" id="confirmar">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p></p>
+          </div>
+          <div class="modal-body">
+            <h2>¿Desea eliminar este inventario?</h2>
+          </div>
+          <div  class="modal-footer">
+            <button class="delete-button"  (click)="inventarioEliminar()">Aceptar</button>
+            <button class="cancel-button" (click)="closeModalConfirmar()">Cancelar</button>
+          </div>
+        </div>
+      </div>
 
 </section>
+<comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" [content]="modalContent"
+(close)="closeModal()"></comp-ventana-emergente>
+

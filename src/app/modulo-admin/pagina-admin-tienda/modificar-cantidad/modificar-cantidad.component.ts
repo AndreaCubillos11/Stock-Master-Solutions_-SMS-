@@ -205,5 +205,7 @@ export class ModificarCantidadComponent {
   closeModal() {
     this.isModalOpen = false;
   }
- 
+ volver(){
+  this.router.navigate(['/gestionAdminT'])
+ }
 }

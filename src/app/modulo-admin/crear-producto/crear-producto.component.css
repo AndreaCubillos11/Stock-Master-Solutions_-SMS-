@@ -5,7 +5,11 @@ body {
     margin: 0;
     padding: 0;
 }
-
+.back-button {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -31,7 +35,7 @@ h1 {
 }
 
 .back-button {
-    background-color: #4c1d56;
+    
     color: white;
     border: none;
     cursor: pointer;
@@ -128,4 +132,30 @@ textarea {
 
 .create-button button:hover {
     background-color: #5f2b6e;
+}
+/* Contenedor para el botón y la imagen */
+.back-container {
+    display: flex;
+    align-items: center;  /* Centra verticalmente los elementos */
+    gap: 10px;  /* Espacio entre el botón y la imagen */
+}
+
+.back-button {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.back-button i {
+    font-size: 16px; /* Tamaño del icono */
+}
+
+.back-button:hover {
+    background-color: #5f2b6e;
+}
+
+.back-container img {
+    width: 30px;  /* Ajusta el tamaño de la imagen */
+    height: auto;  /* Mantiene las proporciones de la imagen */
+    
 }

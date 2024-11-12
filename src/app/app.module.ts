@@ -22,7 +22,6 @@ import { SimularVentaComponent } from './modulo-empleado/simular-venta/simular-v
 import { NgChartsModule } from 'ng2-charts';
 import { ModificarCantidadComponent } from './modulo-admin/pagina-admin-tienda/modificar-cantidad/modificar-cantidad.component';
 import { ModificarDatosComponent } from './modulo-admin/pagina-admin-tienda/modificar-datos/modificar-datos.component';
-import { EliminarInventarioComponent } from './modulo-admin/pagina-admin-tienda/eliminar-inventario/eliminar-inventario.component';
 
 
 @NgModule({
@@ -36,8 +35,7 @@ import { EliminarInventarioComponent } from './modulo-admin/pagina-admin-tienda/
     ModificarTiendaComponent,
     SimularVentaComponent,
     ModificarCantidadComponent,
-    ModificarDatosComponent,
-    EliminarInventarioComponent,
+    ModificarDatosComponent
   ],
   imports: [
     BrowserModule,

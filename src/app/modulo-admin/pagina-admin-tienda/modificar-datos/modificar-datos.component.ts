@@ -33,7 +33,7 @@ export class ModificarDatosComponent {
   modalContent: string = '';
   cantidad:any;
   ubicaciontienda: string= '';
-
+  tienda:any;
   ngOnInit() {
     this.consultarUsuario();
   }
@@ -68,6 +68,8 @@ export class ModificarDatosComponent {
       data => {
         if (data) {
           this.producto = data;
+          this.consultarInventario();
+          this.consultarTienda();
         }
       },
       error => {
@@ -96,7 +98,7 @@ export class ModificarDatosComponent {
  
         // Redirige después de 3 segundos
         setTimeout(() => {
-          this.router.navigateByUrl('/modificarDatos');
+          this.router.navigateByUrl('/gestionAdminT');
         }, 2000);
       },
       (error) => {
@@ -120,7 +122,15 @@ export class ModificarDatosComponent {
       }
     );
   }
+  consultarTienda() {
+    this.tiendasService.consultarTienda(this.cookieService.get('Token'), this.usuario.idTiendas).subscribe(
+      data => { this.tienda = data; }
+    );
+  }
   closeModal() {
     this.isModalOpen = false;
   }
+  volver(){
+    this.router.navigate(['/gestionAdminT'])
+   }
 }

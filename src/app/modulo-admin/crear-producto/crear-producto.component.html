@@ -1,75 +1,78 @@
-<div class="container">
-    <header>
-        <h1>Agregar Producto</h1>
-        <button class="back-button">
-            <i class="fas fa-arrow-left"></i> Volver
-        </button>
-    </header>
-
-    <form [formGroup]="productoForm" class="product-form" (ngSubmit)="nuevoProducto()" >
-        <!-- Campo ID del Producto -->
-        <div class="form-group">
-            <label for="productoId">Identificador del Producto</label>
-            <input type="text" id="productoId" placeholder="ID del producto" formControlName="productoId" required>
-        </div>
-
-        <!-- Campo Nombre del Producto -->
-        <div class="form-group">
-            <label for="nombreProducto">Nombre del producto</label>
-            <input type="text" id="nombreProducto" placeholder="Nombre del producto" formControlName="nombreProducto" required>
-        </div>
-
-        <!-- Campo Descripción -->
-        <div class="form-group description">
-            <label for="descripcion">Descripción</label>
-            <textarea id="descripcion" placeholder="Descripción" formControlName="descripcion" required></textarea>
-        </div>
-
-       <!-- Campo Imagen del Producto -->
-       <div class="form-group half-width">
-        <ngx-dropzone (change)="onSelect($event)">
-            <ngx-dropzone-label>Agregue una imágen</ngx-dropzone-label>
-            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-            </ngx-dropzone-preview>
-            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
-               
-              </ngx-dropzone-image-preview>
-        </ngx-dropzone>
+<header>
+    <h2>Crear Producto</h2>
+    <div class="back-container">
+        <a href="gestionAdminG" class="back-button">Volver</a>
+        <img src="/assets/volver.svg" alt="Buscar">
     </div>
-    
-        <!-- Campo Código de Barras -->
-        <div class="form-group">
-            <label for="codigoBarras">Código de Barras</label>
-            <input type="text" id="codigoBarras" placeholder="Código de Barras" formControlName="codigoBarras" required>
-        </div>
+</header>
 
-        <!-- Campo Categoría -->
-        <div class="form-group category">
-            <label for="categoria">Categoría</label>
-            <select id="categoria" formControlName="categoria" required>
-                <option value="">Seleccione</option>
-                <option value="aseo">Aseo</option>
-                <option value="tecnologia">Tecnología</option>
-                <option value="comida">Comida</option>
-                <option value="ropa">Ropa</option>
-            </select>
-        </div>
 
-        <!-- Campo Precio del Producto -->
-        <div class="form-group price">
-            <label for="precio">Precio del producto</label>
-            <input type="text" id="precio" placeholder="$0.00" formControlName="precio" required>
-        </div>
+<div class="card shadow-lg p-4">
+    <div class="row">
+        <form [formGroup]="productoForm" class="product-form" (ngSubmit)="nuevoProducto()">
+            <!-- Campo ID del Producto -->
+            <div class="form-group">
+                <label for="productoId">Identificador del Producto</label>
+                <input type="text" id="productoId" placeholder="ID del producto" formControlName="productoId" required>
+            </div>
 
-        <!-- Botón Crear -->
-        <div class="form-group create-button">
-            <button type="submit" [disabled]="!productoForm.valid">Crear Producto</button>
-        </div>
-    </form>
-</div>
+            <!-- Campo Nombre del Producto -->
+            <div class="form-group">
+                <label for="nombreProducto">Nombre del producto</label>
+                <input type="text" id="nombreProducto" placeholder="Nombre del producto"
+                    formControlName="nombreProducto" required>
+            </div>
 
-  <comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" 
-[content]="modalContent" (close)="closeModal()"></comp-ventana-emergente>
- 
+            <!-- Campo Descripción -->
+            <div class="form-group description">
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" placeholder="Descripción" formControlName="descripcion" required></textarea>
+            </div>
 
+            <!-- Campo Imagen del Producto -->
+            <div class="form-group half-width">
+                <ngx-dropzone (change)="onSelect($event)">
+                    <ngx-dropzone-label>Agregue una imágen</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+
+                    </ngx-dropzone-image-preview>
+                </ngx-dropzone>
+            </div>
+
+            <!-- Campo Código de Barras -->
+            <div class="form-group">
+                <label for="codigoBarras">Código de Barras</label>
+                <input type="text" id="codigoBarras" placeholder="Código de Barras" formControlName="codigoBarras"
+                    required>
+            </div>
+
+            <!-- Campo Categoría -->
+            <div class="form-group category">
+                <label for="categoria">Categoría</label>
+                <select id="categoria" formControlName="categoria" required>
+                    <option value="">Seleccione</option>
+                    <option value="aseo">Aseo</option>
+                    <option value="tecnologia">Tecnología</option>
+                    <option value="comida">Comida</option>
+                    <option value="ropa">Ropa</option>
+                </select>
+            </div>
+
+            <!-- Campo Precio del Producto -->
+            <div class="form-group price">
+                <label for="precio">Precio del producto</label>
+                <input type="text" id="precio" placeholder="$0.00" formControlName="precio" required>
+            </div>
+
+            <!-- Botón Crear -->
+            <div class="form-group create-button">
+                <button type="submit" [disabled]="!productoForm.valid">Crear Producto</button>
+            </div>
+        </form>
+    </div>
+
+    <comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" [content]="modalContent"
+        (close)="closeModal()"></comp-ventana-emergente>

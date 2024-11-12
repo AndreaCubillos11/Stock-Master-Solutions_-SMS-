@@ -81,3 +81,8 @@ label {
     background-color: #482043;
     border-color: #482043;
 }
+.back-button {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
