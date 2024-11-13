@@ -10,8 +10,6 @@ using TiendaMinorista.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
-<<<<<<< HEAD
-=======
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins",
@@ -22,7 +20,6 @@ builder.Services.AddCors(options =>
                    .AllowAnyHeader(); // Permitir cualquier encabezado
         });
 });
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -53,11 +50,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
 builder.Services.AddScoped<IProductosRepository,ProductosRepository>();
 builder.Services.AddScoped<IUsuariosRepository,UsuariosRepository>();
 builder.Services.AddScoped<IinventariosRepository,InventarioRepository>();
@@ -70,23 +64,16 @@ builder.Services.AddScoped<IDevolucionesRepository, DevolucionesRepository>();
 
 var app = builder.Build();
 
-<<<<<<< HEAD
-=======
 
 app.UseCors("AllowSpecificOrigin");
 
 
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -94,7 +81,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-<<<<<<< HEAD
-=======
 
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)

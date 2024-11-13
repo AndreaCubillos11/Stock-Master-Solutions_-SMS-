@@ -39,31 +39,21 @@ namespace Tienda_Minorista.Controllers
         }
 
 
-<<<<<<< HEAD
-        [HttpDelete]
-=======
         [HttpDelete("inventario/{id}")]
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
         [Authorize]
         public async Task<IActionResult> DeleteInventario(int id)
         {
-            await _inventarioRepository.deleteInventario(new Inventarios { IdInventrio = id });
+            await _inventarioRepository.deleteInventario(new Inventarios { IdInventario = id });
 
             return NoContent();
         }
 
 
-        [HttpGet("{codigo}")]
+        [HttpGet("{idInventario}")]
         [Authorize]
-<<<<<<< HEAD
-        public async Task<IActionResult> GetDetailsInventario(int id)
+        public async Task<IActionResult> GetDetailsInventario(int idInventario)
         {
-            return Ok(await _inventarioRepository.GetDetails(id));
-=======
-        public async Task<IActionResult> GetDetailsInventario(int codigo)
-        {
-            return Ok(await _inventarioRepository.GetDetails(codigo));
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
+            return Ok(await _inventarioRepository.GetDetails(idInventario));
         }
 
 
@@ -79,6 +69,14 @@ namespace Tienda_Minorista.Controllers
 
             await _inventarioRepository.updateInventario(inventario);
             return NoContent();
+        }
+
+
+        [HttpGet("producto/{idProducto}")]
+        [Authorize]
+        public async Task<IActionResult> GetforProducto(int idProducto)
+        {
+            return Ok(await _inventarioRepository.GetForIdProducto(idProducto));
         }
     }
 }

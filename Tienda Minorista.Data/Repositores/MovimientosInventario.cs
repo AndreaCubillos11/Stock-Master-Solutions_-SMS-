@@ -39,5 +39,40 @@ namespace Tienda_Minorista.Data.Repositores
                                    .Where(a => a.TipoMovimiento == tipoMovimiento)
                          .ToListAsync();
         }
+
+        public async Task<IEnumerable<ModeloProductosReportes>> GetProductosMasVendidosPorTiendaAsync(int idTienda)
+        {
+            var result = await _context.Set<MovimientosInventarios>()
+                .Where(m => m.tiendaId == idTienda && m.TipoMovimiento == "Venta")
+                .GroupBy(m => m.productoId)
+                .Select(g => new ModeloProductosReportes
+                {
+                    productoId = g.Key,
+                    totalCantidadVendida = g.Sum(m => m.cantidad)
+                })
+                .OrderByDescending(p => p.totalCantidadVendida)
+                .ToListAsync();
+
+            return result;
+        }
+
+        public async Task<IEnumerable<ModeloProductosReportes>> GetProductosMenosVendidosPorTiendaAsync(int idTienda)
+        {
+            var result = await _context.Set<MovimientosInventarios>()
+                .Where(m => m.tiendaId == idTienda && m.TipoMovimiento == "Venta")
+                .GroupBy(m => m.productoId)
+                .Select(g => new ModeloProductosReportes
+                {
+                    productoId = g.Key,
+                    totalCantidadVendida = g.Sum(m => m.cantidad)
+                })
+                .OrderBy(p => p.totalCantidadVendida) // Ordena de menor a mayor
+                .ToListAsync();
+
+            return result;
+        }
+
+
     }
-}
+    }
+

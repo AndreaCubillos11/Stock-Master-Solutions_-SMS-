@@ -69,25 +69,6 @@
   },
   {
     "ContainingType": "Tienda_Minorista.Controllers.InventariosController",
-<<<<<<< HEAD
-    "Method": "DeleteInventario",
-    "RelativePath": "api/Inventarios",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Tienda_Minorista.Controllers.InventariosController",
-=======
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
     "Method": "UpdateInventario",
     "RelativePath": "api/Inventarios",
     "HttpMethod": "PUT",
@@ -105,22 +86,13 @@
   {
     "ContainingType": "Tienda_Minorista.Controllers.InventariosController",
     "Method": "GetDetailsInventario",
-    "RelativePath": "api/Inventarios/{codigo}",
+    "RelativePath": "api/Inventarios/{idInventario}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-<<<<<<< HEAD
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "codigo",
-        "Type": "",
-=======
-        "Name": "codigo",
+        "Name": "idInventario",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -138,7 +110,22 @@
       {
         "Name": "id",
         "Type": "System.Int32",
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.InventariosController",
+    "Method": "GetforProducto",
+    "RelativePath": "api/Inventarios/producto/{idProducto}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idProducto",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -163,11 +150,7 @@
   {
     "ContainingType": "Tienda_Minorista.Controllers.MovimientosInventariosController",
     "Method": "GetAllMovimientosPorIdInventario",
-<<<<<<< HEAD
-    "RelativePath": "api/MovimientosInventarios/Inventario/{id}",
-=======
     "RelativePath": "api/MovimientosInventarios/Inventario/{idInventario}",
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -175,14 +158,38 @@
       {
         "Name": "idInventario",
         "Type": "System.Int32",
-<<<<<<< HEAD
-        "IsRequired": false
-      },
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.MovimientosInventariosController",
+    "Method": "GetAllProductosMasVendidos",
+    "RelativePath": "api/MovimientosInventarios/productoMasVendido/{idTienda}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Name": "id",
-        "Type": "",
-=======
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
+        "Name": "idTienda",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.MovimientosInventariosController",
+    "Method": "GetAllProductosMenosVendidos",
+    "RelativePath": "api/MovimientosInventarios/productoMenosVendido/{idTienda}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idTienda",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -207,11 +214,7 @@
   {
     "ContainingType": "Tienda_Minorista.Controllers.MovimientosInventariosController",
     "Method": "GetAllMovimientosPorIdUsuario",
-<<<<<<< HEAD
-    "RelativePath": "api/MovimientosInventarios/Usuario/{id}",
-=======
     "RelativePath": "api/MovimientosInventarios/Usuario/{idUsuario}",
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -219,14 +222,6 @@
       {
         "Name": "idUsuario",
         "Type": "System.Int32",
-<<<<<<< HEAD
-        "IsRequired": false
-      },
-      {
-        "Name": "id",
-        "Type": "",
-=======
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
         "IsRequired": true
       }
     ],
@@ -260,25 +255,6 @@
   },
   {
     "ContainingType": "Tienda_Minorista.Controllers.ProductosController",
-<<<<<<< HEAD
-    "Method": "DeleteProducto",
-    "RelativePath": "api/Productos",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "codigoBarras",
-        "Type": "System.Int64",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Tienda_Minorista.Controllers.ProductosController",
-=======
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
     "Method": "UpdateProducto",
     "RelativePath": "api/Productos",
     "HttpMethod": "PUT",
@@ -295,10 +271,6 @@
   },
   {
     "ContainingType": "Tienda_Minorista.Controllers.ProductosController",
-<<<<<<< HEAD
-    "Method": "GetProductoDetailsForCodigo",
-    "RelativePath": "api/Productos/producto/codigo/{codigo}",
-=======
     "Method": "DeleteProducto",
     "RelativePath": "api/Productos/codigoBarras/{codigoBarras}",
     "HttpMethod": "DELETE",
@@ -317,7 +289,6 @@
     "ContainingType": "Tienda_Minorista.Controllers.ProductosController",
     "Method": "GetProductoDetailsForCodigo",
     "RelativePath": "api/Productos/producto/codigo/{codigoBarras}",
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -325,14 +296,6 @@
       {
         "Name": "codigoBarras",
         "Type": "System.Int64",
-<<<<<<< HEAD
-        "IsRequired": false
-      },
-      {
-        "Name": "codigo",
-        "Type": "",
-=======
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
         "IsRequired": true
       }
     ],
@@ -415,11 +378,7 @@
   {
     "ContainingType": "Tienda_Minorista.Controllers.ReportesController",
     "Method": "DeleteReporte",
-<<<<<<< HEAD
-    "RelativePath": "api/Reportes",
-=======
     "RelativePath": "api/Reportes/reporte/{id}",
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -427,11 +386,7 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-<<<<<<< HEAD
-        "IsRequired": false
-=======
         "IsRequired": true
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
       }
     ],
     "ReturnTypes": []
@@ -496,41 +451,25 @@
   },
   {
     "ContainingType": "Tienda_Minorista.Controllers.TiendasController",
-<<<<<<< HEAD
-    "Method": "DeleteTienda",
-    "RelativePath": "api/Tiendas",
-    "HttpMethod": "DELETE",
-=======
     "Method": "GetTiendaDetails",
     "RelativePath": "api/Tiendas/tienda/{id}",
     "HttpMethod": "GET",
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "id",
         "Type": "System.Int32",
-<<<<<<< HEAD
-        "IsRequired": false
-=======
         "IsRequired": true
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
       }
     ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "Tienda_Minorista.Controllers.TiendasController",
-<<<<<<< HEAD
-    "Method": "GetTiendaDetails",
-    "RelativePath": "api/Tiendas/tienda/id/{id}",
-    "HttpMethod": "GET",
-=======
     "Method": "DeleteTienda",
     "RelativePath": "api/Tiendas/tienda/{id}",
     "HttpMethod": "DELETE",
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -586,25 +525,6 @@
   },
   {
     "ContainingType": "Tienda_Minorista.Controllers.UsuariosController",
-<<<<<<< HEAD
-    "Method": "DeleteUsuario",
-    "RelativePath": "api/Usuarios",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Tienda_Minorista.Controllers.UsuariosController",
-=======
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
     "Method": "Login",
     "RelativePath": "api/Usuarios/login",
     "HttpMethod": "POST",
@@ -614,6 +534,22 @@
       {
         "Name": "request",
         "Type": "TiendaMinorista.Model.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.UsuariosController",
+    "Method": "GetForCorreo",
+    "RelativePath": "api/Usuarios/usuario/correo/{correo}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "correo",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -636,8 +572,6 @@
     "ReturnTypes": []
   },
   {
-<<<<<<< HEAD
-=======
     "ContainingType": "Tienda_Minorista.Controllers.UsuariosController",
     "Method": "DeleteUsuario",
     "RelativePath": "api/Usuarios/usuario/id/{id}",
@@ -654,7 +588,6 @@
     "ReturnTypes": []
   },
   {
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
     "ContainingType": "Tienda_Minorista.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

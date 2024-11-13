@@ -14,6 +14,10 @@ namespace Tienda_Minorista.Data.Repositores
         Task<bool> insertInventario(Inventarios inventario);
         Task<bool> updateInventario(Inventarios inventario);
         Task<bool> deleteInventario(Inventarios inventario);
-        
+
+        Task<Inventarios> GetForIdProducto(int idProducto);
+
+       
+
     }
 }

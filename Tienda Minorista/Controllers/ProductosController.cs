@@ -19,10 +19,7 @@ namespace Tienda_Minorista.Controllers
 
         [HttpGet]
         [Authorize]
-<<<<<<< HEAD
-=======
 
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
         public async Task<IActionResult> GetAllProductos()
         {
             return Ok(await _productoRepository.GetAllProductos());
@@ -35,11 +32,7 @@ namespace Tienda_Minorista.Controllers
             return Ok(await _productoRepository.GetDetailsForId(id));
         }
 
-<<<<<<< HEAD
-        [HttpGet("producto/codigo/{codigo}")]
-=======
         [HttpGet("producto/codigo/{codigoBarras}")]
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
         [Authorize]
         public async Task<IActionResult> GetProductoDetailsForCodigo(long codigoBarras)
         {
@@ -68,11 +61,7 @@ namespace Tienda_Minorista.Controllers
             return Created("Created", created);
         }
 
-<<<<<<< HEAD
-        [HttpDelete]
-=======
         [HttpDelete("codigoBarras/{codigoBarras}")]
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
         [Authorize]
         public async Task<IActionResult> DeleteProducto(long codigoBarras)
         {

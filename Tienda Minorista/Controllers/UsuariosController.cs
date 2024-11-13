@@ -34,11 +34,7 @@ namespace Tienda_Minorista.Controllers
         }
 
         [HttpPost]
-<<<<<<< HEAD
-        
-=======
         [Authorize]
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
 
         public async Task<IActionResult> CreatedUsuario([FromBody] Usuarios usuarios)
         {
@@ -66,21 +62,12 @@ namespace Tienda_Minorista.Controllers
             return NoContent();
         }
 
-<<<<<<< HEAD
-        [HttpDelete]
-        [Authorize]
-
-        public async Task<IActionResult> DeleteUsuario(int id)
-        {
-            await _usuariosRepository.deleteUsuario(new Usuarios { Id = id });
-=======
 
         [HttpDelete("usuario/id/{id}")]
         [Authorize]
         public async Task<IActionResult> DeleteUsuario(int id)
         {
             await _usuariosRepository.deleteUsuario(new Usuarios { usuarioId = id });
->>>>>>> 83d9bc0 (Configuración básica de CORS, ajuste de rutas y validación de dominio de correo)
 
             return NoContent();
         }
@@ -97,6 +84,13 @@ namespace Tienda_Minorista.Controllers
             {
                 return Unauthorized(new { message = ex.Message }); // Manejo de errores
             }
+        }
+
+        [HttpGet("usuario/correo/{correo}")]
+        [Authorize]
+        public async Task<IActionResult> GetForCorreo(string correo)
+        {
+            return Ok(await _usuariosRepository.GetforCorreo(correo));
         }
 
     }

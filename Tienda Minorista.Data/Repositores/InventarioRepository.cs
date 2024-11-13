@@ -19,7 +19,7 @@ namespace Tienda_Minorista.Data.Repositores
         async Task<bool> IinventariosRepository.deleteInventario(Inventarios inventario)
         {
             // Verificamos si el usuario existe en el contexto antes de eliminarlo
-            var inventarioExistente = await _context.Inventarios.FindAsync(inventario.IdInventrio);
+            var inventarioExistente = await _context.Inventarios.FindAsync(inventario.IdInventario);
 
             if (inventarioExistente == null)
             {
@@ -47,7 +47,7 @@ namespace Tienda_Minorista.Data.Repositores
       async  Task<Inventarios> IinventariosRepository.GetDetails(int id)
         {
             var inventario = await _context.Inventarios
-                .FirstOrDefaultAsync(i => i.IdInventrio == id);
+                .FirstOrDefaultAsync(i => i.IdInventario == id);
 
             // Retorna el producto si lo encuentra, o null si no existe
             return inventario;
@@ -78,7 +78,7 @@ namespace Tienda_Minorista.Data.Repositores
        async Task<bool> IinventariosRepository.updateInventario(Inventarios inventario)
         {
             // Verificamos si el stock existe en la base de datos
-            var inventarioExistente = await _context.Inventarios.FindAsync(inventario.IdInventrio);
+            var inventarioExistente = await _context.Inventarios.FindAsync(inventario.IdInventario)   ;
 
             if (inventarioExistente == null)
             {
@@ -96,6 +96,18 @@ namespace Tienda_Minorista.Data.Repositores
             return resultado > 0;
 
         }
+
+        async Task<Inventarios> IinventariosRepository.GetForIdProducto(int idProducto)
+        {
+           var inventario = await _context.Inventarios.
+                FirstOrDefaultAsync( i=>idProducto  == idProducto);
+
+            
+            // Retorna el producto si lo encuentra, o null si no existe
+            return inventario;
+        }
+
+       
     }
     }
 

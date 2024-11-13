@@ -10,7 +10,7 @@ namespace TiendaMinorista.Model
     public class Inventarios
     {
         [Key] // Asegúrate de incluir esto
-        public int IdInventrio { get; set; }
+        public int IdInventario { get; set; }
         public int productoId {  get; set; }
 
         public int tiendaId { get; set; }
@@ -18,11 +18,13 @@ namespace TiendaMinorista.Model
         public int cantidad { get; set; }
 
         public int cantidadMinima { get; set; }
+
+        public DateTime fechaUltimaActualizacion { get; set; }
         public int cantidadBodega { get; set; }
 
         public string ubicacionTienda { get; set; }
 
-        public DateTime fechaUltimaActualizacion {  get; set; }
+       
 
     }
 }

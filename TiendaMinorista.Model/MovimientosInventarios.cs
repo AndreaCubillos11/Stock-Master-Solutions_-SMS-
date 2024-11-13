@@ -19,5 +19,9 @@ namespace TiendaMinorista.Model
 
         public int UsuarioId { get; set; }
 
+        public int tiendaId { get; set; }
+
+        public int productoId { get; set; }
+
     }
 }
