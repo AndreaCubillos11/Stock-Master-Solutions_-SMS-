@@ -11,6 +11,7 @@ import { Tienda } from 'src/models/tienda.model';
 export class CompCardStockComponent implements OnInit{
   //@Input() tienda: Tienda = {id:1, nombre: '', direccion:'', telefono:1};
   tiendas: Tienda[] = [];
+  idTiendaUsuario: number = parseInt(localStorage.getItem('IdTienda') ?? '0', 10);
 
   constructor(private tiendaService: TiendasService, private cookieService: CookieService) {}
 
@@ -19,7 +20,7 @@ export class CompCardStockComponent implements OnInit{
   }
 
   obtenerTiendas() {
-    this.tiendaService.consultarTienda(this.cookieService.get('Token'), localStorage.getItem('IdTienda')).subscribe({
+    this.tiendaService.consultarTienda(this.cookieService.get('Token'), this.idTiendaUsuario).subscribe({
       next: (data: Tienda[]) => {
         console.log(data);
         this.tiendas = data;

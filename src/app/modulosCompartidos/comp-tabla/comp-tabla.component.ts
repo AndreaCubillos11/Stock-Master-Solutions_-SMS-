@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, EventEmitter, OnDestroy, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -38,6 +38,13 @@ export class CompTablaComponent<T extends {}> implements OnInit, OnDestroy {
     this.updateTable(this.datos[0].datos);
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['datos'] && changes['datos'].currentValue) {
+      const nuevoDatos = changes['datos'].currentValue;
+      this.updateTable(nuevoDatos[0].datos); // Asegura que se pase el arreglo de datos
+    }
+  }
+
   ngOnDestroy(): void {
     console.log('destruido ;))');
     this.datos.forEach(d => d.selectionChange?.unsubscribe());
@@ -46,13 +53,22 @@ export class CompTablaComponent<T extends {}> implements OnInit, OnDestroy {
   }
 
   updateTable(data: T[]) {
-    if (data.length > 0) {
+    if (data && data.length > 0) {
       this.columnasBase = Object.keys(data[0]);
-      // Definir nombresColumnas dependiendo de si seleccionable es true
-      this.nombresColumnas = this.datos[0].seleccionable ? ['select', ...this.columnasBase] : this.columnasBase;
+      this.nombresColumnas = this.datos[0].seleccionable
+        ? ['select', ...this.columnasBase]
+        : this.columnasBase;
+ 
       this.dataSource.data = data;
       this.tieneDatos = true;
+    } else {
+      this.columnasBase = [];
+      this.nombresColumnas = [];
+      this.dataSource.data = [];
+      this.tieneDatos = false;
     }
+ 
+    // Asignar paginador y ordenación
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

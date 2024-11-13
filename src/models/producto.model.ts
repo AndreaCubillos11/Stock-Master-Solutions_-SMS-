@@ -1,5 +1,5 @@
 export interface Producto{
-    id: number;
+    productoId: number;
     codigoBarras: number;
     nombreProducto: string;
     descripcion: string;

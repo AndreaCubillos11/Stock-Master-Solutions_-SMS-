@@ -13,9 +13,13 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class FormModfiicarComponent implements OnInit {
 
+  isModalOpen: boolean = false;
+  modalTitle: string = '';
+  modalContent: string = '';
+
   imagenSrc: string | ArrayBuffer | null = null;
   cambiosForm: FormGroup;
-  productoId: number | null = null;
+  IdProducto: number | null = null;
 
   categorias = [
     { value: 'aseo', label: 'Aseo' },
@@ -40,15 +44,16 @@ export class FormModfiicarComponent implements OnInit {
     this.compartirServicio.selectedProducto$.subscribe(producto => {
       console.log('Producto recibido:', producto);
       if (producto) {
+        console.log(producto.productoId);
         this.cambiosForm.patchValue({
-          productoId: producto.id,
+          productoId: producto.productoId,
           codigoBarras: producto.codigoBarras,
           nombreProducto: producto.nombreProducto,
           descripcion: producto.descripcion,
           precio: producto.precio,
           categoria: producto.categoria
         })
-        this.productoId = producto.id;
+        this.IdProducto = producto.productoId;
       }
     })
   }
@@ -73,49 +78,46 @@ export class FormModfiicarComponent implements OnInit {
       }
     }
   }
-
-  /*  modificar() {
-     console.log(this.productoId);
-     if (this.cambiosForm.valid) {
-       const producto: Producto = { ...this.cambiosForm.value, id: this.productoId }; // Asegúrate de incluir el ID
-       console.log('Producto a modificar:', producto);
-       this.servicio.modificarProducto(producto, this.cookies.get('Token')).pipe(
-         catchError(error => {
-           console.error('Error al modificar el producto:', error);
-           return of(); // Retorna un observable vacío
-         })
-       ).subscribe(() => {
-         console.log('Producto modificado exitosamente.');
-       });
-     } else {
-       console.warn('El formulario no es válido');
-     }
-   } */
+  
   modificar() {
-    console.log(this.productoId);
+    console.log(this.cambiosForm.value());
     if (this.cambiosForm.valid) {
-      const producto: Producto = { ...this.cambiosForm.value, id: this.productoId };
+      const producto: Producto = { ...this.cambiosForm.value, id: this.IdProducto};
       console.log('Producto a modificar:', producto);
 
       this.servicio.modificarProducto(producto, this.cookies.get('Token')).subscribe({
         next: (resultado) => {
           if (resultado) {
-            console.log('Producto modificado exitosamente.');
+            //console.log('Producto modificado exitosamente.');
+            this.openModal('Modificación exitosa',`El producto ${producto.nombreProducto} se modifico correctamente.`)
           } else {
-            console.log('La modificación del producto falló.');
+            this.openModal('Error en la modificación',`La modificación del producto falló.`)
+            //console.log('La modificación del producto falló.');
           }
         },
         error: (err) => {
-          console.error('Ocurrió un error en la modificación:', err);
+          this.openModal('Error',`Ocurrió un error en la modificación: ${err}`)
+          //console.error('Ocurrió un error en la modificación:', err);
         }
       });
     } else {
+      this.openModal('Campos incorrectos',`El formulario no es válido.`)
       console.warn('El formulario no es válido');
     }
   }
 
   hasError(controlName: string, errorType: string){
     return this.cambiosForm.get(controlName)?.hasError(errorType) && this.cambiosForm.get(controlName)?.touched;
+  }
+
+  openModal(title: string, content: string) {
+    this.modalTitle = title;
+    this.modalContent = content;
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
   }
 
 }

@@ -14,8 +14,8 @@
     <mat-form-field class="medium-select">
         <mat-label>Inventario</mat-label>
         <mat-select [disabled]="!seleccionado" [(value)]="inventarioSeleccionado">
-            <mat-option *ngFor="let inv of inventarios" [value]="inv.id">
-                {{inv.id}}
+            <mat-option *ngFor="let inv of inventarios" [value]="inv.idInventario">
+                {{inv.idInventario}}
             </mat-option>
         </mat-select>
         <img matSuffix src="/assets/inventario.svg" alt="inventario">

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PaginaEmpleadoComponent } from './pagina-empleado/pagina-empleado.component';
 import { ModulosCompartidosModule } from '../modulosCompartidos/modulos-compartidos.module';
 import { PaginaDevolucionesComponent } from './pagina-devoluciones/pagina-devoluciones.component';
-
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +13,9 @@ import { PaginaDevolucionesComponent } from './pagina-devoluciones/pagina-devolu
   ],
   imports: [
     CommonModule,
-    ModulosCompartidosModule
+    ModulosCompartidosModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     PaginaEmpleadoComponent

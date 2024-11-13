@@ -70,6 +70,7 @@ export class CompSelectoresComponent implements OnInit{
 
   seleccionTienda(event: any) {
     this.seleccionado = true;
+    //this.getInventarios()
     this.inventarioSeleccionado = null;
   }
 
@@ -78,7 +79,6 @@ export class CompSelectoresComponent implements OnInit{
       next: (data: Tienda[]) => {
         console.log(data);
         this.tiendas = data;
-        this.getInventarios()
         console.log()
       },
       error: (error) => {
@@ -87,7 +87,7 @@ export class CompSelectoresComponent implements OnInit{
     });
   }
 
-  getInventarios() {//Quitar el 55 en los parametros y poner el id de tienda del usuario
+  getInventarios() {
     this.inventarioService.getInventariosTienda(this.cookieService.get('Token'), this.tiendaSeleccionada).subscribe((data: Inventario[]) => {
       this.inventarios = data;
     });

@@ -1,5 +1,5 @@
 export interface Inventario {
-    id: number;
+    idInventario: number;
     productoId: number;
     tiendaId: number;
     cantidad: number;

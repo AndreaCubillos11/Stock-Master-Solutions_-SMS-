@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, ChangeDetectorRef} from '@angular/core';
 import { Producto } from 'src/models/producto.model';
 import { CompartirFilaService } from 'src/app/serviciosGenerales/compartir-fila.service';
 import { ProductosService } from '../serviciosAdministradores/productos.service';
@@ -51,17 +51,17 @@ export class PaginaModificarProductoComponent implements OnInit {
 
   datosTabla = [
     {
-      datos: this.datosProductos,
+      datos: [] as Producto[],
       seleccionable: true,
       selectionChange: new EventEmitter<Producto | null>()
     }
   ];
  
-  constructor(private servicio: CompartirFilaService, private productosService: ProductosService, private cookies: CookieService) { }
+  constructor(private servicio: CompartirFilaService, private productosService: ProductosService, private cookies: CookieService, private cd: ChangeDetectorRef) { }
  
   ngOnInit(): void {
+    this.datosTabla[0].datos = this.datosProductos;
     this.cargarProductos()
-    //this.datosTabla[0].datos = this.datos;
     this.datosTabla[0].selectionChange.subscribe((fila: Producto | null) => this.onSelectionChange(fila))   
   }
 
@@ -71,11 +71,12 @@ export class PaginaModificarProductoComponent implements OnInit {
         console.log(data);
         this.datosProductos = data;
         this.datosTabla[0].datos = data;
-        this.datosTabla = [{
+        /* this.datosTabla = [{
           ...this.datosTabla[0],
           datos: [...data]
-        }]
+        }] */
         console.log(this.datosTabla[0].datos)
+        this.cd.detectChanges();
       },
       error: (error) => {
         console.error('Error al obtener los productos', error);
@@ -86,7 +87,7 @@ export class PaginaModificarProductoComponent implements OnInit {
   onSelectionChange(fila: Producto | null) {
     this.filaSeleccionada = fila;
     if (fila) {
-      this.productoIdSeleccionado = fila.id;
+      this.productoIdSeleccionado = fila.productoId;
       this.servicio.selectProducto(fila);
     }
   }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-pagina-devoluciones',
@@ -13,4 +15,17 @@ export class PaginaDevolucionesComponent {
   datosHeader = [
     { titulo: 'Agregar Devolucion', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
   ];
+
+  formDevolucion: FormGroup;
+
+  constructor(private form: FormBuilder, private cookies: CookieService) {
+    this.formDevolucion = this.form.group({
+      DevolucionID: [null, [Validators.required, Validators.min(1)]],
+      ProductoID: [null, [Validators.required, Validators.min(1)]],
+      TiendaID: [null, [Validators.required, Validators.min(1)]],
+      UsuarioID: [null, [Validators.required, Validators.min(1)]],
+      razon: ['', [Validators.required, Validators.min(1)]],
+      fechaUltimaActualizacion: [new Date()],
+    })
+  }
 }

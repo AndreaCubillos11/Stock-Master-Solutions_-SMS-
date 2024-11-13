@@ -22,26 +22,35 @@ export class PaginaCrearInventarioComponent {
   ];
 
   inventarios = [
-    { value: '1', label: 'Aseo' },
-    { value: '2', label: 'Tecnologia' },
-    { value: '3', label: 'Comida' },
-    { value: '4', label: 'Ropa' },
+    { value: 1, label: 'Aseo' },
+    { value: 2, label: 'Tecnologia' },
+    { value: 3, label: 'Comida' },
+    { value: 4, label: 'Ropa' },
   ]
+
+  idTiendaUsuario: number = parseInt(localStorage.getItem('IdTienda') ?? '0', 10);
 
   constructor(private form: FormBuilder, private inventariosService: InventariosService, private cookies: CookieService) {
     this.formInventario = this.form.group({
       IdInventario: [null, [Validators.required, Validators.min(1)]],
       productoId: [null, [Validators.required, Validators.min(1)]],
-      tiendaId: [null, [Validators.required, Validators.min(1)]],
+      tiendaId:  [this.idTiendaUsuario],
       cantidad: [null, [Validators.required, Validators.min(1)]],
       cantidadMinima: [null, [Validators.required, Validators.min(1)]],
       cantidadBodega: [null, [Validators.required, Validators.min(1)]],
       ubicacionTienda: ['', [Validators.required, Validators.min(1)]],
       fechaUltimaActualizacion: [new Date()],
     })
+    this.formInventario.get('IdInventario')?.valueChanges.subscribe(value => {
+      const numericValue = parseInt(value, 10);
+      this.formInventario.get('IdInventario')?.setValue(numericValue, { emitEvent: false });
+    });
   }
 
   cargarImagen(event: Event) {
+    /*Se debe cambiar para cargar la imagen del producto encontrado
+    Traeremos el producto (se puede traer solo la url) que se pone en el label del idProducto
+    y con el servicio de imagenes pasarle esa url y guardar y mostrar la imagen econtrada*/
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
@@ -64,7 +73,8 @@ export class PaginaCrearInventarioComponent {
 
   agregar() {
     if (this.formInventario.valid) {
-      const nuevoInventario: Inventario = this.formInventario.value;
+      console.log(this.formInventario.get('tiendaId')?.value);
+      const nuevoInventario: Inventario = { ...this.formInventario.value};
       this.inventariosService.agregarInventario(this.cookies.get('Token'), nuevoInventario).subscribe((resultado: boolean) => {
         if (resultado) {
           console.log('Inventario añadido exitosamente');
