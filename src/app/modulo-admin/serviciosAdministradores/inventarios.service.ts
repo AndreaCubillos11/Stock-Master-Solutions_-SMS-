@@ -26,6 +26,7 @@ export class InventariosService {
     });
     return this.http.get<Inventario[]>(`${this.apiUrl}/${idTienda}`, { headers: headers, withCredentials: true });
   }
+
   actualizarInventario(token: any, data: any):Observable<any> {
     return this.http.put<any>(
       this.apiUrl,
@@ -37,6 +38,7 @@ export class InventariosService {
         }
       });
   }
+
   consultarInventario(token: any, idProducto:any){
     return this.http.get<any>(
       this.apiUrl+'/producto/'+idProducto,
@@ -47,6 +49,7 @@ export class InventariosService {
         }
       });
   }
+
   consultarInventarioTienda(token: any, idTienda:any){
     return this.http.get<any>(
       this.apiUrl+'/tienda/'+idTienda,
@@ -57,6 +60,7 @@ export class InventariosService {
         }
       });
   }
+  
   eliminarInventario(token: any, id: any): Observable<any> {
     return this.http.delete<any>(
       this.apiUrl + '/inventario/' + id,

@@ -3,6 +3,7 @@ import { Devolucion } from 'src/models/devolucion.model';
 import { MovimientoInventario } from 'src/models/movimientoInventario.model';
 import { ServicioDevolucionesService } from 'src/app/serviciosGenerales/servicio-devoluciones.service';
 import { CookieService } from 'ngx-cookie-service';
+import { InventariosService } from 'src/app/modulo-admin/serviciosAdministradores/inventarios.service';
  
 @Component({
   selector: 'app-pagina-historial',
@@ -27,7 +28,7 @@ export class PaginaHistorialComponent implements OnInit{
   datos: Array<MovimientoInventario | Devolucion> = [];
   mostrandoDevoluciones: boolean = false;
  
-  constructor(private servicioDevoluciones: ServicioDevolucionesService, private cookie : CookieService){
+  constructor(private servicioDevoluciones: ServicioDevolucionesService,private servicioInventario: InventariosService ,private cookie : CookieService){
  
   }
  
@@ -39,6 +40,11 @@ export class PaginaHistorialComponent implements OnInit{
     this.servicioDevoluciones.getAllDevoluciones(this.cookie.get('Token')).subscribe({
       next: (data: Devolucion[]) => {
         this.devoluciones = data;
+        this.datosTabla[0].datos = data;
+        this.datosTabla = [{
+          ...this.datosTabla[0],
+          datos: [...data]
+        }]
         console.log('Devoluciones cargadas:', this.devoluciones);
       },
       error: (error) => {
@@ -47,7 +53,7 @@ export class PaginaHistorialComponent implements OnInit{
     });
   }
  
-  /* cargarHistorial(): void {
+ /*  cargarHistorial(): void {
     this.servicioInventario.getAllMovimientos().subscribe({
       next: (data: MovimientoInventario[]) => {
         this.historial = data;

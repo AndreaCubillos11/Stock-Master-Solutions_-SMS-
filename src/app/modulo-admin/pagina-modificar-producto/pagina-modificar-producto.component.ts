@@ -70,6 +70,11 @@ export class PaginaModificarProductoComponent implements OnInit {
       next: (data: Producto[]) => {
         console.log(data);
         this.datosProductos = data;
+        this.datosTabla[0].datos = data;
+        this.datosTabla = [{
+          ...this.datosTabla[0],
+          datos: [...data]
+        }]
         console.log(this.datosTabla[0].datos)
       },
       error: (error) => {

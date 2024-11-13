@@ -4,4 +4,6 @@ export interface Alerta{
     fechaAlerta: Date;
     descripcion: string;
     estado: string;
+    tiendaId: number;
+    productoId: number;
 }

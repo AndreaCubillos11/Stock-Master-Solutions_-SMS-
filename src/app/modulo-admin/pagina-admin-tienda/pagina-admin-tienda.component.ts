@@ -51,8 +51,7 @@ export class PaginaAdminTiendaComponent {
     { texto: 'Eliminar producto', img: 'Eliminar.svg', nombreClase: 'eliminar', accion: this.eliminarProducto.bind(this) }
   ];
 
-  constructor(private router: Router, 
-    private inventarioService: InventariosService, 
+  constructor(private router: Router,
     private cookieService: CookieService,
     private productos: ProductosService,
     private inventariosService: InventariosService
@@ -97,10 +96,24 @@ export class PaginaAdminTiendaComponent {
   }
 
   getInventarios() {//Quitar el 55 en los parametros y poner el id de tienda del usuario
-    this.inventarioService.getInventariosTienda(this.cookieService.get('Token'), 55).subscribe((data: Inventario[]) => {
+    this.inventariosService.getInventariosTienda(this.cookieService.get('Token'), 55).subscribe((data: Inventario[]) => {
       this.datosInventario[0].datos = data;
     });
   }
+
+  cargarProductos(): void {
+    this.productos.getAllProductos(this.cookieService.get('Token')).subscribe({
+      next: (data: Producto[]) => {
+        console.log(data);
+        this.datosProducto[0].datos = data;
+        console.log(this.datosProducto[0].datos)
+      },
+      error: (error) => {
+        console.error('Error al obtener los productos', error);
+      }
+    });
+  }
+
   consultarInventario() {
     this.inventariosService.consultarInventario(this.cookieService.get('Token'), this.producto.productoId).subscribe(
       data => {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, EventEmitter, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -10,21 +10,18 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./comp-tabla.component.css']
 })
 
-export class CompTablaComponent<T extends {}> implements OnInit {
-    @Input() datos: {
-      datos: T[],
-      seleccionable: boolean,
-      selectionChange?: EventEmitter<T | null>
-    }[] = [
-        {
-          datos: [],
-          seleccionable: false,
-          selectionChange: new EventEmitter<T | null>()
-        }
-      ]
-  /*  @Input() datos: T[] = [];
-   @Input() seleccionable: boolean = false;
-   @Output() selectionChange = new EventEmitter<T | null>(); */
+export class CompTablaComponent<T extends {}> implements OnInit, OnDestroy {
+  @Input() datos: {
+    datos: T[],
+    seleccionable: boolean,
+    selectionChange?: EventEmitter<T | null>
+  }[] = [
+      {
+        datos: [],
+        seleccionable: false,
+        selectionChange: new EventEmitter<T | null>()
+      }
+    ]
 
 
   columnasBase: string[] = [];
@@ -39,6 +36,13 @@ export class CompTablaComponent<T extends {}> implements OnInit {
   ngOnInit() {
     console.log(this.datos[0]);
     this.updateTable(this.datos[0].datos);
+  }
+
+  ngOnDestroy(): void {
+    console.log('destruido ;))');
+    this.datos.forEach(d => d.selectionChange?.unsubscribe());
+    this.datos = [];
+    this.dataSource.data = [];
   }
 
   updateTable(data: T[]) {
