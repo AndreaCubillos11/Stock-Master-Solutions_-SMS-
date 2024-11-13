@@ -40,14 +40,14 @@ namespace Tienda_Minorista.Controllers
 
 
         [HttpGet("productoMasVendido/{idTienda}")]
-       
+        [Authorize]
         public async Task<IActionResult> GetAllProductosMasVendidos(int idTienda)
         {
             return Ok(await _Movimientos.GetProductosMasVendidosPorTiendaAsync(idTienda));
         }
 
         [HttpGet("productoMenosVendido/{idTienda}")]
-
+        [Authorize]
         public async Task<IActionResult> GetAllProductosMenosVendidos(int idTienda)
         {
             return Ok(await _Movimientos.GetProductosMenosVendidosPorTiendaAsync(idTienda));
