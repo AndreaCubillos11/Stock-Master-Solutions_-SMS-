@@ -1,22 +1,29 @@
-import { Component, OnInit, OnDestroy,ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { Chart, ChartData, ChartOptions } from 'chart.js';
 import { CookieService } from 'ngx-cookie-service';
 import { ServicioDevolucionesService } from 'src/app/serviciosGenerales/servicio-devoluciones.service';
+import { ServicioReportesService } from 'src/app/serviciosGenerales/servicio-reportes.service';
 import { ReporteDevolucion } from 'src/models/reporteDevoluciones.model';
 import { ReportePatron } from 'src/models/reportePatrones.model';
+import { ReporteProducto } from 'src/models/reporteProductos.model';
+import { Tienda } from 'src/models/tienda.model';
 
 @Component({
   selector: 'app-pagina-reportes',
   templateUrl: './pagina-reportes.component.html',
   styleUrls: ['./pagina-reportes.component.css']
 })
-export class PaginaReportesComponent implements OnInit, OnDestroy{
+export class PaginaReportesComponent implements OnInit, OnDestroy {
   @ViewChild('lineChartCanvas') lineChartCanvas!: ElementRef;
-  
-  chart: any;
+
+  idUser: number = parseInt(localStorage.getItem('Rol') ?? '0', 10);
+  idTienda: number = 0;
+  chart!: Chart;
   reporteSeleccionado: string = '';
   rangoSeleccionado: string = '';
   idProducto: number | null = null;
+  opcionSeleccionada!: number;
+  tiendaSeleccionada!: number;
 
   datosHeader = [
     { titulo: 'Reportes generales', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
@@ -24,7 +31,7 @@ export class PaginaReportesComponent implements OnInit, OnDestroy{
 
   reportes = [
     { id: '1', opcion: 'Patrones de venta' },
-    { id: '2', opcion: 'Productos mas vendidos' },
+    { id: '2', opcion: 'Ventas de productos' },
     { id: '3', opcion: 'Registro de devoluciones' }
   ]
 
@@ -33,21 +40,21 @@ export class PaginaReportesComponent implements OnInit, OnDestroy{
     { id: '2', opcion: 'Anual' },
   ]
 
+  tiendas: Tienda[] = [];
+
+  productosVendidos: ReporteProducto[] = [];
+  //productosMenosVendidos: ReporteProducto[] = [];
   devoluciones: ReporteDevolucion[] = [];
-  productos: string[] = [];
-  devolucionesPorProducto: number[] = [];
   ventas: ReportePatron[] = [];
 
-  constructor(private servicioDevoluciones: ServicioDevolucionesService, private cookie: CookieService) {
-
-  }
+  constructor(private servicioDevoluciones: ServicioDevolucionesService, private cookie: CookieService, private servicioReportes: ServicioReportesService) { }
 
   ngOnInit(): void {
-    this.cargarDevoluciones()
+
   }
 
   ngOnDestroy(): void {
-      this.chart.destroy();
+    this.chart.destroy();
   }
 
   seleccionarReporte(id: string) {
@@ -74,7 +81,11 @@ export class PaginaReportesComponent implements OnInit, OnDestroy{
         }
         break;
       case '2':
-        this.generarGraficaProductosMasVendidos();
+        if (this.idUser !== 1 || (this.tiendaSeleccionada && this.opcionSeleccionada)) {
+          this.tiendaSeleccionada = this.idTienda || this.tiendaSeleccionada;
+          this.cargarVendidos();
+          //this.generarGraficaProductosMasVendidos();
+        }
         break;
       case '3':
         this.generarGraficaDevoluciones();
@@ -111,15 +122,16 @@ export class PaginaReportesComponent implements OnInit, OnDestroy{
   //Fin grafica Patrones
 
   //grafica Productos mas vendidos
-  generarGraficaProductosMasVendidos() {
-    // Lógica para crear la gráfica de productos más vendidos
+  generarGraficaProductosVendidos() {
+    const nombres = this.productosVendidos.map(producto => producto.nombreProducto);
+    const cantidades = this.productosVendidos.map(producto => producto.totalCantidadVendida);
     this.chart = new Chart(this.lineChartCanvas.nativeElement, {
-      type: 'bar', // Tipo de gráfico
+      type: 'bar',
       data: {
-        labels: ['Producto 1', 'Producto 2', 'Producto 3'], // Ejemplo de etiquetas
+        labels: nombres,
         datasets: [{
-          label: 'Productos más vendidos',
-          data: [30, 50, 70], // Ejemplo de datos
+          label: 'Productos vendidos',
+          data: cantidades,
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
           borderColor: 'rgba(255, 99, 132, 1)',
           borderWidth: 1
@@ -138,10 +150,10 @@ export class PaginaReportesComponent implements OnInit, OnDestroy{
   //Inicio Grafica devolucion
   generarGraficaDevoluciones() {
     const chartData: ChartData = {
-      labels: this.productos, // Etiquetas de los productos con más devoluciones
+      labels: [], // Etiquetas de los productos con más devoluciones
       datasets: [{
         label: 'Número de Devoluciones',
-        data: this.devolucionesPorProducto, // Datos de devoluciones por producto
+        data: [], // Datos de devoluciones por producto
         backgroundColor: '#42A5F5',
         borderColor: '#1E88E5',
         borderWidth: 1
@@ -176,13 +188,13 @@ export class PaginaReportesComponent implements OnInit, OnDestroy{
           acc[fecha] = (acc[fecha] || 0) + ventas.cantidad;
           return acc;
         }, {} as Record<string, number>);
-    
+
         Object.entries(ventasPorDia).forEach(([fecha, cantidad]) => {
           labels.push(fecha);
           values.push(cantidad);
         });
         break;
-    
+
       case '2':
         // Agrupación anual: suma ventas por mes
         const ventasPorMes = this.ventas.reduce((acc, ventas) => {
@@ -190,13 +202,13 @@ export class PaginaReportesComponent implements OnInit, OnDestroy{
           acc[mes] = (acc[mes] || 0) + ventas.cantidad;
           return acc;
         }, {} as Record<number, number>);
-    
+
         Object.entries(ventasPorMes).forEach(([mes, cantidad]) => {
           labels.push(`Mes ${mes}`);
           values.push(cantidad);
         });
         break;
-    
+
       default:
         console.warn('Rango de tiempo no válido');
         break;
@@ -205,15 +217,15 @@ export class PaginaReportesComponent implements OnInit, OnDestroy{
     return { labels, values };
   }
 
-  cargarDevoluciones(): void {
-    this.servicioDevoluciones.getReporteDevoluciones(this.cookie.get('Token')).subscribe({
-      next: (data: ReporteDevolucion[]) => {
-        this.devoluciones = data;
+  cargarVendidos(): void {//cambiar el 1 por el id de tienda seleccionado
+    this.servicioReportes.productosVendidosPorTienda(this.cookie.get('Token'), this.opcionSeleccionada, this.tiendaSeleccionada).subscribe({
+      next: (data: ReporteProducto[]) => {
+        this.productosVendidos = data;
       },
       error: (error) => {
-        console.error('Error al cargar devoluciones', error);
+        console.log(error);
       }
-    });
+    })
   }
-  
+
 }

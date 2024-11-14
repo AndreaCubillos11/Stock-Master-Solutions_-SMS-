@@ -15,8 +15,8 @@
           </mat-expansion-panel-header>
           <!-- Mostrar las alertas acumuladas como etiquetas -->
           <div *ngFor="let alerta of group.alertas">
-            <a class="alert-tag">
-              {{ alerta.descripcion }}
+            <a class="alert-tag" (click)="seleccionProducto(alerta.productoId)">
+              {{ alerta.descripcion }} {{ alerta.productoId }}
             </a>
           </div>
         </mat-expansion-panel>
@@ -24,3 +24,6 @@
       
     </div>
 </section>
+
+<comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" [content]="modalContent"
+(close)="closeModal()" (accion)="redirigir()" [eventoPalabra]="eventoPalabra" [tieneAccion]="true">

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ServicioAlertasService } from 'src/app/serviciosGenerales/servicio-alertas.service';
 import { Alerta } from 'src/models/alerta.model';
@@ -14,36 +15,48 @@ export class PaginaAlertasComponent implements OnInit {
   ];
 
   alertas: Alerta[] = [
-    /*  {
-       id: 1,
-       inventarioId: 1,
-       fechaAlerta: new Date('2023-10-20'),
-       descripcion: 'Cantidad de inventario por debajo del nivel mínimo.',
-       estado: 'Pendiente'
-     },
-     {
-       id: 2,
-       inventarioId: 1,
-       fechaAlerta: new Date('2023-10-22'),
-       descripcion: 'Revisión de stock necesaria en la bodega.',
-       estado: 'Urgente'
-     },
-     {
-       id: 3,
-       inventarioId: 2,
-       fechaAlerta: new Date('2023-10-23'),
-       descripcion: 'Actualización pendiente de inventario.',
-       estado: 'Pendiente'
-     } */
+    {
+      id: 1,
+      inventarioId: 101,
+      fechaAlerta: new Date('2024-11-01'),
+      descripcion: 'Stock bajo',
+      estado: 'Pendiente',
+      tiendaId: 1,
+      productoId: 1001
+  },
+  {
+      id: 2,
+      inventarioId: 101,
+      fechaAlerta: new Date('2024-11-05'),
+      descripcion: 'Producto dañado',
+      estado: 'Resuelto',
+      tiendaId: 2,
+      productoId: 1002
+  },
+  {
+      id: 3,
+      inventarioId: 101,
+      fechaAlerta: new Date('2024-11-10'),
+      descripcion: 'Revisión de caducidad',
+      estado: 'Pendiente',
+      tiendaId: 1,
+      productoId: 1003
+  }
   ];
 
   groupedAlerts: Array<{ inventarioId: number; alertas: Alerta[] }> = [];
 
-  constructor(private alertasService: ServicioAlertasService, private cookieService: CookieService) { }
+  isModalOpen: boolean = false;
+  modalTitle: string = '';
+  modalContent: string = '';
+  idSeleccionado!:number;
+  eventoPalabra: string = 'Ir a modificar stock'
+
+  constructor(private alertasService: ServicioAlertasService, private cookieService: CookieService, private router: Router) { }
 
   ngOnInit(): void {
-    this.groupAlertsByInventory();
     this.getAlertas();
+    this.groupAlertsByInventory();
   }
 
   // Método para agrupar alertas por inventarioId
@@ -84,6 +97,25 @@ export class PaginaAlertasComponent implements OnInit {
     this.alertasService.getAlertas(this.cookieService.get('Token')).subscribe((data: Alerta[]) => {
       this.alertas = data;
     });
+  }
+
+  redirigir() {
+    this.router.navigate(['/modificarCantidad'])
+  }
+
+  seleccionProducto(alerta: number){
+    this.idSeleccionado = alerta;
+    this.openModal('Restablecer Stock', `Se detecto cantidades bajas en el producto con id ${this.idSeleccionado}`)
+  }
+
+  openModal(title: string, content: string) {
+    this.modalTitle = title;
+    this.modalContent = content;
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
   }
 
 }

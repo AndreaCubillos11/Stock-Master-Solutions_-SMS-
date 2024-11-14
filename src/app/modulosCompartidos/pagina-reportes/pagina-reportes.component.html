@@ -25,6 +25,33 @@
                 </mat-form-field>
             </ng-template>
 
+            <ng-template [ngIf]="reporteSeleccionado == '2'">
+                <mat-form-field appearance="fill" class="medium-select">
+                    <mat-label>Tiendas</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let tienda of tiendas" [value]="tienda.id" [(ngModel)]="tiendaSeleccionada">
+                            {{tienda.nombre}}
+                        </mat-option>
+                    </mat-select>
+                    <img matSuffix src="/assets/tienda.svg" alt="tienda">
+                </mat-form-field>
+                
+            </ng-template>
+
+            <ng-template [ngIf]="tiendaSeleccionada">
+                <div class="form-check form-check-inline mx-5">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioTienda"
+                        [(ngModel)]="opcionSeleccionada" value=1>
+                    <label class="form-check-label" for="radioTienda">Productos Mas Vendidos</label>
+                </div>
+    
+                <div class="form-check form-check-inline mx-5">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioProducto"
+                        [(ngModel)]="opcionSeleccionada" value=2>
+                    <label class="form-check-label" for="radioProducto">Productos Menos Vendidos</label>
+                </div>
+            </ng-template>
+
             <ng-template [ngIf]="rangoSeleccionado">
                 <mat-form-field appearance="fill">
                     <mat-label>ID del producto</mat-label>

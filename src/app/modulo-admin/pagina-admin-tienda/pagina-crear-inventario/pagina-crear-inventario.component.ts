@@ -37,9 +37,9 @@ export class PaginaCrearInventarioComponent {
       tiendaId:  [this.idTiendaUsuario],
       cantidad: [null, [Validators.required, Validators.min(1)]],
       cantidadMinima: [null, [Validators.required, Validators.min(1)]],
-      cantidadBodega: [null, [Validators.required, Validators.min(1)]],
-      ubicacionTienda: ['', [Validators.required, Validators.min(1)]],
       fechaUltimaActualizacion: [new Date()],
+      cantidadBodega: [null, [Validators.required, Validators.min(1)]],
+      ubicacionTienda: ['', [Validators.required, Validators.min(1)]]
     })
     this.formInventario.get('IdInventario')?.valueChanges.subscribe(value => {
       const numericValue = parseInt(value, 10);
