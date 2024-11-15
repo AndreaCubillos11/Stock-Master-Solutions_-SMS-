@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/models/usuarios.model';
@@ -66,6 +66,14 @@ export class UsuariosService {
           'Authorization': `Bearer ${token}`
         }
       });
+  }
+
+  getAllUsuarios(token: string): Observable<Usuario[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<Usuario[]>(this.apiUri, { headers: headers, withCredentials: true });
   }
 }
 

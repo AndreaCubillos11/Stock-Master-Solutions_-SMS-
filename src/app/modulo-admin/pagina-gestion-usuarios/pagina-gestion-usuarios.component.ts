@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/models/usuarios.model';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -9,9 +9,15 @@ import { UsuariosService } from '../serviciosAdministradores/usuarios.service';
   templateUrl: './pagina-gestion-usuarios.component.html',
   styleUrls: ['./pagina-gestion-usuarios.component.css']
 })
-export class PaginaGestionUsuariosComponent {
+export class PaginaGestionUsuariosComponent implements OnInit{
   datosHeader = [
     { titulo: 'Gestionar usuarios', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
+  ];
+
+  datosBtn = [
+    { texto: 'Agregar nuevo usuario', img: 'Añadir.svg', nombreClase: 'agregar', accion: this.agregarUsuario.bind(this) },
+    { texto: 'Modificar datos de usuario', img: 'personEdit.svg', nombreClase: 'modificar', accion: this.modificarUsuario.bind(this) },
+    { texto: 'Eliminar usuario', img: 'Eliminar.svg', nombreClase: 'eliminar', accion: this.eliminarUsuario.bind(this) }
   ];
 
   datosTabla = [
@@ -33,17 +39,31 @@ export class PaginaGestionUsuariosComponent {
 
   constructor(private router: Router,
     private UsuariosService: UsuariosService,
-    private cookieService: CookieService
+    private cookieService: CookieService, 
+    private cd: ChangeDetectorRef
+  ) {}
 
-  ) {
-
+  ngOnInit(): void {
+    this.cargarUsuarios()
   }
 
-  datosBtn = [
-    { texto: 'Agregar nuevo usuario', img: 'Añadir.svg', nombreClase: 'agregar', accion: this.agregarUsuario.bind(this) },
-    { texto: 'Modificar datos de usuario', img: 'personEdit.svg', nombreClase: 'modificar', accion: this.modificarUsuario.bind(this) },
-    { texto: 'Eliminar usuario', img: 'Eliminar.svg', nombreClase: 'eliminar', accion: this.eliminarUsuario.bind(this) }
-  ];
+  cargarUsuarios(): void {
+    this.UsuariosService.getAllUsuarios(this.cookieService.get('Token')).subscribe({
+      next: (data: Usuario[]) => {
+        console.log(data);
+        this.datosTabla[0].datos = data;
+        this.datosTabla = [{
+          ...this.datosTabla[0],
+          datos: [...data]
+        }]
+        console.log(this.datosTabla[0].datos)
+        this.cd.detectChanges();
+      },
+      error: (error) => {
+        console.error('Error al obtener los usuarios', error);
+      }
+    });
+  }
 
   agregarUsuario() {
     this.router.navigate(['/signup']);

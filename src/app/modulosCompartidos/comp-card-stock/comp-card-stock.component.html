@@ -1,14 +1,14 @@
 <mat-card class="container formulario customContainer">
     <mat-card-content>
-        <h3>{{tiendas[0].nombre}}</h3>
+        <h3 *ngIf="tienda">{{tienda.tienda}}</h3>
         <ul class="col">
             <li class="my-5">
                 <h3>Direccion:</h3>
-                <p id="labelDireccion">{{tiendas[0].direccion}}</p>
+                <p *ngIf="tienda" id="labelDireccion">{{tienda.direccion}}</p>
             </li>
             <li class="my-5">
                 <h3>Telefono:</h3>
-                <p id="labelTelefono">{{tiendas[0].telefono}}</p>
+                <p *ngIf="tienda" id="labelTelefono">{{tienda.telefono}}</p>
             </li>
             <!-- <li class="my-5">
                 <h3>Total de producto:</h3>

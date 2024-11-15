@@ -3,10 +3,10 @@
         <mat-label>Tiendas</mat-label>
         <mat-select (selectionChange)="seleccionTienda($event)">
             <mat-option *ngFor="let tienda of tiendas" [value]="tienda.id" [(ngModel)]="tiendaSeleccionada">
-                {{tienda.nombre}}
+                {{tienda.tienda}}
             </mat-option>
         </mat-select>
-        <img matSuffix src="/assets/tienda.svg" alt="tienda">
+        <img matSuffix src="/Stock-Master-Solutions_-SMS-/assets/tienda.svg" alt="tienda">
     </mat-form-field>
 
     <div class="separador"></div>
@@ -18,6 +18,6 @@
                 {{inv.idInventario}}
             </mat-option>
         </mat-select>
-        <img matSuffix src="/assets/inventario.svg" alt="inventario">
+        <img matSuffix src="/Stock-Master-Solutions_-SMS-/assets/inventario.svg" alt="inventario">
     </mat-form-field>
 </div>

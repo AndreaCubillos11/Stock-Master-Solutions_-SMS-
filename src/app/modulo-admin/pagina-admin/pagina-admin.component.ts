@@ -34,6 +34,8 @@ export class PaginaAdminComponent implements OnInit{
 
   tiendas: Tienda[] = [];
 
+  tiendaUser!: Tienda;
+
   inventarios: Inventario[] = [];
 
   datosBtn = [
@@ -55,6 +57,13 @@ export class PaginaAdminComponent implements OnInit{
     }
   ];
 
+  datosTiendas = [
+    {
+      datos: [] as Tienda[],
+      seleccionable: false
+    }
+  ];
+
   datosInventarios = [
     {
       datos: [] as Inventario[],
@@ -71,6 +80,13 @@ export class PaginaAdminComponent implements OnInit{
 
   ngOnInit(): void {
     this.cargarProductos()
+    /* if (this.idUser == 1) {
+      this.idTienda = this.tiendaSeleccionada;
+      console.log(this.idTienda);
+      this.obtenerTienda()
+    }else{
+      this.obtenerTienda()
+    } */
     this.obtenerTiendas()
   }
 
@@ -99,6 +115,7 @@ export class PaginaAdminComponent implements OnInit{
 
   seleccionTienda(event: any) {
     //this.seleccionado = true;
+    console.log(this.tiendaSeleccionada);
     this.getInventarios()
     //this.inventarioSeleccionado = null;
   }
@@ -171,6 +188,7 @@ export class PaginaAdminComponent implements OnInit{
       next: (data: Tienda[]) => {
         console.log(data);
         this.tiendas = data;
+        this.datosTiendas[0].datos = data;
         console.log()
       },
       error: (error) => {
@@ -182,7 +200,7 @@ export class PaginaAdminComponent implements OnInit{
   cargarProductos(): void {
     this.productosService.getAllProductos(this.cookieService.get('Token')).subscribe({
       next: (data: Producto[]) => {
-        console.log(data);
+        //console.log(data);
         this.datosProductos[0].datos = data;
         console.log(this.datosProductos[0].datos)
       },
@@ -192,7 +210,21 @@ export class PaginaAdminComponent implements OnInit{
     });
   }
 
+  obtenerTienda() {
+    this.tiendasService.consultarTienda(this.cookieService.get('Token'), this.idTienda).subscribe({
+      next: (data: Tienda) => {
+        console.log(data);
+        this.tiendaUser = data;
+        console.log(this.tiendaUser)
+      },
+      error: (error) => {
+        console.error('Error al obtener las tiendas', error);
+      }
+    });
+  }
+
   getInventarios() {
+    console.log(this.tiendaSeleccionada);
     this.inventarioService.getInventariosTienda(this.cookieService.get('Token'), this.tiendaSeleccionada).subscribe((data: Inventario[]) => {
       this.inventarios = data;
     });

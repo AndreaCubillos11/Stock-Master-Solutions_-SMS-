@@ -5,8 +5,7 @@
         <div class="col-7">
             <!-- card muestra stock -->
             <ng-template [ngIf]="selectedOption === 'optionTienda'">
-                <comp-card-stock />
-                <!-- <comp-barra-busqueda /> -->
+                <comp-tabla [datos]="datosTiendas"/>
             </ng-template>
 
             <ng-template [ngIf]="selectedOption === 'optionProducto'">
@@ -35,14 +34,14 @@
                 <ng-template [ngIf]="selectedOption === 'optionTienda'">
                     <ng-container *ngIf="mostrarCRUD; else CRUD">
 
-                        <mat-form-field appearance="fill" class="medium-select"  *ngIf="idUser == 1">
+                        <mat-form-field appearance="fill" class="medium-select">
                             <mat-label>Tiendas</mat-label>
-                            <mat-select (selectionChange)="seleccionTienda($event)">
-                                <mat-option *ngFor="let tienda of tiendas" [value]="tienda.id" [(ngModel)]="tiendaSeleccionada">
-                                    {{tienda.nombre}}
+                            <mat-select (selectionChange)="seleccionTienda($event)" [(ngModel)]="tiendaSeleccionada">
+                                <mat-option *ngFor="let tienda of tiendas" [value]="tienda.id">
+                                    {{tienda.tienda}}
                                 </mat-option>
                             </mat-select>
-                            <img matSuffix src="/assets/tienda.svg" alt="tienda">
+                            <img matSuffix src="/Stock-Master-Solutions_-SMS-/assets/tienda.svg" alt="tienda">
                         </mat-form-field>
 
                         <!-- <comp-selectores/> -->
@@ -64,7 +63,7 @@
             <div class="col ms-5">
                 <ng-template [ngIf]="selectedOption === 'optionTienda'">
                     <button type="button" class="mt-5 ms-5 btnTienda" (click)="toggleCRUD()">
-                        <b> {{mostrarCRUD ? 'Gestionar Tiendas' : 'Ver tiendas'}} </b> <img src="/assets/tienda.svg"
+                        <b> {{mostrarCRUD ? 'Gestionar Tiendas' : 'Ver tiendas'}} </b> <img src="/Stock-Master-Solutions_-SMS-/assets/tienda.svg"
                             alt="">
                     </button>
                 </ng-template>
@@ -85,7 +84,7 @@
             <div class="search-container">
                 <input type="text" placeholder="idTienda" [(ngModel)]="idTienda" />
                 <button class="search-button" (click)="consultarTienda()">
-                    <img src="/assets/buscar.svg" alt="Buscar" class="search-icon">
+                    <img src="/Stock-Master-Solutions_-SMS-/assets/buscar.svg" alt="Buscar" class="search-icon">
                     <i class="fas fa-search"></i>
                   </button>
             </div>
@@ -113,7 +112,7 @@
             <div class="search-container">
               <input type="text" placeholder="idTienda" [(ngModel)]="idTienda" />
               <button class="search-button" (click)="consultarTienda()">
-                <img src="/assets/buscar.svg" alt="Buscar" class="search-icon">
+                <img src="/Stock-Master-Solutions_-SMS-/assets/buscar.svg" alt="Buscar" class="search-icon">
                 <i class="fas fa-search"></i>
               </button>
             </div>

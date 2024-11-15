@@ -20,10 +20,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ]
 })
 export class CompSelectoresComponent implements OnInit{
-  tiendas: Tienda[] = [
-    /* { id: 1, name: 'Tienda A' },
-    { id: 2, name: 'Tienda B' }, */
-  ];
+  tiendas: Tienda[] = [];
 
   inventarios: Inventario[] = [];
 
@@ -55,7 +52,7 @@ export class CompSelectoresComponent implements OnInit{
       next: (data: Tienda[]) => {
         console.log(data);
         this.tiendas = data;
-        console.log()
+        console.log(this.tiendas)
       },
       error: (error) => {
         console.error('Error al obtener las tiendas', error);

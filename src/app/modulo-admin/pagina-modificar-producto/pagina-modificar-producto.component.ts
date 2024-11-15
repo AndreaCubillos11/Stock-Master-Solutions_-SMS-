@@ -71,10 +71,10 @@ export class PaginaModificarProductoComponent implements OnInit {
         console.log(data);
         this.datosProductos = data;
         this.datosTabla[0].datos = data;
-        /* this.datosTabla = [{
+        this.datosTabla = [{
           ...this.datosTabla[0],
           datos: [...data]
-        }] */
+        }]
         console.log(this.datosTabla[0].datos)
         this.cd.detectChanges();
       },

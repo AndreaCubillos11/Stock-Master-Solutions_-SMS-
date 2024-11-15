@@ -20,6 +20,7 @@ export class FormModfiicarComponent implements OnInit {
   imagenSrc: string | ArrayBuffer | null = null;
   cambiosForm: FormGroup;
   IdProducto: number | null = null;
+  urlImagen!: string;
 
   categorias = [
     { value: 'aseo', label: 'Aseo' },
@@ -44,6 +45,7 @@ export class FormModfiicarComponent implements OnInit {
     this.compartirServicio.selectedProducto$.subscribe(producto => {
       console.log('Producto recibido:', producto);
       if (producto) {
+        this.urlImagen = producto.urlImagen 
         console.log(producto.productoId);
         this.cambiosForm.patchValue({
           productoId: producto.productoId,
@@ -88,16 +90,16 @@ export class FormModfiicarComponent implements OnInit {
       this.servicio.modificarProducto(producto, this.cookies.get('Token')).subscribe({
         next: (resultado) => {
           if (resultado) {
-            //console.log('Producto modificado exitosamente.');
+            console.log('Producto modificado exitosamente.');
             this.openModal('Modificación exitosa',`El producto ${producto.nombreProducto} se modifico correctamente.`)
           } else {
             this.openModal('Error en la modificación',`La modificación del producto falló.`)
-            //console.log('La modificación del producto falló.');
+            console.log('La modificación del producto falló.');
           }
         },
         error: (err) => {
           this.openModal('Error',`Ocurrió un error en la modificación: ${err}`)
-          //console.error('Ocurrió un error en la modificación:', err);
+          console.error('Ocurrió un error en la modificación:', err);
         }
       });
     } else {

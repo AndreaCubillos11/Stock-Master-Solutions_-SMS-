@@ -10,7 +10,7 @@
                         {{ reporte.opcion }}
                     </mat-option>
                 </mat-select>
-                <img matSuffix src="/assets/tienda.svg" alt="tienda">
+                <img matSuffix src="/Stock-Master-Solutions_-SMS-/assets/tienda.svg" alt="tienda">
             </mat-form-field>
 
             <ng-template [ngIf]="reporteSeleccionado == '1'">
@@ -21,7 +21,7 @@
                             {{ tiempo.opcion }}
                         </mat-option>
                     </mat-select>
-                    <img matSuffix src="/assets/tienda.svg" alt="tienda">
+                    <img matSuffix src="/Stock-Master-Solutions_-SMS-/assets/tienda.svg" alt="tienda">
                 </mat-form-field>
             </ng-template>
 
@@ -30,10 +30,10 @@
                     <mat-label>Tiendas</mat-label>
                     <mat-select>
                         <mat-option *ngFor="let tienda of tiendas" [value]="tienda.id" [(ngModel)]="tiendaSeleccionada">
-                            {{tienda.nombre}}
+                            {{tienda.tienda}}
                         </mat-option>
                     </mat-select>
-                    <img matSuffix src="/assets/tienda.svg" alt="tienda">
+                    <img matSuffix src="/Stock-Master-Solutions_-SMS-/assets/tienda.svg" alt="tienda">
                 </mat-form-field>
                 
             </ng-template>

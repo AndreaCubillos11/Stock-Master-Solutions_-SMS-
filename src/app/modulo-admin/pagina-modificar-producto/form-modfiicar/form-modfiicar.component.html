@@ -17,10 +17,10 @@
             <mat-card>
                 <mat-card-content>
                     <figure class="container">
-                        <img *ngIf="imagenSrc" [src]="imagenSrc" alt="Imagen seleccionada">
+                        <img [src]="urlImagen" alt="Imagen seleccionada">
                     </figure>
-                    <input type="file" class="form-control info" id="file" (change)="cargarImagen($event)"
-                        accept=".png, .jpg, .jpeg" />
+                    <!-- <input type="file" class="form-control info" id="file" (change)="cargarImagen($event)"
+                        accept=".png, .jpg, .jpeg" /> -->
                 </mat-card-content>
             </mat-card>
         </div>
