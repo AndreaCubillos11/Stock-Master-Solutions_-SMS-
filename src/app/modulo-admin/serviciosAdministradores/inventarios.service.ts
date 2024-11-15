@@ -24,7 +24,7 @@ export class InventariosService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<Inventario[]>(`${this.apiUrl}/${idTienda}`, { headers: headers, withCredentials: true });
+    return this.http.get<Inventario[]>(`${this.apiUrl}/Tienda/${idTienda}`, { headers: headers, withCredentials: true });
   }
 
   actualizarInventario(token: any, data: any):Observable<any> {

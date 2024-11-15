@@ -1,5 +1,5 @@
 <div class="row">
-    <mat-form-field appearance="fill" class="medium-select">
+    <mat-form-field appearance="fill" class="medium-select"  *ngIf="idUser == 1">
         <mat-label>Tiendas</mat-label>
         <mat-select (selectionChange)="seleccionTienda($event)">
             <mat-option *ngFor="let tienda of tiendas" [value]="tienda.id" [(ngModel)]="tiendaSeleccionada">

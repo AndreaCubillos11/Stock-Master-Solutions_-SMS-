@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Inventario } from 'src/models/inventario.model';
 import { Producto } from 'src/models/producto.model';
@@ -11,7 +11,7 @@ import { ProductosService } from '../serviciosAdministradores/productos.service'
   templateUrl: './pagina-admin-tienda.component.html',
   styleUrls: ['./pagina-admin-tienda.component.css']
 })
-export class PaginaAdminTiendaComponent {
+export class PaginaAdminTiendaComponent implements OnInit{
   isEliminarVisible: boolean = false;
   isConfirmarVisible: boolean = false;
   inventario:any;
@@ -20,6 +20,8 @@ export class PaginaAdminTiendaComponent {
   isModalOpen: boolean = false;
   modalTitle: string = '';
   modalContent: string = '';
+  idUser: number = parseInt(localStorage.getItem('Rol') ?? '0', 10);
+  idTiendaUsuario: number = parseInt(localStorage.getItem('IdTienda') ?? '0', 10);
 
   datosProducto = [
     {
@@ -56,6 +58,15 @@ export class PaginaAdminTiendaComponent {
     private productos: ProductosService,
     private inventariosService: InventariosService
   ) {}
+
+  ngOnInit(): void {
+    this.cargarProductos();
+    /* if (this.idUser == 1) {
+      
+    }else{
+      this.getInventarios();
+    } */
+  }
 
   agregarInventario() {
     console.log('Agregar nuevo producto');
@@ -96,7 +107,7 @@ export class PaginaAdminTiendaComponent {
   }
 
   getInventarios() {//Quitar el 55 en los parametros y poner el id de tienda del usuario
-    this.inventariosService.getInventariosTienda(this.cookieService.get('Token'), 55).subscribe((data: Inventario[]) => {
+    this.inventariosService.getInventariosTienda(this.cookieService.get('Token'), this.idTiendaUsuario).subscribe((data: Inventario[]) => {
       this.datosInventario[0].datos = data;
     });
   }

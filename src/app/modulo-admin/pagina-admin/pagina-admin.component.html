@@ -6,11 +6,11 @@
             <!-- card muestra stock -->
             <ng-template [ngIf]="selectedOption === 'optionTienda'">
                 <comp-card-stock />
-                <comp-barra-busqueda />
+                <!-- <comp-barra-busqueda /> -->
             </ng-template>
 
             <ng-template [ngIf]="selectedOption === 'optionProducto'">
-                <comp-tabla [datos]="datosTabla"/>
+                <comp-tabla [datos]="datosProductos"/>
             </ng-template>
 
         </div>
@@ -34,7 +34,18 @@
             <div class="mt-5">
                 <ng-template [ngIf]="selectedOption === 'optionTienda'">
                     <ng-container *ngIf="mostrarCRUD; else CRUD">
-                        <comp-selectores/>
+
+                        <mat-form-field appearance="fill" class="medium-select"  *ngIf="idUser == 1">
+                            <mat-label>Tiendas</mat-label>
+                            <mat-select (selectionChange)="seleccionTienda($event)">
+                                <mat-option *ngFor="let tienda of tiendas" [value]="tienda.id" [(ngModel)]="tiendaSeleccionada">
+                                    {{tienda.nombre}}
+                                </mat-option>
+                            </mat-select>
+                            <img matSuffix src="/assets/tienda.svg" alt="tienda">
+                        </mat-form-field>
+
+                        <!-- <comp-selectores/> -->
                     </ng-container>
                     
                     <ng-template #CRUD>

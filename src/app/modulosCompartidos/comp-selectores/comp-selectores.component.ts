@@ -25,52 +25,28 @@ export class CompSelectoresComponent implements OnInit{
     { id: 2, name: 'Tienda B' }, */
   ];
 
-  inventarios: Inventario[] = [
-    /* {
-      id: 1,
-      productoId: 101,
-      tiendaId: 1,
-      cantidad: 50,
-      cantidadMinima: 10,
-      cantidadBodega: 100,
-      ubicacionTienda: 'Pasillo A - Estante 5',
-      fechaUltimaActualizacion: new Date('2023-10-10')
-    },
-    {
-      id: 2,
-      productoId: 102,
-      tiendaId: 1,
-      cantidad: 30,
-      cantidadMinima: 5,
-      cantidadBodega: 80,
-      ubicacionTienda: 'Pasillo B - Estante 2',
-      fechaUltimaActualizacion: new Date('2023-10-12')
-    },
-    {
-      id: 3,
-      productoId: 103,
-      tiendaId: 2,
-      cantidad: 20,
-      cantidadMinima: 8,
-      cantidadBodega: 60,
-      ubicacionTienda: 'Pasillo C - Estante 1',
-      fechaUltimaActualizacion: new Date('2023-10-15')
-    } */
-  ];
+  inventarios: Inventario[] = [];
 
   seleccionado = false;
   tiendaSeleccionada!: number;
   inventarioSeleccionado: number | null = null;
+  idUser: number = parseInt(localStorage.getItem('Rol') ?? '0', 10);
 
   constructor(private tiendaService: TiendasService, private inventarioService: InventariosService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    this.obtenerTiendas();
+    if (this.idUser == 1) {
+      this.obtenerTiendas();
+    }else{
+      this.seleccionado = true;
+      this.tiendaSeleccionada = parseInt(localStorage.getItem('IdTienda') ?? '0', 10);
+      this.getInventarios();
+    }
   }
 
   seleccionTienda(event: any) {
     this.seleccionado = true;
-    //this.getInventarios()
+    this.getInventarios()
     this.inventarioSeleccionado = null;
   }
 

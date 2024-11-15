@@ -6,6 +6,9 @@ import { TiendasService } from '../serviciosAdministradores/tiendas.service';
 import { ProductosService } from '../serviciosAdministradores/productos.service';
 import { FormsModule } from '@angular/forms';
 import { Producto } from 'src/models/producto.model';
+import { Tienda } from 'src/models/tienda.model';
+import { InventariosService } from '../serviciosAdministradores/inventarios.service';
+import { Inventario } from 'src/models/inventario.model';
 
 @Component({
   selector: 'app-pagina-admin',
@@ -13,25 +16,8 @@ import { Producto } from 'src/models/producto.model';
   styleUrls: ['./pagina-admin.component.css']
 })
 export class PaginaAdminComponent implements OnInit{
-  
-  datosTabla = [
-    {
-      datos: [] as Producto[],
-      seleccionable: false
-    }
-  ];
 
-  constructor(private router: Router,
-    private UsuariosService: UsuariosService,
-    private cookieService: CookieService,
-    private tiendasService: TiendasService,
-    private productosService: ProductosService
-  ) { }
-
-  ngOnInit(): void {
-    this.cargarProductos()
-  }
-
+  idUser: number = parseInt(localStorage.getItem('Rol') ?? '0', 10);
   idTienda = 0;
   usuario: any;
   tienda: any;
@@ -44,6 +30,11 @@ export class PaginaAdminComponent implements OnInit{
 
   selectedOption: string = 'optionTienda'; // Valor inicial
   mostrarCRUD: boolean = false;
+  tiendaSeleccionada!: number;
+
+  tiendas: Tienda[] = [];
+
+  inventarios: Inventario[] = [];
 
   datosBtn = [
     { texto: 'Agregar entidad producto', img: 'Añadir.svg', nombreClase: 'agregar', accion: this.agregarProducto.bind(this) },
@@ -56,6 +47,32 @@ export class PaginaAdminComponent implements OnInit{
     { texto: 'Modificar datos de tienda', img: 'ModificarProducto.svg', nombreClase: 'modificar', accion: this.modificarTienda.bind(this) },
     { texto: 'Eliminar tienda', img: 'Eliminar.svg', nombreClase: 'eliminar', accion: this.eliminarTienda.bind(this) }
   ];
+  
+  datosProductos = [
+    {
+      datos: [] as Producto[],
+      seleccionable: false
+    }
+  ];
+
+  datosInventarios = [
+    {
+      datos: [] as Inventario[],
+      seleccionable: false
+    }
+  ];
+
+  constructor(private router: Router,
+    private inventarioService: InventariosService,
+    private cookieService: CookieService,
+    private tiendasService: TiendasService,
+    private productosService: ProductosService
+  ) { }
+
+  ngOnInit(): void {
+    this.cargarProductos()
+    this.obtenerTiendas()
+  }
 
   agregarProducto() {
     //console.log('Agregar nueva tienda');
@@ -79,6 +96,13 @@ export class PaginaAdminComponent implements OnInit{
       }
     )
   }
+
+  seleccionTienda(event: any) {
+    //this.seleccionado = true;
+    this.getInventarios()
+    //this.inventarioSeleccionado = null;
+  }
+
 
   actualizarTienda() {
     this.router.navigate(['/modificarTienda']).then(() => {
@@ -142,16 +166,35 @@ export class PaginaAdminComponent implements OnInit{
     this.mostrarCRUD = !this.mostrarCRUD;
   }
 
+  obtenerTiendas() {
+    this.tiendasService.getTienda(this.cookieService.get('Token')).subscribe({
+      next: (data: Tienda[]) => {
+        console.log(data);
+        this.tiendas = data;
+        console.log()
+      },
+      error: (error) => {
+        console.error('Error al obtener las tiendas', error);
+      }
+    });
+  }
+
   cargarProductos(): void {
     this.productosService.getAllProductos(this.cookieService.get('Token')).subscribe({
       next: (data: Producto[]) => {
         console.log(data);
-        this.datosTabla[0].datos = data;
-        console.log(this.datosTabla[0].datos)
+        this.datosProductos[0].datos = data;
+        console.log(this.datosProductos[0].datos)
       },
       error: (error) => {
         console.error('Error al obtener los productos', error);
       }
+    });
+  }
+
+  getInventarios() {
+    this.inventarioService.getInventariosTienda(this.cookieService.get('Token'), this.tiendaSeleccionada).subscribe((data: Inventario[]) => {
+      this.inventarios = data;
     });
   }
 
