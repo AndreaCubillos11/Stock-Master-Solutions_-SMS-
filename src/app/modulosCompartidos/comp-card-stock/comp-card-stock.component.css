@@ -1,3 +1,21 @@
 .customContainer{
     width: 580px;
 }
+  
+  /* Estilo de los botones cuando están deshabilitados */
+  .disabled-button {
+    background-color: #ccc;
+    cursor: not-allowed;
+    color: #fff;
+    opacity: 0.5;
+  }
+  
+  /* Estilo de los botones en estado activo */
+  .botonCard{
+    border: 2px solid black;
+    background-color: #4A1F43;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+  }
+  

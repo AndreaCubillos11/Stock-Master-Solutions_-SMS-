@@ -80,14 +80,12 @@ export class PaginaAdminComponent implements OnInit{
 
   ngOnInit(): void {
     this.cargarProductos()
-    /* if (this.idUser == 1) {
-      this.idTienda = this.tiendaSeleccionada;
-      console.log(this.idTienda);
-      this.obtenerTienda()
+    if (this.idUser == 1) {
+     this.obtenerTiendas()
     }else{
       this.obtenerTienda()
-    } */
-    this.obtenerTiendas()
+    }
+    
   }
 
   agregarProducto() {
@@ -112,14 +110,6 @@ export class PaginaAdminComponent implements OnInit{
       }
     )
   }
-
-  seleccionTienda(event: any) {
-    //this.seleccionado = true;
-    console.log(this.tiendaSeleccionada);
-    this.getInventarios()
-    //this.inventarioSeleccionado = null;
-  }
-
 
   actualizarTienda() {
     this.router.navigate(['/modificarTienda']).then(() => {
@@ -223,11 +213,9 @@ export class PaginaAdminComponent implements OnInit{
     });
   }
 
-  getInventarios() {
-    console.log(this.tiendaSeleccionada);
-    this.inventarioService.getInventariosTienda(this.cookieService.get('Token'), this.tiendaSeleccionada).subscribe((data: Inventario[]) => {
-      this.inventarios = data;
-    });
+  actualizarInventarios(inventarios: Inventario[]) {
+    this.datosInventarios[0].datos = inventarios;
   }
+
 
 }

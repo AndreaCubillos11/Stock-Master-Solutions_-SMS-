@@ -1,7 +1,7 @@
 {
     "/api/*": {
         "target": "https://dionegestionapi.azurewebsites.net",
-        "secure": false,
+        "secure": true,
         "changeOrigin": true
     }
    

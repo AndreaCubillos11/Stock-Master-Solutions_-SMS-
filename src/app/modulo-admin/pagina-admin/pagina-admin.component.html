@@ -5,7 +5,8 @@
         <div class="col-7">
             <!-- card muestra stock -->
             <ng-template [ngIf]="selectedOption === 'optionTienda'">
-                <comp-tabla [datos]="datosTiendas"/>
+                <comp-card-stock/>
+                <!-- <comp-tabla [datos]="datosInventarios"/> -->
             </ng-template>
 
             <ng-template [ngIf]="selectedOption === 'optionProducto'">
@@ -34,7 +35,7 @@
                 <ng-template [ngIf]="selectedOption === 'optionTienda'">
                     <ng-container *ngIf="mostrarCRUD; else CRUD">
 
-                        <mat-form-field appearance="fill" class="medium-select">
+                        <!-- <mat-form-field appearance="fill" class="medium-select">
                             <mat-label>Tiendas</mat-label>
                             <mat-select (selectionChange)="seleccionTienda($event)" [(ngModel)]="tiendaSeleccionada">
                                 <mat-option *ngFor="let tienda of tiendas" [value]="tienda.id">
@@ -42,9 +43,9 @@
                                 </mat-option>
                             </mat-select>
                             <img matSuffix src="/Stock-Master-Solutions_-SMS-/assets/tienda.svg" alt="tienda">
-                        </mat-form-field>
+                        </mat-form-field> -->
 
-                        <!-- <comp-selectores/> -->
+                        <comp-selectores (inventariosEnviados)="actualizarInventarios($event)"/>
                     </ng-container>
                     
                     <ng-template #CRUD>

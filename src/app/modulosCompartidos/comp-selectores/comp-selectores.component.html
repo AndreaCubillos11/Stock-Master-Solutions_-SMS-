@@ -1,8 +1,8 @@
 <div class="row">
     <mat-form-field appearance="fill" class="medium-select"  *ngIf="idUser == 1">
         <mat-label>Tiendas</mat-label>
-        <mat-select (selectionChange)="seleccionTienda($event)">
-            <mat-option *ngFor="let tienda of tiendas" [value]="tienda.id" [(ngModel)]="tiendaSeleccionada">
+        <mat-select (selectionChange)="seleccionTienda($event)" [(ngModel)]="tiendaSeleccionada">
+            <mat-option *ngFor="let tienda of tiendas" [value]="tienda.id" >
                 {{tienda.tienda}}
             </mat-option>
         </mat-select>
@@ -13,9 +13,9 @@
 
     <mat-form-field class="medium-select">
         <mat-label>Inventario</mat-label>
-        <mat-select [disabled]="!seleccionado" [(value)]="inventarioSeleccionado">
-            <mat-option *ngFor="let inv of inventarios" [value]="inv.idInventario">
-                {{inv.idInventario}}
+        <mat-select [disabled]="!seleccionado" [(value)]="inventarioSeleccionado" (selectionChange)="seleccionInventario($event)">
+            <mat-option *ngFor="let inv of camposInventarios" [value]="inv.value">
+                {{inv.label}}
             </mat-option>
         </mat-select>
         <img matSuffix src="/Stock-Master-Solutions_-SMS-/assets/inventario.svg" alt="inventario">

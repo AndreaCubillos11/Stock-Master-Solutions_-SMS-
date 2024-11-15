@@ -60,7 +60,7 @@ export class FormModfiicarComponent implements OnInit {
     })
   }
 
-  cargarImagen(event: Event) {
+  /* cargarImagen(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
@@ -79,10 +79,9 @@ export class FormModfiicarComponent implements OnInit {
         reader.readAsDataURL(file)
       }
     }
-  }
+  } */
   
   modificar() {
-    console.log(this.cambiosForm.value());
     if (this.cambiosForm.valid) {
       const producto: Producto = { ...this.cambiosForm.value, id: this.IdProducto};
       console.log('Producto a modificar:', producto);

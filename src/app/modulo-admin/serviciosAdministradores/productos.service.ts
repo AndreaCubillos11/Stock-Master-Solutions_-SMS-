@@ -26,7 +26,7 @@ export class ProductosService {
   modificarProducto(producto: Producto, token: any): Observable<boolean> {
     console.log(producto);
     console.log('Modificando producto con ID:', producto.productoId);
-    const url = `${this.apiUrl}/${producto.productoId}`;
+    const url = `${this.apiUrl}/producto/id/${producto.productoId}`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`

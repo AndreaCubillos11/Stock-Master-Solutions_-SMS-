@@ -1,19 +1,53 @@
 <mat-card class="container formulario customContainer">
-    <mat-card-content>
-        <h3 *ngIf="tienda">{{tienda.tienda}}</h3>
+    <mat-card-content *ngIf="tienda; else listaTiendas">
+        <!-- Muestra la tienda seleccionada si existe -->
+        <h3>{{tienda.tienda}}</h3>
+
         <ul class="col">
+            <!-- Información de la tienda seleccionada -->
             <li class="my-5">
-                <h3>Direccion:</h3>
-                <p *ngIf="tienda" id="labelDireccion">{{tienda.direccion}}</p>
+                <div>
+                    <h3>Dirección:</h3>
+                    <p id="labelDireccion">{{tienda.direccion}}</p>
+                </div>
             </li>
             <li class="my-5">
-                <h3>Telefono:</h3>
-                <p *ngIf="tienda" id="labelTelefono">{{tienda.telefono}}</p>
+                <div>
+                    <h3>Teléfono:</h3>
+                    <p id="labelTelefono">{{tienda.telefono}}</p>
+                </div>
             </li>
-            <!-- <li class="my-5">
-                <h3>Total de producto:</h3>
-                <p id="labelTienda">---</p>
-            </li> -->
         </ul>
     </mat-card-content>
+    <ng-template #listaTiendas>
+        <mat-card-content>
+            <h3>Tiendas Existentes</h3>
+            <ul class="col">
+                <li *ngFor="let tienda of tiendasMostradas" class="my-3">
+                    <h3>{{ tienda.tienda }}</h3>
+                    <h5>Dirección: {{ tienda.direccion }}</h5>
+                    <h5>Teléfono: {{ tienda.telefono }}</h5> 
+                </li>
+            </ul>
+        </mat-card-content>
+    </ng-template>
+
+    <!-- Botón para cargar más tiendas -->
+    <div class="row">
+        <button 
+          class="col botonCard" 
+          (click)="paginaAnterior()" 
+          [disabled]="disableAnterior"
+          [ngClass]="{'disabled-button': disableAnterior}">
+          ← Anterior
+        </button>
+
+        <button 
+          class="col botonCard" 
+          (click)="siguientePagina()" 
+          [disabled]="disableSiguiente"
+          [ngClass]="{'disabled-button': disableSiguiente}">
+          Siguiente →
+        </button>
+      </div>
 </mat-card>

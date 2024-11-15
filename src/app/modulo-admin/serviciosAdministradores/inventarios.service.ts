@@ -19,6 +19,14 @@ export class InventariosService {
     return this.http.post<boolean>(this.apiUrl, inventario, { headers: headers, withCredentials: true });
   }
 
+  getInventario(token: string, idInventario: number): Observable<Inventario> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<Inventario>(`${this.apiUrl}/${idInventario}`, { headers: headers, withCredentials: true });
+  }
+
   getInventariosTienda(token: string, idTienda: number): Observable<Inventario[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

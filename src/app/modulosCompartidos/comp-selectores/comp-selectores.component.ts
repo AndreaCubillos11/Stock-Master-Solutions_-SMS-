@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TiendasService } from 'src/app/modulo-admin/serviciosAdministradores/tiendas.service';
 import { InventariosService } from 'src/app/modulo-admin/serviciosAdministradores/inventarios.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -19,10 +19,19 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     ])
   ]
 })
-export class CompSelectoresComponent implements OnInit{
+export class CompSelectoresComponent implements OnInit {
+  @Output() inventariosEnviados = new EventEmitter<Inventario[]>();
+  
   tiendas: Tienda[] = [];
 
   inventarios: Inventario[] = [];
+
+  camposInventarios = [
+    { value: 1, label: 'Aseo' },
+    { value: 2, label: 'Tecnologia' },
+    { value: 3, label: 'Comida' },
+    { value: 4, label: 'Ropa' },
+  ]
 
   seleccionado = false;
   tiendaSeleccionada!: number;
@@ -34,7 +43,7 @@ export class CompSelectoresComponent implements OnInit{
   ngOnInit(): void {
     if (this.idUser == 1) {
       this.obtenerTiendas();
-    }else{
+    } else {
       this.seleccionado = true;
       this.tiendaSeleccionada = parseInt(localStorage.getItem('IdTienda') ?? '0', 10);
       this.getInventarios();
@@ -45,6 +54,11 @@ export class CompSelectoresComponent implements OnInit{
     this.seleccionado = true;
     this.getInventarios()
     this.inventarioSeleccionado = null;
+  }
+
+  seleccionInventario(event: any) {
+    console.log(this.inventarioSeleccionado);
+    this.getInventario()
   }
 
   obtenerTiendas() {
@@ -60,9 +74,21 @@ export class CompSelectoresComponent implements OnInit{
     });
   }
 
+  getInventario() {
+    if(this.inventarioSeleccionado){
+      this.inventarioService.getInventario(this.cookieService.get('Token'), this.inventarioSeleccionado).subscribe((data: Inventario) => {
+        console.log(data);
+        //this.inventarios = data;
+      });
+    }
+  }
+
   getInventarios() {
     this.inventarioService.getInventariosTienda(this.cookieService.get('Token'), this.tiendaSeleccionada).subscribe((data: Inventario[]) => {
+      console.log(data);
       this.inventarios = data;
+      this.inventariosEnviados.emit(this.inventarios)
+      console.log('Disparado');
     });
   }
 
