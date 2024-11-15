@@ -1,23 +1,8 @@
 {
     "/api/*": {
-        "target": "https://localhost:7232",
+        "target": "https://dionegestionapi.azurewebsites.net",
         "secure": false,
-        "changeOrigin": false
-    },
-    "/api/Tiendas": {
-        "target": "https://localhost:7232",
-        "secure": false,
-        "changeOrigin": false
-    },
-    "/api/Usuarios":{
-        "target": "https://localhost:7232",
-        "secure": false,
-        "changeOrigin": false
-    },
-    "/api/Productos":{
-        "target": "https://localhost:7232",
-        "secure": false,
-        "changeOrigin": true,
-        "logLevel": "debug"
+        "changeOrigin": true
     }
+   
 }
