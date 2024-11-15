@@ -7942,19 +7942,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\migue\\.nuget\\packages\\": {}
+    "C:\\Users\\mrjoa\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\migue\\source\\repos\\Tienda Minorista\\Tienda Minorista\\Tienda Minorista.csproj",
+      "projectUniqueName": "C:\\Users\\mrjoa\\OneDrive\\Desktop\\Stock-Master-Solutions_-SMS-Back\\Tienda Minorista\\Tienda Minorista.csproj",
       "projectName": "Tienda Minorista",
-      "projectPath": "C:\\Users\\migue\\source\\repos\\Tienda Minorista\\Tienda Minorista\\Tienda Minorista.csproj",
-      "packagesPath": "C:\\Users\\migue\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\migue\\source\\repos\\Tienda Minorista\\Tienda Minorista\\obj\\",
+      "projectPath": "C:\\Users\\mrjoa\\OneDrive\\Desktop\\Stock-Master-Solutions_-SMS-Back\\Tienda Minorista\\Tienda Minorista.csproj",
+      "packagesPath": "C:\\Users\\mrjoa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mrjoa\\OneDrive\\Desktop\\Stock-Master-Solutions_-SMS-Back\\Tienda Minorista\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\migue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mrjoa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7969,8 +7974,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\migue\\source\\repos\\Tienda Minorista\\Tienda Minorista.Data\\Tienda Minorista.Data.csproj": {
-              "projectPath": "C:\\Users\\migue\\source\\repos\\Tienda Minorista\\Tienda Minorista.Data\\Tienda Minorista.Data.csproj"
+            "C:\\Users\\mrjoa\\OneDrive\\Desktop\\Stock-Master-Solutions_-SMS-Back\\Tienda Minorista.Data\\Tienda Minorista.Data.csproj": {
+              "projectPath": "C:\\Users\\mrjoa\\OneDrive\\Desktop\\Stock-Master-Solutions_-SMS-Back\\Tienda Minorista.Data\\Tienda Minorista.Data.csproj"
             }
           }
         }
@@ -8038,7 +8043,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

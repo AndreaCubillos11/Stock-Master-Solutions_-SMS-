@@ -11,6 +11,7 @@ namespace Tienda_Minorista.Data.Repositores
     {
 
         Task<IEnumerable<Devoluciones>> GetAllDevoluciones();
+        Task<bool> insertDevolucion(Devoluciones devolucion);
         Task<Devoluciones> GetDetails(int id);
 
 

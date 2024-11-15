@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TiendaMinorista.Model")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32ab7a0ca937855f4b19b990300f3b76c83abbcf")]
 [assembly: System.Reflection.AssemblyProductAttribute("TiendaMinorista.Model")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TiendaMinorista.Model")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

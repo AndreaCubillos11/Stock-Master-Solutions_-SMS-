@@ -9,3 +9,15 @@ C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\obj\Debug\net
 C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\obj\Debug\net8.0\refint\TiendaMinorista.Model.dll
 C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\obj\Debug\net8.0\TiendaMinorista.Model.pdb
 C:\Users\migue\source\repos\Tienda Minorista\TiendaMinorista.Model\obj\Debug\net8.0\ref\TiendaMinorista.Model.dll
+C:\Users\mrjoa\OneDrive\Desktop\Stock-Master-Solutions_-SMS-Back\TiendaMinorista.Model\bin\Debug\net8.0\TiendaMinorista.Model.deps.json
+C:\Users\mrjoa\OneDrive\Desktop\Stock-Master-Solutions_-SMS-Back\TiendaMinorista.Model\bin\Debug\net8.0\TiendaMinorista.Model.dll
+C:\Users\mrjoa\OneDrive\Desktop\Stock-Master-Solutions_-SMS-Back\TiendaMinorista.Model\bin\Debug\net8.0\TiendaMinorista.Model.pdb
+C:\Users\mrjoa\OneDrive\Desktop\Stock-Master-Solutions_-SMS-Back\TiendaMinorista.Model\obj\Debug\net8.0\TiendaMinorista.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mrjoa\OneDrive\Desktop\Stock-Master-Solutions_-SMS-Back\TiendaMinorista.Model\obj\Debug\net8.0\TiendaMinorista.Model.AssemblyInfoInputs.cache
+C:\Users\mrjoa\OneDrive\Desktop\Stock-Master-Solutions_-SMS-Back\TiendaMinorista.Model\obj\Debug\net8.0\TiendaMinorista.Model.AssemblyInfo.cs
+C:\Users\mrjoa\OneDrive\Desktop\Stock-Master-Solutions_-SMS-Back\TiendaMinorista.Model\obj\Debug\net8.0\TiendaMinorista.Model.csproj.CoreCompileInputs.cache
+C:\Users\mrjoa\OneDrive\Desktop\Stock-Master-Solutions_-SMS-Back\TiendaMinorista.Model\obj\Debug\net8.0\TiendaMinorista.Model.sourcelink.json
+C:\Users\mrjoa\OneDrive\Desktop\Stock-Master-Solutions_-SMS-Back\TiendaMinorista.Model\obj\Debug\net8.0\TiendaMinorista.Model.dll
+C:\Users\mrjoa\OneDrive\Desktop\Stock-Master-Solutions_-SMS-Back\TiendaMinorista.Model\obj\Debug\net8.0\refint\TiendaMinorista.Model.dll
+C:\Users\mrjoa\OneDrive\Desktop\Stock-Master-Solutions_-SMS-Back\TiendaMinorista.Model\obj\Debug\net8.0\TiendaMinorista.Model.pdb
+C:\Users\mrjoa\OneDrive\Desktop\Stock-Master-Solutions_-SMS-Back\TiendaMinorista.Model\obj\Debug\net8.0\ref\TiendaMinorista.Model.dll

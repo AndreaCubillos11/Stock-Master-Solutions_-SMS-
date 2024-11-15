@@ -23,5 +23,20 @@ namespace Tienda_Minorista.Controllers
             return Ok(await _devolucionesRepository.GetAllDevoluciones());
         }
 
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> CreateDevolucion([FromBody] Devoluciones devolucion)
+        {
+            if (devolucion == null)
+                return BadRequest();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var created = await _devolucionesRepository.insertDevolucion(devolucion);
+            return Created("Created", created);
+        }
+
     }
 }

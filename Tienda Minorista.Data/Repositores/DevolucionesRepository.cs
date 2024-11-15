@@ -34,6 +34,17 @@ namespace Tienda_Minorista.Data.Repositores
             // Retorna la devolucion si la encuentra, o null si no existe
             return devolucion;
         }
+        async Task<bool> IDevolucionesRepository.insertDevolucion(Devoluciones devolucion)
+        {
+            // Agregar el nuevo producto al contexto
+            await _context.Devoluciones.AddAsync(devolucion);
+
+            // Guardar los cambios en la base de datos
+            var resultado = await _context.SaveChangesAsync();
+
+            // Si el resultado es mayor que 0, significa que se insertó con éxito
+            return resultado > 0;
+        }
     }
 
 }   

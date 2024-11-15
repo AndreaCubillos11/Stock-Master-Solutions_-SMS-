@@ -52,6 +52,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Tienda_Minorista.Controllers.DevolucionesController",
+    "Method": "CreateDevolucion",
+    "RelativePath": "api/Devoluciones",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "devolucion",
+        "Type": "TiendaMinorista.Model.Devoluciones",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Tienda_Minorista.Controllers.InventariosController",
     "Method": "CreatedInventario",
     "RelativePath": "api/Inventarios",
@@ -149,6 +165,16 @@
   },
   {
     "ContainingType": "Tienda_Minorista.Controllers.MovimientosInventariosController",
+    "Method": "GetAllMovimientos",
+    "RelativePath": "api/MovimientosInventarios",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.MovimientosInventariosController",
     "Method": "GetAllMovimientosPorIdInventario",
     "RelativePath": "api/MovimientosInventarios/Inventario/{idInventario}",
     "HttpMethod": "GET",
@@ -183,6 +209,22 @@
     "ContainingType": "Tienda_Minorista.Controllers.MovimientosInventariosController",
     "Method": "GetAllProductosMenosVendidos",
     "RelativePath": "api/MovimientosInventarios/productoMenosVendido/{idTienda}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idTienda",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.MovimientosInventariosController",
+    "Method": "GetAllMovimientosPorIdTienda",
+    "RelativePath": "api/MovimientosInventarios/Tienda/{idTienda}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -255,22 +297,6 @@
   },
   {
     "ContainingType": "Tienda_Minorista.Controllers.ProductosController",
-    "Method": "UpdateProducto",
-    "RelativePath": "api/Productos",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "producto",
-        "Type": "TiendaMinorista.Model.Productos",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Tienda_Minorista.Controllers.ProductosController",
     "Method": "DeleteProducto",
     "RelativePath": "api/Productos/codigoBarras/{codigoBarras}",
     "HttpMethod": "DELETE",
@@ -312,6 +338,27 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Tienda_Minorista.Controllers.ProductosController",
+    "Method": "UpdateProducto",
+    "RelativePath": "api/Productos/producto/id/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "producto",
+        "Type": "TiendaMinorista.Model.Productos",
         "IsRequired": true
       }
     ],

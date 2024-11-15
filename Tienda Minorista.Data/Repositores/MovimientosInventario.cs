@@ -25,8 +25,19 @@ namespace Tienda_Minorista.Data.Repositores
                                    .Where(a => a.inventarioId == idInventario)
                          .ToListAsync();
         }
+        async Task<IEnumerable<MovimientosInventarios>> IMovimientosInventarios.GetAllMoviientosPorIdTienda(int idTienda)
+        {
+            
+            return await _context.MovimientosInventarios
+                                   .Where(a => a.tiendaId == idTienda)
+                         .ToListAsync();
+        }
+        public async Task<IEnumerable<MovimientosInventarios>> GetAllMovimientos()
+        {
+            return await _context.MovimientosInventarios.ToListAsync();
+        }
 
-       async Task<IEnumerable<MovimientosInventarios>> IMovimientosInventarios.GetAllMoviientosPorIdUsuario(int idUsuario)
+        async Task<IEnumerable<MovimientosInventarios>> IMovimientosInventarios.GetAllMoviientosPorIdUsuario(int idUsuario)
         {
             return await _context.MovimientosInventarios
                                     .Where(a => a.UsuarioId == idUsuario)

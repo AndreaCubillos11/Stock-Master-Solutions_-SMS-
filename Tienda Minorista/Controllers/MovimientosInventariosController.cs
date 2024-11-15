@@ -30,6 +30,20 @@ namespace Tienda_Minorista.Controllers
             return Ok(await _Movimientos.GetAllMoviientosPorIdUsuario(idUsuario));
         }
 
+        [HttpGet("Tienda/{idTienda}")]
+        [Authorize]
+        public async Task<IActionResult> GetAllMovimientosPorIdTienda(int idTienda)
+        {
+            return Ok(await _Movimientos.GetAllMoviientosPorIdTienda(idTienda));
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> GetAllMovimientos()
+        {
+            return Ok(await _Movimientos.GetAllMovimientos());
+        }
+
 
         [HttpGet("TipoMovimiento/{TipoMovimieto}")]
         [Authorize]

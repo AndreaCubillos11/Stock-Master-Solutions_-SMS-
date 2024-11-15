@@ -70,9 +70,9 @@ namespace Tienda_Minorista.Controllers
             return NoContent();
         }
 
-        [HttpPut]
+        [HttpPut("producto/id/{id}")]
         [Authorize]
-        public async Task<IActionResult> UpdateProducto([FromBody] Productos producto)
+        public async Task<IActionResult> UpdateProducto(int id, [FromBody] Productos producto)
         {
             if (producto == null)
                 return BadRequest();
@@ -80,8 +80,16 @@ namespace Tienda_Minorista.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _productoRepository.updateproducto(producto);
+            // Verifica que el ID del producto en la URL coincida con el ID en el objeto del cuerpo
+            if (producto.productoId != id)
+                return BadRequest("El ID en la URL no coincide con el ID del producto.");
+
+            var resultado = await _productoRepository.updateproducto(producto);
+            if (!resultado)
+                return NotFound("El producto con el ID especificado no existe.");
+
             return NoContent();
         }
+
     }
 }

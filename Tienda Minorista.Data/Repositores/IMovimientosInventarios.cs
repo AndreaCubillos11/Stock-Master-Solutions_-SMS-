@@ -11,9 +11,9 @@ namespace Tienda_Minorista.Data.Repositores
     {
         Task<IEnumerable<MovimientosInventarios>> GetAllMoviientosPorIdInvetario(int idInventario);
         Task<IEnumerable<MovimientosInventarios>> GetAllMoviientosPorIdUsuario(int idUsuario);
-
+        Task<IEnumerable<MovimientosInventarios>> GetAllMoviientosPorIdTienda(int idTienda);
         Task<IEnumerable<MovimientosInventarios>> GetAllMoviientosPorTipoMovimiento(string tipoMovimiento);
-
+        Task<IEnumerable<MovimientosInventarios>> GetAllMovimientos();
         Task<IEnumerable<ModeloProductosReportes>> GetProductosMasVendidosPorTiendaAsync(int idTienda);
         Task<IEnumerable<ModeloProductosReportes>> GetProductosMenosVendidosPorTiendaAsync(int idTienda);
     }
