@@ -13,7 +13,7 @@ export class ServicioDevolucionesService {
  
   constructor(private http: HttpClient) { }
  
-  getAllDevoluciones(token:any): Observable<Devolucion[]> {
+  getAllDevoluciones(token:string): Observable<Devolucion[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
@@ -24,7 +24,15 @@ export class ServicioDevolucionesService {
     });
   }
 
-  getReporteDevoluciones(token: any): Observable<ReporteDevolucion[]> {
+  agregarDevolucion(token: string, devolucion: Devolucion): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post<any>(this.apiUrl, devolucion, { headers: headers, withCredentials: true });
+  }
+
+  /* getReporteDevoluciones(token: any): Observable<ReporteDevolucion[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
@@ -44,5 +52,7 @@ export class ServicioDevolucionesService {
         }))
       )
     );
-  }
+  } */
+
+
 }

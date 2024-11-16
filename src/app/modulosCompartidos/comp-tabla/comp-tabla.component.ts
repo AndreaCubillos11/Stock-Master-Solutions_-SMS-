@@ -38,6 +38,14 @@ export class CompTablaComponent<T extends {}> implements OnInit, OnDestroy {
     this.updateTable(this.datos[0].datos);
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    if (this.paginator){
+      this.paginator.pageSize=5;
+    }  
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['datos'] && changes['datos'].currentValue) {
       const nuevoDatos = changes['datos'].currentValue;
@@ -69,8 +77,8 @@ export class CompTablaComponent<T extends {}> implements OnInit, OnDestroy {
     }
  
     // Asignar paginador y ordenación
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    /* this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort; */
   }
 
   onRowSelection(row: T) {

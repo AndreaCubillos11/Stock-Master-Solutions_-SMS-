@@ -1,11 +1,12 @@
 <header-principal [datosHeader]="datosHeader" />
 <div class="container mt-4">
-    <form [formGroup]="formDevolucion">
+    <form [formGroup]="formDevolucion" (ngSubmit)="agregarDevolucion()">
         <!-- Primera fila -->
         <div class="row mb-3">
             <div class="col">
                 <label for="productId" class="form-label">ID del Producto</label>
-                <input type="text" class="form-control" id="productId" placeholder="Ingrese el ID">
+                <input type="number" class="form-control" id="productId" placeholder="Ingrese el ID" 
+                formControlName="ProductoID">
             </div>
             <div class="col mt-4">
                 <h2>{{ productName }}</h2>
@@ -16,8 +17,8 @@
         <div class="row mb-3">
             <div class="col">
                 <label for="estadoProducto" class="form-label">Estado del Producto</label>
-                <select class="form-select" id="estadoProducto">
-                    <option *ngFor="let estado of estados">{{ estado }}</option>
+                <select class="form-select" id="estadoProducto" formControlName="razon">
+                    <option *ngFor="let estado of estados" [value]="estado.value">{{ estado.label}}</option>
                 </select>
             </div>
         </div>
@@ -30,16 +31,9 @@
                     placeholder="Escriba la razón de devolución y el estado del producto"></textarea>
             </div>
         </div>
+        <button type="submit" class="mt-5 ms-5 btnDevolucion">
+            <b>Agregar devolucion</b> <img src="/Stock-Master-Solutions_-SMS-/assets/tienda.svg" alt="">
+        </button>
     </form>
-
-    <div class="row">
-        <div class="col me-5">
-            <comp-btn-codigo-barras class="me-5"/>
-        </div>
-        <div class="col ms-5">
-            <button type="button" class="mt-5 ms-5 btnDevolucion">
-                <b>Agregar devolucion</b> <img src="/Stock-Master-Solutions_-SMS-/assets/tienda.svg" alt="">
-            </button>
-        </div>
-    </div>
 </div>
+<comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" [content]="modalContent" (close)="closeModal()" />

@@ -15,6 +15,7 @@ export class PaginaModificarProductoComponent implements OnInit {
   filaSeleccionada: Producto | null = null;
   mostrarTemplate1 = true;
   productoIdSeleccionado: number | null = null;
+  urlImagen!: string;
 
   datosHeader = [
     { titulo: 'Modificar Producto', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
@@ -87,6 +88,7 @@ export class PaginaModificarProductoComponent implements OnInit {
   onSelectionChange(fila: Producto | null) {
     this.filaSeleccionada = fila;
     if (fila) {
+      this.urlImagen = fila.urlImage;
       this.productoIdSeleccionado = fila.productoId;
       this.servicio.selectProducto(fila);
     }

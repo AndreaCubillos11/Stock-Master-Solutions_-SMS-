@@ -5,6 +5,7 @@ import { CompartirFilaService } from 'src/app/serviciosGenerales/compartir-fila.
 import { Producto } from 'src/models/producto.model';
 import { catchError, of } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { CargarImagenServiceService } from '../../serviciosAdministradores/cargar-imagen-service.service';
 
 @Component({
   selector: 'form-modfiicar',
@@ -20,7 +21,7 @@ export class FormModfiicarComponent implements OnInit {
   imagenSrc: string | ArrayBuffer | null = null;
   cambiosForm: FormGroup;
   IdProducto: number | null = null;
-  urlImagen!: string;
+  urlImagen: string | ArrayBuffer | null = null;
 
   categorias = [
     { value: 'aseo', label: 'Aseo' },
@@ -29,7 +30,9 @@ export class FormModfiicarComponent implements OnInit {
     { value: 'ropa', label: 'Ropa' },
   ]
 
-  constructor(private form: FormBuilder, private servicio: ProductosService, private compartirServicio: CompartirFilaService, private cookies: CookieService) {
+  constructor(private form: FormBuilder, private servicio: ProductosService, private compartirServicio: CompartirFilaService, private cookies: CookieService, 
+    private uploadService:CargarImagenServiceService
+  ) {
     this.cambiosForm = this.form.group({
       productoId: [null, [Validators.required, Validators.min(1)]],
       codigoBarras: [null, [Validators.required, Validators.pattern('^[0-9]{1,19}$'), Validators.maxLength(8)]],
@@ -37,7 +40,8 @@ export class FormModfiicarComponent implements OnInit {
       descripcion: ['', Validators.required],
       precio: [null, [Validators.required, Validators.min(1)]],
       categoria: ['', Validators.required],
-      fechaIngreso: [new Date()]
+      fechaIngreso: [new Date()],
+      urlImage: [this.urlImagen]
     })
   }
 
@@ -45,69 +49,86 @@ export class FormModfiicarComponent implements OnInit {
     this.compartirServicio.selectedProducto$.subscribe(producto => {
       console.log('Producto recibido:', producto);
       if (producto) {
-        this.urlImagen = producto.urlImagen 
-        console.log(producto.productoId);
+        this.urlImagen = producto.urlImage
+        console.log(producto.urlImage);
         this.cambiosForm.patchValue({
           productoId: producto.productoId,
           codigoBarras: producto.codigoBarras,
           nombreProducto: producto.nombreProducto,
           descripcion: producto.descripcion,
           precio: producto.precio,
-          categoria: producto.categoria
+          categoria: producto.categoria,
+          urlImage: producto.urlImage
         })
         this.IdProducto = producto.productoId;
       }
     })
   }
 
-  /* cargarImagen(event: Event) {
+  cargarImagen(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
-
+  
       const type = file.type;
-      const reader = new FileReader();
-
+      // Verificar el tipo de imagen
       if (type !== 'image/png' && type !== 'image/jpeg' && type !== 'image/jpg') {
         alert('Formato de imagen no soportado. Solo se permiten .png, .jpg y .jpeg.');
-        this.imagenSrc = null;
+        this.urlImagen = null;
         return;
-      } else {
-        reader.onloadend = () => {
-          this.imagenSrc = reader.result;
-        }
-        reader.readAsDataURL(file)
       }
-    }
-  } */
   
-  modificar() {
-    if (this.cambiosForm.valid) {
-      const producto: Producto = { ...this.cambiosForm.value, id: this.IdProducto};
-      console.log('Producto a modificar:', producto);
+      const data = new FormData();
+      data.append('file', file);
+      data.append('upload_preset', 'Tiendas Dione');
+      data.append('cloud_name', 'dfaqsp0j1');
+  
+      // Usar el servicio para cargar la imagen
+      this.uploadService.uploadImg(data).subscribe({
+        next: (response) => {
+          // Asignar la URL de la imagen cargada
+          this.urlImagen = response.secure_url;
+          console.log('Imagen cargada exitosamente:', this.urlImagen);
+          this.cambiosForm.patchValue({
+            urlImage: this.urlImagen 
+          });
+        },
+        error: (err) => {
+          console.error('Error al cargar la imagen:', err);
+          alert('Error al cargar la imagen. Por favor, inténtalo de nuevo.');
+        }
+      });
+    }
+  }
 
+  modificar() {
+    console.log(this.cambiosForm.value);
+    if (this.cambiosForm.valid) {
+      const producto: Producto = { ...this.cambiosForm.value, id: this.IdProducto };
+      console.log('Producto a modificar:', producto);
       this.servicio.modificarProducto(producto, this.cookies.get('Token')).subscribe({
         next: (resultado) => {
           if (resultado) {
             console.log('Producto modificado exitosamente.');
-            this.openModal('Modificación exitosa',`El producto ${producto.nombreProducto} se modifico correctamente.`)
+            this.openModal('Modificación exitosa', `El producto ${producto.nombreProducto} se modifico correctamente.`)
           } else {
-            this.openModal('Error en la modificación',`La modificación del producto falló.`)
+            this.openModal('Error en la modificación', `La modificación del producto falló.`)
             console.log('La modificación del producto falló.');
           }
         },
         error: (err) => {
-          this.openModal('Error',`Ocurrió un error en la modificación: ${err}`)
+          console.log(err);
+          this.openModal('Error', `Ocurrió un error en la modificación: ${err}`)
           console.error('Ocurrió un error en la modificación:', err);
         }
       });
     } else {
-      this.openModal('Campos incorrectos',`El formulario no es válido.`)
+      this.openModal('Campos incorrectos', `El formulario no es válido.`)
       console.warn('El formulario no es válido');
     }
   }
 
-  hasError(controlName: string, errorType: string){
+  hasError(controlName: string, errorType: string) {
     return this.cambiosForm.get(controlName)?.hasError(errorType) && this.cambiosForm.get(controlName)?.touched;
   }
 

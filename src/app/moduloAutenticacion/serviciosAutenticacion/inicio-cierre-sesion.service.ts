@@ -20,10 +20,11 @@ export class InicioCierreSesionService {
     return this.http.post<any>(`${this.urlApi}/login`, JSON.stringify(credentials), {headers}).pipe(
       tap(response => {
         const user = response.user as Usuario;
+        console.log(user);
         const Token = response.accessToken;
         this.cookie.set('Token', Token, 1);
         localStorage.setItem('Rol',  JSON.stringify(user.rol));
-        localStorage.setItem('IdTienda',  JSON.stringify(user.idTiendas));
+        localStorage.setItem('IdTienda',  JSON.stringify(user.tiendaId));
         localStorage.setItem('IdUsuario', JSON.parse(JSON.stringify(response)).user.usuarioId);
       }),
       map(()=> {}),

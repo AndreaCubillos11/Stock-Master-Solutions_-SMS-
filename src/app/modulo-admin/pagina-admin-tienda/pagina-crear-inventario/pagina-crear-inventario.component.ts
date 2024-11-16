@@ -32,7 +32,7 @@ export class PaginaCrearInventarioComponent {
 
   constructor(private form: FormBuilder, private inventariosService: InventariosService, private cookies: CookieService) {
     this.formInventario = this.form.group({
-      IdInventario: [null, [Validators.required, Validators.min(1)]],
+      idInventario: [null, [Validators.required, Validators.min(1)]],
       productoId: [null, [Validators.required, Validators.min(1)]],
       tiendaId:  [this.idTiendaUsuario],
       cantidad: [null, [Validators.required, Validators.min(1)]],
@@ -41,10 +41,10 @@ export class PaginaCrearInventarioComponent {
       cantidadBodega: [null, [Validators.required, Validators.min(1)]],
       ubicacionTienda: ['', [Validators.required, Validators.min(1)]]
     })
-    this.formInventario.get('IdInventario')?.valueChanges.subscribe(value => {
+    /* this.formInventario.get('idInventario')?.valueChanges.subscribe(value => {
       const numericValue = parseInt(value, 10);
-      this.formInventario.get('IdInventario')?.setValue(numericValue, { emitEvent: false });
-    });
+      this.formInventario.get('idInventario')?.setValue(numericValue, { emitEvent: false });
+    }) */;
   }
 
   cargarImagen(event: Event) {
@@ -72,6 +72,7 @@ export class PaginaCrearInventarioComponent {
   }
 
   agregar() {
+    console.log(this.formInventario.value);
     if (this.formInventario.valid) {
       console.log(this.formInventario.get('tiendaId')?.value);
       const nuevoInventario: Inventario = { ...this.formInventario.value};
@@ -85,7 +86,6 @@ export class PaginaCrearInventarioComponent {
         }
       });
     }
-
   }
 
   openModal(title: string, content: string) {

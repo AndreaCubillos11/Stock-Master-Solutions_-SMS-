@@ -23,7 +23,7 @@ import { ModificarDatosComponent } from './modulo-admin/pagina-admin-tienda/modi
 
 const routes: Routes = [
   {path: '', component: CompLoginComponent},
-  {path: 'gestionProductos', component: PaginaEmpleadoComponent},
+  {path: 'gestionEmpleado', component: PaginaEmpleadoComponent},
   {path: 'alertaInventario', component: PaginaAlertasComponent},
   {path: 'historialProductos', component: PaginaHistorialComponent},
   {path: 'reportes', component: PaginaReportesComponent},

@@ -1,8 +1,8 @@
 export interface Devolucion{
-    id: number;
-    productoId: number;
-    tiendaId: number;
-    usuarioId: number;
+    DevolucionID: number;
+    ProductoID: number;
+    TiendaID: number;
+    UsuarioID: number;
     razon: string;
-    fechaDevolucion: Date;
+    fechaUltimaActualizacion: Date;
 }

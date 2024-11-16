@@ -4,7 +4,7 @@ export interface Inventario {
     tiendaId: number;
     cantidad: number;
     cantidadMinima: number;
+    fechaUltimaActualizacion: Date;
     cantidadBodega: number;
     ubicacionTienda: string;
-    fechaUltimaActualizacion: Date;
 }

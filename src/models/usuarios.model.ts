@@ -6,5 +6,5 @@ export interface Usuario{
     rol: number;
     correo: string;
     fechaCreacion: Date;
-    idTiendas: number;
+    tiendaId: number;
 }

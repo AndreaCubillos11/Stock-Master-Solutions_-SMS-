@@ -13,11 +13,14 @@
         <div class="col">
           <!-- imagen producto -->
           <div class="container-fluid">
-            <!-- manejo de la imagen -->
+            <mat-card>
+              <mat-card-content>
+                  <figure class="container">
+                      <img [src]="urlImagen" alt="Imagen seleccionada" >
+                  </figure>
+              </mat-card-content>
+          </mat-card>
           </div>
-  
-          <div style="padding-top: 405px;"></div>
-  
           <!-- boton modificar -->
           <div class="ms-5">
             <button type="button" class="mt-5 ms-5 btnModificar disabled" [disabled]="!filaSeleccionada"  (click)="onModificarClick()">

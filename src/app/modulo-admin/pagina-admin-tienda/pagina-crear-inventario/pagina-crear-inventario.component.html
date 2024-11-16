@@ -4,9 +4,10 @@
         <!-- Grid Salmon -->
         <div class="salmon">
             <label for="idInventario">Inventario:</label>
-            <select formControlName="IdInventario" id="idInventario">
+            <input type="number" id="idInventario" formControlName="idInventario">
+            <!-- <select formControlName="idInventario" id="idInventario">
                 <option *ngFor="let inv of inventarios" [value]="inv.value">{{ inv.label }}</option>
-            </select>
+            </select> -->
             <div *ngIf="formInventario.get('IdInventario')?.invalid && formInventario.get('IdInventario')?.touched">
                 <small class="error">El campo Inventario es requerido.</small>
             </div>

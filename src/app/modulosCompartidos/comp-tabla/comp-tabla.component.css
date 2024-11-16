@@ -1,5 +1,8 @@
 .table-container {
 
+    max-height: 320px;
+    overflow-y: auto;
+
     display: block;
 
     overflow-x: auto;
@@ -98,3 +101,7 @@
     flex: 1;
 
 }
+
+.mat-paginator {
+    margin-top: 10px;
+  }

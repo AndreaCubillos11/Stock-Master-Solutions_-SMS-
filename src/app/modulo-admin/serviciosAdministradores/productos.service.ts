@@ -24,25 +24,21 @@ export class ProductosService {
   }
 
   modificarProducto(producto: Producto, token: any): Observable<boolean> {
-    console.log(producto);
-    console.log('Modificando producto con ID:', producto.productoId);
     const url = `${this.apiUrl}/producto/id/${producto.productoId}`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-
-    return this.http.put<void>(url, producto, { headers: headers, withCredentials: true }).pipe(
-      map(response => {
-        console.log('Respuesta de modificación:', response);
-        return response !== null; // Devuelve true si la respuesta no es nula
-      }),
-      catchError(error => {
-        console.error('Error en la modificación del producto:', error);
-        return throwError(() => new Error('Error en la modificación del producto')); // Lanza el error
+  
+    return this.http.put(this.apiUrl, producto, { headers, withCredentials: true }).pipe(
+      map(() => true), // Si el PUT es exitoso, retorna true
+      catchError((error) => {
+        console.error('Error en la modificación:', error);
+        return throwError(() => error.statusText); // Reenvía el error para ser manejado
       })
     );
   }
+  
 
   deleteProducto(codigoBarras: number, token: any): Observable<boolean> {
     const url = `${this.apiUrl}/codigoBarras/${codigoBarras}`;
@@ -61,6 +57,14 @@ export class ProductosService {
       })
     );
 
+  }
+
+  getProducto(token: string, id: number): Observable<Producto> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<Producto>(`${this.apiUrl}/producto/id/${id}`,{ headers: headers, withCredentials: true });
   }
 
   getAllProductos(token: any): Observable<Producto[]> {

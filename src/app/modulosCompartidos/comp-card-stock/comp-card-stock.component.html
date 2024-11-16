@@ -26,28 +26,21 @@
                 <li *ngFor="let tienda of tiendasMostradas" class="my-3">
                     <h3>{{ tienda.tienda }}</h3>
                     <h5>Dirección: {{ tienda.direccion }}</h5>
-                    <h5>Teléfono: {{ tienda.telefono }}</h5> 
+                    <h5>Teléfono: {{ tienda.telefono }}</h5>
                 </li>
             </ul>
+            <!-- Botón para cargar más tiendas -->
+            <div class="row">
+                <button class="col botonCard" (click)="paginaAnterior()" [disabled]="disableAnterior"
+                    [ngClass]="{'disabled-button': disableAnterior}">
+                    ← Anterior
+                </button>
+
+                <button class="col botonCard" (click)="siguientePagina()" [disabled]="disableSiguiente"
+                    [ngClass]="{'disabled-button': disableSiguiente}">
+                    Siguiente →
+                </button>
+            </div>
         </mat-card-content>
     </ng-template>
-
-    <!-- Botón para cargar más tiendas -->
-    <div class="row">
-        <button 
-          class="col botonCard" 
-          (click)="paginaAnterior()" 
-          [disabled]="disableAnterior"
-          [ngClass]="{'disabled-button': disableAnterior}">
-          ← Anterior
-        </button>
-
-        <button 
-          class="col botonCard" 
-          (click)="siguientePagina()" 
-          [disabled]="disableSiguiente"
-          [ngClass]="{'disabled-button': disableSiguiente}">
-          Siguiente →
-        </button>
-      </div>
 </mat-card>

@@ -11,12 +11,12 @@ export class InventariosService {
 
   constructor(private http: HttpClient) { }
 
-  agregarInventario(token: string,inventario: Inventario): Observable<boolean> {
+  agregarInventario(token: string,inventario: Inventario): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.post<boolean>(this.apiUrl, inventario, { headers: headers, withCredentials: true });
+    return this.http.post<any>(this.apiUrl, inventario, { headers: headers, withCredentials: true });
   }
 
   getInventario(token: string, idInventario: number): Observable<Inventario> {
@@ -60,7 +60,7 @@ export class InventariosService {
 
   consultarInventarioTienda(token: any, idTienda:any){
     return this.http.get<any>(
-      this.apiUrl+'/tienda/'+idTienda,
+      this.apiUrl+'/Tienda/'+idTienda,
       {
         headers: {
           'Content-Type': 'application/json',

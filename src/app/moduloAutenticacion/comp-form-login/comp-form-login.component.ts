@@ -76,9 +76,9 @@ export class CompFormLoginComponent {
           if (rol === 1) {
             this.router.navigate(['/gestionAdminG']);
           } else if (rol === 2) {
-            this.router.navigate(['/user']);
+            this.router.navigate(['/gestionAdminT']);
           } else {
-            this.router.navigate(['/gestionProductos']);
+            this.router.navigate(['/gestionEmpleado']);
           }
           this.formularioLogin.reset();
         },

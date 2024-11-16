@@ -5,7 +5,8 @@
         <div class="col-7">
             <!-- card muestra stock -->
             <ng-template [ngIf]="selectedOption === 'optionInventario'">
-                <comp-tabla [datos]="datosInventario"/>
+                <comp-card-stock/>
+                <!-- <comp-tabla [datos]="datosInventario"/> -->
             </ng-template>
 
             <ng-template [ngIf]="selectedOption === 'optionProducto'">

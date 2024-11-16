@@ -6,5 +6,5 @@ export interface Producto{
     precio: number;
     categoria: string;
     fechaIngreso: Date;
-    urlImagen: string;
+    urlImage: string;
 }
