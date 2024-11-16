@@ -21,7 +21,7 @@ export class CrearUsuarioComponent {
     rol: 0,
     correoElectronico: '',
     fechaCreacion: [new Date()],
-    idTiendas: 0
+    tiendaId: 0
   })
 
   isModalOpen: boolean = false;
@@ -45,7 +45,7 @@ export class CrearUsuarioComponent {
 
   nuevoUsuario() {
     
-    
+    console.log(this.usuarioForm.value)
     this.gestionarUsuariosService.nuevoUsuario(this.cookieService.get('Token'), this.usuarioForm.value).subscribe(
       () => {
         this.modalTitle = '';

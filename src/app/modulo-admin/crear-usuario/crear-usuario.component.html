@@ -36,7 +36,7 @@
           </div>
           <div class="col-md-6">
             <label for="tienda" class="form-label">Tienda</label>
-            <select class="form-select" id="tiendaId" aria-describedby="emailHelp" formControlName="idTiendas" required>
+            <select class="form-select" id="tiendaId" aria-describedby="emailHelp" formControlName="tiendaId" required>
               <option value="" selected disabled>Selecciona una tienda</option>
               <option *ngFor="let tienda of lisTienda" [value]="tienda.id">{{ tienda.tienda }}</option>
             </select>
@@ -53,8 +53,8 @@
             <label for="rol" class="form-label">Rol</label>
             <select class="form-select" id="rol" aria-describedby="emailHelp" formControlName="rol" required>
               <option value="" selected disabled>Selecciona un rol</option>
-              <option value="1">Administrador</option>
-              <option value="2">Empleado</option>
+              <option value="2">Administrador</option>
+              <option value="3">Empleado</option>
             </select>
           </div>
         </div>
