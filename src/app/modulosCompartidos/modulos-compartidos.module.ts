@@ -25,6 +25,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PaginaHistorialComponent } from './pagina-historial/pagina-historial.component';
 import { PaginaReportesComponent } from './pagina-reportes/pagina-reportes.component';
 import { FormsModule } from '@angular/forms';
+import { ProductoNombrePipe } from '../pipes/producto-nombre.pipe';
+import { CategoriaProductoPipe } from '../pipes/categoria-producto.pipe';
 
 
 
@@ -41,7 +43,9 @@ import { FormsModule } from '@angular/forms';
     HeaderPrincipalComponent,
     CompVentanaEmergenteComponent,
     PaginaHistorialComponent,
-    PaginaReportesComponent
+    PaginaReportesComponent,
+    ProductoNombrePipe,
+    CategoriaProductoPipe
   ],
   imports: [
     CommonModule,
@@ -58,7 +62,7 @@ import { FormsModule } from '@angular/forms';
     MatExpansionModule,
     RouterModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
   ],
   exports: [
     CompHeaderGestionComponent,
@@ -70,7 +74,9 @@ import { FormsModule } from '@angular/forms';
     CompTablaComponent,
     HeaderPrincipalComponent,
     CompVentanaEmergenteComponent,
-    PaginaHistorialComponent
+    PaginaHistorialComponent,
+    ProductoNombrePipe,
+    CategoriaProductoPipe
   ]
 })
 export class ModulosCompartidosModule { }

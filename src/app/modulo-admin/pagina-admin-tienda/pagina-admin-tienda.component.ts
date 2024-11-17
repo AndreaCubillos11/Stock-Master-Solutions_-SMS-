@@ -184,4 +184,8 @@ export class PaginaAdminTiendaComponent implements OnInit{
   closeModal() {
     this.isModalOpen = false;
   }
+
+  actualizarInventarios(inventarios: Inventario[]) {
+    this.datosInventario[0].datos = inventarios;
+  }
 }

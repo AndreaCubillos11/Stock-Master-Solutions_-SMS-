@@ -1,24 +1,23 @@
 <header-principal [datosHeader]="datosHeader"/>
 <section class="mx-5 mt-5">
     <div class="align-items-center">
+
       <mat-accordion class="example-headers-align" multi>
         <!-- Cambiar inventarios por la tabla de alertas -->
-        <mat-expansion-panel *ngFor="let group of groupedAlerts" [ngClass]="getAlertClass(group.alertas.length)">
+        <mat-expansion-panel *ngFor="let alerta of alertas" [ngClass]="getAlertClass(alerta.descripcion.toLocaleLowerCase())">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Inventario ID: {{ group.inventarioId }} <!-- Mostrar el ID del inventario -->
+              Inventario ID: {{ alerta.inventarioId }} <!-- Mostrar el ID del inventario -->
             </mat-panel-title>
             <mat-panel-description>
-              {{ group.alertas.length }} alertas
+               alerta del producto {{ alerta.productoId}}
             </mat-panel-description>
-            <span class="badge me-2">{{ group.alertas.length }}</span>
+            <span class="badge me-2">{{ alertas.length }}</span>
           </mat-expansion-panel-header>
           <!-- Mostrar las alertas acumuladas como etiquetas -->
-          <div *ngFor="let alerta of group.alertas">
             <a class="alert-tag" (click)="seleccionProducto(alerta.productoId)">
-              {{ alerta.descripcion }} {{ alerta.productoId }}
+              {{ alerta.descripcion }} <!-- {{ obtenerNombreProducto(alerta.productoId)}} -->
             </a>
-          </div>
         </mat-expansion-panel>
       </mat-accordion>
       

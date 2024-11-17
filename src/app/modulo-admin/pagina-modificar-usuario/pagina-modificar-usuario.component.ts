@@ -12,6 +12,9 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./pagina-modificar-usuario.component.css']
 })
 export class PaginaModificarUsuarioComponent {
+  datosHeader = [
+    { titulo: 'Modificar Usuario', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
+  ];
   usuarioForm: any = this.formBuilder.group({
     usuarioId: 0,
     nombreUsuario: '',

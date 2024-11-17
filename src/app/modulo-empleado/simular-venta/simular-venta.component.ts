@@ -15,6 +15,9 @@ import { UsuariosService } from 'src/app/modulo-admin/serviciosAdministradores/u
  
  
 export class SimularVentaComponent {
+  datosHeader = [
+    { titulo: 'Simular Venta', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
+  ];
   producto: any;
   codigoBarras: any;
   tienda: any;

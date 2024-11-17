@@ -9,9 +9,6 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { CargarImagenServiceService } from '../serviciosAdministradores/cargar-imagen-service.service';
 
 
-
-
-
 @Component({
   selector: 'app-crear-producto',
   templateUrl: './crear-producto.component.html',
@@ -20,6 +17,11 @@ import { CargarImagenServiceService } from '../serviciosAdministradores/cargar-i
 
 
 export class CrearProductoComponent {
+
+  datosHeader = [
+    { titulo: 'Crear Producto', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
+  ];
+
   productoForm: FormGroup;
 
   files: File[] = [];

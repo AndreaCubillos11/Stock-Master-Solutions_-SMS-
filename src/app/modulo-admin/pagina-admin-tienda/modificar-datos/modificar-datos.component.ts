@@ -13,6 +13,10 @@ import { UsuariosService } from 'src/app/modulo-admin/serviciosAdministradores/u
   styleUrls: ['./modificar-datos.component.css']
 })
 export class ModificarDatosComponent {
+
+  datosHeader = [
+    { titulo: 'Modificar Datos', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
+  ];
   inventarioForm: any = this.formBuilder.group({
     idInventario: 0,
     productoId: 0,

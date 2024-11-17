@@ -57,12 +57,12 @@ export class PaginaAdminComponent implements OnInit{
     }
   ];
 
-  datosTiendas = [
+ /*  datosTiendas = [
     {
       datos: [] as Tienda[],
       seleccionable: false
     }
-  ];
+  ]; */
 
   datosInventarios = [
     {
@@ -72,7 +72,6 @@ export class PaginaAdminComponent implements OnInit{
   ];
 
   constructor(private router: Router,
-    private inventarioService: InventariosService,
     private cookieService: CookieService,
     private tiendasService: TiendasService,
     private productosService: ProductosService
@@ -85,7 +84,7 @@ export class PaginaAdminComponent implements OnInit{
     }else{
       this.obtenerTienda()
     }
-    
+    //this.actualizarInventarios(this.datosInventarios[0].datos)
   }
 
   agregarProducto() {
@@ -178,7 +177,7 @@ export class PaginaAdminComponent implements OnInit{
       next: (data: Tienda[]) => {
         console.log(data);
         this.tiendas = data;
-        this.datosTiendas[0].datos = data;
+        //this.datosTiendas[0].datos = data;
         console.log()
       },
       error: (error) => {

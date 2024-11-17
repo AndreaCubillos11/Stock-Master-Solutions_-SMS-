@@ -17,7 +17,7 @@
       <!-- boton codigo de barras -->
        
       <div class="col ms-5">
-          <button type="button" class="mt-5 ms-5 btnTienda" >
+          <button type="button" class="mt-5 ms-5 btnTienda" (click)="simularVenta()">
             <b>Simular Venta</b> <img src="/Stock-Master-Solutions_-SMS-/assets/tienda.svg" alt="">
           </button>
       </div>
@@ -28,3 +28,4 @@
     </div>
   </div>
 </section>
+<comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" [content]="modalContent" (close)="closeModal()"/>

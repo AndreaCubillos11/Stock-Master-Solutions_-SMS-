@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-import { debounceTime } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { ProductosService } from 'src/app/modulo-admin/serviciosAdministradores/productos.service';
 import { ServicioDevolucionesService } from 'src/app/serviciosGenerales/servicio-devoluciones.service';
 import { Devolucion } from 'src/models/devolucion.model';
@@ -50,39 +50,49 @@ export class PaginaDevolucionesComponent implements OnInit {
     })
     this.formDevolucion.get('ProductoID')?.valueChanges.subscribe((idProducto: number) => {
       this.idProducto = idProducto;
-      this.traerProducto();
     });
   }
 
-  ngOnInit(): void {
-    this.formDevolucion.get('ProductoID')?.valueChanges.pipe(
-      debounceTime(500)  // Ajusta el tiempo de espera para limitar las peticiones
-    ).subscribe((idProducto: number) => {
-      if (idProducto) {
-        this.idProducto = idProducto;
-        this.traerProducto();
-      }
-    });
-  }
+  ngOnInit(): void {}
 
-  traerProducto(){
-    if (this.formDevolucion.get('ProductoID')?.valid) {
-      this.productosService.getProducto(this.cookies.get('Token'), this.idProducto).subscribe({
-        next: (data: Producto) => {
-          console.log(data);
-          this.productName = data.nombreProducto;  // Asegúrate de que esta propiedad esté definida en tu modelo Producto
-        },
-        error: (error) => {
-          console.error('Error al obtener el producto', error);
-          this.productName = ''; // Reset el nombre del producto si hay error
-        }
+  consultarProducto(): void {
+    const idProducto = this.formDevolucion.get('ProductoID')?.value;
+    if (idProducto) {
+      this.formDevolucion.get('ProductoID')?.disable(); // Deshabilita el input
+      this.traerProducto(idProducto).finally(() => {
+        setTimeout(() => {
+          this.formDevolucion.get('ProductoID')?.enable(); // Habilita el input después de 2 segundos
+        }, 2000);
       });
     }
+  }
+
+  traerProducto(idProducto: number): Promise<void> {
+    return new Promise((resolve) => {
+      this.productosService.getProducto(this.cookies.get('Token'), idProducto).subscribe({
+        next: (data: Producto | null) => {
+          if (data) {
+            console.log('Producto encontrado:', data);
+            this.productName = data.nombreProducto; // Guarda el nombre del producto
+          } else {
+            console.warn('Producto no encontrado');
+            this.productName = 'No encontrado'; // Manejo explícito si data es null
+          }
+          resolve();
+        },
+        error: (error) => {
+          console.error('Error al obtener el producto:', error);
+          this.productName = 'No encontrado'; // Manejo de errores en la petición
+          resolve();
+        }
+      });
+    });
   }
 
   agregarDevolucion() {
     console.log(this.formDevolucion.value);
     if (this.formDevolucion.valid) {
+      console.log('valido');
       const devolucion: Devolucion = { ...this.formDevolucion.value };
       this.devolucionService.agregarDevolucion(this.cookies.get('Token'), devolucion).subscribe((resultado: boolean) => {
         if (resultado) {

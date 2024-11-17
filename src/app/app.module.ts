@@ -35,7 +35,7 @@ import { ModificarDatosComponent } from './modulo-admin/pagina-admin-tienda/modi
     ModificarTiendaComponent,
     SimularVentaComponent,
     ModificarCantidadComponent,
-    ModificarDatosComponent
+    ModificarDatosComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +51,10 @@ import { ModificarDatosComponent } from './modulo-admin/pagina-admin-tienda/modi
     ToastrModule.forRoot(),
     NgxDropzoneModule,
     NgChartsModule
-],
+  ],
+  exports: [
+
+  ],
   providers: [CookieService],
   bootstrap: [AppComponent]
 })

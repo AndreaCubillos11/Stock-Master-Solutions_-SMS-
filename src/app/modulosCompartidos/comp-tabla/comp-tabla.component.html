@@ -1,11 +1,11 @@
-<div class="mat-elevation-z8 mt-5">
+<div class="mat-elevation-z8 mt-5" style="height: 320px;">
   <div *ngIf="!tieneDatos" class="spinner-container">
     <mat-spinner></mat-spinner>
   </div>
   <div *ngIf="tieneDatos">
-    <div class="table-container" [ngClass]="{'scrollable-table': nombresColumnas.length > 5}">
+    <div class="table-container" [ngClass]="{'scrollable-table': nombresColumnas.length > 5}" style="height: 320px;">
 
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width-table" matSort>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width-table" style="height: 320px;" matSort>
         <!-- Columna de selección (solo si seleccionable es true) -->
         <ng-container *ngIf="datos[0].seleccionable">
           <ng-container matColumnDef="select">
@@ -34,7 +34,7 @@
       </table>
       
     </div>
-    <mat-paginator [pageSizeOptions]="[3, 5, 7]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 7, 9]" showFirstLastButtons></mat-paginator>
   </div>
 </div>
 <div class="mt-5"><comp-barra-busqueda matInput (keyup)="filtroBusqueda($event)" placeholder="Camisa" #input /></div>

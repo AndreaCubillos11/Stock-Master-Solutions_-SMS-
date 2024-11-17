@@ -1,10 +1,10 @@
 export interface MovimientoInventario{
-    id: number;
+    IdMovimiento : number;
     inventarioId: number;
-    tipoMovimiento: string;
-    cantidad: number;
+    TipoMovimiento: string;
     fechaMovimiento: Date;
     usuarioId: number;
     tiendaId: number;
     productoId: number;
+    cantidad: number;
 }

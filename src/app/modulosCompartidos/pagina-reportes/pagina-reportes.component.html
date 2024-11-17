@@ -25,26 +25,26 @@
                 </mat-form-field>
             </ng-template>
 
-            <ng-template [ngIf]="reporteSeleccionado == '2'">
+            <ng-template [ngIf]="(reporteSeleccionado == '2'|| reporteSeleccionado =='1') && !idTienda">
                 <mat-form-field appearance="fill" class="medium-select">
                     <mat-label>Tiendas</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let tienda of tiendas" [value]="tienda.id" [(ngModel)]="tiendaSeleccionada">
+                    <mat-select [(ngModel)]="tiendaSeleccionada">
+                        <mat-option *ngFor="let tienda of tiendas" [value]="tienda.id">
                             {{tienda.tienda}}
                         </mat-option>
                     </mat-select>
                     <img matSuffix src="/Stock-Master-Solutions_-SMS-/assets/tienda.svg" alt="tienda">
                 </mat-form-field>
-                
+
             </ng-template>
 
-            <ng-template [ngIf]="tiendaSeleccionada">
+            <ng-template [ngIf]="tiendaSeleccionada && reporteSeleccionado == '2'">
                 <div class="form-check form-check-inline mx-5">
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioTienda"
                         [(ngModel)]="opcionSeleccionada" value=1>
                     <label class="form-check-label" for="radioTienda">Productos Mas Vendidos</label>
                 </div>
-    
+
                 <div class="form-check form-check-inline mx-5">
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioProducto"
                         [(ngModel)]="opcionSeleccionada" value=2>
@@ -63,23 +63,28 @@
 
         <div class="grid-item broccoli">
             <!-- <img src="/assets/StockMasterAdminLogo2.png" alt="" style="opacity: 50%;"> -->
-            <canvas #lineChartCanvas></canvas>
+            <div id="grafica">
+                <canvas #lineChartCanvas></canvas>
+            </div>
             <div class="row">
                 <div class="col">
                     <button class="boton" (click)="generarGrafica()">
                         Generar Gráfica
                     </button>
                 </div>
-                <div class="col">
+                <!-- <div class="col">
                     <button class="btn btn-primary">Gooool</button>
-                </div>
+                </div> -->
             </div>
 
 
         </div>
 
         <div class="grid-item tamago">
-            <p>Tamago</p>
+            <!-- <button mat-raised-button color="primary" (click)="generarPDF()">Generar PDF</button> -->
+        </div>
+        <div id="tabla-pdf">
+            <!-- <comp-tabla/> -->
         </div>
     </div>
 </section>

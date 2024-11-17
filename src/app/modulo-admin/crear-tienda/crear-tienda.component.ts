@@ -11,6 +11,10 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./crear-tienda.component.css']
 })
 export class CrearTiendaComponent {
+  datosHeader = [
+    { titulo: 'Crear Tienda', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
+  ];
+
   tiendaForm: any = this.formBuilder.group({
     idTienda:0,
     tienda:'',

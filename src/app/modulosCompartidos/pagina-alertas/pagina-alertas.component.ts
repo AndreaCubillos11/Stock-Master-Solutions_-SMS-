@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { ProductosService } from 'src/app/modulo-admin/serviciosAdministradores/productos.service';
 import { ServicioAlertasService } from 'src/app/serviciosGenerales/servicio-alertas.service';
 import { Alerta } from 'src/models/alerta.model';
+import { Producto } from 'src/models/producto.model';
 
 @Component({
   selector: 'app-pagina-alertas',
@@ -14,34 +16,16 @@ export class PaginaAlertasComponent implements OnInit {
     { titulo: 'Alertas Inventarios', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
   ];
 
-  alertas: Alerta[] = [
-    {
-      id: 1,
-      inventarioId: 101,
-      fechaAlerta: new Date('2024-11-01'),
-      descripcion: 'Stock bajo',
-      estado: 'Pendiente',
-      tiendaId: 1,
-      productoId: 1001
-  },
-  {
-      id: 2,
-      inventarioId: 101,
-      fechaAlerta: new Date('2024-11-05'),
-      descripcion: 'Producto dañado',
-      estado: 'Resuelto',
-      tiendaId: 2,
-      productoId: 1002
-  },
-  {
-      id: 3,
-      inventarioId: 101,
-      fechaAlerta: new Date('2024-11-10'),
-      descripcion: 'Revisión de caducidad',
-      estado: 'Pendiente',
-      tiendaId: 1,
-      productoId: 1003
-  }
+  productosCache: Producto[] = [];
+
+  alertas: Alerta[] = [];
+
+  palabrasClave = [ 
+    { palabra: 'producto agotado', clase: 'alertaAlta' }, 
+    { palabra: 'cantidad baja', clase: 'alertaMediaAlta' },
+    { palabra: 'stock limite', clase: 'alertaMedia' }, 
+    { palabra: 'stock medio', clase: 'alertaMediaBaja' },
+    { palabra: 'stock alto', clase: 'alertaBaja' }
   ];
 
   groupedAlerts: Array<{ inventarioId: number; alertas: Alerta[] }> = [];
@@ -50,18 +34,30 @@ export class PaginaAlertasComponent implements OnInit {
   modalTitle: string = '';
   modalContent: string = '';
   idSeleccionado!:number;
-  eventoPalabra: string = 'Ir a modificar stock'
+  eventoPalabra: string = 'Modificar stock'
+  token:string = this.cookieService.get('Token')
 
-  constructor(private alertasService: ServicioAlertasService, private cookieService: CookieService, private router: Router) { }
+  constructor(private alertasService: ServicioAlertasService, private cookieService: CookieService, private router: Router
+    ,private productosService: ProductosService) { 
+   
+  }
 
   ngOnInit(): void {
+    //this.productosCache = this.productosService.getProductosCache();
+    console.log(this.productosCache);
     this.getAlertas();
-    this.groupAlertsByInventory();
+    //console.log(this.alertas);
+  }
+
+  obtenerNombreProducto(productoId: number): string {
+    const producto = this.productosCache.find(p => p.productoId === productoId);
+    return producto ? producto.nombreProducto : 'Producto no encontrado';
   }
 
   // Método para agrupar alertas por inventarioId
   groupAlertsByInventory(): void {
-    const groupedAlerts: { inventarioId: number; alertas: Alerta[] }[] = [];
+    if (this.alertas) {
+      const groupedAlerts: { inventarioId: number; alertas: Alerta[] }[] = [];
     const alertMap = new Map<number, Alerta[]>();
 
     for (const alerta of this.alertas) {
@@ -76,26 +72,48 @@ export class PaginaAlertasComponent implements OnInit {
     });
 
     this.groupedAlerts = groupedAlerts; // Guardar el resultado en la propiedad
-  }
-
-  getAlertClass(alertas: number): string {
-    switch (true) {
-      case (alertas > 5):
-        return 'alertaAlta';
-      case (alertas > 4):
-        return 'alertaMediaAlta';
-      case (alertas > 3):
-        return 'alertaMedia';
-      case (alertas > 2):
-        return 'alertaMediaBaja';
-      default:
-        return 'alertaBaja';
     }
   }
 
+    getAlertClass(alerta: string): string {
+      //console.log(alerta);
+      const claveEncontrada = this.palabrasClave.find(p => alerta.includes(p.palabra.toLowerCase()));
+      return claveEncontrada ? claveEncontrada.clase : 'alertaBaja';
+    }
+
   getAlertas() {
-    this.alertasService.getAlertas(this.cookieService.get('Token')).subscribe((data: Alerta[]) => {
+    this.alertasService.getAlertas(this.token).subscribe((data: Alerta[]) => {
+      console.log(data);
       this.alertas = data;
+      this.alertas.push( {
+        idAlerta: 1,
+        inventarioId: 101,
+        fechaAlerta: new Date('2024-11-01'),
+        descripcion: 'Stock limite',
+        estado: 'Pendiente',
+        tiendaId: 1,
+        productoId: 1001
+    },
+    {
+        idAlerta: 2,
+        inventarioId: 101,
+        fechaAlerta: new Date('2024-11-05'),
+        descripcion: 'Stock medio',
+        estado: 'Resuelto',
+        tiendaId: 2,
+        productoId: 1002
+    },
+    {
+        idAlerta: 3,
+        inventarioId: 5,
+        fechaAlerta: new Date('2024-11-10'),
+        descripcion: 'stock alto',
+        estado: 'Pendiente',
+        tiendaId: 1,
+        productoId: 1003
+    })
+      console.log(this.alertas);
+      this.groupAlertsByInventory();
     });
   }
 

@@ -2,8 +2,13 @@
 <section class="container-fluid mt-5">
     <div class="row">
         <div class="col-7">
-            <!-- card muestra stock -->
-            <comp-tabla [datos]="datosTabla" />
+            <ng-template [ngIf]="!mostrandoDevoluciones">
+                <comp-tabla [datos]="datosMovimientos"/>
+            </ng-template>
+            <ng-template [ngIf]="mostrandoDevoluciones">
+                <comp-tabla [datos]="datosDevoluciones"/>
+            </ng-template>
+            <!-- <comp-tabla [datos]="datosTabla" /> -->
  
         </div>
  
@@ -33,3 +38,4 @@
         </div>
     </div>
 </section>
+<comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" [content]="modalContent" (close)="closeModal()"/>

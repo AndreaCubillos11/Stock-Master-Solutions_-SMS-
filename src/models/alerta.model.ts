@@ -1,9 +1,9 @@
 export interface Alerta{
-    id: number;
+    idAlerta: number;
     inventarioId: number;
+    productoId: number;
+    tiendaId: number;
     fechaAlerta: Date;
     descripcion: string;
     estado: string;
-    tiendaId: number;
-    productoId: number;
 }

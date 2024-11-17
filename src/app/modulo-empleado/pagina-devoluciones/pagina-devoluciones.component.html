@@ -5,12 +5,26 @@
         <div class="row mb-3">
             <div class="col">
                 <label for="productId" class="form-label">ID del Producto</label>
-                <input type="number" class="form-control" id="productId" placeholder="Ingrese el ID" 
-                formControlName="ProductoID">
-            </div>
-            <div class="col mt-4">
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  id="productId" 
+                  placeholder="Ingrese el ID" 
+                  formControlName="ProductoID"
+                  min="1"
+                >
+              </div>
+              <div class="col mt-4">
+                <button type="button"
+                  class="btn btn-primary" 
+                  [disabled]="formDevolucion.get('ProductoID')?.disabled" 
+                  (click)="consultarProducto()">
+                  Consultar Producto
+                </button>
+              </div>
+              <div class="col mt-4">
                 <h2>{{ productName }}</h2>
-            </div>
+              </div>
         </div>
 
         <!-- Segunda fila -->

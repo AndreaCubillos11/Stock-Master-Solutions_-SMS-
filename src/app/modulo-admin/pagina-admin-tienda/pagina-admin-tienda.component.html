@@ -1,110 +1,112 @@
 <comp-header-gestion />
 
 <section class="container-fluid mt-5">
-    <div class="row">
-        <div class="col-7">
-            <!-- card muestra stock -->
-            <ng-template [ngIf]="selectedOption === 'optionInventario'">
-                <comp-card-stock/>
-                <!-- <comp-tabla [datos]="datosInventario"/> -->
-            </ng-template>
+  <div class="row">
+    <div class="col-7">
+      <!-- card muestra stock -->
+      <ng-template [ngIf]="selectedOption === 'optionInventario'">
+        <ng-container *ngIf="mostrarInv; else CRUD">
+          <comp-tabla [datos]="datosInventario" />
+        </ng-container>
+        <ng-template #CRUD>
+          <comp-card-stock />
+        </ng-template>
+      </ng-template>
 
-            <ng-template [ngIf]="selectedOption === 'optionProducto'">
-                <comp-tabla [datos]="datosProducto"/>
-            </ng-template>
+      <ng-template [ngIf]="selectedOption === 'optionProducto'">
+        <comp-tabla [datos]="datosProducto" />
+      </ng-template>
 
-        </div>
-
-        <div class="col">
-            
-            <!-- radios de opcion -->
-            <div class="form-check form-check-inline mx-5">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioInventario"
-                    [(ngModel)]="selectedOption" value="optionInventario">
-                <label class="form-check-label" for="radioTienda">Inventarios</label>
-            </div>
-
-            <div class="form-check form-check-inline mx-5">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioProducto"
-                    [(ngModel)]="selectedOption" value="optionProducto">
-                <label class="form-check-label" for="radioProducto">Productos</label>
-            </div>
-
-            <!-- botones crud -->
-            <div class="mt-5">
-                <ng-template [ngIf]="selectedOption === 'optionInventario'">
-                    <ng-container *ngIf="mostrarInv; else CRUD">
-                        <comp-selectores/>
-                    </ng-container>
-                    
-                    <ng-template #CRUD>
-                        <comp-btn-crud [datosBotones]="datosBtnInventario"/>
-                    </ng-template>
-                </ng-template>
-
-                <ng-template [ngIf]="selectedOption === 'optionProducto'">
-                    <comp-btn-crud [datosBotones]="datosBtnProducto"/>
-                    <div style="padding-top: 49px;"></div>
-                </ng-template>
-
-            </div>
-
-            <!-- boton codigo de barras y mostrar -->
-            <div class="col ms-5">
-                <ng-template [ngIf]="selectedOption === 'optionInventario'">
-                    <button type="button" class="mt-5 ms-5 btnTienda" (click)="toggleCRUD()">
-                        <b> {{mostrarInv ? 'Gestionar Inventarios' : 'Ver inventarios'}} </b> <img src="/assets/tienda.svg"
-                            alt="">
-                    </button>
-                </ng-template>
-            </div>
-            <div class="col ms-4">
-                <comp-btn-codigo-barras />
-            </div>
-        </div>
     </div>
 
-   
-    <div *ngIf="isEliminarVisible" class="modal-overlay" id="eliminarTienda">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2>Digite el codigo de barras</h2>
-          </div>
-          <div class="modal-body">
-            <div class="search-container">
-              <input type="text" placeholder="codigoBarras" [(ngModel)]="codigoBarras" />
-              <button class="search-button" (click)="consultarProduct()">
-                <img src="/assets/buscar.svg" alt="Buscar" class="search-icon">
-                <i class="fas fa-search"></i>
-              </button>
-            </div>
-            <p *ngIf="inventario && producto">
-                El producto {{ producto.nombreProducto }} ubicado en {{ inventario.ubicacionTienda }}
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button class="delete-button" (click)="confirmacion()">Eliminar</button>
-            <button class="cancel-button" (click)="closeModalEliminarT()">Cancelar</button>
-          </div>
-        </div>
+    <div class="col">
+
+      <!-- radios de opcion -->
+      <div class="form-check form-check-inline mx-5">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioInventario"
+          [(ngModel)]="selectedOption" value="optionInventario">
+        <label class="form-check-label" for="radioTienda">Inventarios</label>
       </div>
-    
-      <div *ngIf="isConfirmarVisible" class="modal-overlay" id="confirmar">
-        <div class="modal-content">
-          <div class="modal-header">
-            <p></p>
-          </div>
-          <div class="modal-body">
-            <h2>¿Desea eliminar este inventario?</h2>
-          </div>
-          <div  class="modal-footer">
-            <button class="delete-button"  (click)="inventarioEliminar()">Aceptar</button>
-            <button class="cancel-button" (click)="closeModalConfirmar()">Cancelar</button>
-          </div>
-        </div>
+
+      <div class="form-check form-check-inline mx-5">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioProducto"
+          [(ngModel)]="selectedOption" value="optionProducto">
+        <label class="form-check-label" for="radioProducto">Productos</label>
       </div>
+
+      <!-- botones crud -->
+      <div class="mt-5">
+        <ng-template [ngIf]="selectedOption === 'optionInventario'">
+          <ng-container *ngIf="mostrarInv; else CRUD">
+            <comp-selectores (inventariosEnviados)="actualizarInventarios($event)"/>
+          </ng-container>
+
+          <ng-template #CRUD>
+            <comp-btn-crud [datosBotones]="datosBtnInventario" />
+          </ng-template>
+        </ng-template>
+
+        <ng-template [ngIf]="selectedOption === 'optionProducto'">
+          <comp-btn-crud [datosBotones]="datosBtnProducto" />
+          <div style="padding-top: 49px;"></div>
+        </ng-template>
+
+      </div>
+
+      <!-- boton codigo de barras y mostrar -->
+      <div class="col ms-5">
+        <ng-template [ngIf]="selectedOption === 'optionInventario'">
+          <button type="button" class="mt-5 ms-5 btnTienda" (click)="toggleCRUD()">
+            <b> {{mostrarInv ? 'Gestionar Inventarios' : 'Ver inventarios'}} </b> <img src="/assets/tienda.svg" alt="">
+          </button>
+        </ng-template>
+      </div>
+      <div class="col ms-4">
+        <comp-btn-codigo-barras />
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="isEliminarVisible" class="modal-overlay" id="eliminarTienda">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Digite el codigo de barras</h2>
+      </div>
+      <div class="modal-body">
+        <div class="search-container">
+          <input type="text" placeholder="codigoBarras" [(ngModel)]="codigoBarras" />
+          <button class="search-button" (click)="consultarProduct()">
+            <img src="/assets/buscar.svg" alt="Buscar" class="search-icon">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <p *ngIf="inventario && producto">
+          El producto {{ producto.nombreProducto }} ubicado en {{ inventario.ubicacionTienda }}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="delete-button" (click)="confirmacion()">Eliminar</button>
+        <button class="cancel-button" (click)="closeModalEliminarT()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isConfirmarVisible" class="modal-overlay" id="confirmar">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p></p>
+      </div>
+      <div class="modal-body">
+        <h2>¿Desea eliminar este inventario?</h2>
+      </div>
+      <div class="modal-footer">
+        <button class="delete-button" (click)="inventarioEliminar()">Aceptar</button>
+        <button class="cancel-button" (click)="closeModalConfirmar()">Cancelar</button>
+      </div>
+    </div>
+  </div>
 
 </section>
 <comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" [content]="modalContent"
-(close)="closeModal()"></comp-ventana-emergente>
-
+  (close)="closeModal()"></comp-ventana-emergente>

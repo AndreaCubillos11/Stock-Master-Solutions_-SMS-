@@ -11,6 +11,9 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./modificar-tienda.component.css']
 })
 export class ModificarTiendaComponent {
+  datosHeader = [
+    { titulo: 'Modificar Tienda', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
+  ];
   tiendaForm: any = this.formBuilder.group({
     id:(localStorage.getItem('IdTienda') ?? '0', 10),
     tienda:'',

@@ -13,6 +13,10 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./crear-usuario.component.css']
 })
 export class CrearUsuarioComponent {
+  datosHeader = [
+    { titulo: 'Crear Usuario', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
+  ];
+
   usuarioForm: any = this.formBuilder.group({
     usuarioId: 0,
     nombreUsuario: '',

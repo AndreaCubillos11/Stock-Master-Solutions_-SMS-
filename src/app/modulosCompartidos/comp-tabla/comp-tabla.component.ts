@@ -75,10 +75,6 @@ export class CompTablaComponent<T extends {}> implements OnInit, OnDestroy {
       this.dataSource.data = [];
       this.tieneDatos = false;
     }
- 
-    // Asignar paginador y ordenación
-    /* this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort; */
   }
 
   onRowSelection(row: T) {

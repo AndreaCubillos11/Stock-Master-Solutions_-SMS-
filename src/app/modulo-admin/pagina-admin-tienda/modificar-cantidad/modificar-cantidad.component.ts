@@ -14,6 +14,10 @@ import { UsuariosService } from 'src/app/modulo-admin/serviciosAdministradores/u
   styleUrls: ['./modificar-cantidad.component.css']
 })
 export class ModificarCantidadComponent {
+
+  datosHeader = [
+    { titulo: 'Modificar Cantidad', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
+  ];
  
   inventarioForm: any = this.formBuilder.group({
     idInventario: 0,
