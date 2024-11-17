@@ -75,7 +75,7 @@ export class ModificarCantidadComponent {
       productoId: this.producto.productoId,
       cantidadMinima: this.inventario.cantidadMinima,
       ubicacionTienda: this.inventario.ubicacionTienda,
-      tiendaId: this.usuario.idTiendas
+      tiendaId: this.usuario.tiendaId
     });
  
     if (this.tiendaSeleccionada) {
@@ -180,7 +180,7 @@ export class ModificarCantidadComponent {
         this.isModalOpen = true;
  
         setTimeout(() => {
-          this.router.navigateByUrl('/modificarCantidad');
+          this.router.navigateByUrl('/gestionAdminT');
         }, 2000);
       },
       (error) => {
@@ -194,8 +194,8 @@ export class ModificarCantidadComponent {
     this.UsuariosService.consultarUsuario(this.cookieService.get('Token'), localStorage.getItem('IdUsuario')).subscribe(
       data => {
         this.usuario = data;
-        if (this.usuario && this.usuario.idTiendas) {
-          this.inventarioForm.patchValue({ tiendaId: this.usuario.idTiendas });
+        if (this.usuario && this.usuario.tiendaId) {
+          this.inventarioForm.patchValue({ tiendaId: this.usuario.tiendaId });
         } else {
           console.warn("idTiendas no está definido en el usuario");
         }

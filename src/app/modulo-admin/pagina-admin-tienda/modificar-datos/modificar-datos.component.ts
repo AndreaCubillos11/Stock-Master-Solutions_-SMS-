@@ -56,10 +56,11 @@ export class ModificarDatosComponent {
     this.UsuariosService.consultarUsuario(this.cookieService.get('Token'), localStorage.getItem('IdUsuario')).subscribe(
       data => {
         this.usuario = data;
-        if (this.usuario && this.usuario.idTiendas) {
-          this.inventarioForm.patchValue({ tiendaId: this.usuario.idTiendas });
+        console.log(this.usuario)
+        if (this.usuario && this.usuario.tiendaId) {
+          this.inventarioForm.patchValue({ tiendaId: this.usuario.tiendaId });
         } else {
-          console.warn("idTiendas no está definido en el usuario");
+          console.warn("tiendaId no está definido en el usuario");
         }
       },
       error => {
@@ -85,7 +86,7 @@ export class ModificarDatosComponent {
     this.inventarioForm.patchValue({
       idInventario: this.inventario.idInventario,
       productoId: this.producto.productoId,
-      tiendaId: this.usuario.idTiendas,
+      tiendaId: this.usuario.tiendaId,
       cantidad: this.inventario.cantidad,
       cantidadBodega: this.inventario.cantidadBodega,
       cantidadMinima: this.cantidad,
@@ -127,7 +128,7 @@ export class ModificarDatosComponent {
     );
   }
   consultarTienda() {
-    this.tiendasService.consultarTienda(this.cookieService.get('Token'), this.usuario.idTiendas).subscribe(
+    this.tiendasService.consultarTienda(this.cookieService.get('Token'), this.usuario.tiendaId).subscribe(
       data => { this.tienda = data; }
     );
   }

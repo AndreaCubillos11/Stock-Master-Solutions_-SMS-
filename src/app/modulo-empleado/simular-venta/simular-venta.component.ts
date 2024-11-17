@@ -82,7 +82,7 @@ export class SimularVentaComponent {
     this.UsuariosService.consultarUsuario(this.cookieService.get('Token'), localStorage.getItem('IdUsuario')).subscribe(
       data => {
         this.usuario = data;
-        this.idTienda = this.usuario.idTiendas;
+        this.idTienda = this.usuario.tiendaId;
       }
     );
   }
