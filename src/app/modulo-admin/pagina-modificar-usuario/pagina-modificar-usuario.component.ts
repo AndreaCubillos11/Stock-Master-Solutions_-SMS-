@@ -71,7 +71,7 @@ export class PaginaModificarUsuarioComponent {
     );
   }
   consultarUsuario() {
-    this.UsuariosService.consultarUsuario(this.cookieService.get('Token'), localStorage.getItem('IdUsuario')).subscribe(
+    this.UsuariosService.consultarUsuario(this.cookieService.get('Token'), localStorage.getItem('setUsuario')).subscribe(
       data => {
         this.usuario = data
        

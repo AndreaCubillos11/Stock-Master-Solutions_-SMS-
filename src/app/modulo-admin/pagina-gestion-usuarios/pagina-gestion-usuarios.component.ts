@@ -77,7 +77,9 @@ export class PaginaGestionUsuariosComponent implements OnInit{
   consultarUsuario() {
     this.UsuariosService.consultarUsuario(this.cookieService.get('Token'), this.id).subscribe(
       data => {
+        console.log(data)
         this.usuario = data
+        localStorage.setItem('setUsuario', JSON.parse(JSON.stringify(data)).usuarioId);
       }
     )
   }
