@@ -30,6 +30,7 @@ export class PaginaDevolucionesComponent implements OnInit {
   idProducto!:number;
   idTiendaUsuario: number = parseInt(localStorage.getItem('IdTienda') ?? '0', 10);
   idUsuario: number = parseInt(localStorage.getItem('IdUsuario') ?? '0', 10);
+  botonDeshabilitado: boolean = true;
 
   datosHeader = [
     { titulo: 'Agregar Devolucion', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
@@ -42,29 +43,37 @@ export class PaginaDevolucionesComponent implements OnInit {
   ) {
     this.formDevolucion = this.form.group({
       /* DevolucionID: [, [Validators.required, Validators.min(1)]], */
-      ProductoID: [null, [Validators.required, Validators.min(1)]],
-      TiendaID: [this.idTiendaUsuario, [Validators.required, Validators.min(1)]],
-      UsuarioID: [this.idUsuario, [Validators.required, Validators.min(1)]],
+      productoID: [null, [Validators.required, Validators.min(1)]],
+      tiendaID: [this.idTiendaUsuario, [Validators.required, Validators.min(1)]],
+      usuarioID: [this.idUsuario, [Validators.required, Validators.min(1)]],
       razon: ['', [Validators.required, Validators.min(1)]],
-      fechaUltimaActualizacion: [new Date()],
+      fechaDevolucion: [new Date()],
     })
-    this.formDevolucion.get('ProductoID')?.valueChanges.subscribe((idProducto: number) => {
+    this.formDevolucion.get('productoID')?.valueChanges.subscribe((idProducto: number) => {
       this.idProducto = idProducto;
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.formDevolucion.get('productoID')?.valueChanges.subscribe((value: string | number) => {
+      if (!value || value.toString().trim() === '') {
+
+        this.productName = '';
+      }
+    });
+  }
 
   consultarProducto(): void {
-    const idProducto = this.formDevolucion.get('ProductoID')?.value;
+    const idProducto = this.formDevolucion.get('productoID')?.value;
     if (idProducto) {
-      this.formDevolucion.get('ProductoID')?.disable(); // Deshabilita el input
+      this.formDevolucion.get('productoID')?.disable(); // Deshabilita el input
       this.traerProducto(idProducto).finally(() => {
         setTimeout(() => {
-          this.formDevolucion.get('ProductoID')?.enable(); // Habilita el input después de 2 segundos
+          this.formDevolucion.get('productoID')?.enable(); // Habilita el input después de 2 segundos
         }, 2000);
       });
     }
+    //this.botonConsultarPresionado = true;
   }
 
   traerProducto(idProducto: number): Promise<void> {
@@ -73,20 +82,27 @@ export class PaginaDevolucionesComponent implements OnInit {
         next: (data: Producto | null) => {
           if (data) {
             console.log('Producto encontrado:', data);
-            this.productName = data.nombreProducto; // Guarda el nombre del producto
+            this.productName = data.nombreProducto;
+            this.botonDeshabilitado = false;
+           // this.botonConsultarPresionado = true;
           } else {
             console.warn('Producto no encontrado');
-            this.productName = 'No encontrado'; // Manejo explícito si data es null
+            this.productName = 'No encontrado';
+            this.botonDeshabilitado = true;
+            //this.botonConsultarPresionado = false;
           }
           resolve();
         },
         error: (error) => {
           console.error('Error al obtener el producto:', error);
-          this.productName = 'No encontrado'; // Manejo de errores en la petición
+          this.productName = 'No encontrado';
+          this.botonDeshabilitado = true;
+          //this.botonConsultarPresionado = false;
           resolve();
         }
       });
     });
+    
   }
 
   agregarDevolucion() {
@@ -97,7 +113,7 @@ export class PaginaDevolucionesComponent implements OnInit {
       this.devolucionService.agregarDevolucion(this.cookies.get('Token'), devolucion).subscribe((resultado: boolean) => {
         if (resultado) {
           console.log('Producto devuelto');
-          this.openModal('Producto devuelto', `Se realizó la correcta devolución del producto ${devolucion.ProductoID}`);
+          this.openModal('Producto devuelto', `Se realizó la correcta devolución del producto ${devolucion.productoID}`);
         } else {
           console.log('Error');
           this.openModal('Error', `Por favor intente de nuevo y no realice la devolución del dinero hasta que se confirme la devolución en el sistema.`);

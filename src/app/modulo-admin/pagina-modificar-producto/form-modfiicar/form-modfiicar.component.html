@@ -49,13 +49,13 @@
 
         <div class="grid-item tomato">
             <label for="precio">Precio</label>
-            <input id="precio" formControlName="precio" type="number">
+            <input id="precio" formControlName="precio" type="number" min="1">
             <div class="text-danger" *ngIf="hasError('precio', 'required')">Precio del producto requerido</div>
         </div>
 
         <div class="grid-item tofu">
             <label for="codigoBarras">Código de barras</label>
-            <input id="codigoBarras" formControlName="codigoBarras" type="number">
+            <input id="codigoBarras" formControlName="codigoBarras" type="number" min="1">
             <div class="text-danger" *ngIf="hasError('codigoBarras', 'required')">Codigo de barras del producto requerido</div>
         </div>
 

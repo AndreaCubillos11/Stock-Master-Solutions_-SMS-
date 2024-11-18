@@ -4,7 +4,7 @@
         <!-- Grid Salmon -->
         <div class="salmon">
             <label for="idInventario">Inventario:</label>
-            <input type="number" id="idInventario" formControlName="idInventario">
+            <input type="number" id="idInventario" formControlName="idInventario" min="1">
             <!-- <select formControlName="idInventario" id="idInventario">
                 <option *ngFor="let inv of inventarios" [value]="inv.value">{{ inv.label }}</option>
             </select> -->
@@ -17,7 +17,7 @@
         <div class="broccoli">
             <div class="row">
                 <label for="productoId">Producto ID:</label>
-                <input type="number" id="productoId" style="width: 30vh;" formControlName="productoId">
+                <input type="number" id="productoId" style="width: 30vh;" formControlName="productoId" min="1">
                 <button type="button" class="boton ms-4" style="width: 13vh;" [disabled]="formInventario.get('productoId')?.disabled"
                     (click)="consultarProducto()">
                     Buscar
@@ -45,7 +45,7 @@
         <div class="pork">
             <div class="row">
                 <label for="cantidad">Cantidad:</label>
-                <input type="number" id="cantidad" formControlName="cantidad">
+                <input type="number" id="cantidad" formControlName="cantidad" min="1">
                 <div class="col">
                     <span *ngIf="formInventario.get('cantidad')?.invalid && formInventario.get('cantidad')?.touched">
                         <small class="error">La Cantidad es requerida y debe ser mayor a 0.</small>
@@ -54,7 +54,7 @@
             </div>
             <div class="row">
                 <label for="cantidadMinima">Cantidad Mínima:</label>
-                <input type="number" id="cantidadMinima" formControlName="cantidadMinima">
+                <input type="number" id="cantidadMinima" formControlName="cantidadMinima" min="1">
                 <div class="col">
                     <span
                         *ngIf="formInventario.get('cantidadMinima')?.invalid && formInventario.get('cantidadMinima')?.touched">
@@ -64,7 +64,7 @@
             </div>
             <div class="row">
                 <label for="cantidadBodega">Cantidad en Bodega:</label>
-                <input type="number" id="cantidadBodega" formControlName="cantidadBodega">
+                <input type="number" id="cantidadBodega" formControlName="cantidadBodega" min="1">
                 <div class="col">
                     <span
                         *ngIf="formInventario.get('cantidadBodega')?.invalid && formInventario.get('cantidadBodega')?.touched">
