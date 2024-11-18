@@ -16,7 +16,7 @@ export class PaginaEliminarProductoComponent implements OnInit{
   modalContent: string = '';
 
   datosHeader = [
-    { titulo: 'Eliminar Producto', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver', accion: this.volver.bind(this) },
+    { titulo: 'Eliminar Producto', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver'},
   ];
 
   datosTabla = [
@@ -26,6 +26,8 @@ export class PaginaEliminarProductoComponent implements OnInit{
       selectionChange: new EventEmitter<Producto | null>()
     }
   ];
+
+  urlImagen!: string;
  
  /*  datos: Producto[] = [{
     id: 1,
@@ -82,12 +84,12 @@ export class PaginaEliminarProductoComponent implements OnInit{
     });
   }
  
-  volver() {
-    this.router.navigate(['/gestionAdminG']);
-  }
  
   onSelectionChange(fila: Producto | null) {
     this.filaSeleccionada = fila;
+    if (fila) {
+      this.urlImagen = fila.urlImage;
+    }
   }
  
   eliminar(){

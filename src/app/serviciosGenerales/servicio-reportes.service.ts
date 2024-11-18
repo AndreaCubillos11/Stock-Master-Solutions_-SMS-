@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, forkJoin, map, Observable, of, switchMap } from 'rxjs';
 import { MovimientoInventario } from 'src/models/movimientoInventario.model';
 import { Producto } from 'src/models/producto.model';
+import { ReporteDevolucion } from 'src/models/reporteDevoluciones.model';
 import { ReportePatron } from 'src/models/reportePatrones.model';
 import { ReporteProducto } from 'src/models/reporteProductos.model';
 
@@ -11,6 +12,8 @@ import { ReporteProducto } from 'src/models/reporteProductos.model';
 })
 export class ServicioReportesService {
   apiUrl = '/api/MovimientosInventarios'
+  productosUrl = '/api/Productos'
+  devolucionesUrl = '/api/Devoluciones'
 
   constructor(private http: HttpClient) {}
 
@@ -20,7 +23,7 @@ export class ServicioReportesService {
       'Authorization': `Bearer ${token}`
     });
   
-    return this.http.get<Producto>(`/api/Productos/producto/id/${idProducto}`, { headers: headers, withCredentials: true })
+    return this.http.get<Producto>(`${this.productosUrl}/producto/id/${idProducto}`, { headers: headers, withCredentials: true })
       .pipe(
         map(response => response.nombreProducto)
       );
@@ -92,12 +95,18 @@ export class ServicioReportesService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
+  
     return this.http.get<MovimientoInventario[]>(`${this.apiUrl}/Tienda/${idTienda}`, { headers: headers, withCredentials: true })
       .pipe(
         map(movimientos => {
           console.log('Movimientos recibidos:', movimientos);
-          return movimientos.map(movimiento => ({
-            id: movimiento.IdMovimiento,
+  
+          // Filtrar solo los movimientos con TipoMovimiento 'Venta'
+          const ventas = movimientos.filter(movimiento => movimiento.tipoMovimiento === 'Venta');
+  
+          // Mapear los movimientos filtrados a la estructura deseada
+          return ventas.map(movimiento => ({
+            id: movimiento.idMovimiento,
             cantidad: movimiento.cantidad,
             fechaMovimiento: movimiento.fechaMovimiento,
             productoId: movimiento.productoId,
@@ -105,6 +114,15 @@ export class ServicioReportesService {
           }));
         })
       );
+  }
+  
+
+  getReporteDevolucion(token: string, idTienda: number): Observable<ReporteDevolucion[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<ReporteDevolucion[]>(`${this.devolucionesUrl}/reporte/${idTienda}`, { headers: headers, withCredentials: true })
   }
 
 }

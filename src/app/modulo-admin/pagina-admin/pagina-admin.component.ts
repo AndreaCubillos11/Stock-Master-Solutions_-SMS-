@@ -15,7 +15,7 @@ import { Inventario } from 'src/models/inventario.model';
   templateUrl: './pagina-admin.component.html',
   styleUrls: ['./pagina-admin.component.css']
 })
-export class PaginaAdminComponent implements OnInit{
+export class PaginaAdminComponent implements OnInit {
 
   idUser: number = parseInt(localStorage.getItem('Rol') ?? '0', 10);
   idTienda = 0;
@@ -49,7 +49,7 @@ export class PaginaAdminComponent implements OnInit{
     { texto: 'Modificar datos de tienda', img: 'ModificarProducto.svg', nombreClase: 'modificar', accion: this.modificarTienda.bind(this) },
     { texto: 'Eliminar tienda', img: 'Eliminar.svg', nombreClase: 'eliminar', accion: this.eliminarTienda.bind(this) }
   ];
-  
+
   datosProductos = [
     {
       datos: [] as Producto[],
@@ -57,12 +57,12 @@ export class PaginaAdminComponent implements OnInit{
     }
   ];
 
- /*  datosTiendas = [
-    {
-      datos: [] as Tienda[],
-      seleccionable: false
-    }
-  ]; */
+  /*  datosTiendas = [
+     {
+       datos: [] as Tienda[],
+       seleccionable: false
+     }
+   ]; */
 
   datosInventarios = [
     {
@@ -80,8 +80,8 @@ export class PaginaAdminComponent implements OnInit{
   ngOnInit(): void {
     this.cargarProductos()
     if (this.idUser == 1) {
-     this.obtenerTiendas()
-    }else{
+      this.obtenerTiendas()
+    } else {
       this.obtenerTienda()
     }
     //this.actualizarInventarios(this.datosInventarios[0].datos)
@@ -104,7 +104,8 @@ export class PaginaAdminComponent implements OnInit{
 
   consultarTienda() {
     this.tiendasService.consultarTienda(this.cookieService.get('Token'), this.idTienda).subscribe(
-      data => { this.tienda = data 
+      data => {
+        this.tienda = data
         localStorage.setItem('IdTienda', JSON.parse(JSON.stringify(data)).id);
       }
     )
@@ -132,9 +133,7 @@ export class PaginaAdminComponent implements OnInit{
       }
     );
   }
-  closeModal() {
-    this.isModalOpen = false;
-  }
+
   closeModalEliminar() {
     this.isConsultarTiendaVisible = false;
   }
@@ -176,9 +175,11 @@ export class PaginaAdminComponent implements OnInit{
     this.tiendasService.getTienda(this.cookieService.get('Token')).subscribe({
       next: (data: Tienda[]) => {
         console.log(data);
-        this.tiendas = data;
-        //this.datosTiendas[0].datos = data;
-        console.log()
+        if (data && data.length > 0) {
+          this.tiendas = data;
+        } else {
+          this.openModal('Sin datos', `No existen Tiendas creadas, porfavor comuniquese con su administrador`)
+        }
       },
       error: (error) => {
         console.error('Error al obtener las tiendas', error);
@@ -189,9 +190,12 @@ export class PaginaAdminComponent implements OnInit{
   cargarProductos(): void {
     this.productosService.getAllProductos(this.cookieService.get('Token')).subscribe({
       next: (data: Producto[]) => {
-        //console.log(data);
-        this.datosProductos[0].datos = data;
-        console.log(this.datosProductos[0].datos)
+        if (data && data.length > 0) {
+          this.datosProductos[0].datos = data;
+          console.log(this.datosProductos[0].datos)
+        } else {
+          this.openModal('Sin datos', `No existen Productos, porfavor comuniquese con su administrador`)
+        }
       },
       error: (error) => {
         console.error('Error al obtener los productos', error);
@@ -216,5 +220,13 @@ export class PaginaAdminComponent implements OnInit{
     this.datosInventarios[0].datos = inventarios;
   }
 
+  openModal(title: string, content: string) {
+    this.modalTitle = title;
+    this.modalContent = content;
+    this.isModalOpen = true;
+  }
 
+  closeModal() {
+    this.isModalOpen = false;
+  }
 }

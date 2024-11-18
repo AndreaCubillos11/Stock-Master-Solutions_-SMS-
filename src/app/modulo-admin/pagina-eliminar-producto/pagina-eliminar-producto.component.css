@@ -1,4 +1,4 @@
-.btnEliminar{
+.btnEliminar {
     border: 2px solid black;
     text-align: center;
     background-color: #e51616;
@@ -9,7 +9,16 @@
 }
 
 button:disabled {
-    color: #666666; /* Color de texto gris oscuro */
-    cursor: not-allowed; /* Cursor no permitido */
-    opacity: 0.6; /* Opacidad reducida */
+    color: #666666;
+    /* Color de texto gris oscuro */
+    cursor: not-allowed;
+    /* Cursor no permitido */
+    opacity: 0.6;
+    /* Opacidad reducida */
+}
+
+.container img {
+    width: 64vh;
+    height: 60vh;
+    object-fit: contain;
 }

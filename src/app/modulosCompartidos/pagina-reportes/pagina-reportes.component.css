@@ -6,6 +6,12 @@
     justify-content: center;
 }
 
+button:disabled {
+    color: #666666; /* Color de texto gris oscuro */
+    cursor: not-allowed; /* Cursor no permitido */
+    opacity: 0.6; /* Opacidad reducida */
+}
+
 .grid {
     display: grid;
     height: 70vh;

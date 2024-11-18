@@ -38,10 +38,12 @@ export class CompHeaderGestionComponent implements OnInit{
  
   logout() {
     this.openModal(this.modalTitle, this.modalContent)
-    this.cookie.delete('Token', '/');
+    const domain = window.location.hostname;
+    this.cookie.delete('Token', '/Stock-Master-Solutions_-SMS-',domain);
     localStorage.removeItem('Rol');
+    localStorage.removeItem('IdTienda');
+    localStorage.removeItem('IdUsuario');
     this.router.navigate(['']);
-   
   }
  
 }

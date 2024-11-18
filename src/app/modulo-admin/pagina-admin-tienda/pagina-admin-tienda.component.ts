@@ -115,9 +115,12 @@ export class PaginaAdminTiendaComponent implements OnInit{
   cargarProductos(): void {
     this.productos.getAllProductos(this.cookieService.get('Token')).subscribe({
       next: (data: Producto[]) => {
-        console.log(data);
-        this.datosProducto[0].datos = data;
-        console.log(this.datosProducto[0].datos)
+        if (data && data.length > 0) {
+          this.datosProducto[0].datos = data;
+          console.log(this.datosProducto[0].datos)
+        } else {
+          this.openModal('Sin datos', `No existen Productos, porfavor comuniquese con su administrador`)
+        }
       },
       error: (error) => {
         console.error('Error al obtener los productos', error);
@@ -180,6 +183,12 @@ export class PaginaAdminTiendaComponent implements OnInit{
           this.isModalOpen = true;
         },
       }); 
+  }
+
+  openModal(title: string, content: string) {
+    this.modalTitle = title;
+    this.modalContent = content;
+    this.isModalOpen = true;
   }
   closeModal() {
     this.isModalOpen = false;

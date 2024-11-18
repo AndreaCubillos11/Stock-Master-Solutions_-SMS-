@@ -16,8 +16,6 @@ export class PaginaAlertasComponent implements OnInit {
     { titulo: 'Alertas Inventarios', tieneBoton: true, imagen: 'volver.svg', nombreImagen: 'volver', textoBoton: 'Volver' },
   ];
 
-  productosCache: Producto[] = [];
-
   alertas: Alerta[] = [];
 
   palabrasClave = [ 
@@ -28,7 +26,7 @@ export class PaginaAlertasComponent implements OnInit {
     { palabra: 'stock alto', clase: 'alertaBaja' }
   ];
 
-  groupedAlerts: Array<{ inventarioId: number; alertas: Alerta[] }> = [];
+  /* groupedAlerts: Array<{ inventarioId: number; alertas: Alerta[] }> = []; */
 
   isModalOpen: boolean = false;
   modalTitle: string = '';
@@ -43,19 +41,14 @@ export class PaginaAlertasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.productosCache = this.productosService.getProductosCache();
-    console.log(this.productosCache);
     this.getAlertas();
     //console.log(this.alertas);
   }
 
-  obtenerNombreProducto(productoId: number): string {
-    const producto = this.productosCache.find(p => p.productoId === productoId);
-    return producto ? producto.nombreProducto : 'Producto no encontrado';
-  }
+
 
   // Método para agrupar alertas por inventarioId
-  groupAlertsByInventory(): void {
+ /*  groupAlertsByInventory(): void {
     if (this.alertas) {
       const groupedAlerts: { inventarioId: number; alertas: Alerta[] }[] = [];
     const alertMap = new Map<number, Alerta[]>();
@@ -73,7 +66,7 @@ export class PaginaAlertasComponent implements OnInit {
 
     this.groupedAlerts = groupedAlerts; // Guardar el resultado en la propiedad
     }
-  }
+  } */
 
     getAlertClass(alerta: string): string {
       //console.log(alerta);
@@ -113,7 +106,7 @@ export class PaginaAlertasComponent implements OnInit {
         productoId: 1003
     })
       console.log(this.alertas);
-      this.groupAlertsByInventory();
+      //this.groupAlertsByInventory();
     });
   }
 

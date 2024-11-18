@@ -137,13 +137,6 @@ export class PaginaHistorialComponent implements OnInit, OnDestroy {
     this.mostrandoDevoluciones = !this.mostrandoDevoluciones;
     this.datos = this.mostrandoDevoluciones ? this.devoluciones : this.historial;
     this.datosHeader[0].titulo = this.mostrandoDevoluciones ? 'Historial devoluciones' : 'Historial productos';
-
-    if (this.mostrandoDevoluciones) {
-      //this.datosMovimientos[0].datos = []
-      //this.cargarDevoluciones();
-    } else {
-      //this.cargarAllMovimientos();
-    }
   }
 
   openModal(title: string, content: string) {

@@ -3,6 +3,7 @@
 <section class="container mt-3">
     <div class="grid">
         <div class="grid-item salmon">
+
             <mat-form-field appearance="fill">
                 <mat-label>Tipo de reporte</mat-label>
                 <mat-select (selectionChange)="seleccionarReporte($event.value)">
@@ -12,6 +13,30 @@
                 </mat-select>
                 <img matSuffix src="/Stock-Master-Solutions_-SMS-/assets/tienda.svg" alt="tienda">
             </mat-form-field>
+
+            <ng-template [ngIf]="(reporteSeleccionado == '2'|| reporteSeleccionado =='1') && !idTienda">
+                <mat-form-field appearance="fill" class="medium-select">
+                    <mat-label>Tiendas</mat-label>
+                    <mat-select [(ngModel)]="tiendaSeleccionada">
+                        <mat-option *ngFor="let tienda of tiendasConInventario" [value]="tienda.id">
+                            {{tienda.tienda}}
+                        </mat-option>
+                    </mat-select>
+                    <img matSuffix src="/Stock-Master-Solutions_-SMS-/assets/tienda.svg" alt="tienda">
+                </mat-form-field>
+            </ng-template>
+
+            <ng-template [ngIf]="reporteSeleccionado == '3' && !idTienda">
+                <mat-form-field appearance="fill" class="medium-select">
+                    <mat-label>Tiendas</mat-label>
+                    <mat-select [(ngModel)]="tiendaSeleccionada">
+                        <mat-option *ngFor="let tienda of tiendasConDevoluciones" [value]="tienda.id">
+                            {{tienda.tienda}}
+                        </mat-option>
+                    </mat-select>
+                    <img matSuffix src="/Stock-Master-Solutions_-SMS-/assets/tienda.svg" alt="tienda">
+                </mat-form-field>
+            </ng-template>
 
             <ng-template [ngIf]="reporteSeleccionado == '1'">
                 <mat-form-field appearance="fill">
@@ -25,29 +50,16 @@
                 </mat-form-field>
             </ng-template>
 
-            <ng-template [ngIf]="(reporteSeleccionado == '2'|| reporteSeleccionado =='1') && !idTienda">
-                <mat-form-field appearance="fill" class="medium-select">
-                    <mat-label>Tiendas</mat-label>
-                    <mat-select [(ngModel)]="tiendaSeleccionada">
-                        <mat-option *ngFor="let tienda of tiendas" [value]="tienda.id">
-                            {{tienda.tienda}}
-                        </mat-option>
-                    </mat-select>
-                    <img matSuffix src="/Stock-Master-Solutions_-SMS-/assets/tienda.svg" alt="tienda">
-                </mat-form-field>
-
-            </ng-template>
-
             <ng-template [ngIf]="tiendaSeleccionada && reporteSeleccionado == '2'">
                 <div class="form-check form-check-inline mx-5">
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioTienda"
-                        [(ngModel)]="opcionSeleccionada" value=1>
+                        [(ngModel)]="opcionSeleccionada" value=true>
                     <label class="form-check-label" for="radioTienda">Productos Mas Vendidos</label>
                 </div>
 
                 <div class="form-check form-check-inline mx-5">
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioProducto"
-                        [(ngModel)]="opcionSeleccionada" value=2>
+                        [(ngModel)]="opcionSeleccionada" value=false>
                     <label class="form-check-label" for="radioProducto">Productos Menos Vendidos</label>
                 </div>
             </ng-template>
@@ -59,32 +71,40 @@
                 </mat-form-field>
             </ng-template>
 
-        </div>
-
-        <div class="grid-item broccoli">
-            <!-- <img src="/assets/StockMasterAdminLogo2.png" alt="" style="opacity: 50%;"> -->
-            <div id="grafica">
-                <canvas #lineChartCanvas></canvas>
-            </div>
-            <div class="row">
+            <div class="row mt-2" *ngIf="(reporteSeleccionado == '3' && tiendaSeleccionada) || idProducto || opcionSeleccionada">
                 <div class="col">
-                    <button class="boton" (click)="generarGrafica()">
+                    <button class="boton" (click)="generarGrafica()" [disabled]="botonDeshabilitado">
                         Generar Gráfica
                     </button>
                 </div>
-                <!-- <div class="col">
-                    <button class="btn btn-primary">Gooool</button>
-                </div> -->
             </div>
-
 
         </div>
 
+        <div class="grid-item broccoli">
+            <img *ngIf="!graficoCreado; else grafica" src="/Stock-Master-Solutions_-SMS-/assets/StockMasterAdminLogo2.png" alt="" style="opacity: 50%; height: 56vh;">
+            <ng-template #grafica>
+                <div><canvas #lineChartCanvas></canvas></div>
+            </ng-template>
+        </div>
+
         <div class="grid-item tamago">
-            <!-- <button mat-raised-button color="primary" (click)="generarPDF()">Generar PDF</button> -->
+            <mat-card class="formulario" *ngIf="reporteSeleccionado">
+                <mat-card-content *ngIf="reporteSeleccionado == '1'">
+                    En el reporte 'Patrones de ventas' podras generar una grafica que vizualiza las ventas realizadas de un producto en especifico, ya sea durante todo el Año o en un Mes especifico.
+                </mat-card-content>
+                <mat-card-content *ngIf="reporteSeleccionado == '2'">
+                    En el reporte 'Ventas de productos' podras generar una grafica que vizualiza los 5 productos con MAYOR o MENOR numero de ventas.
+                </mat-card-content>
+                <mat-card-content *ngIf="reporteSeleccionado == '3'">
+                    En el reporte 'Registro de devoluciones' podras generar una grafica que vizualiza los productos con mayor numero de devoluciones.
+                </mat-card-content>
+            </mat-card>
+            <button *ngIf="graficoCreado" class="boton mt-3" (click)="generarPDF()" [disabled]="botonDeshabilitado">Generar PDF</button>
         </div>
         <div id="tabla-pdf">
             <!-- <comp-tabla/> -->
         </div>
     </div>
 </section>
+<comp-ventana-emergente [isOpen]="isModalOpen" [title]="modalTitle" [content]="modalContent" (close)="closeModal()"/>

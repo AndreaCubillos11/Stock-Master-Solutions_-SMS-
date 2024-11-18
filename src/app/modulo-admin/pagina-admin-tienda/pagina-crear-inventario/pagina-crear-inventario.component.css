@@ -14,8 +14,8 @@
 
 .grid {
     display: grid;
-    height: 100%;
-    width: 100%;
+    height: 80vh;
+    width: 163vh;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 16px;
@@ -29,7 +29,7 @@
 .salmon {
     grid-column: span 2;
     grid-row: span 1;
-    background-color: rgba(255, 182, 193, 0.5);
+    background-color: #9989c4;
     padding: 16px;
     border-radius: 8px;
 }
@@ -37,7 +37,7 @@
 .broccoli {
     grid-column: span 2;
     grid-row: span 1;
-    background-color: rgba(173, 255, 47, 0.5);
+    background-color: #9989c4;
     padding: 16px;
     border-radius: 8px;
 }
@@ -45,7 +45,7 @@
 .tamago {
     grid-column: span 2;
     grid-row: span 3;
-    background-color: rgba(255, 255, 224, 0.5);
+    /* background-color: #9989c4; */
     padding: 16px;
     border-radius: 8px;
 }
@@ -53,28 +53,49 @@
 .pork {
     grid-column: span 2;
     grid-row: span 2;
-    background-color: rgba(210, 180, 140, 0.5);
+    background-color: #9989c4;
     padding: 16px;
     border-radius: 8px;
+}
+
+.pork input[type="number"] {
+    width: 13vh; /* Ancho del input */
+    height: 5vh; /* Altura del input (igual al ancho para que sea cuadrado) */
+    border-radius: 0; /* Quitar bordes redondeados si es necesario */
+    box-sizing: border-box; /* Incluye borde y padding en el tamaño total */
+    text-align: center; /* Centrar el texto dentro del input */
+    font-size: 16px; /* Ajustar el tamaño del texto según sea necesario */
 }
 
 .edamame {
     grid-column: span 2;
     grid-row: span 1;
-    background-color: rgba(144, 238, 144, 0.5);
+    background-color: #9989c4;
     padding: 16px;
     border-radius: 8px;
 }
 
 .tomato {
     grid-row: span 1;
-    background-color: rgba(255, 160, 122, 0.5);
+    /* background-color: #9989c4; */
     padding: 16px;
     border-radius: 8px;
     display: flex;
     align-items: center;
     grid-column: span 4;
     justify-content: center;
+}
+
+.container img {
+    width: 64vh;
+    height: 38vh;
+    object-fit: contain;
+}
+
+button:disabled {
+    color: #666666; /* Color de texto gris oscuro */
+    cursor: not-allowed; /* Cursor no permitido */
+    opacity: 0.6; /* Opacidad reducida */
 }
 
 .error {

@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Inventario } from 'src/models/inventario.model';
 import { InventariosService } from '../../serviciosAdministradores/inventarios.service';
 import { CookieService } from 'ngx-cookie-service';
+import { ProductosService } from '../../serviciosAdministradores/productos.service';
+import { Producto } from 'src/models/producto.model';
 
 @Component({
   selector: 'app-pagina-crear-inventario',
@@ -15,6 +17,7 @@ export class PaginaCrearInventarioComponent {
   modalTitle: string = '';
   modalContent: string = '';
   imagenSrc: string | ArrayBuffer | null = null;
+  urlImagen!: string;
   formInventario: FormGroup;
 
   datosHeader = [
@@ -30,7 +33,9 @@ export class PaginaCrearInventarioComponent {
 
   idTiendaUsuario: number = parseInt(localStorage.getItem('IdTienda') ?? '0', 10);
 
-  constructor(private form: FormBuilder, private inventariosService: InventariosService, private cookies: CookieService) {
+  constructor(private form: FormBuilder, private inventariosService: InventariosService, private cookies: CookieService,
+    private productosService: ProductosService
+  ) {
     this.formInventario = this.form.group({
       idInventario: [null, [Validators.required, Validators.min(1)]],
       productoId: [null, [Validators.required, Validators.min(1)]],
@@ -47,28 +52,36 @@ export class PaginaCrearInventarioComponent {
     }) */;
   }
 
-  cargarImagen(event: Event) {
-    /*Se debe cambiar para cargar la imagen del producto encontrado
-    Traeremos el producto (se puede traer solo la url) que se pone en el label del idProducto
-    y con el servicio de imagenes pasarle esa url y guardar y mostrar la imagen econtrada*/
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-
-      const type = file.type;
-      const reader = new FileReader();
-
-      if (type !== 'image/png' && type !== 'image/jpeg' && type !== 'image/jpg') {
-        alert('Formato de imagen no soportado. Solo se permiten .png, .jpg y .jpeg.');
-        this.imagenSrc = null;
-        return;
-      } else {
-        reader.onloadend = () => {
-          this.imagenSrc = reader.result;
-        }
-        reader.readAsDataURL(file)
-      }
+  consultarProducto(): void {
+    const idProducto = this.formInventario.get('productoId')?.value;
+    if (idProducto) {
+      this.formInventario.get('productoId')?.disable(); // Deshabilita el input
+      this.traerProducto(idProducto).finally(() => {
+        setTimeout(() => {
+          this.formInventario.get('productoId')?.enable(); // Habilita el input después de 2 segundos
+        }, 2000);
+      });
     }
+  }
+
+  traerProducto(idProducto: number): Promise<void> {
+    return new Promise((resolve) => {
+      this.productosService.getProducto(this.cookies.get('Token'), idProducto).subscribe({
+        next: (data: Producto | null) => {
+          if (data) {
+            console.log('Producto encontrado:', data);
+            this.urlImagen = data.urlImage;
+          } else {
+            console.warn('Producto no encontrado');
+          }
+          resolve();
+        },
+        error: (error) => {
+          console.error('Error al obtener el producto:', error);
+          resolve();
+        }
+      });
+    });
   }
 
   agregar() {

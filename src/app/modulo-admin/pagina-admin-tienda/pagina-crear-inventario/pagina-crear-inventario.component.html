@@ -8,69 +8,90 @@
             <!-- <select formControlName="idInventario" id="idInventario">
                 <option *ngFor="let inv of inventarios" [value]="inv.value">{{ inv.label }}</option>
             </select> -->
-            <div *ngIf="formInventario.get('IdInventario')?.invalid && formInventario.get('IdInventario')?.touched">
-                <small class="error">El campo Inventario es requerido.</small>
-            </div>
+            <span *ngIf="formInventario.get('IdInventario')?.invalid && formInventario.get('IdInventario')?.touched">
+                <small class="error">El IdInventario es requerido.</small>
+            </span>
         </div>
 
         <!-- Grid Broccoli -->
         <div class="broccoli">
-            <label for="productoId">Producto ID:</label>
-            <input type="number" id="productoId" formControlName="productoId">
-            <div *ngIf="formInventario.get('productoId')?.invalid && formInventario.get('productoId')?.touched">
-                <small class="error">El campo Producto ID es requerido y debe ser mayor a 0.</small>
+            <div class="row">
+                <label for="productoId">Producto ID:</label>
+                <input type="number" id="productoId" style="width: 30vh;" formControlName="productoId">
+                <button type="button" class="boton ms-4" style="width: 13vh;" [disabled]="formInventario.get('productoId')?.disabled"
+                    (click)="consultarProducto()">
+                    Buscar
+                </button>
+            </div>
+            <div class="row">
+                <span *ngIf="formInventario.get('productoId')?.invalid && formInventario.get('productoId')?.touched">
+                    <small class="error">El Producto ID es requerido y debe ser mayor a 0.</small>
+                </span>
             </div>
         </div>
 
         <!-- Grid Tamago (Imagen) -->
         <div class="tamago">
-            <mat-card>
+            <mat-card style="height: 42vh; width: 72vh;">
                 <mat-card-content>
                     <figure class="container">
-                        <img *ngIf="imagenSrc" [src]="imagenSrc" alt="Imagen seleccionada">
+                        <img [src]="urlImagen" alt="Imagen seleccionada">
                     </figure>
-                    <input type="file" class="form-control info" id="file" (change)="cargarImagen($event)"
-                        accept=".png, .jpg, .jpeg" />
                 </mat-card-content>
             </mat-card>
         </div>
 
         <!-- Grid Pork (Cantidad y Cantidad Mínima) -->
         <div class="pork">
-            <label for="cantidad">Cantidad:</label>
-            <input type="number" id="cantidad" formControlName="cantidad">
-            <div *ngIf="formInventario.get('cantidad')?.invalid && formInventario.get('cantidad')?.touched">
-                <small class="error">El campo Cantidad es requerido y debe ser mayor a 0.</small>
+            <div class="row">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" formControlName="cantidad">
+                <div class="col">
+                    <span *ngIf="formInventario.get('cantidad')?.invalid && formInventario.get('cantidad')?.touched">
+                        <small class="error">La Cantidad es requerida y debe ser mayor a 0.</small>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <label for="cantidadMinima">Cantidad Mínima:</label>
+                <input type="number" id="cantidadMinima" formControlName="cantidadMinima">
+                <div class="col">
+                    <span
+                        *ngIf="formInventario.get('cantidadMinima')?.invalid && formInventario.get('cantidadMinima')?.touched">
+                        <small class="error">La Cantidad Mínima es requerida y debe ser mayor a 0.</small>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <label for="cantidadBodega">Cantidad en Bodega:</label>
+                <input type="number" id="cantidadBodega" formControlName="cantidadBodega">
+                <div class="col">
+                    <span
+                        *ngIf="formInventario.get('cantidadBodega')?.invalid && formInventario.get('cantidadBodega')?.touched">
+                        <small class="error">La Cantidad en Bodega es requerida y debe ser mayor a 0.</small>
+                    </span>
+                </div>
             </div>
 
-            <label for="cantidadMinima">Cantidad Mínima:</label>
-            <input type="number" id="cantidadMinima" formControlName="cantidadMinima">
-            <div
-                *ngIf="formInventario.get('cantidadMinima')?.invalid && formInventario.get('cantidadMinima')?.touched">
-                <small class="error">El campo Cantidad Mínima es requerido y debe ser mayor a 0.</small>
-            </div>
-
-            <label for="cantidadBodega">Cantidad en Bodega:</label>
-            <input type="number" id="cantidadBodega" formControlName="cantidadBodega">
-            <div
-                *ngIf="formInventario.get('cantidadBodega')?.invalid && formInventario.get('cantidadBodega')?.touched">
-                <small class="error">El campo Cantidad en Bodega es requerido y debe ser mayor a 0.</small>
-            </div>
         </div>
 
         <!-- Grid Edamame -->
         <div class="edamame">
-            <label for="ubicacionTienda">Ubicación en Tienda:</label>
-            <input type="text" id="ubicacionTienda" formControlName="ubicacionTienda">
-            <div
-                *ngIf="formInventario.get('ubicacionTienda')?.invalid && formInventario.get('ubicacionTienda')?.touched">
-                <small class="error">El campo Ubicación en Tienda es requerido.</small>
+            <div class="row">
+                <label for="ubicacionTienda">Ubicación en Tienda:</label>
+                <input type="text" id="ubicacionTienda" formControlName="ubicacionTienda">
+            </div>
+            <div class="row">
+                <span
+                    *ngIf="formInventario.get('ubicacionTienda')?.invalid && formInventario.get('ubicacionTienda')?.touched">
+                    <small class="error">La Ubicación en Tienda es requerida.</small>
+                </span>
             </div>
         </div>
 
         <!-- Grid Tomato (Botón) -->
         <div class="tomato" style="text-align: center;">
-            <button type="submit" [disabled]="formInventario.invalid">Guardar</button>
+            <button class="boton" type="submit" [disabled]="formInventario.invalid">Guardar</button>
         </div>
     </div>
 </form>

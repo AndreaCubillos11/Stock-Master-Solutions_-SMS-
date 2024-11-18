@@ -1,5 +1,5 @@
 export interface ReporteDevolucion{
-    productoId: number;
-    razon: string;
+    productoID: number;
     fechaDevolucion: Date;
+    razon: string;
 }

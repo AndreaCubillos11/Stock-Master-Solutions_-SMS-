@@ -7,20 +7,20 @@
           <div class="container">
             <comp-tabla [datos]="datosTabla"/>
           </div>
-          <comp-btn-codigo-barras/>
+          <!-- <comp-btn-codigo-barras/> -->
         </div>
   
         <div class="col">
           <!-- imagen producto -->
           <div class="container-fluid">
-           <!--  <mat-card>
-                <mat-card-content style="height: 500px; width: 400px;">
-
-                </mat-card-content>
-            </mat-card> -->
+            <mat-card style="height: 65vh; width: 72vh;">
+              <mat-card-content>
+                <figure class="container">
+                  <img [src]="urlImagen" alt="Imagen seleccionada">
+                </figure>
+              </mat-card-content>
+            </mat-card>
           </div>
-  
-          <div style="padding-top: 405px;"></div>
   
           <!-- boton modificar -->
           <div class="ms-5">
