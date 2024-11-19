@@ -9,7 +9,7 @@ import { Usuario } from "src/models/usuarios.model";
 @Injectable()
 
 export class InicioCierreSesionService {
-  private urlApi ='/api/Usuarios';
+  private urlApi ='https://dionegestionapi.azurewebsites.net/api/Usuarios';
 
   constructor(private router: Router, private http: HttpClient, private cookie: CookieService) {}
 
