@@ -16,7 +16,7 @@ export class InventariosService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.post<any>(this.apiUrl, inventario, { headers: headers, withCredentials: true });
+    return this.http.post<any>(this.apiUrl, inventario, { headers: headers, withCredentials: false });
   }
 
   getInventario(token: string, idInventario: number): Observable<Inventario> {
@@ -24,7 +24,7 @@ export class InventariosService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<Inventario>(`${this.apiUrl}/${idInventario}`, { headers: headers, withCredentials: true });
+    return this.http.get<Inventario>(`${this.apiUrl}/${idInventario}`, { headers: headers, withCredentials: false});
   }
 
   getInventariosTienda(token: string, idTienda: number): Observable<Inventario[]> {
@@ -32,7 +32,7 @@ export class InventariosService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<Inventario[]>(`${this.apiUrl}/Tienda/${idTienda}`, { headers: headers, withCredentials: true });
+    return this.http.get<Inventario[]>(`${this.apiUrl}/Tienda/${idTienda}`, { headers: headers, withCredentials: false });
   }
 
   actualizarInventario(token: any, data: any):Observable<any> {

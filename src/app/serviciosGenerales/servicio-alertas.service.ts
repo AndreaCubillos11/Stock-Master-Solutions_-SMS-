@@ -17,6 +17,6 @@ export class ServicioAlertasService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<Alerta[]>(this.apiUrl,{headers: headers, withCredentials:true});
+    return this.http.get<Alerta[]>(this.apiUrl,{headers: headers, withCredentials:false});
   }
 }

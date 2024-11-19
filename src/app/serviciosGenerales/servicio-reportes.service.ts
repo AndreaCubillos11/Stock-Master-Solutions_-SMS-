@@ -23,7 +23,7 @@ export class ServicioReportesService {
       'Authorization': `Bearer ${token}`
     });
   
-    return this.http.get<Producto>(`${this.productosUrl}/producto/id/${idProducto}`, { headers: headers, withCredentials: true })
+    return this.http.get<Producto>(`${this.productosUrl}/producto/id/${idProducto}`, { headers: headers, withCredentials: false })
       .pipe(
         map(response => response.nombreProducto)
       );
@@ -68,7 +68,7 @@ export class ServicioReportesService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<ReporteProducto[]>(url, { headers: headers, withCredentials: true })
+    return this.http.get<ReporteProducto[]>(url, { headers: headers, withCredentials: false })
     .pipe(
       map(reportes => reportes.slice(0, 5)), // Selecciona los primeros 5 productos
       switchMap(reportes => {
@@ -96,7 +96,7 @@ export class ServicioReportesService {
       'Authorization': `Bearer ${token}`
     });
   
-    return this.http.get<MovimientoInventario[]>(`${this.apiUrl}/Tienda/${idTienda}`, { headers: headers, withCredentials: true })
+    return this.http.get<MovimientoInventario[]>(`${this.apiUrl}/Tienda/${idTienda}`, { headers: headers, withCredentials: false})
       .pipe(
         map(movimientos => {
           console.log('Movimientos recibidos:', movimientos);

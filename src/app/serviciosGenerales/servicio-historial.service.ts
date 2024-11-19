@@ -16,7 +16,7 @@ export class ServicioHistorialService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<MovimientoInventario[]>(this.apiUrl, { headers: headers, withCredentials: true });
+    return this.http.get<MovimientoInventario[]>(this.apiUrl, { headers: headers, withCredentials: false });
   }
 
   getMovimientosTienda(token: string, idTienda: number): Observable<MovimientoInventario[]> {
@@ -24,7 +24,7 @@ export class ServicioHistorialService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<MovimientoInventario[]>(`${this.apiUrl}/Tienda/${idTienda}`, { headers: headers, withCredentials: true });
+    return this.http.get<MovimientoInventario[]>(`${this.apiUrl}/Tienda/${idTienda}`, { headers: headers, withCredentials: false });
   }
 
 }

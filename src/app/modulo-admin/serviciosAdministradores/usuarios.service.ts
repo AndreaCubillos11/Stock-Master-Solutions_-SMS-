@@ -73,7 +73,7 @@ export class UsuariosService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<Usuario[]>(this.apiUri, { headers: headers, withCredentials: true });
+    return this.http.get<Usuario[]>(this.apiUri, { headers: headers, withCredentials: false});
   }
 }
 

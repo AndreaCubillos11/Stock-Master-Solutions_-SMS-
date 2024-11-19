@@ -20,7 +20,7 @@ export class ServicioDevolucionesService {
     });
     return this.http.get<Devolucion[]>(this.apiUrl, {
       headers: headers,
-      withCredentials: true
+      withCredentials: false
     });
   }
 
@@ -29,7 +29,7 @@ export class ServicioDevolucionesService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.post<any>(this.apiUrl, devolucion, { headers: headers, withCredentials: true });
+    return this.http.post<any>(this.apiUrl, devolucion, { headers: headers, withCredentials: false });
   }
 
   /* getReporteDevoluciones(token: any): Observable<ReporteDevolucion[]> {

@@ -30,7 +30,7 @@ export class ProductosService {
       'Authorization': `Bearer ${token}`
     });
   
-    return this.http.put(this.apiUrl, producto, { headers, withCredentials: true }).pipe(
+    return this.http.put(this.apiUrl, producto, { headers, withCredentials: false }).pipe(
       map(() => true), // Si el PUT es exitoso, retorna true
       catchError((error) => {
         console.error('Error en la modificación:', error);
@@ -46,7 +46,7 @@ export class ProductosService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.delete<boolean>(url, { headers: headers, withCredentials: true }).pipe(
+    return this.http.delete<boolean>(url, { headers: headers, withCredentials: false }).pipe(
       map(response => {
         console.log('Response:', response); // Log de respuesta
         return response === null;
@@ -64,7 +64,7 @@ export class ProductosService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<Producto>(`${this.apiUrl}/producto/id/${id}`,{ headers: headers, withCredentials: true });
+    return this.http.get<Producto>(`${this.apiUrl}/producto/id/${id}`,{ headers: headers, withCredentials: false });
   }
 
   getAllProductos(token: any): Observable<Producto[]> {
@@ -72,7 +72,7 @@ export class ProductosService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<Producto[]>(this.apiUrl, { headers: headers, withCredentials: true });
+    return this.http.get<Producto[]>(this.apiUrl, { headers: headers, withCredentials: false });
   }
 
   consultarProducto(token: any, codigoBarra: any): Observable<any> {
