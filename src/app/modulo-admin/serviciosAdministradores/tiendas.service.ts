@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class TiendasService {
 
-  apiUri = '/api/Tiendas'
+  apiUri = ' https://dionegestionapi.azurewebsites.net//api/Tiendas'
 
   constructor(private http: HttpClient) { }
 

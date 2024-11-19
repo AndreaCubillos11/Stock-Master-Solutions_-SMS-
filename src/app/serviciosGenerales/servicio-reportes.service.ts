@@ -11,9 +11,9 @@ import { ReporteProducto } from 'src/models/reporteProductos.model';
   providedIn: 'root'
 })
 export class ServicioReportesService {
-  apiUrl = '/api/MovimientosInventarios'
-  productosUrl = '/api/Productos'
-  devolucionesUrl = '/api/Devoluciones'
+  apiUrl = ' https://dionegestionapi.azurewebsites.net//api/MovimientosInventarios'
+  productosUrl = ' https://dionegestionapi.azurewebsites.net//api/Productos'
+  devolucionesUrl = 'https://dionegestionapi.azurewebsites.net//api/Devoluciones'
 
   constructor(private http: HttpClient) {}
 

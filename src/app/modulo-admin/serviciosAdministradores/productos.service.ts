@@ -6,7 +6,7 @@ import { Producto } from 'src/models/producto.model';
 @Injectable()
 
 export class ProductosService {
-  apiUrl = '/api/Productos'
+  apiUrl = 'https://dionegestionapi.azurewebsites.net/api/Productos'
 
   constructor(private http: HttpClient) { }
 

@@ -7,7 +7,7 @@ import { Inventario } from 'src/models/inventario.model';
   providedIn: 'root'
 })
 export class InventariosService {
-  apiUrl = '/api/Inventarios'
+  apiUrl = ' https://dionegestionapi.azurewebsites.net/api/Inventarios'
 
   constructor(private http: HttpClient) { }
 

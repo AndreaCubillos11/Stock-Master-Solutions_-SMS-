@@ -9,7 +9,7 @@ import { ReporteDevolucion } from 'src/models/reporteDevoluciones.model';
   providedIn: 'root'
 })
 export class ServicioDevolucionesService {
-  private apiUrl = '/api/Devoluciones';
+  private apiUrl = 'https://dionegestionapi.azurewebsites.net//api/Devoluciones';
  
   constructor(private http: HttpClient) { }
  

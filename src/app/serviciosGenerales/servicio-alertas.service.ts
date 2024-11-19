@@ -8,7 +8,7 @@ import { Alerta } from 'src/models/alerta.model';
 })
 
 export class ServicioAlertasService {
-  private apiUrl = '/api/AlertasInventario';
+  private apiUrl = ' https://dionegestionapi.azurewebsites.net//api/AlertasInventario';
 
   constructor(private http: HttpClient) { }
 

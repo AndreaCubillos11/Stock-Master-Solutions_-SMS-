@@ -7,7 +7,7 @@ import { MovimientoInventario } from 'src/models/movimientoInventario.model';
   providedIn: 'root'
 })
 export class ServicioHistorialService {
-  private apiUrl = '/api/MovimientosInventarios';
+  private apiUrl = ' https://dionegestionapi.azurewebsites.net//api/MovimientosInventarios';
 
   constructor(private http: HttpClient) { }
 

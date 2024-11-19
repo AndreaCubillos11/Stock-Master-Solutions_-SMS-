@@ -8,7 +8,7 @@ import { Usuario } from 'src/models/usuarios.model';
 })
 export class UsuariosService {
 
-  apiUri = '/api/Usuarios'
+  apiUri = ' https://dionegestionapi.azurewebsites.net/api/Usuarios'
 
   constructor(private http: HttpClient,
 
